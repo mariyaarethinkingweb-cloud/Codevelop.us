@@ -1,7 +1,6 @@
 /* ==========================================================================
-   Codevelop US — Performance Marketing interactions (vanilla JS)
-   Load AFTER js/script.js. The header, scroll progress, hero glow and
-   scroll-reveal are already handled by script.js.
+   Codevelop US — AI Performance Marketing interactions (vanilla JS)
+   Load AFTER js/script.js.
    ========================================================================== */
 (function () {
   'use strict';
@@ -11,8 +10,7 @@
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   var hasIO = 'IntersectionObserver' in window;
 
-
-  /* ---------- Hero: living network (canvas), same as About Us ---------- */
+  /* ---------- Hero: living network (canvas) ---------- */
   var cv = $('#pm-net');
   var heroEl = $('#hero');
   if (cv && cv.getContext && heroEl) {
@@ -100,7 +98,7 @@
     }
   }
 
-  /* ---------- Stats: count-up when scrolled into view ---------- */
+  /* ---------- AI engine: stats count-up ---------- */
   var statsEl = $('#pm-stats');
   if (statsEl && !reduce) {
     var counters = $$('[data-count]', statsEl);
@@ -127,7 +125,7 @@
     } else { run(); }
   }
 
-  /* ---------- How we drive performance: steps + campaign loop ---------- */
+  /* ---------- How AI drives performance: steps + loop ---------- */
   var proc = $('#pm-process');
   if (proc) {
     var steps = $$('.pm-step', proc);

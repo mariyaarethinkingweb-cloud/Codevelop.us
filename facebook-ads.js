@@ -12,7 +12,7 @@
   var hasIO = 'IntersectionObserver' in window;
 
 
-  /* ---------- Hero: living network (canvas), same as the other pages ---------- */
+  /* ---------- Hero: living network (canvas) ---------- */
   var cv = $('#fa-net');
   var heroEl = $('#hero');
   if (cv && cv.getContext && heroEl) {
@@ -100,6 +100,53 @@
     }
   }
 
+  /* ---------- AI command center: live optimization log ---------- */
+  var lab = $('#ai-lab');
+  var logBody = $('#ai-log-body');
+  if (lab && logBody) {
+    var steps = [
+      ['scan', 'Analyzing search terms by buyer intent'],
+      ['flag', 'Wasted spend detected: negative keywords queued'],
+      ['bid', 'Shifting budget toward best-converting campaigns'],
+      ['test', 'Testing 3 ad variants against the landing page'],
+      ['ok', 'Weekly performance report ready for strategist review']
+    ];
+    var timers = [];
+    var active = false;
+    var clearTimers = function () { timers.forEach(clearTimeout); timers = []; };
+    var addLine = function (s) {
+      var row = document.createElement('div');
+      row.className = 'ai-ln ai-ln--' + s[0];
+      var tag = document.createElement('b');
+      tag.textContent = s[0] === 'ok' ? '✓' : '›';
+      var txt = document.createElement('span');
+      txt.textContent = s[1];
+      row.appendChild(tag); row.appendChild(txt);
+      logBody.appendChild(row);
+      requestAnimationFrame(function () { row.classList.add('in'); });
+    };
+    var cycle = function () {
+      if (!active) return;
+      logBody.innerHTML = '';
+      steps.forEach(function (s, i) {
+        timers.push(setTimeout(function () { addLine(s); }, 700 + i * 1100));
+      });
+      timers.push(setTimeout(cycle, 700 + steps.length * 1100 + 3200));
+    };
+
+    if (reduce) {
+      steps.forEach(function (s) { addLine(s); });
+      $$('.ai-ln', logBody).forEach(function (r) { r.classList.add('in'); });
+    } else if (hasIO) {
+      new IntersectionObserver(function (es) {
+        if (es[0].isIntersecting) { if (!active) { active = true; cycle(); } }
+        else { active = false; clearTimers(); }
+      }, { threshold: 0.25 }).observe(lab);
+    } else {
+      active = true; cycle();
+    }
+  }
+
   /* ---------- Stats: count-up when scrolled into view ---------- */
   var statsEl = $('#fa-stats');
   if (statsEl && !reduce) {
@@ -178,16 +225,16 @@
   /* ---------- How it works: steps light up as you scroll ---------- */
   var stepsEl = $('#fa-steps');
   if (stepsEl) {
-    var steps = $$('.fa-step', stepsEl);
+    var stepItems = $$('.fa-step', stepsEl);
     if (hasIO && !reduce) {
       var sio = new IntersectionObserver(function (es) {
         es.forEach(function (e) {
           if (e.isIntersecting) { e.target.classList.add('is-lit'); sio.unobserve(e.target); }
         });
       }, { threshold: 0.5, rootMargin: '0px 0px -12% 0px' });
-      steps.forEach(function (s) { sio.observe(s); });
+      stepItems.forEach(function (s) { sio.observe(s); });
     } else {
-      steps.forEach(function (s) { s.classList.add('is-lit'); });
+      stepItems.forEach(function (s) { s.classList.add('is-lit'); });
     }
   }
 
@@ -229,6 +276,146 @@
           btn.setAttribute('aria-expanded', 'true');
         }
       });
+    });
+  }
+})();
+/* ==========================================================================
+   Services section — "AI Ad Studio" (vanilla JS, self-contained)
+   Paste into js/facebook-ads.js (replace the old "Services: tabs + ad preview"
+   block), or load as its own file after js/script.js.
+   ========================================================================== */
+(function () {
+  'use strict';
+
+  var root = document.getElementById('sv');
+  if (!root) return;
+
+  var $ = function (s, c) { return (c || document).querySelector(s); };
+  var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hasIO = 'IntersectionObserver' in window;
+
+  var tabs = $$('.sv-tab', root);
+  var panels = $$('.sv-p', root);
+  var chan = $('#sv-chan');
+  var view = $('#sv-view');
+  var stage = $('.sv-stage', root);
+  var cells = $$('.sv-m', root);
+
+  /* Sample metrics per channel (illustrative; swap in real numbers if you have them) */
+  var METRICS = [
+    [{ l: 'Click-through rate', v: 6.4, s: '%', d: 1, w: 64 }, { l: 'Cost per click', v: -18, s: '%', d: 0, w: 46 }, { l: 'Qualified leads', v: 42, p: '+', s: '%', d: 0, w: 78 }],
+    [{ l: 'Monthly reach', v: 2.4, s: 'M', d: 1, w: 72 }, { l: 'Click-through rate', v: 3.8, s: '%', d: 1, w: 52 }, { l: 'Audience match', v: 92, s: '%', d: 0, w: 92 }],
+    [{ l: 'Views', v: 12, s: 'K', d: 0, w: 66 }, { l: 'Watched to end', v: 68, s: '%', d: 0, w: 68 }, { l: 'Cost per view', v: -24, s: '%', d: 0, w: 50 }],
+    [{ l: 'Return on ad spend', v: 5.2, s: '×', d: 1, w: 80 }, { l: 'Sales', v: 28, p: '+', s: '%', d: 0, w: 58 }, { l: 'Add-to-cart rate', v: 7.1, s: '%', d: 1, w: 60 }]
+  ];
+
+  var fmt = function (m, n) {
+    var neg = m.v < 0;
+    return (m.p || '') + (neg ? '−' : '') + Math.abs(n).toFixed(m.d) + (m.s || '');
+  };
+
+  var countRaf = 0;
+  var setMetrics = function (i) {
+    var data = METRICS[i];
+    cancelAnimationFrame(countRaf);
+    cells.forEach(function (c, k) {
+      var m = data[k];
+      $('.sv-m-l', c).textContent = m.l;
+      var bar = $('.sv-m-b', c);
+      bar.style.width = '0';
+      if (reduce) { bar.style.width = m.w + '%'; }
+      else { requestAnimationFrame(function () { requestAnimationFrame(function () { bar.style.width = m.w + '%'; }); }); }
+    });
+    if (reduce) {
+      cells.forEach(function (c, k) { $('.sv-m-v', c).textContent = fmt(data[k], data[k].v); });
+      return;
+    }
+    var t0 = performance.now(), dur = 1200;
+    (function tick(t) {
+      var p = Math.min(1, (t - t0) / dur);
+      var e = 1 - Math.pow(1 - p, 3);
+      cells.forEach(function (c, k) {
+        var m = data[k];
+        $('.sv-m-v', c).textContent = fmt(m, Math.abs(m.v) * e * (m.v < 0 ? -1 : 1));
+      });
+      if (p < 1) countRaf = requestAnimationFrame(tick);
+    })(t0);
+  };
+
+  /* ---------- Tabs ---------- */
+  var cur = 0, timer = 0, auto = !reduce;
+
+  var show = function (i) {
+    cur = i;
+    tabs.forEach(function (t, k) {
+      var on = k === i;
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+    });
+    panels.forEach(function (p, k) { p.classList.toggle('is-active', k === i); });
+    if (chan) {
+      chan.textContent = tabs[i].getAttribute('data-chan') || '';
+      chan.classList.remove('swap');
+      void chan.offsetWidth;
+      chan.classList.add('swap');
+    }
+    setMetrics(i);
+  };
+
+  var stopAuto = function () { clearTimeout(timer); timer = 0; };
+  var queue = function () {
+    stopAuto();
+    if (!auto) return;
+    timer = setTimeout(function () { show((cur + 1) % tabs.length); queue(); }, 6000);
+  };
+  var cancelAuto = function () { auto = false; stopAuto(); root.classList.remove('is-auto'); };
+
+  if (!auto) root.classList.remove('is-auto');
+
+  tabs.forEach(function (t, i) {
+    t.tabIndex = i === 0 ? 0 : -1;
+    t.addEventListener('click', function () { cancelAuto(); show(i); });
+    t.addEventListener('keydown', function (e) {
+      var n = null;
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') n = (i + 1) % tabs.length;
+      if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') n = (i - 1 + tabs.length) % tabs.length;
+      if (n !== null) { e.preventDefault(); cancelAuto(); show(n); tabs[n].focus(); }
+    });
+  });
+
+  show(0);
+
+  /* ---------- Run animations only while the section is on screen ---------- */
+  var go = function () { root.classList.add('is-live'); if (auto) queue(); };
+  var halt = function () { root.classList.remove('is-live'); stopAuto(); };
+
+  if (hasIO) {
+    new IntersectionObserver(function (es) {
+      if (es[0].isIntersecting) {
+        go();
+        setMetrics(cur);
+      } else {
+        halt();
+      }
+    }, { threshold: 0.3 }).observe(root);
+  } else {
+    go();
+  }
+
+  /* ---------- Subtle 3D tilt on the stage (mouse only) ---------- */
+  var canHover = window.matchMedia && matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (stage && view && canHover && !reduce) {
+    stage.addEventListener('pointermove', function (e) {
+      var r = stage.getBoundingClientRect();
+      var px = (e.clientX - r.left) / r.width - 0.5;
+      var py = (e.clientY - r.top) / r.height - 0.5;
+      view.style.setProperty('--ry', (px * 6).toFixed(2) + 'deg');
+      view.style.setProperty('--rx', (-py * 5).toFixed(2) + 'deg');
+    });
+    stage.addEventListener('pointerleave', function () {
+      view.style.setProperty('--ry', '0deg');
+      view.style.setProperty('--rx', '0deg');
     });
   }
 })();

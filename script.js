@@ -23,70 +23,55 @@
   onScroll();
 
   /* ---------- Header: mobile menu + dropdowns ---------- */
-  var nav = $('#nav');
-  var navToggle = $('.nav-toggle');
-  var menus = $$('.has-menu');
+  var hdr = $('.site-header');
+  var hdrNav = $('nav', hdr);
+  var burger = $('.burger', hdr);
 
-  function closeMenus(except) {
-    menus.forEach(function (m) {
-      if (m === except) return;
-      m.classList.remove('open');
-      var b = $('.menu-toggle', m);
-      if (b) b.setAttribute('aria-expanded', 'false');
+  function closeDrops() {
+    $$('nav li.open', hdr).forEach(function (li) {
+      li.classList.remove('open');
+      $('button.top', li).setAttribute('aria-expanded', 'false');
     });
   }
 
-  menus.forEach(function (m) {
-    var btn = $('.menu-toggle', m);
+  $$('nav li > button.top', hdr).forEach(function (btn) {
     btn.addEventListener('click', function (e) {
       e.stopPropagation();
-      var open = !m.classList.contains('open');
-      closeMenus(m);
-      m.classList.toggle('open', open);
-      btn.setAttribute('aria-expanded', String(open));
+      var li = btn.parentElement;
+      var was = li.classList.contains('open');
+      closeDrops();
+      if (!was) { li.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); }
     });
   });
 
-  navToggle.addEventListener('click', function (e) {
+  burger.addEventListener('click', function (e) {
     e.stopPropagation();
-    var open = !nav.classList.contains('open');
-    nav.classList.toggle('open', open);
-    navToggle.setAttribute('aria-expanded', String(open));
-    if (!open) closeMenus();
+    var shown = hdrNav.classList.toggle('show');
+    burger.setAttribute('aria-expanded', String(shown));
+    if (!shown) closeDrops();
   });
 
   document.addEventListener('click', function (e) {
-    if (!e.target.closest('.has-menu')) closeMenus();
-    if (window.innerWidth < 1024 && !e.target.closest('.nav') && !e.target.closest('.nav-toggle')) {
-      nav.classList.remove('open');
-      navToggle.setAttribute('aria-expanded', 'false');
+    if (!e.target.closest('.site-header nav li')) closeDrops();
+    if (window.innerWidth <= 1020 && !e.target.closest('.site-header nav') && !e.target.closest('.burger')) {
+      hdrNav.classList.remove('show');
+      burger.setAttribute('aria-expanded', 'false');
     }
   });
 
   document.addEventListener('keydown', function (e) {
     if (e.key !== 'Escape') return;
-    closeMenus();
-    nav.classList.remove('open');
-    navToggle.setAttribute('aria-expanded', 'false');
+    closeDrops();
+    hdrNav.classList.remove('show');
+    burger.setAttribute('aria-expanded', 'false');
   });
 
   window.addEventListener('resize', function () {
-    if (window.innerWidth >= 1024) {
-      nav.classList.remove('open');
-      navToggle.setAttribute('aria-expanded', 'false');
+    if (window.innerWidth > 1020) {
+      hdrNav.classList.remove('show');
+      burger.setAttribute('aria-expanded', 'false');
     }
   });
-
-  /* ---------- Hero: cursor glow ---------- */
-  var hero = $('#hero');
-  if (hero && !reduce) {
-    hero.addEventListener('mousemove', function (e) {
-      var r = hero.getBoundingClientRect();
-      hero.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-      hero.style.setProperty('--my', (e.clientY - r.top) + 'px');
-    });
-  }
-
   /* ---------- Hero: logo marquee (duplicate for a seamless loop) ---------- */
   var track = $('#marquee');
   if (track && !reduce) {
@@ -245,6 +230,17 @@
     }
     renderStep();
   }
+  /* ---------- AI capability cards: cursor glow ---------- */
+  if (!reduce) {
+    $$('.bx').forEach(function (el) {
+      el.addEventListener('mousemove', function (e) {
+        var r = el.getBoundingClientRect();
+        el.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        el.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      });
+    });
+  }
+ 
 
   /* ---------- FAQ accordion ---------- */
   var faqItems = $$('.faq-item');
@@ -263,3 +259,125 @@
     });
   });
 })();
+/* ---------- Section 2: Growth Blueprint (paste INSIDE the IIFE in script.js, e.g. just before "FAQ accordion") ---------- */
+  var gbStage = $('#gb-stage');
+  if (gbStage) {
+    var gbGoalsEl = $('#gb-goals');
+    var gbGoals = $$('.gb-goal', gbGoalsEl);
+    var gbNodes = $$('.gb-node', gbStage);
+    var gbLines = $$('.gb-line', gbStage);
+    var gbNum = $('#gb-num'), gbLabel = $('#gb-label'), gbSteps = $('#gb-steps');
+    var gbLine = $('#gb-spark-line'), gbFill = $('#gb-spark-fill');
+
+    // node order: 0 Web, 1 SEO, 2 Ads, 3 AI, 4 Content, 5 Analytics
+    var gbData = [
+      { nodes: [0, 2, 5, 3], pre: '+', val: 212, dec: 0, suf: '%', label: 'more qualified leads',
+        spark: 'M2 38 C20 36 30 28 48 30 S78 16 92 14 S112 6 118 4',
+        steps: ['Conversion-focused website and landing pages', 'Paid campaigns tuned to your best audiences', 'AI follow-up so no lead goes cold'] },
+      { nodes: [1, 4, 0, 5], pre: '+', val: 340, dec: 0, suf: '%', label: 'organic search traffic',
+        spark: 'M2 40 C24 39 36 34 52 28 S80 22 94 12 S112 6 118 3',
+        steps: ['Technical SEO and a fast, crawlable site', 'Content built around what buyers search', 'Reporting that ties rankings to revenue'] },
+      { nodes: [0, 1, 5], pre: '', val: 1.2, dec: 1, suf: 's', label: 'average page load time',
+        spark: 'M2 6 C20 8 32 18 50 20 S80 32 94 34 S112 38 118 40',
+        steps: ['Lean, modern front-end built for speed', 'Core Web Vitals tuned before launch', 'Monitoring that keeps it fast'] },
+      { nodes: [3, 5, 4], pre: '−', val: 18, dec: 0, suf: ' hrs', label: 'manual work saved every week',
+        spark: 'M2 8 C22 10 34 16 52 22 S82 30 96 34 S112 38 118 40',
+        steps: ['AI agents that handle routine requests', 'Workflows wired into your CRM and inbox', 'Dashboards that show what is saved'] }
+    ];
+
+    var gbCur = 0, gbPicked = false, gbVisible = false, gbTimer = null, gbRaf = null;
+
+    var gbCount = function (d) {
+      cancelAnimationFrame(gbRaf);
+      var fmt = function (v) { return d.pre + v.toFixed(d.dec) + d.suf; };
+      if (reduce) { gbNum.textContent = fmt(d.val); return; }
+      var t0 = performance.now(), dur = 1100;
+      var frame = function (t) {
+        var p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+        gbNum.textContent = fmt(d.val * e);
+        if (p < 1) gbRaf = requestAnimationFrame(frame);
+      };
+      gbRaf = requestAnimationFrame(frame);
+    };
+
+    var gbRender = function (i) {
+      gbCur = i;
+      var d = gbData[i];
+      gbGoals.forEach(function (g, k) {
+        g.classList.toggle('is-on', k === i);
+        g.setAttribute('aria-pressed', String(k === i));
+      });
+      gbGoalsEl.classList.toggle('is-auto', !gbPicked && gbVisible && !reduce);
+      gbNodes.forEach(function (n, k) { n.classList.toggle('is-on', d.nodes.indexOf(k) > -1); });
+      gbLines.forEach(function (l, k) { l.classList.toggle('is-on', d.nodes.indexOf(k) > -1); });
+      gbLabel.textContent = d.label;
+      gbCount(d);
+      gbSteps.innerHTML = '';
+      d.steps.forEach(function (s, k) {
+        var li = document.createElement('li');
+        li.style.setProperty('--n', k);
+        li.textContent = s;
+        gbSteps.appendChild(li);
+      });
+      gbLine.setAttribute('d', d.spark);
+      gbFill.setAttribute('d', d.spark + ' L118 44 L2 44Z');
+      gbLine.classList.remove('is-draw'); void gbLine.getBoundingClientRect();
+      if (reduce) { gbLine.style.strokeDashoffset = 0; } else { gbLine.classList.add('is-draw'); }
+      gbSchedule();
+    };
+
+    var gbSchedule = function () {
+      clearTimeout(gbTimer);
+      if (gbVisible && !gbPicked && !reduce) {
+        gbTimer = setTimeout(function () { gbRender((gbCur + 1) % gbData.length); }, 6000);
+      }
+    };
+
+    gbGoals.forEach(function (g, k) {
+      g.addEventListener('click', function () { gbPicked = true; gbRender(k); });
+    });
+
+    if (hasIO) {
+      new IntersectionObserver(function (es) {
+        gbVisible = es[0].isIntersecting;
+        gbRender(gbCur);
+      }, { threshold: 0.35 }).observe(gbStage);
+    }
+    gbRender(0);
+
+    // 3D tilt following the pointer (desktop only)
+    if (!reduce && window.matchMedia && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      var gbWrap = gbStage.parentNode;
+      gbWrap.addEventListener('pointermove', function (e) {
+        var r = gbWrap.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width - 0.5;
+        var y = (e.clientY - r.top) / r.height - 0.5;
+        gbStage.classList.add('is-moving');
+        gbStage.style.setProperty('--ry', (x * 9).toFixed(2) + 'deg');
+        gbStage.style.setProperty('--rx', (-y * 7).toFixed(2) + 'deg');
+      });
+      gbWrap.addEventListener('pointerleave', function () {
+        gbStage.classList.remove('is-moving');
+        gbStage.style.setProperty('--ry', '0deg');
+        gbStage.style.setProperty('--rx', '0deg');
+      });
+    }
+  }
+   var capSec = $('#ai-capabilities');
+  if (capSec) {
+    capSec.classList.add('cap');
+    if (!reduce) {
+      $$('.cap-card', capSec).forEach(function (el) {
+        el.addEventListener('mousemove', function (e) {
+          var r = el.getBoundingClientRect();
+          el.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+          el.style.setProperty('--my', (e.clientY - r.top) + 'px');
+        });
+      });
+    }
+    if (hasIO) {
+      new IntersectionObserver(function (es) {
+        capSec.classList.toggle('is-paused', !es[0].isIntersecting);
+      }, { threshold: 0.05 }).observe(capSec);
+    }
+  }
