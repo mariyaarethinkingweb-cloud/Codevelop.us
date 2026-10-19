@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Magento Web Development Services | Codevelop</title>
+  <meta name="description" content="Custom Magento web development solutions designed for scalable eCommerce, performance optimization, and seamless user experiences.">
+  <link rel="canonical" href="https://codevelopus.com/magento-development/">
+  <meta name="theme-color" content="#0a3161">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Codevelopus">
+  <meta property="og:title" content="Magento Web Development Services | Codevelop">
+  <meta property="og:description" content="Custom Magento web development solutions designed for scalable eCommerce, performance optimization, and seamless user experiences.">
+  <meta property="og:url" content="https://codevelopus.com/magento-development/">
+  <meta property="og:image" content="https://codevelopus.com/wp-content/uploads/2026/01/Frame-30-1024x683.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@codevelopus">
+
+  <link rel="icon" href="https://codevelopus.com/wp-content/uploads/2026/01/cropped-codevelop-favicon-270x270.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/mageneto-development.css">
+</head>
+<body>
+
+  <!-- Icon sprite -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-star" viewBox="0 0 24 24">
+        <path d="M12 2.5l2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.4l-5.9 3.3 1.2-6.6L2.5 9.5l6.6-.9L12 2.5z" />
+      </symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24">
+        <path d="M5 12h14M13 6l6 6-6 6" />
+      </symbol>
+      <symbol id="i-check" viewBox="0 0 24 24">
+        <path d="M5 12.5l4.5 4.5L19 7.5" />
+      </symbol>
+      <symbol id="i-chev" viewBox="0 0 24 24">
+        <path d="M6 9l6 6 6-6" />
+      </symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24">
+        <path d="M12 5v14M5 12h14" />
+      </symbol>
+      <symbol id="i-layers" viewBox="0 0 24 24">
+        <path d="M12 3l9 5-9 5-9-5 9-5z" />
+        <path d="M3 13l9 5 9-5" />
+      </symbol>
+      <symbol id="i-grid" viewBox="0 0 24 24">
+        <rect x="3" y="3" width="7" height="7" rx="1.5" />
+        <rect x="14" y="3" width="7" height="7" rx="1.5" />
+        <rect x="3" y="14" width="7" height="7" rx="1.5" />
+        <rect x="14" y="14" width="7" height="7" rx="1.5" />
+      </symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 7v5l3 2" />
+      </symbol>
+      <symbol id="i-code" viewBox="0 0 24 24">
+        <path d="M8 8l-5 4 5 4M16 8l5 4-5 4M14 5l-4 14" />
+      </symbol>
+      <symbol id="i-pen" viewBox="0 0 24 24">
+        <path d="M4 20l4-1 11-11-3-3L5 16l-1 4z" />
+        <path d="M14 6l3 3" />
+      </symbol>
+      <symbol id="i-bolt" viewBox="0 0 24 24">
+        <path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z" />
+      </symbol>
+      <symbol id="i-cms" viewBox="0 0 24 24">
+        <rect x="3" y="4" width="18" height="16" rx="2" />
+        <path d="M3 9h18M8 9v11" />
+      </symbol>
+      <symbol id="i-search" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="7" />
+        <path d="M20 20l-4-4" />
+      </symbol>
+      <symbol id="i-target" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" />
+        <circle cx="12" cy="12" r="5" />
+        <circle cx="12" cy="12" r="1.5" />
+      </symbol>
+      <symbol id="i-funnel" viewBox="0 0 24 24">
+        <path d="M3 4h18l-7 8v6l-4 2v-8L3 4z" />
+      </symbol>
+      <symbol id="i-doc" viewBox="0 0 24 24">
+        <path d="M6 3h9l4 4v14H6V3z" />
+        <path d="M14 3v5h5M9 13h7M9 17h7" />
+      </symbol>
+      <symbol id="i-chart" viewBox="0 0 24 24">
+        <path d="M4 20V10M10 20V4M16 20v-7M22 20H2" />
+      </symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24">
+        <path d="M4 5h16v11H9l-5 4V5z" />
+      </symbol>
+      <symbol id="i-spark" viewBox="0 0 24 24">
+        <path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M18 6l-2.5 2.5M8.5 15.5L6 18" />
+      </symbol>
+      <symbol id="i-eye" viewBox="0 0 24 24">
+        <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z" />
+        <circle cx="12" cy="12" r="3" />
+      </symbol>
+      <symbol id="i-flag" viewBox="0 0 24 24">
+        <path d="M5 21V4M5 4h12l-2 4 2 4H5" />
+      </symbol>
+      <symbol id="i-tooth" viewBox="0 0 24 24">
+        <path
+          d="M7 3C4.5 3 3 5 3 7.5c0 2 1 3 1.5 5S5 21 6.5 21 8 17 9 16s2-1 3-1 2 0 3 1 1 5 2.5 5 1.5-4 2-8.5c.5-2 1.5-3 1.5-5C21 5 19.5 3 17 3c-2 0-3 1-5 1S9 3 7 3z" />
+      </symbol>
+      <symbol id="i-home" viewBox="0 0 24 24">
+        <path d="M3 11l9-7 9 7" />
+        <path d="M5 10v10h14V10" />
+        <path d="M10 20v-5h4v5" />
+      </symbol>
+      <symbol id="i-scale" viewBox="0 0 24 24">
+        <path d="M12 3v18M5 21h14M6 6h12M6 6l-3 7a3 3 0 0 0 6 0L6 6zM18 6l-3 7a3 3 0 0 0 6 0l-3-7z" />
+      </symbol>
+      <symbol id="i-sparkle" viewBox="0 0 24 24">
+        <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z" />
+        <path d="M19 17l.8 2.2L22 20l-2.2.8L19 23l-.8-2.2L16 20l2.2-.8L19 17z" />
+      </symbol>
+      <symbol id="i-fb" viewBox="0 0 24 24">
+        <path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v7h4v-7h3l1-4h-4V8z" />
+      </symbol>
+      <symbol id="i-ig" viewBox="0 0 24 24">
+        <rect x="3" y="3" width="18" height="18" rx="5" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="17.5" cy="6.5" r="0.8" />
+      </symbol>
+      <symbol id="i-in" viewBox="0 0 24 24">
+        <rect x="3" y="9" width="4" height="12" />
+        <circle cx="5" cy="5" r="2" />
+        <path d="M10 9h4v2a4 4 0 0 1 6 3v7h-4v-6a2 2 0 0 0-4 0v6h-4V9z" />
+      </symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24">
+        <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" />
+      </symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24">
+        <rect x="3" y="5" width="18" height="14" rx="2" />
+        <path d="M3 7l9 6 9-6" />
+      </symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24">
+        <path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11z" />
+        <circle cx="12" cy="10" r="2.5" />
+      </symbol>
+      <symbol id="i-pointer" viewBox="0 0 24 24">
+        <path d="M5 3l14 7-6 2-2 6L5 3z" fill="currentColor" />
+      </symbol>
+      <symbol id="i-drag" viewBox="0 0 24 24">
+        <path d="M8 7l-5 5 5 5M16 7l5 5-5 5" />
+      </symbol>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header" id="top">
+    <div class="bar">
+      <a class="logo" href="index.html" aria-label="Codevelop home"><img src="images/codevelop.webp"
+          alt="Codevelop logo" class="brand-logo" width="160" height="40"></a>
+      <button class="burger" type="button" aria-label="Open menu"
+        aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav aria-label="Main">
+        <ul>
+          <li><button class="top" type="button" aria-expanded="false">AI Agents <svg class="chev" viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop"><a href="#">Sales &amp; Lead Agents</a><a href="#">Support Agents</a><a href="#">Finance
+                Agents</a><a href="#">Email &amp; Document Agents</a></div>
+          </li>
+          <li><button class="top" type="button" aria-expanded="false">Connectors <svg class="chev" viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop"><a href="#">Business Central</a><a href="#">NetSuite</a><a href="#">Odoo</a><a
+                href="#">Zoho</a></div>
+          </li>
+<li class="has-mega"><button class="top" type="button" aria-expanded="false">Services <svg class="chev" viewBox="0 0 10 10">
+    <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+  </svg></button>
+  <div class="drop drop--mega">
+    <div class="mega-top">
+      <a class="mega-all" href="#">View all services <svg class="ico" width="16" height="16" aria-hidden="true"><use href="#i-arrow" /></svg></a>
+    </div>
+
+    <div class="mega-col">
+      <h4><a href="performance-marketing.html">Performance Marketing</a></h4>
+      <a href="meta-ads.html">Google Ads Management</a>
+      <a href="facebook-ads.html">Facebook Ads</a>
+      <a href="#">Remarketing</a>
+    </div>
+
+    <div class="mega-col">
+      <h4><a href="web-development.html">Web Development Services</a></h4>
+      <a href="#">Custom Website Design</a>
+      <a href="wordpress-development.html">WordPress Web Development</a>
+      <a href="shopify-development.html">Shopify Web Development</a>
+      <a href="webflow-development.html">Webflow Web Development</a>
+      <a href="framer-development.html">Framer Web Development</a>
+      <a href="mageneto-development.html">Magento Web Development</a>
+      <a href="#">Website Maintenance</a>
+      <a href="#">Website Redesign</a>
+    </div>
+
+    <div class="mega-col">
+      <h4><a href="#">Social Media Marketing</a></h4>
+      <a href="#">Content Marketing</a>
+    </div>
+
+    <div class="mega-col">
+      <h4><a href="#">Search Engine Optimization</a></h4>
+      <a href="#">Local SEO</a>
+      <a href="#">SEO Audits</a>
+      <a href="#">Technical SEO</a>
+      <a href="#">Enterprise SEO</a>
+    </div>
+  </div>
+</li>
+          <li><button class="top" type="button" aria-expanded="false">Hire Talent <svg class="chev" viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop"><a href="#">Developers</a><a href="#">Automation Engineers</a><a href="#">Dedicated
+                Teams</a></div>
+          </li>
+          <li><button class="top" type="button" aria-expanded="false">About <svg class="chev" viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop"><a href="about-us.html">Our Story</a><a href="#">Offices</a><a href="#">Careers</a><a
+                href="#">Contact</a></div>
+          </li>
+          <li><a href="#">Success Stories</a></li>
+          <li><a href="#">Insights</a></li>
+        </ul>
+        <a class="hdr-cta hdr-cta-m" href="#">Get a Free Automation Review</a>
+      </nav>
+      <a class="hdr-cta" href="#">Get a Free Automation Review</a>
+    </div>
+  </header>
+
+  <main id="content">
+<!-- ================= PAGE HERO (same layout as Performance Marketing) ================= -->
+<section class="mg-hero" id="hero" aria-labelledby="mg-title">
+  <div class="mg-aurora mg-aurora--1" aria-hidden="true"></div>
+  <div class="mg-aurora mg-aurora--2" aria-hidden="true"></div>
+  <div class="mg-aurora mg-aurora--3" aria-hidden="true"></div>
+  <canvas class="mg-canvas" id="mg-net" aria-hidden="true"></canvas>
+  <div class="mg-hero-glow" aria-hidden="true"></div>
+  <div class="container mg-hero-inner">
+
+    <nav class="mg-crumbs" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <svg class="ico" aria-hidden="true"><use href="#i-chev"/></svg>
+      <span aria-current="page">Magento Web Development</span>
+    </nav>
+
+    <h1 class="mg-title" id="mg-title">
+      <span class="w"><span style="--i:0">Magento</span></span>
+      <span class="w"><span style="--i:1">Web</span></span>
+      <span class="w"><span style="--i:2">Development</span></span>
+    </h1>
+    <span class="mg-rule" aria-hidden="true"></span>
+
+    <p class="mg-mission">At Codevelop, we specialize in Magento web development in Portland, Oregon, delivering robust, scalable, and fully customized e-commerce solutions.</p>
+
+    <div class="hero-actions">
+      <a class="btn btn--primary btn--lg" href="#intro">Learn more <svg class="ico"><use href="#i-arrow"/></svg></a>
+      <a class="btn btn--ghost btn--lg" href="#services">Our services</a>
+    </div>
+
+    <ul class="mg-facts" aria-label="Codevelop at a glance">
+      <li class="mg-fact"><svg class="ico"><use href="#i-clock"/></svg>Since 2011</li>
+      <li class="mg-fact"><svg class="ico"><use href="#i-pin"/></svg>Portland, Oregon</li>
+      <li class="mg-fact"><svg class="ico"><use href="#i-flag"/></svg>Clients across the U.S.</li>
+    </ul>
+
+    <div class="mg-ind">
+      <p>What we build for you</p>
+      <ul class="mg-chips">
+        <li class="mg-chip"><svg class="ico"><use href="#i-palette"/></svg>Store Design</li>
+        <li class="mg-chip"><svg class="ico"><use href="#i-plug"/></svg>Extensions &amp; Integration</li>
+        <li class="mg-chip"><svg class="ico"><use href="#i-gauge"/></svg>Performance</li>
+        <li class="mg-chip"><svg class="ico"><use href="#i-sync"/></svg>Migration &amp; Maintenance</li>
+      </ul>
+    </div>
+  </div>
+
+  <svg class="mg-wave" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+    <path class="mg-wave-back" d="M0 50 C 260 120, 520 0, 800 55 S 1220 110, 1440 30 L1440 120 L0 120 Z"/>
+    <path class="mg-wave-front" d="M0 78 C 240 124, 480 28, 760 74 S 1200 118, 1440 62 L1440 120 L0 120 Z"/>
+  </svg>
+</section>
+
+<!-- ================= INTRO + STATS ================= -->
+<section class="section mg-sec" id="intro" aria-labelledby="intro-title">
+  <div class="container" data-reveal>
+    <div class="mg-split">
+      <div class="mg-copy">
+        <h2 class="h-section" id="intro-title">Magento Web Development in Portland, Oregon</h2>
+        <p class="lead">At Codevelop, we specialize in Magento web development in Portland, Oregon, delivering robust, scalable, and fully customized e-commerce solutions. Magento is a powerful platform that allows businesses to build enterprise-level online stores with advanced functionality, optimized performance, and flexible integrations.</p>
+        <p class="lead">Our approach combines strategic planning, data-driven insights, and technical expertise to help your business increase online sales, enhance customer experience, and drive long-term growth.</p>
+        <a class="btn btn--primary" href="https://codevelopus.com/case-studies/">Check our Portfolio <svg class="ico"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="mg-media">
+        <img src="https://codevelopus.com/wp-content/uploads/2026/01/Frame-30-scaled.webp" alt="Magento e-commerce store built by Codevelop" width="1024" height="683" loading="lazy">
+        <div class="mg-badge">
+          <svg class="ico"><use href="#i-cart"/></svg>
+          <div><b>Portland, Oregon</b><span>Magento development agency</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats band. Replace the numbers with your real figures. -->
+    <div class="mg-stats" id="mg-stats">
+      <div class="mg-stat"><strong><span data-count="300">300</span><i>+</i></strong><span>Projects Delivered</span></div>
+      <div class="mg-stat"><strong><span data-count="20">20</span><i>+</i></strong><span>Team Members</span></div>
+      <div class="mg-stat"><strong><span data-count="4">4</span><i>+</i></strong><span>Industries Served</span></div>
+      <div class="mg-stat"><strong><span data-count="5">5</span><i>+</i></strong><span>Countries Served</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHAT IS MAGENTO ================= -->
+<section class="section mg-sec mg-sec--tint" id="what" aria-labelledby="what-title">
+  <div class="container" data-reveal>
+    <div class="mg-what">
+      <div class="mg-what-side">
+        <h2 class="h-section" id="what-title">What is Magento?</h2>
+        <p class="lead"><b>Magento</b> is a powerful, open-source e-commerce platform designed to help businesses create, manage, and grow online stores of any size. Unlike basic website builders, Magento is built for <b>enterprise-level e-commerce</b>, offering advanced features, customization, and scalability.</p>
+        <div class="mg-what-img">
+          <img src="https://codevelopus.com/wp-content/uploads/2026/01/Frame-20-scaled.webp" alt="Magento store dashboard and catalog" width="1024" height="683" loading="lazy">
+        </div>
+      </div>
+
+      <div class="mg-what-main">
+        <p class="mg-what-lead">Key capabilities of Magento include:</p>
+        <ul class="mg-caps">
+          <li class="mg-cap">
+            <span class="mg-cap-ico"><svg class="ico"><use href="#i-palette"/></svg></span>
+            <h3>Customizable Store Design</h3>
+            <p>Fully tailored themes and layouts to reflect your brand identity.</p>
+          </li>
+          <li class="mg-cap">
+            <span class="mg-cap-ico"><svg class="ico"><use href="#i-box"/></svg></span>
+            <h3>Product &amp; Inventory Management</h3>
+            <p>Manage large product catalogs, configurable items, and complex inventory with ease.</p>
+          </li>
+          <li class="mg-cap">
+            <span class="mg-cap-ico"><svg class="ico"><use href="#i-card"/></svg></span>
+            <h3>Secure Payment Processing</h3>
+            <p>Support for multiple payment gateways and secure transactions.</p>
+          </li>
+          <li class="mg-cap">
+            <span class="mg-cap-ico"><svg class="ico"><use href="#i-plug"/></svg></span>
+            <h3>Advanced Integrations</h3>
+            <p>Connect with CRM, ERP, marketing tools, shipping, and third-party apps.</p>
+          </li>
+          <li class="mg-cap">
+            <span class="mg-cap-ico"><svg class="ico"><use href="#i-gauge"/></svg></span>
+            <h3>Performance Optimization</h3>
+            <p>High-speed, mobile-responsive, and SEO-friendly architecture.</p>
+          </li>
+          <li class="mg-cap">
+            <span class="mg-cap-ico"><svg class="ico"><use href="#i-chart"/></svg></span>
+            <h3>Scalability</h3>
+            <p>Handles high traffic volumes and extensive product catalogs, making it ideal for growing businesses.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="mg-essence">In essence, Magento is a <b>robust, flexible, and secure e-commerce solution</b> that allows businesses in Portland and across the USA to create high-performing online stores that drive sales and growth.</p>
+  </div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section class="section mg-sec" id="services" aria-labelledby="services-title">
+  <div class="container" data-reveal>
+    <div class="section-head">
+      <span class="pill">What we offer</span>
+      <h2 class="h-section" id="services-title">Our Magento Web Development Services in Portland</h2>
+      <p class="lead">We offer a comprehensive suite of Magento development services designed to optimize your e-commerce growth:</p>
+    </div>
+
+    <div class="mg-rows" data-stagger>
+      <a class="mg-row" href="#">
+        <span class="mg-row-ico"><svg class="ico"><use href="#i-palette"/></svg></span>
+        <span class="mg-row-body">
+          <h3>Magento Store Design &amp; Customization</h3>
+          <p>We create unique, brand-aligned Magento stores that drive conversions. This includes custom theme development, responsive layouts, and landing pages designed to enhance the customer journey</p>
+        </span>
+        <span class="mg-row-go"><svg class="ico"><use href="#i-arrow"/></svg></span>
+      </a>
+      <a class="mg-row" href="#">
+        <span class="mg-row-ico"><svg class="ico"><use href="#i-plug"/></svg></span>
+        <span class="mg-row-body">
+          <h3>Magento Extension &amp; Integration</h3>
+          <p>Enhance functionality with seamless integration of ERP, CRM, payment gateways, shipping solutions, and marketing automation tools. Custom extensions are developed to meet your unique business needs</p>
+        </span>
+        <span class="mg-row-go"><svg class="ico"><use href="#i-arrow"/></svg></span>
+      </a>
+      <a class="mg-row" href="#">
+        <span class="mg-row-ico"><svg class="ico"><use href="#i-gauge"/></svg></span>
+        <span class="mg-row-body">
+          <h3>Performance Optimization</h3>
+          <p>Optimize site speed, mobile responsiveness, and SEO structure. We use analytics to monitor user behavior, track sales, and continuously improve your store’s performance</p>
+        </span>
+        <span class="mg-row-go"><svg class="ico"><use href="#i-arrow"/></svg></span>
+      </a>
+      <a class="mg-row" href="#">
+        <span class="mg-row-ico"><svg class="ico"><use href="#i-sync"/></svg></span>
+        <span class="mg-row-body">
+          <h3>Migration &amp; Maintenance</h3>
+          <p>We provide seamless migration from other e-commerce platforms to Magento, including data transfer and configuration. Ongoing maintenance ensures your store stays secure, updated, and high-performing.</p>
+        </span>
+        <span class="mg-row-go"><svg class="ico"><use href="#i-arrow"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY MAGENTO ================= -->
+<section class="section mg-sec mg-sec--tint" id="why" aria-labelledby="why-title">
+  <div class="container" data-reveal>
+    <div class="mg-why" id="mg-why">
+      <div class="mg-why-copy">
+        <span class="pill pill--dark">Why choose us</span>
+        <h2 class="h-section" id="why-title">Why Choose Magento for Your E-Commerce Business?</h2>
+        <p class="lead">Magento is a leading choice for businesses that require a robust, enterprise-grade e-commerce platform. Key advantages include:</p>
+        <a class="btn btn--primary" href="https://codevelopus.com/contact-us/">Get started <svg class="ico"><use href="#i-arrow"/></svg></a>
+
+        <!-- Live store switcher: shows multi-store, multi-language, multi-currency -->
+        <div class="mg-shop" aria-label="Multi-store, multi-language and multi-currency example">
+          <div class="mg-shop-bar" aria-hidden="true"><i></i><i></i><i></i><span id="mg-url">shop.example.com/us</span></div>
+          <div class="mg-shop-tabs" role="tablist" aria-label="Store view">
+            <button class="mg-shop-tab" role="tab" type="button" aria-selected="true">United States</button>
+            <button class="mg-shop-tab" role="tab" type="button" aria-selected="false">France</button>
+            <button class="mg-shop-tab" role="tab" type="button" aria-selected="false">Japan</button>
+          </div>
+          <div class="mg-shop-body" aria-live="polite">
+            <div class="mg-shop-art" aria-hidden="true"><svg class="ico"><use href="#i-box"/></svg></div>
+            <div class="mg-shop-info">
+              <b id="mg-prod">Everyday backpack</b>
+              <strong id="mg-price">$120.00</strong>
+              <span class="mg-shop-btn" id="mg-cta">Add to cart</span>
+            </div>
+          </div>
+          <div class="mg-shop-meta">
+            <span><svg class="ico"><use href="#i-store"/></svg>Multi-store</span>
+            <span><svg class="ico"><use href="#i-globe"/></svg><em id="mg-lang">English</em></span>
+            <span><svg class="ico"><use href="#i-card"/></svg><em id="mg-cur">USD</em></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mg-adv">
+        <div class="mg-adv-card">
+          <span class="mg-adv-ico"><svg class="ico"><use href="#i-chart"/></svg></span>
+          <h3>Scalability</h3>
+          <p>Manage thousands of products and high traffic volumes effortlessly</p>
+        </div>
+        <div class="mg-adv-card">
+          <span class="mg-adv-ico"><svg class="ico"><use href="#i-layers"/></svg></span>
+          <h3>Customizability</h3>
+          <p>Fully flexible architecture to meet your unique business needs</p>
+        </div>
+        <div class="mg-adv-card">
+          <span class="mg-adv-ico"><svg class="ico"><use href="#i-globe"/></svg></span>
+          <h3>Advanced Features</h3>
+          <p>Support for multi-store setups, multi-language, and multi-currency options</p>
+        </div>
+        <div class="mg-adv-card">
+          <span class="mg-adv-ico"><svg class="ico"><use href="#i-shield"/></svg></span>
+          <h3>Security &amp; Reliability</h3>
+          <p>Regular updates and strong security features to protect your store and customer data</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TESTIMONIALS =================
+     The live page loads its testimonials from a plugin, so the review text
+     was not available. Replace the three placeholder cards with real client
+     reviews (keep the same markup). -->
+<section class="section mg-sec" id="testimonials" aria-labelledby="testi-title">
+  <div class="container" data-reveal>
+    <div class="mg-testi-head">
+      <div class="mg-testi-title">
+        <span class="pill">Testimonial</span>
+        <h2 class="h-section" id="testi-title">What they say about us</h2>
+        <p class="lead">Hear from our happy customers who’ve experienced outstanding service and exceptional results. Their success stories speak for themselves.</p>
+      </div>
+      <div class="mg-testi-nav">
+        <button class="mg-round" type="button" id="mg-prev" aria-label="Previous testimonial"><svg class="ico" style="transform:scaleX(-1)"><use href="#i-arrow"/></svg></button>
+        <button class="mg-round mg-round--red" type="button" id="mg-next" aria-label="Next testimonial"><svg class="ico"><use href="#i-arrow"/></svg></button>
+      </div>
+    </div>
+
+    <div class="mg-track" id="mg-track" tabindex="0" aria-label="Client testimonials">
+      <figure class="mg-testi">
+        <svg class="ico mg-testi-q" aria-hidden="true"><use href="#i-quote"/></svg>
+        <blockquote>Add your client’s testimonial here.</blockquote>
+        <figcaption><span class="mg-avatar">C</span><span><b>Client name</b><i>Company, City</i></span></figcaption>
+      </figure>
+      <figure class="mg-testi">
+        <svg class="ico mg-testi-q" aria-hidden="true"><use href="#i-quote"/></svg>
+        <blockquote>Add your client’s testimonial here.</blockquote>
+        <figcaption><span class="mg-avatar">C</span><span><b>Client name</b><i>Company, City</i></span></figcaption>
+      </figure>
+      <figure class="mg-testi">
+        <svg class="ico mg-testi-q" aria-hidden="true"><use href="#i-quote"/></svg>
+        <blockquote>Add your client’s testimonial here.</blockquote>
+        <figcaption><span class="mg-avatar">C</span><span><b>Client name</b><i>Company, City</i></span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="section mg-sec mg-sec--tint" id="faq" aria-labelledby="faq-title">
+  <div class="container" data-reveal>
+    <div class="mg-faq">
+      <div class="mg-faq-head">
+        <span class="pill">FAQ</span>
+        <h2 class="h-section" id="faq-title">Frequently Asked Questions</h2>
+        <p class="lead">Straight answers about building your store on Magento with Codevelop.</p>
+        <a class="btn btn--ghost" href="https://codevelopus.com/contact-us/">Contact us</a>
+      </div>
+
+      <div class="mg-faq-list" id="mg-faq">
+        <div class="mg-faq-item open">
+          <h3><button class="mg-faq-q" type="button" aria-expanded="true" aria-controls="mg-a0" id="mg-q0">What is Magento best suited for?<svg class="ico"><use href="#i-plus"/></svg></button></h3>
+          <div class="mg-faq-a" id="mg-a0" role="region" aria-labelledby="mg-q0"><div><p>Magento is ideal for medium to large businesses that require advanced features, scalability, and customizability for their e-commerce stores</p></div></div>
+        </div>
+
+        <div class="mg-faq-item">
+          <h3><button class="mg-faq-q" type="button" aria-expanded="false" aria-controls="mg-a1" id="mg-q1">How long does it take to build a Magento store?<svg class="ico"><use href="#i-plus"/></svg></button></h3>
+          <div class="mg-faq-a" id="mg-a1" role="region" aria-labelledby="mg-q1"><div><p>Depending on complexity, a custom Magento store can take 8–16 weeks from discovery to launch.</p></div></div>
+        </div>
+
+        <div class="mg-faq-item">
+          <h3><button class="mg-faq-q" type="button" aria-expanded="false" aria-controls="mg-a2" id="mg-q2">Can you migrate my existing store to Magento?<svg class="ico"><use href="#i-plus"/></svg></button></h3>
+          <div class="mg-faq-a" id="mg-a2" role="region" aria-labelledby="mg-q2"><div><p>Yes. We handle seamless migrations from other platforms, including data, product catalogs, and customer information</p></div></div>
+        </div>
+
+        <div class="mg-faq-item">
+          <h3><button class="mg-faq-q" type="button" aria-expanded="false" aria-controls="mg-a3" id="mg-q3">Do you provide ongoing maintenance and support?<svg class="ico"><use href="#i-plus"/></svg></button></h3>
+          <div class="mg-faq-a" id="mg-a3" role="region" aria-labelledby="mg-q3"><div><p>Absolutely. We provide regular updates, security monitoring, performance optimization, and troubleshooting to ensure your store runs smoothly.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="cta" id="contact" aria-labelledby="cta-title">
+  <div class="cta-grid">
+    <div class="cta-bar" aria-hidden="true"></div>
+    <div class="cta-box">
+      <div class="ripples" aria-hidden="true"><span></span><span></span><span></span></div>
+      <h2 id="cta-title">Delivering IT solutions that enable you to work smarter.</h2>
+      <p>Work with a team focused on performance, scalability, and long-term growth.</p>
+      <a class="btn btn--primary btn--lg btn-sweep" href="https://codevelopus.com/contact-us/"><span style="position:relative">Discover more</span></a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site-footer">
+  <div class="footer-panel">
+    <div class="footer-flag" aria-hidden="true"></div>
+    <div class="footer-main">
+      <div class="footer-brand">
+        <img src="images/codevelop.webp" alt="Codevelop logo" class="brand-logo" width="160" height="40">
+        <p>At Codevelop, we help businesses turn strategy into scalable results through thoughtful design, performance-driven marketing, and modern technology.</p>
+        <div class="socials">
+          <a href="https://www.facebook.com/Codevelop.usa/" aria-label="Facebook" target="_blank" rel="noopener"><svg class="ico"><use href="#i-fb"/></svg></a>
+          <a href="https://www.instagram.com/codevelop_us/" aria-label="Instagram" target="_blank" rel="noopener"><svg class="ico"><use href="#i-ig"/></svg></a>
+          <a href="https://www.linkedin.com/company/codevelop-us" aria-label="LinkedIn" target="_blank" rel="noopener"><svg class="ico"><use href="#i-in"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h3>Services</h3>
+        <ul>
+          <li><a href="performance-marketing.html">Performance Marketing</a></li>
+          <li><a href="#">SEO Services</a></li>
+          <li><a href="#">Social Media Marketing</a></li>
+          <li><a href="#">Web Development</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Quick Link</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#">Case Studies</a></li>
+          <li><a href="#">Blogs</a></li>
+          <li><a href="https://codevelopus.com/">Free SEO Audit</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Contact Us</h3>
+        <ul class="contact">
+          <li><svg class="ico"><use href="#i-pin"/></svg><span>555 SE Martin Luther King JR Blvd, Portland, OR 97214</span></li>
+          <li><svg class="ico"><use href="#i-phone"/></svg><a href="tel:+19714809833">+1 971-480-9833</a></li>
+          <li><svg class="ico"><use href="#i-mail"/></svg><a href="mailto:info@codevelop.us">info@codevelop.us</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="newsletter">
+      <div class="newsletter-box">
+        <h3>Signup our newsletter to get update information, news, insight or promotions.</h3>
+        <form class="news-form" action="#" method="post">
+          <label class="sr-only" for="news-email">Email</label>
+          <input id="news-email" type="email" name="email" placeholder="Email" required autocomplete="email">
+          <button class="btn btn--primary" type="submit">Sign up</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="copyright">
+    <span>Copyright © 2026 Codevelop US, All Rights Reserved.</span>
+    <a href="#">Privacy policy</a>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+<script src="js/mageneto-development.js"></script>
+</body>
+</html>
