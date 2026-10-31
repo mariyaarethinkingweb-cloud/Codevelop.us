@@ -3,6 +3,7 @@
    Load AFTER js/script.js and js/facebook-ads.js.
    facebook-ads.js already handles the hero network, stat count-up and the
    testimonial slider; this file adds the process timeline and the FAQ.
+   (Unchanged from your current file.)
    ========================================================================== */
 (function () {
   'use strict';

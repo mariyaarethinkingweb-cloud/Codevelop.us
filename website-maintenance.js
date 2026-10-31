@@ -1,0 +1,278 @@
+/* ==========================================================================
+   Codevelop US — Website Maintenance interactions (vanilla JS)
+   Load AFTER js/script.js. The header, scroll progress, hero glow and
+   scroll-reveal are already handled by script.js.
+   ========================================================================== */
+(function () {
+  'use strict';
+
+  var $ = function (s, c) { return (c || document).querySelector(s); };
+  var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hasIO = 'IntersectionObserver' in window;
+
+  /* ---------- Hero: living network (canvas), same as the Magento page ---------- */
+  var cv = $('#wm-net');
+  var heroEl = $('#hero');
+  if (cv && cv.getContext && heroEl) {
+    var ctx = cv.getContext('2d');
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var W = 0, H = 0, nodes = [], link = 140, raf = 0, running = false;
+    var mouse = { x: -9999, y: -9999 };
+
+    var make = function () {
+      return {
+        x: Math.random() * W, y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.5, vy: (Math.random() - 0.5) * 0.5,
+        r: 1.3 + Math.random() * 1.8, red: Math.random() < 0.14
+      };
+    };
+    var resize = function () {
+      var r = cv.getBoundingClientRect();
+      W = r.width; H = r.height;
+      cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      link = W < 600 ? 100 : 140;
+      var n = Math.round(Math.min(95, Math.max(26, (W * H) / 15000)));
+      while (nodes.length < n) nodes.push(make());
+      nodes.length = n;
+    };
+
+    var frame = function (animate) {
+      ctx.clearRect(0, 0, W, H);
+      var i, j, a, b, dx, dy, d, al;
+      for (i = 0; i < nodes.length; i++) {
+        a = nodes[i];
+        if (animate) {
+          dx = a.x - mouse.x; dy = a.y - mouse.y; d = Math.sqrt(dx * dx + dy * dy);
+          if (d < 160 && d > 1) { a.x -= (dx / d) * 0.6; a.y -= (dy / d) * 0.6; }
+          a.x += a.vx; a.y += a.vy;
+          if (a.x < -10) a.x = W + 10; else if (a.x > W + 10) a.x = -10;
+          if (a.y < -10) a.y = H + 10; else if (a.y > H + 10) a.y = -10;
+        }
+      }
+      ctx.lineWidth = 1;
+      for (i = 0; i < nodes.length; i++) {
+        a = nodes[i];
+        for (j = i + 1; j < nodes.length; j++) {
+          b = nodes[j]; dx = a.x - b.x; dy = a.y - b.y; d = Math.sqrt(dx * dx + dy * dy);
+          if (d < link) {
+            al = (1 - d / link) * 0.5;
+            ctx.strokeStyle = (a.red || b.red) ? 'rgba(255,107,142,' + al + ')' : 'rgba(255,255,255,' + al * 0.8 + ')';
+            ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+          }
+        }
+        dx = a.x - mouse.x; dy = a.y - mouse.y; d = Math.sqrt(dx * dx + dy * dy);
+        if (d < 190) {
+          ctx.strokeStyle = 'rgba(160,200,255,' + (1 - d / 190) * 0.7 + ')';
+          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke();
+        }
+      }
+      for (i = 0; i < nodes.length; i++) {
+        a = nodes[i];
+        if (a.red) {
+          ctx.fillStyle = 'rgba(255,107,142,0.22)';
+          ctx.beginPath(); ctx.arc(a.x, a.y, a.r * 3.4, 0, 6.2832); ctx.fill();
+          ctx.fillStyle = '#ff6b8e';
+        } else { ctx.fillStyle = 'rgba(255,255,255,0.88)'; }
+        ctx.beginPath(); ctx.arc(a.x, a.y, a.r, 0, 6.2832); ctx.fill();
+      }
+    };
+
+    var loop = function () { frame(true); raf = requestAnimationFrame(loop); };
+    var start = function () { if (!running && !reduce) { running = true; raf = requestAnimationFrame(loop); } };
+    var stop = function () { running = false; cancelAnimationFrame(raf); };
+
+    resize();
+    frame(false);
+    window.addEventListener('resize', function () { resize(); if (!running) frame(false); });
+
+    if (!reduce) {
+      heroEl.addEventListener('mousemove', function (e) {
+        var r = cv.getBoundingClientRect();
+        mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top;
+      });
+      heroEl.addEventListener('mouseleave', function () { mouse.x = mouse.y = -9999; });
+      if (hasIO) {
+        new IntersectionObserver(function (es) { es[0].isIntersecting ? start() : stop(); }, { threshold: 0.05 }).observe(heroEl);
+      } else { start(); }
+    }
+  }
+
+  /* ---------- AI monitor panel: ring, bars, rolling activity log ---------- */
+  var panel = $('#wm-panel');
+  if (panel) {
+    var ring = $('#wm-ring-fg');
+    var scoreEl = $('#wm-score');
+    var bars = $$('.wm-bar i', panel);
+    var logEl = $('#wm-log');
+    var CIRC = 326.7;
+    var score = scoreEl ? Number(scoreEl.getAttribute('data-score')) || 98 : 98;
+
+    var fillPanel = function () {
+      if (ring) ring.style.strokeDashoffset = String(CIRC * (1 - score / 100));
+      bars.forEach(function (b) { b.style.width = b.getAttribute('data-w') + '%'; });
+      if (scoreEl && !reduce) {
+        var t0 = performance.now(), dur = 1600;
+        (function tick(t) {
+          var p = Math.min(1, (t - t0) / dur);
+          scoreEl.textContent = Math.round(score * (1 - Math.pow(1 - p, 3)));
+          if (p < 1) requestAnimationFrame(tick);
+        })(t0);
+      }
+    };
+
+    if (!reduce) {
+      if (ring) ring.style.strokeDashoffset = String(CIRC);
+      if (scoreEl) scoreEl.textContent = '0';
+    } else {
+      bars.forEach(function (b) { b.style.width = b.getAttribute('data-w') + '%'; });
+      if (ring) ring.style.strokeDashoffset = String(CIRC * (1 - score / 100));
+    }
+
+    var started = false;
+    var begin = function () {
+      if (started) return;
+      started = true;
+      if (!reduce) fillPanel();
+      startLog();
+    };
+
+    var events = [
+      'Core update tested on staging',
+      'Uptime check passed from 3 regions',
+      'Broken link found and queued for repair',
+      'Large image flagged and compressed',
+      'SSL certificate check passed',
+      'Daily backup completed and verified',
+      'Plugin conflict caught before release',
+      'Malware scan finished with no threats'
+    ];
+    var ei = 0;
+
+    function startLog() {
+      if (!logEl || reduce) return;
+      setInterval(function () {
+        var items = $$('li', logEl);
+        var li = document.createElement('li');
+        li.className = 'is-new';
+        li.innerHTML = '<i></i><span></span><time>just now</time>';
+        li.querySelector('span').textContent = events[ei % events.length];
+        ei++;
+        logEl.insertBefore(li, logEl.firstChild);
+        items.forEach(function (it, idx) {
+          var tm = it.querySelector('time');
+          if (tm) tm.textContent = (idx + 1) * 6 + ' min ago';
+        });
+        var all = $$('li', logEl);
+        while (all.length > 4) { logEl.removeChild(all.pop()); }
+      }, 3200);
+    }
+
+    if (hasIO) {
+      var pio = new IntersectionObserver(function (es) {
+        if (es[0].isIntersecting) { begin(); pio.disconnect(); }
+      }, { threshold: 0.35 });
+      pio.observe(panel);
+    } else { begin(); }
+  }
+
+  /* ---------- Tabs: what we maintain ---------- */
+  var tabs = $('#wm-tabs');
+  if (tabs) {
+    var tabBtns = $$('.wm-tab', tabs);
+    var tabPanels = $$('.wm-tp', tabs);
+
+    var select = function (i, focus) {
+      tabBtns.forEach(function (b, k) {
+        var on = k === i;
+        b.classList.toggle('is-active', on);
+        b.setAttribute('aria-selected', on ? 'true' : 'false');
+        b.setAttribute('tabindex', on ? '0' : '-1');
+        if (on && focus) b.focus();
+      });
+      tabPanels.forEach(function (p, k) {
+        var on = k === i;
+        p.classList.toggle('is-active', on);
+        if (on) p.removeAttribute('hidden'); else p.setAttribute('hidden', '');
+      });
+    };
+
+    tabBtns.forEach(function (b, i) {
+      b.addEventListener('click', function () { select(i, false); });
+      b.addEventListener('keydown', function (e) {
+        var n = tabBtns.length, k = -1;
+        if (e.key === 'ArrowDown' || e.key === 'ArrowRight') k = (i + 1) % n;
+        else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') k = (i - 1 + n) % n;
+        else if (e.key === 'Home') k = 0;
+        else if (e.key === 'End') k = n - 1;
+        if (k > -1) { e.preventDefault(); select(k, true); }
+      });
+    });
+  }
+
+  /* ---------- Stats: count-up when scrolled into view ---------- */
+  var statsEl = $('#wm-stats');
+  if (statsEl && !reduce) {
+    var counters = $$('[data-count]', statsEl);
+    counters.forEach(function (el) { el.textContent = '0'; });
+    var counted = false;
+    var run = function () {
+      if (counted) return;
+      counted = true;
+      var t0 = performance.now(), dur = 1700;
+      (function tick(t) {
+        var p = Math.min(1, (t - t0) / dur);
+        var eased = 1 - Math.pow(1 - p, 3);
+        counters.forEach(function (el) {
+          el.textContent = Math.round(Number(el.dataset.count) * eased);
+        });
+        if (p < 1) requestAnimationFrame(tick);
+      })(t0);
+    };
+    if (hasIO) {
+      var io = new IntersectionObserver(function (es) {
+        if (es[0].isIntersecting) { run(); io.disconnect(); }
+      }, { threshold: 0.5 });
+      io.observe(statsEl);
+    } else { run(); }
+  }
+
+  /* ---------- Testimonials: arrow buttons scroll the track ---------- */
+  var track = $('#wm-track');
+  if (track) {
+    var step = function (dir) {
+      var card = $('.wm-quote', track);
+      var gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap) || 18;
+      var w = card ? card.getBoundingClientRect().width + gap : track.clientWidth;
+      track.scrollBy({ left: dir * w, behavior: reduce ? 'auto' : 'smooth' });
+    };
+    var prev = $('#wm-prev'), next = $('#wm-next');
+    if (prev) prev.addEventListener('click', function () { step(-1); });
+    if (next) next.addEventListener('click', function () { step(1); });
+    track.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); step(1); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); step(-1); }
+    });
+  }
+
+  /* ---------- FAQ accordion (one open at a time) ---------- */
+  var faq = $('#wm-faq');
+  if (faq) {
+    var items = $$('.wm-faq-item', faq);
+    items.forEach(function (item) {
+      var btn = $('.wm-faq-q', item);
+      btn.addEventListener('click', function () {
+        var open = item.classList.contains('open');
+        items.forEach(function (o) {
+          o.classList.remove('open');
+          $('.wm-faq-q', o).setAttribute('aria-expanded', 'false');
+        });
+        if (!open) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  }
+})();

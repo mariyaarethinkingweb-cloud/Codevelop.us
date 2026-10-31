@@ -381,3 +381,132 @@
       }, { threshold: 0.05 }).observe(capSec);
     }
   }
+  /* ==========================================================================
+   SECTION 2 + AI CAPABILITIES — paste at the very END of script.js
+   (self-contained; replaces the old Growth Blueprint block AND the old
+   "capSec" block that sat after the closing "})();")
+   ========================================================================== */
+(function () {
+  'use strict';
+  var $ = function (s, c) { return (c || document).querySelector(s); };
+  var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hasIO = 'IntersectionObserver' in window;
+
+  /* ---------- Section 2: growth dashboard ---------- */
+  var stage = $('#gx-stage');
+  if (stage) {
+    var goalsEl = $('#gx-goals');
+    var goals = $$('.gx-goal', goalsEl);
+    var chips = $$('#gx-chips li');
+    var numEl = $('#gx-num'), labelEl = $('#gx-label'), tagEl = $('#gx-tag'), noteEl = $('#gx-note');
+    var line = $('#gx-line'), fill = $('#gx-fill');
+
+    // chip order: 0 Web, 1 SEO, 2 Ads, 3 AI, 4 Content, 5 Analytics
+    var data = [
+      { tag: 'Lead generation', chips: [0, 2, 3], pre: '+', val: 212, dec: 0, suf: '%', label: 'more qualified leads',
+        note: 'Websites and campaigns built to convert.',
+        spark: 'M0 104 C40 100 70 80 110 82 S180 50 220 42 S280 18 300 8' },
+      { tag: 'Search growth', chips: [1, 4, 5], pre: '+', val: 340, dec: 0, suf: '%', label: 'organic search traffic',
+        note: 'SEO and content that compound month after month.',
+        spark: 'M0 108 C40 106 80 98 120 84 S190 62 230 36 S280 14 300 6' },
+      { tag: 'Performance', chips: [0, 5], pre: '', val: 1.2, dec: 1, suf: 's', label: 'average page load time',
+        note: 'Lean, performance-first design and development.',
+        spark: 'M0 10 C40 14 70 40 110 46 S180 84 220 92 S280 108 300 112' },
+      { tag: 'Automation', chips: [3, 5], pre: '−', val: 18, dec: 0, suf: ' hrs', label: 'manual work saved every week',
+        note: 'AI and workflows that take busywork off your team.',
+        spark: 'M0 12 C40 18 70 34 110 50 S180 78 220 90 S280 106 300 112' }
+    ];
+
+    var cur = 0, picked = false, visible = false, timer = null, raf = null;
+
+    var count = function (d) {
+      cancelAnimationFrame(raf);
+      var fmt = function (v) { return d.pre + v.toFixed(d.dec) + d.suf; };
+      if (reduce) { numEl.textContent = fmt(d.val); return; }
+      var t0 = performance.now(), dur = 1100;
+      var frame = function (t) {
+        var p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+        numEl.textContent = fmt(d.val * e);
+        if (p < 1) raf = requestAnimationFrame(frame);
+      };
+      raf = requestAnimationFrame(frame);
+    };
+
+    var render = function (i) {
+      cur = i;
+      var d = data[i];
+      goals.forEach(function (g, k) {
+        g.classList.toggle('is-on', k === i);
+        g.setAttribute('aria-pressed', String(k === i));
+      });
+      goalsEl.classList.toggle('is-auto', !picked && visible && !reduce);
+      chips.forEach(function (c, k) { c.classList.toggle('is-on', d.chips.indexOf(k) > -1); });
+      tagEl.textContent = d.tag;
+      labelEl.textContent = d.label;
+      noteEl.textContent = d.note;
+      count(d);
+      line.setAttribute('d', d.spark);
+      fill.setAttribute('d', d.spark + ' L300 120 L0 120Z');
+      line.classList.remove('is-draw'); void line.getBoundingClientRect();
+      if (reduce) { line.style.strokeDashoffset = 0; } else { line.classList.add('is-draw'); }
+      schedule();
+    };
+
+    var schedule = function () {
+      clearTimeout(timer);
+      if (visible && !picked && !reduce) {
+        timer = setTimeout(function () { render((cur + 1) % data.length); }, 6000);
+      }
+    };
+
+    goals.forEach(function (g, k) {
+      g.addEventListener('click', function () { picked = true; render(k); });
+    });
+
+    if (hasIO) {
+      new IntersectionObserver(function (es) {
+        visible = es[0].isIntersecting;
+        render(cur);
+      }, { threshold: 0.35 }).observe(stage);
+    }
+    render(0);
+
+    // subtle 3D tilt (desktop pointers only)
+    if (!reduce && window.matchMedia && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      var wrap = stage.parentNode;
+      wrap.addEventListener('pointermove', function (e) {
+        var r = wrap.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width - 0.5;
+        var y = (e.clientY - r.top) / r.height - 0.5;
+        stage.classList.add('is-moving');
+        stage.style.setProperty('--ry', (x * 8).toFixed(2) + 'deg');
+        stage.style.setProperty('--rx', (-y * 6).toFixed(2) + 'deg');
+      });
+      wrap.addEventListener('pointerleave', function () {
+        stage.classList.remove('is-moving');
+        stage.style.setProperty('--ry', '0deg');
+        stage.style.setProperty('--rx', '0deg');
+      });
+    }
+  }
+
+  /* ---------- AI capabilities: cursor glow + pause when off-screen ---------- */
+  var capSec = $('#ai-capabilities');
+  if (capSec) {
+    if (!reduce) {
+      $$('.cap-card', capSec).forEach(function (el) {
+        el.addEventListener('mousemove', function (e) {
+          var r = el.getBoundingClientRect();
+          el.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+          el.style.setProperty('--my', (e.clientY - r.top) + 'px');
+        });
+      });
+    }
+    if (hasIO) {
+      new IntersectionObserver(function (es) {
+        capSec.classList.toggle('is-paused', !es[0].isIntersecting);
+      }, { threshold: 0.05 }).observe(capSec);
+    }
+  }
+})();

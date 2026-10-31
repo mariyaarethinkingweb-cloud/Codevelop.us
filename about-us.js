@@ -1,175 +1,280 @@
 /* ==========================================================================
-   Codevelop US — About Us interactions (vanilla JS)
-   Load AFTER js/script.js. The header, scroll progress, hero glow and
-   scroll-reveal are already handled by script.js.
+   Codevelop US: About Us page script  (File: js/about-us.js)
+   Loads AFTER js/script.js.
+   - Hero: animated particle network on #ab-net + cursor glow (--mx / --my)
+   - Stats: count-up numbers when #ab-stats scrolls into view
+   - Accordion (#ab-acc): click / hover / arrow keys
+   - Triggers .is-in on #ab-duo (bars + flow) and #ab-final (typing line)
    ========================================================================== */
 (function () {
   'use strict';
 
-  var $ = function (s, c) { return (c || document).querySelector(s); };
-  var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
-  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var hasIO = 'IntersectionObserver' in window;
 
-
-  /* ---------- Hero: living network (canvas) ---------- */
-  var cv = $('#ab-net');
-  var heroEl = $('#hero');
-  if (cv && cv.getContext && heroEl) {
-    var ctx = cv.getContext('2d');
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
-    var W = 0, H = 0, nodes = [], link = 140, raf = 0, running = false;
-    var mouse = { x: -9999, y: -9999 };
-
-    var make = function () {
-      return {
-        x: Math.random() * W, y: Math.random() * H,
-        vx: (Math.random() - 0.5) * 0.5, vy: (Math.random() - 0.5) * 0.5,
-        r: 1.3 + Math.random() * 1.8, red: Math.random() < 0.14
-      };
-    };
-    var resize = function () {
-      var r = cv.getBoundingClientRect();
-      W = r.width; H = r.height;
-      cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      link = W < 600 ? 100 : 140;
-      var n = Math.round(Math.min(95, Math.max(26, (W * H) / 15000)));
-      while (nodes.length < n) nodes.push(make());
-      nodes.length = n;
-    };
-
-    var frame = function (animate) {
-      ctx.clearRect(0, 0, W, H);
-      var i, j, a, b, dx, dy, d, al;
-      for (i = 0; i < nodes.length; i++) {
-        a = nodes[i];
-        if (animate) {
-          dx = a.x - mouse.x; dy = a.y - mouse.y; d = Math.sqrt(dx * dx + dy * dy);
-          if (d < 160 && d > 1) { a.x -= (dx / d) * 0.6; a.y -= (dy / d) * 0.6; } /* gentle push from cursor */
-          a.x += a.vx; a.y += a.vy;
-          if (a.x < -10) a.x = W + 10; else if (a.x > W + 10) a.x = -10;
-          if (a.y < -10) a.y = H + 10; else if (a.y > H + 10) a.y = -10;
-        }
+  /* Run a callback once when an element becomes visible */
+  function whenVisible(el, cb, threshold) {
+    if (!el) return;
+    if (!hasIO || reduceMotion) { cb(); return; }
+    var io = new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting) {
+        io.disconnect();
+        cb();
       }
-      ctx.lineWidth = 1;
-      for (i = 0; i < nodes.length; i++) {
-        a = nodes[i];
-        for (j = i + 1; j < nodes.length; j++) {
-          b = nodes[j]; dx = a.x - b.x; dy = a.y - b.y; d = Math.sqrt(dx * dx + dy * dy);
-          if (d < link) {
-            al = (1 - d / link) * 0.5;
-            ctx.strokeStyle = (a.red || b.red) ? 'rgba(255,107,142,' + al + ')' : 'rgba(255,255,255,' + al * 0.8 + ')';
-            ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+    }, { threshold: threshold || 0.25 });
+    io.observe(el);
+  }
+
+  /* ---------------------------------------------------------------------
+     HERO: particle network + cursor glow
+     --------------------------------------------------------------------- */
+  (function heroNetwork() {
+    var canvas = document.getElementById('ab-net');
+    var hero = document.getElementById('hero');
+    if (!canvas || !hero || !canvas.getContext) return;
+
+    var ctx = canvas.getContext('2d');
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var w = 0, h = 0;
+    var points = [];
+    var mouse = { x: null, y: null };
+    var raf = 0;
+    var running = false;
+    var linkDist = 130;
+
+    function build() {
+      var count = Math.round(Math.min(90, Math.max(28, (w * h) / 15000)));
+      linkDist = w < 600 ? 95 : 135;
+      points = [];
+      for (var i = 0; i < count; i++) {
+        var speed = 0.15 + Math.random() * 0.35;
+        var angle = Math.random() * Math.PI * 2;
+        points.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          r: 1.2 + Math.random() * 1.6,
+          accent: i % 7 === 0
+        });
+      }
+    }
+
+    function resize() {
+      var rect = hero.getBoundingClientRect();
+      w = rect.width;
+      h = rect.height;
+      canvas.width = Math.round(w * dpr);
+      canvas.height = Math.round(h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      build();
+      draw(false);
+    }
+
+    function draw(step) {
+      ctx.clearRect(0, 0, w, h);
+      var i, j, p, q, dx, dy, d, a;
+
+      for (i = 0; i < points.length; i++) {
+        p = points[i];
+
+        if (step) {
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.x < -10) p.x = w + 10; else if (p.x > w + 10) p.x = -10;
+          if (p.y < -10) p.y = h + 10; else if (p.y > h + 10) p.y = -10;
+
+          /* gentle push away from the cursor */
+          if (mouse.x !== null) {
+            dx = p.x - mouse.x;
+            dy = p.y - mouse.y;
+            d = Math.sqrt(dx * dx + dy * dy);
+            if (d < 110 && d > 0.1) {
+              p.x += (dx / d) * 0.9;
+              p.y += (dy / d) * 0.9;
+            }
           }
         }
-        dx = a.x - mouse.x; dy = a.y - mouse.y; d = Math.sqrt(dx * dx + dy * dy);
-        if (d < 190) { /* lines from the cursor to nearby nodes */
-          ctx.strokeStyle = 'rgba(160,200,255,' + (1 - d / 190) * 0.7 + ')';
-          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke();
+
+        /* links between nearby points */
+        for (j = i + 1; j < points.length; j++) {
+          q = points[j];
+          dx = p.x - q.x;
+          dy = p.y - q.y;
+          d = Math.sqrt(dx * dx + dy * dy);
+          if (d < linkDist) {
+            a = (1 - d / linkDist) * 0.32;
+            ctx.strokeStyle = 'rgba(255,255,255,' + a.toFixed(3) + ')';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(q.x, q.y);
+            ctx.stroke();
+          }
         }
+
+        /* links to the cursor */
+        if (mouse.x !== null) {
+          dx = p.x - mouse.x;
+          dy = p.y - mouse.y;
+          d = Math.sqrt(dx * dx + dy * dy);
+          if (d < 170) {
+            a = (1 - d / 170) * 0.5;
+            ctx.strokeStyle = 'rgba(255,143,168,' + a.toFixed(3) + ')';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.stroke();
+          }
+        }
+
+        /* the dot */
+        ctx.fillStyle = p.accent ? 'rgba(255,143,168,0.95)' : 'rgba(255,255,255,0.75)';
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
       }
-      for (i = 0; i < nodes.length; i++) {
-        a = nodes[i];
-        if (a.red) {
-          ctx.fillStyle = 'rgba(255,107,142,0.22)';
-          ctx.beginPath(); ctx.arc(a.x, a.y, a.r * 3.4, 0, 6.2832); ctx.fill();
-          ctx.fillStyle = '#ff6b8e';
-        } else { ctx.fillStyle = 'rgba(255,255,255,0.88)'; }
-        ctx.beginPath(); ctx.arc(a.x, a.y, a.r, 0, 6.2832); ctx.fill();
-      }
-    };
-
-    var loop = function () { frame(true); raf = requestAnimationFrame(loop); };
-    var start = function () { if (!running && !reduce) { running = true; raf = requestAnimationFrame(loop); } };
-    var stop = function () { running = false; cancelAnimationFrame(raf); };
-
-    resize();
-    frame(false);
-    window.addEventListener('resize', function () { resize(); if (!running) frame(false); });
-
-    if (!reduce) {
-      heroEl.addEventListener('mousemove', function (e) {
-        var r = cv.getBoundingClientRect();
-        mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top;
-      });
-      heroEl.addEventListener('mouseleave', function () { mouse.x = mouse.y = -9999; });
-      if (hasIO) {
-        new IntersectionObserver(function (es) { es[0].isIntersecting ? start() : stop(); }, { threshold: 0.05 }).observe(heroEl);
-      } else { start(); }
     }
-  }
 
-  /* ---------- Stats: count-up when scrolled into view ---------- */
-  var statsEl = $('#ab-stats');
-  if (statsEl && !reduce) {
-    var counters = $$('[data-count]', statsEl);
-    counters.forEach(function (el) { el.textContent = '0'; });
-    var counted = false;
-    var run = function () {
-      if (counted) return;
-      counted = true;
-      var t0 = performance.now(), dur = 1700;
-      (function frame(t) {
-        var p = Math.min(1, (t - t0) / dur);
-        var eased = 1 - Math.pow(1 - p, 3);
-        counters.forEach(function (el) {
-          el.textContent = Math.round(Number(el.dataset.count) * eased);
-        });
-        if (p < 1) requestAnimationFrame(frame);
-      })(t0);
-    };
-    if (hasIO) {
-      var io = new IntersectionObserver(function (es) {
-        if (es[0].isIntersecting) { run(); io.disconnect(); }
-      }, { threshold: 0.5 });
-      io.observe(statsEl);
-    } else { run(); }
-  }
+    function loop() {
+      if (!running) return;
+      draw(true);
+      raf = window.requestAnimationFrame(loop);
+    }
 
-  /* ---------- Our value: Vision / Mission tabs (auto-rotate until clicked) ---------- */
-  var box = $('#ab-value');
-  if (box) {
-    var tabs = $$('.ab-tab', box);
-    var panels = $$('.ab-panel', box);
-    var current = 0, picked = false, timer = null, visible = false;
+    function start() {
+      if (running || reduceMotion) return;
+      running = true;
+      raf = window.requestAnimationFrame(loop);
+    }
 
-    var restart = function () {
-      clearTimeout(timer);
-      if (picked || reduce || !visible) return;
-      var bar = $('.ab-tab[aria-selected="true"] .ab-tab-bar', box);
-      if (bar) { bar.style.animation = 'none'; void bar.offsetWidth; bar.style.animation = ''; }
-      timer = setTimeout(function () { setTab((current + 1) % tabs.length); }, 7000);
-    };
+    function stop() {
+      running = false;
+      window.cancelAnimationFrame(raf);
+    }
 
-    var setTab = function (i) {
-      current = i;
-      tabs.forEach(function (t, k) {
-        t.setAttribute('aria-selected', String(k === i));
-        t.tabIndex = k === i ? 0 : -1;
-      });
-      panels.forEach(function (p, k) { p.classList.toggle('is-active', k === i); });
-      box.classList.toggle('is-auto', !picked && !reduce && visible);
-      restart();
-    };
-
-    tabs.forEach(function (t, i) {
-      t.tabIndex = i === 0 ? 0 : -1;
-      t.addEventListener('click', function () { picked = true; setTab(i); });
-      t.addEventListener('keydown', function (e) {
-        var n = null;
-        if (e.key === 'ArrowDown' || e.key === 'ArrowRight') n = (i + 1) % tabs.length;
-        if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') n = (i - 1 + tabs.length) % tabs.length;
-        if (n !== null) { e.preventDefault(); picked = true; setTab(n); tabs[n].focus(); }
-      });
+    /* Cursor tracking: canvas link target + glow position */
+    hero.addEventListener('mousemove', function (e) {
+      var rect = hero.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+      hero.style.setProperty('--mx', ((mouse.x / rect.width) * 100).toFixed(1) + '%');
+      hero.style.setProperty('--my', ((mouse.y / rect.height) * 100).toFixed(1) + '%');
+    });
+    hero.addEventListener('mouseleave', function () {
+      mouse.x = null;
+      mouse.y = null;
     });
 
+    /* Resize (debounced) */
+    var resizeTimer = 0;
+    var onResize = function () {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(resize, 150);
+    };
+    if ('ResizeObserver' in window) new ResizeObserver(onResize).observe(hero);
+    else window.addEventListener('resize', onResize);
+
+    /* Only animate while the hero is on screen and the tab is visible */
     if (hasIO) {
-      new IntersectionObserver(function (es) {
-        visible = es[0].isIntersecting;
-        if (visible) { box.classList.toggle('is-auto', !picked && !reduce); restart(); }
-        else clearTimeout(timer);
-      }, { threshold: 0.35 }).observe(box);
+      new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) start(); else stop();
+      }, { threshold: 0 }).observe(hero);
+    } else {
+      start();
     }
-  }
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) stop(); else if (!reduceMotion) start();
+    });
+
+    resize();
+  })();
+
+  /* ---------------------------------------------------------------------
+     STATS: count-up
+     --------------------------------------------------------------------- */
+  (function stats() {
+    var wrap = document.getElementById('ab-stats');
+    if (!wrap) return;
+    var nums = Array.prototype.slice.call(wrap.querySelectorAll('[data-count]'));
+    if (!nums.length) return;
+
+    function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+
+    function animate(el, index) {
+      var target = parseFloat(el.getAttribute('data-count')) || 0;
+      var duration = 1500 + index * 120;
+      var startTime = null;
+
+      function frame(now) {
+        if (startTime === null) startTime = now;
+        var t = Math.min((now - startTime) / duration, 1);
+        el.textContent = Math.round(target * easeOut(t));
+        if (t < 1) window.requestAnimationFrame(frame);
+        else el.textContent = target;
+      }
+      window.requestAnimationFrame(frame);
+    }
+
+    if (reduceMotion || !hasIO) return; /* final numbers already in the HTML */
+
+    nums.forEach(function (el) { el.textContent = '0'; });
+    whenVisible(wrap, function () {
+      nums.forEach(animate);
+    }, 0.3);
+  })();
+
+  /* ---------------------------------------------------------------------
+     ACCORDION: Strategy / Technology / Measurable outcomes
+     --------------------------------------------------------------------- */
+  (function accordion() {
+    var acc = document.getElementById('ab-acc');
+    if (!acc) return;
+    var tabs = Array.prototype.slice.call(acc.querySelectorAll('.ab-acc-item'));
+    if (!tabs.length) return;
+
+    var hoverDesktop = window.matchMedia('(min-width: 960px) and (hover: hover) and (pointer: fine)');
+
+    function activate(item) {
+      tabs.forEach(function (t) {
+        var on = t === item;
+        t.classList.toggle('is-on', on);
+        t.setAttribute('aria-expanded', on ? 'true' : 'false');
+      });
+    }
+
+    tabs.forEach(function (tab, i) {
+      tab.addEventListener('click', function () { activate(tab); });
+
+      tab.addEventListener('mouseenter', function () {
+        if (hoverDesktop.matches) activate(tab);
+      });
+
+      tab.addEventListener('keydown', function (e) {
+        var next = null;
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = tabs[(i + 1) % tabs.length];
+        else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = tabs[(i - 1 + tabs.length) % tabs.length];
+        else if (e.key === 'Home') next = tabs[0];
+        else if (e.key === 'End') next = tabs[tabs.length - 1];
+        if (next) {
+          e.preventDefault();
+          next.focus();
+          activate(next);
+        }
+      });
+    });
+  })();
+
+  /* ---------------------------------------------------------------------
+     VISION / MISSION cards  (#ab-duo): grow bars + step flow
+     CLOSING STATEMENT       (#ab-final): typing line, then the answer
+     --------------------------------------------------------------------- */
+  (function triggers() {
+    var duo = document.getElementById('ab-duo');
+    var final = document.getElementById('ab-final');
+
+    whenVisible(duo, function () { duo.classList.add('is-in'); }, 0.25);
+    whenVisible(final, function () { final.classList.add('is-in'); }, 0.35);
+  })();
 })();

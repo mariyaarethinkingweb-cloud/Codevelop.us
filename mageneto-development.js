@@ -2,6 +2,7 @@
    Codevelop US — Magento Web Development interactions (vanilla JS)
    Load AFTER js/script.js. The header, scroll progress, hero glow and
    scroll-reveal are already handled by script.js.
+   (The old "store switcher" was removed along with its section.)
    ========================================================================== */
 (function () {
   'use strict';
@@ -125,63 +126,6 @@
       }, { threshold: 0.5 });
       io.observe(statsEl);
     } else { run(); }
-  }
-
-  /* ---------- Why Magento: store switcher (multi-store / language / currency) ---------- */
-  var why = $('#mg-why');
-  if (why) {
-    var shop = $('.mg-shop', why);
-    var tabs = $$('.mg-shop-tab', why);
-    var stores = [
-      { url: 'shop.example.com/us', prod: 'Everyday backpack', price: '$120.00', cta: 'Add to cart', lang: 'English', cur: 'USD' },
-      { url: 'shop.example.com/fr', prod: 'Sac à dos du quotidien', price: '110,00 €', cta: 'Ajouter au panier', lang: 'Français', cur: 'EUR' },
-      { url: 'shop.example.com/jp', prod: 'デイリーバックパック', price: '¥17,800', cta: 'カートに追加', lang: '日本語', cur: 'JPY' }
-    ];
-    var cur = 0, picked = false, seenWhy = false, timer = null;
-
-    var queue = function () {
-      clearTimeout(timer);
-      if (picked || reduce || !seenWhy) return;
-      timer = setTimeout(function () { show((cur + 1) % stores.length); }, 3500);
-    };
-
-    var show = function (i) {
-      cur = i;
-      tabs.forEach(function (t, k) {
-        t.setAttribute('aria-selected', String(k === i));
-        t.tabIndex = k === i ? 0 : -1;
-      });
-      if (shop) shop.classList.add('is-swap');
-      setTimeout(function () {
-        var s = stores[i];
-        $('#mg-url').textContent = s.url;
-        $('#mg-prod').textContent = s.prod;
-        $('#mg-price').textContent = s.price;
-        $('#mg-cta').textContent = s.cta;
-        $('#mg-lang').textContent = s.lang;
-        $('#mg-cur').textContent = s.cur;
-        if (shop) shop.classList.remove('is-swap');
-      }, reduce ? 0 : 220);
-      queue();
-    };
-
-    tabs.forEach(function (t, i) {
-      t.tabIndex = i === 0 ? 0 : -1;
-      t.addEventListener('click', function () { picked = true; clearTimeout(timer); show(i); });
-      t.addEventListener('keydown', function (e) {
-        var n = null;
-        if (e.key === 'ArrowRight') n = (i + 1) % tabs.length;
-        if (e.key === 'ArrowLeft') n = (i - 1 + tabs.length) % tabs.length;
-        if (n !== null) { e.preventDefault(); picked = true; clearTimeout(timer); show(n); tabs[n].focus(); }
-      });
-    });
-
-    if (hasIO) {
-      new IntersectionObserver(function (es) {
-        seenWhy = es[0].isIntersecting;
-        if (seenWhy) queue(); else clearTimeout(timer);
-      }, { threshold: 0.35 }).observe(why);
-    }
   }
 
   /* ---------- Testimonials: arrow buttons scroll the track ---------- */
