@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zoho + Shopify Integration | Codevelop</title>
+  <meta name="description"
+    content="Sync Shopify orders, stock and customers with Zoho Inventory, Books and CRM, including multi-warehouse logic. Fixed-price builds from Codevelop, with a named engineer after launch.">
+  <link rel="canonical" href="https://codevelopus.com/zoho-shopify-integration">
+  <meta name="theme-color" content="#0a3161">
+  <link rel="icon" href="https://codevelopus.com/wp-content/uploads/2026/01/cropped-codevelop-favicon-270x270.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/connector.css">
+  <link rel="stylesheet" href="css/connector-extra.css">
+</head>
+
+<body>
+
+  <!-- Icon sprite -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></symbol>
+      <symbol id="i-funnel" viewBox="0 0 24 24"><path d="M3 4h18l-7 8v6l-4 2v-8L3 4z" /></symbol>
+      <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" /></symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5z" /></symbol>
+      <symbol id="i-fb" viewBox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v7h4v-7h3l1-4h-4V8z" /></symbol>
+      <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="0.8" /></symbol>
+      <symbol id="i-in" viewBox="0 0 24 24"><rect x="3" y="9" width="4" height="12" /><circle cx="5" cy="5" r="2" /><path d="M10 9h4v2a4 4 0 0 1 6 3v7h-4v-6a2 2 0 0 0-4 0v6h-4V9z" /></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" /></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3 7l9 6 9-6" /></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11z" /><circle cx="12" cy="10" r="2.5" /></symbol>
+      <symbol id="i-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16" /></symbol>
+      <symbol id="i-flow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="6" height="6" rx="1" /><rect x="15" y="15" width="6" height="6" rx="1" /><path d="M9 6h4a2 2 0 0 1 2 2v7" /></symbol>
+      <symbol id="i-megaphone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10v4h4l8 5V5L7 10H3z" /><path d="M18.5 9a4 4 0 0 1 0 6" /></symbol>
+      <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2V5z" /><path d="M4 19a2 2 0 0 1 2-2h13" /></symbol>
+      <symbol id="i-coin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9" /><path d="M14.5 9.5c-.5-1-1.5-1.5-2.5-1.5-1.4 0-2.5.8-2.5 2s1 1.7 2.5 2 2.5.8 2.5 2-1.1 2-2.5 2c-1 0-2-.5-2.5-1.5M12 6.5V8m0 8v1.5" /></symbol>
+      <symbol id="i-desk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2" /><path d="M8 20h8M12 16v4" /></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5" /><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6" /><path d="M16 4.7a3.5 3.5 0 0 1 0 6.6M18 14.3c2 .7 3.5 2.6 3.5 5.7" /></symbol>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header" id="top">
+    <div class="bar">
+      <a class="logo" href="index.html" aria-label="Codevelop home"><img src="images/codevelop.webp" alt="Codevelop logo" class="brand-logo" width="160" height="40"></a>
+      <button class="burger" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav aria-label="Main">
+        <ul>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">AI Agents <svg class="chev" viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" /></svg></button>
+            <div class="drop drop--agents">
+              <div class="agents-top"><span class="agents-label">AI Agents</span><a class="agents-all" href="#">View all agents</a></div>
+              <a class="agent" href="customer-support-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-chat" /></svg></span><span class="agent-txt"><b>Customer Support Agents</b><small>24/7 answers across chat &amp; inbox</small></span></a>
+              <a class="agent" href="sales-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-funnel" /></svg></span><span class="agent-txt"><b>Sales &amp; Lead-Generation Agents</b><small>Capture, qualify &amp; follow up with leads</small></span></a>
+              <a class="agent" href="software-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-code" /></svg></span><span class="agent-txt"><b>Software Development Agents</b><small>Code, review &amp; ship faster</small></span></a>
+              <a class="agent" href="workflow-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-flow" /></svg></span><span class="agent-txt"><b>Workflow Automation Agents</b><small>Connect tools &amp; automate routine tasks</small></span></a>
+              <a class="agent" href="marketing-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-megaphone" /></svg></span><span class="agent-txt"><b>Marketing Agents</b><small>Campaigns, content &amp; channel management</small></span></a>
+              <a class="agent" href="research-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-chart" /></svg></span><span class="agent-txt"><b>Research &amp; Data Analyst Agents</b><small>Insights &amp; plain-language reports</small></span></a>
+              <a class="agent" href="internal-knowledge-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-book" /></svg></span><span class="agent-txt"><b>Internal Knowledge Agents</b><small>Instant answers from your company data</small></span></a>
+              <a class="agent" href="finance-accounting-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-coin" /></svg></span><span class="agent-txt"><b>Finance &amp; Accounting Agents</b><small>Invoices, reconciliation &amp; reporting</small></span></a>
+              <a class="agent" href="it-service-desk-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-desk" /></svg></span><span class="agent-txt"><b>IT Service Desk Agents</b><small>Resolve tickets &amp; access requests</small></span></a>
+              <a class="agent" href="hr-recruitment-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-users" /></svg></span><span class="agent-txt"><b>HR &amp; Recruitment Agents</b><small>Screen, schedule &amp; onboard people</small></span></a>
+            </div>
+          </li>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">Connectors <svg class="chev" viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" /></svg></button>
+            <div class="drop drop--agents drop--connectors">
+              <div class="agents-top"><span class="agents-label">Connectors</span><a class="agents-all" href="#">View all connectors</a></div>
+              <a class="agent" href="sap-business-one.html"><span class="agent-ico"><img src="images/sap.png" alt="SAP Business One" loading="lazy"></span><span class="agent-txt"><b>SAP Business One</b><small>ERP integration &amp; consulting</small></span></a>
+              <a class="agent" href="salesforce.html"><span class="agent-ico"><img src="images/salesforce.png" alt="Salesforce" loading="lazy"></span><span class="agent-txt"><b>Salesforce</b><small>CRM &amp; order-to-cash sync</small></span></a>
+              <a class="agent" href="netsuite.html"><span class="agent-ico"><img src="images/netsuite.png" alt="NetSuite" loading="lazy"></span><span class="agent-txt"><b>NetSuite</b><small>ERP, ecommerce &amp; EDI sync</small></span></a>
+              <a class="agent" href="shopify.html"><span class="agent-ico"><img src="images/shopify.png" alt="Shopify" loading="lazy"></span><span class="agent-txt"><b>Shopify</b><small>Ecommerce ↔ back office</small></span></a>
+              <a class="agent" href="quickbooks.html"><span class="agent-ico"><img src="images/quickbooks.png" alt="QuickBooks" loading="lazy"></span><span class="agent-txt"><b>QuickBooks</b><small>Accounting &amp; invoice sync</small></span></a>
+              <a class="agent" href="woocommerce.html"><span class="agent-ico"><img src="images/woocommerce.png" alt="WooCommerce" loading="lazy"></span><span class="agent-txt"><b>WooCommerce</b><small>WordPress store integration</small></span></a>
+              <a class="agent" href="zoho.html"><span class="agent-ico"><img src="images/zoho.png" alt="Zoho" loading="lazy"></span><span class="agent-txt"><b>Zoho</b><small>Zoho One suite integration</small></span></a>
+              <a class="agent" href="zuper.html"><span class="agent-ico"><img src="images/zuper.png" alt="Zuper" loading="lazy"></span><span class="agent-txt"><b>Zuper</b><small>Field service management sync</small></span></a>
+              <a class="agent" href="attio.html"><span class="agent-ico"><img src="images/attio.png" alt="Attio" loading="lazy"></span><span class="agent-txt"><b>Attio</b><small>CRM &amp; record sync</small></span></a>
+              <a class="agent" href="twenty.html"><span class="agent-ico"><img src="images/twenty.png" alt="Twenty" loading="lazy"></span><span class="agent-txt"><b>Twenty</b><small>Open-source CRM sync</small></span></a>
+            </div>
+          </li>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">Services <svg class="chev" viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" /></svg></button>
+            <div class="drop drop--mega">
+              <div class="mega-top"><a class="mega-all" href="services.html">View all services <svg class="ico" width="16" height="16" aria-hidden="true"><use href="#i-arrow" /></svg></a></div>
+              <div class="mega-col">
+                <h4><a href="performance-marketing.html">Performance Marketing</a></h4>
+                <a href="meta-ads.html">Google Ads Management</a>
+                <a href="facebook-ads.html">Facebook Ads</a>
+                <a href="remarketing.html">Remarketing</a>
+              </div>
+              <div class="mega-col">
+                <h4><a href="web-development.html">Web Development Services</a></h4>
+                <a href="custom-website-design.html">Custom Website Design</a>
+                <a href="wordpress-development.html">WordPress Web Development</a>
+                <a href="shopify-development.html">Shopify Web Development</a>
+                <a href="webflow-development.html">Webflow Web Development</a>
+                <a href="framer-development.html">Framer Web Development</a>
+                <a href="mageneto-development.html">Magento Web Development</a>
+                <a href="website-maintenance.html">Website Maintenance</a>
+                <a href="website-redesign.html">Website Redesign</a>
+              </div>
+              <div class="mega-col">
+                <h4><a href="social-media-marketing.html">Social Media Marketing</a></h4>
+                <a href="content-marketing.html">Content Marketing</a>
+              </div>
+              <div class="mega-col">
+                <h4><a href="search-engine-optimization.html">Search Engine Optimization</a></h4>
+                <a href="local-seo.html">Local SEO</a>
+                <a href="seo-audits.html">SEO Audits</a>
+                <a href="technical-seo.html">Technical SEO</a>
+                <a href="enterprise-seo.html">Enterprise SEO</a>
+              </div>
+            </div>
+          </li>
+          <li><button class="top" type="button" aria-expanded="false">Hire Talent <svg class="chev" viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" /></svg></button>
+            <div class="drop"><a href="#">Developers</a><a href="#">Automation Engineers</a><a href="#">Dedicated Teams</a></div>
+          </li>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="#">Success Stories</a></li>
+          <li><a href="#">Insights</a></li>
+        </ul>
+        <a class="hdr-cta hdr-cta-m" href="contact-us.html">Get a Free Automation Review</a>
+      </nav>
+      <a class="hdr-cta" href="contact-us.html">Get a Free Automation Review</a>
+    </div>
+  </header>
+
+  <main id="content">
+
+    <!-- HERO -->
+    <section class="hero-wrap" aria-labelledby="hero-title">
+      <div class="hero hero--page">
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="hero-glow" aria-hidden="true"></div>
+        <div class="ring ring--1" aria-hidden="true"><i></i></div>
+        <div class="ring ring--2" aria-hidden="true"><i></i></div>
+        <div class="container hero-inner">
+          <div class="hero-copy">
+            <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a> / <a href="#">Connectors</a> / <a href="zoho.html">Zoho</a> / Shopify</nav>
+            <h1 class="h-display" id="hero-title">Let Zoho run the back office while Shopify takes the orders.</h1>
+            <p class="lead">We connect your Shopify store to Zoho Inventory, Books and CRM so orders arrive as sales documents, stock stays honest across warehouses, and shipment tracking returns to the customer. The storefront stays fast, and the back office stops being a second job.</p>
+            <div class="hero-stack" aria-hidden="true">
+              <span class="hs hs--sap"><img src="images/shopify.png" alt=""></span><i class="sep"></i>
+              <span class="hs hs--sap"><img src="images/zoho.png" alt=""></span>
+            </div>
+            <div class="hero-actions">
+              <a class="btn btn--primary btn--lg btn--pulse" href="contact-us.html">Book a scoping call</a>
+              <a class="btn btn--ghost btn--lg" href="#budget">See budget and timing</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE PROBLEM -->
+    <section class="section" id="basics" aria-labelledby="basics-title">
+      <div class="container basics" data-reveal>
+        <div class="basics-copy">
+          <span class="pill">The problem</span>
+          <h2 class="h-section" id="basics-title">Why a good storefront still creates a manual back office</h2>
+          <p class="lead">Shopify runs the shop window. Behind it, Zoho usually handles stock, accounting or customer records. With no link, every order becomes a sales order someone creates by hand, and every stock change has to be copied back into Shopify before the next customer buys the last unit.</p>
+          <p>The integration turns each Shopify order into a Zoho sales order or invoice, keeps stock counts agreed in both directions, and carries customers over so support and sales see the same purchase history that Shopify shows. Shipping status travels the other way, so shoppers get accurate tracking without anyone sending an email.</p>
+        </div>
+        <div class="ba">
+          <div class="no"><h3>Systems apart</h3><ul><li>Orders retyped as Zoho sales orders</li><li>Stock edited by hand in two places</li><li>Overselling the last few units</li><li>Tracking sent to customers manually</li></ul></div>
+          <div class="yes"><h3>Systems linked</h3><ul><li>Orders arrive in Zoho automatically</li><li>One stock figure per warehouse</li><li>Low stock reflected before it sells out</li><li>Tracking numbers flow back to Shopify</li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT SYNCS -->
+    <section class="section web" id="mapping" aria-labelledby="map-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Entity mapping</span>
+          <h2 class="h-section" id="map-title">What syncs between Shopify and Zoho, and which way</h2>
+          <p class="lead">These are the records we connect most often. Which Zoho app receives them depends on whether you use Inventory, Books, CRM or all three.</p>
+        </div>
+        <div class="map-wrap">
+          <table class="map">
+            <thead>
+              <tr><th scope="col">On Shopify</th><th scope="col">In Zoho</th><th scope="col">Direction</th><th scope="col">What travels</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Orders</th><td>Sales orders or invoices</td><td><span class="dir">Shopify → Zoho</span></td><td>Line items, totals, discounts, tax and shipping charges</td></tr>
+              <tr><th scope="row">Inventory levels</th><td>Zoho Inventory stock by warehouse</td><td><span class="dir dir--two">Both ways</span></td><td>Available quantity, so sales and restocks update both sides</td></tr>
+              <tr><th scope="row">Customers</th><td>Contacts, customers or CRM records</td><td><span class="dir">Shopify → Zoho</span></td><td>Details and order history, matched to avoid duplicates</td></tr>
+              <tr><th scope="row">Fulfilment status</th><td>Packages and shipments</td><td><span class="dir">Zoho → Shopify</span></td><td>Shipped status, carrier and tracking numbers shown to the customer</td></tr>
+              <tr><th scope="row">Products and variants</th><td>Items and item groups</td><td><span class="dir dir--two">Both ways</span></td><td>Prices, SKUs and variant structure kept aligned</td></tr>
+              <tr><th scope="row">Returns and refunds</th><td>Credit notes and sales returns</td><td><span class="dir">Shopify → Zoho</span></td><td>Refund amounts and restocked quantities for finance and inventory</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">These are the usual directions. We change them to suit your setup, for example by letting Zoho Inventory own stock while Shopify owns the catalogue and pricing.</p>
+      </div>
+    </section>
+
+    <!-- ORDER LIFECYCLE -->
+    <section class="section" id="workflow" aria-labelledby="flow-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">After go-live</span>
+          <h2 class="h-section" id="flow-title">One Shopify order, from checkout to a tracked shipment</h2>
+          <p class="lead">With the link running, a typical order moves through your systems like this, and nobody keys it in twice.</p>
+        </div>
+        <ol class="tl">
+          <li><h3>Order placed</h3><p>A shopper checks out, and a Shopify webhook sends the order to the integration within moments.</p></li>
+          <li><h3>Sales order created</h3><p>Zoho receives a sales order or invoice with the customer, lines and tax, and the customer is matched to avoid duplicates.</p></li>
+          <li><h3>Stock allocated</h3><p>The right warehouse is reduced, and the new available quantity is pushed to Shopify so the next buyer sees the real figure.</p></li>
+          <li><h3>Shipment packed</h3><p>When the package is marked shipped in Zoho, the carrier and tracking number are captured.</p></li>
+          <li><h3>Customer notified</h3><p>Tracking flows back to Shopify, which sends the shipping email, and any later refund returns stock and credit to Zoho.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ROUTES -->
+    <section class="section web" id="routes" aria-labelledby="route-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Choosing a route</span>
+          <h2 class="h-section" id="route-title">How we build the Shopify link</h2>
+          <p class="lead">Shopify offers a GraphQL and REST Admin API with webhooks, and Zoho offers REST APIs plus Deluge. The mix depends on order volume and how much logic sits between them.</p>
+        </div>
+        <div class="map-wrap">
+          <table class="map">
+            <thead>
+              <tr><th scope="col">Route</th><th scope="col">What it is</th><th scope="col">Suits</th><th scope="col">Keep in mind</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Shopify Admin API and webhooks</th><td>GraphQL and REST access plus real-time order and stock events.</td><td>Immediate order and inventory updates from the store</td><td>Webhook delivery needs retry handling on our side</td></tr>
+              <tr><th scope="row">Zoho REST API and Deluge</th><td>Zoho's own APIs and native scripting.</td><td>Creating sales orders, invoices and stock adjustments</td><td>Deluge alone handles large batch syncs poorly</td></tr>
+              <tr><th scope="row">Zoho Flow</th><td>Zoho's low-code automation tool with a Shopify connector.</td><td>Standard order flows that must launch fast</td><td>Non-standard logic still needs Deluge or middleware</td></tr>
+              <tr><th scope="row">Custom middleware</th><td>Orchestration built over both APIs.</td><td>High-volume stores and multi-warehouse inventory rules</td><td>Needs a partner who can maintain it</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">An honest note: for a single store with standard order flows, Zoho Flow's Shopify connector is often enough. We will say so, and only build custom middleware when your order volume or inventory rules truly need it.</p>
+      </div>
+    </section>
+
+    <!-- BUDGET + TIMELINE -->
+    <section class="section" id="budget" aria-labelledby="budget-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Budget and timing</span>
+          <h2 class="h-section" id="budget-title">What a Shopify and Zoho build costs, and how long it takes</h2>
+          <p class="lead">Expect roughly $2,500 to $15,000, depending on order volume, how inventory is synced and the number of variants and warehouses.</p>
+        </div>
+        <div class="rt-grid" data-stagger>
+          <div class="feature"><h3>Zoho Flow connector<small>Standard order and stock sync</small></h3><p><b>$2.5k – $6k</b> to implement, plus roughly $30 – $300 a month for the platform.</p></div>
+          <div class="feature"><h3>iPaaS orchestration<small>Make or n8n with business rules</small></h3><p><b>$4k – $9.5k</b> to implement, plus a platform fee and support retainer.</p></div>
+          <div class="feature"><h3>Custom Deluge or API build<small>High volume or multi-warehouse</small></h3><p><b>$7k – $15k+</b> to implement, with a support retainer and no platform fee.</p></div>
+        </div>
+        <div class="factors"><span>Order volume</span><span>One-way or two-way stock</span><span>Variants and warehouses</span></div>
+        <div class="lanes" style="margin-top:36px">
+          <div class="lane"><h3>Zoho Flow connector<small>Single store, standard flows</small></h3><div class="lane-bar" style="--w:35%">2–4 weeks</div></div>
+          <div class="lane"><h3>iPaaS orchestration<small>Business rules and extra checks</small></h3><div class="lane-bar" style="--w:60%">4–6 weeks</div></div>
+          <div class="lane"><h3>Custom Deluge or API build<small>Multi-warehouse, high-volume logic</small></h3><div class="lane-bar" style="--w:100%">6–9 weeks</div></div>
+        </div>
+        <p class="note">Reconciling product and variant data between Shopify and Zoho before go-live is usually a bigger schedule risk than the sync logic itself. Every quote is fixed after the scoping call.</p>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="section web" id="process" aria-labelledby="process-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Our process</span>
+          <h2 class="h-section" id="process-title">Five stages, with a signed mapping sheet before we build</h2>
+          <p class="lead">You receive a fixed-price scope and approve the mapping sheet before any configuration starts.</p>
+        </div>
+        <ol class="tl">
+          <li><h3>Discover</h3><p>We review your Shopify store, the Zoho apps in use, your warehouses and order volumes.</p></li>
+          <li><h3>Map</h3><p>Every field, direction, SKU rule and error case is written down before building.</p></li>
+          <li><h3>Build</h3><p>We build in Zoho Flow, Deluge or middleware, tested against a Shopify development store and a Zoho sandbox.</p></li>
+          <li><h3>Test</h3><p>Real order scenarios run end to end, including refunds, partial shipments and stock edge cases.</p></li>
+          <li><h3>Support</h3><p>After launch we monitor with logging and alerts, and you get a named contact.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- WHY CODEVELOP -->
+    <section class="section web ai" id="why-us" aria-labelledby="why-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill pill--dark">Why Codevelop</span>
+          <h2 class="h-section" id="why-title">We know the storefront and the Zoho back office</h2>
+          <p class="lead">A Shopify to Zoho sync lives or dies on stock accuracy and clean product data. Both depend on how the two sides are mapped.</p>
+        </div>
+        <div class="rt-grid" data-stagger>
+          <div class="feature"><h3>Stock you can trust</h3><p>Quantities are tracked per warehouse and pushed to Shopify, with optional buffers so the last units never oversell.</p></div>
+          <div class="feature"><h3>Multi-warehouse ready</h3><p>Orders are allocated to the right location, which is one of the most common customisations we build for Zoho stores.</p></div>
+          <div class="feature"><h3>Product data cleaned first</h3><p>SKUs, variants and prices are reconciled before go-live, so the sync starts from data both systems agree on.</p></div>
+          <div class="feature"><h3>Fixed price up front</h3><p>You approve the mapping sheet and a fixed quote before we build. No open hourly meter.</p></div>
+          <div class="feature"><h3>Retries, dedupe and alerts</h3><p>Every flow has retry logic, duplicate protection and alerts, so a failed webhook queues for review instead of vanishing.</p></div>
+          <div class="feature"><h3>Rescue and take-over</h3><p>If a Zoho Flow setup broke, orders duplicated or stock drifted out of step, we audit it and then fix or replace it.</p></div>
+        </div>
+        <p class="note">Want the wider view? See our <a href="zoho.html" style="color:#fff;text-decoration:underline">Zoho integration services</a> or our <a href="shopify.html" style="color:#fff;text-decoration:underline">Shopify connector</a> page.</p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="container faq-grid" data-reveal>
+        <div class="faq-head">
+          <span class="pill">Common questions</span>
+          <h2 class="h-section" id="faq-title">Shopify and Zoho FAQ</h2>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item open">
+            <h3><button class="faq-q" type="button" aria-expanded="true">Can Shopify orders go into Zoho Books or CRM? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. New Shopify orders can create sales orders, invoices or CRM deals in Zoho automatically, carrying customer and line-item detail with them.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Does stock stay in sync both ways? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. Changes from sales, restocks or manual adjustments in either Shopify or Zoho Inventory can update the other side.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Can you handle multiple warehouses? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. Allocating orders and tracking stock per warehouse is one of the most common customisations we build.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Is the sync real time? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Shopify's webhooks push order and stock events straight away. Zoho usually processes them within seconds to a few minutes, depending on the method used.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">What does it cost? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Most projects fall between $2,500 and $15,000, depending on order volume and inventory complexity. The budget section above has the breakdown.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Can you fix a broken Zoho and Shopify sync? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. Rescuing broken Zoho Flow setups, duplicate orders and inventory mismatches is a large share of our work.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta" id="contact" aria-labelledby="cta-title">
+      <div class="cta-grid">
+        <div class="cta-bar" aria-hidden="true"></div>
+        <div class="cta-box">
+          <div class="ripples" aria-hidden="true"><span></span><span></span><span></span></div>
+          <h2 id="cta-title">Stop re-keying Shopify orders into Zoho</h2>
+          <p>Every order entered by hand is time your team could spend selling. A scoped Shopify and Zoho integration removes that work, and you will know the exact cost before we start.</p>
+          <a class="btn btn--primary btn--lg btn-sweep" href="contact-us.html"><span style="position:relative">Book a scoping call</span></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="footer-panel">
+      <div class="footer-flag" aria-hidden="true"></div>
+      <div class="footer-main">
+        <div class="footer-brand">
+          <img src="images/codevelop.webp" alt="Codevelop logo" class="brand-logo" width="160" height="40">
+          <p>At Codevelop, we help businesses turn strategy into scalable results through thoughtful design, performance-driven marketing, and modern technology.</p>
+          <div class="socials">
+            <a href="https://www.facebook.com/Codevelop.usa/" aria-label="Facebook" target="_blank" rel="noopener"><svg class="ico"><use href="#i-fb" /></svg></a>
+            <a href="https://www.instagram.com/codevelop_us/" aria-label="Instagram" target="_blank" rel="noopener"><svg class="ico"><use href="#i-ig" /></svg></a>
+            <a href="https://www.linkedin.com/company/codevelop-us" aria-label="LinkedIn" target="_blank" rel="noopener"><svg class="ico"><use href="#i-in" /></svg></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Services</h3>
+          <ul>
+            <li><a href="performance-marketing.html">Performance Marketing</a></li>
+            <li><a href="#">SEO Services</a></li>
+            <li><a href="#">Social Media Marketing</a></li>
+            <li><a href="web-development.html">Web Development</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Link</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Case Studies</a></li>
+            <li><a href="#">Blogs</a></li>
+            <li><a href="https://codevelopus.com/">Free SEO Audit</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Contact Us</h3>
+          <ul class="contact">
+            <li><svg class="ico"><use href="#i-pin" /></svg><span>555 SE Martin Luther King JR Blvd, Portland, OR 97214</span></li>
+            <li><svg class="ico"><use href="#i-phone" /></svg><a href="tel:+19714809833">+1 971-480-9833</a></li>
+            <li><svg class="ico"><use href="#i-mail" /></svg><a href="mailto:info@codevelop.us">info@codevelop.us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="newsletter">
+        <div class="newsletter-box">
+          <h3>Signup our newsletter to get update information, news, insight or promotions.</h3>
+          <!-- Connect this form to your email provider (set action / method). -->
+          <form class="news-form" action="#" method="post">
+            <label class="sr-only" for="news-email">Email</label>
+            <input id="news-email" type="email" name="email" placeholder="Email" required autocomplete="email">
+            <button class="btn btn--primary" type="submit">Sign up</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <span>Copyright © 2026 Codevelop US, All Rights Reserved.</span>
+      <a href="#">Privacy policy</a>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>

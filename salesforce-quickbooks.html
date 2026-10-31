@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Salesforce + QuickBooks Integration | Codevelop</title>
+  <meta name="description"
+    content="Create QuickBooks invoices from won Salesforce deals and show payment status on the account, for QuickBooks Online or Desktop. Fixed-price builds from Codevelop, with a named engineer after launch.">
+  <link rel="canonical" href="https://codevelopus.com/salesforce-quickbooks-integration">
+  <meta name="theme-color" content="#0a3161">
+  <link rel="icon" href="https://codevelopus.com/wp-content/uploads/2026/01/cropped-codevelop-favicon-270x270.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/connector.css">
+  <link rel="stylesheet" href="css/connector-extra.css">
+</head>
+
+<body>
+
+  <!-- Icon sprite -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></symbol>
+      <symbol id="i-funnel" viewBox="0 0 24 24"><path d="M3 4h18l-7 8v6l-4 2v-8L3 4z" /></symbol>
+      <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" /></symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5z" /></symbol>
+      <symbol id="i-fb" viewBox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v7h4v-7h3l1-4h-4V8z" /></symbol>
+      <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="0.8" /></symbol>
+      <symbol id="i-in" viewBox="0 0 24 24"><rect x="3" y="9" width="4" height="12" /><circle cx="5" cy="5" r="2" /><path d="M10 9h4v2a4 4 0 0 1 6 3v7h-4v-6a2 2 0 0 0-4 0v6h-4V9z" /></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" /></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3 7l9 6 9-6" /></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11z" /><circle cx="12" cy="10" r="2.5" /></symbol>
+      <symbol id="i-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16" /></symbol>
+      <symbol id="i-flow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="6" height="6" rx="1" /><rect x="15" y="15" width="6" height="6" rx="1" /><path d="M9 6h4a2 2 0 0 1 2 2v7" /></symbol>
+      <symbol id="i-megaphone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10v4h4l8 5V5L7 10H3z" /><path d="M18.5 9a4 4 0 0 1 0 6" /></symbol>
+      <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2V5z" /><path d="M4 19a2 2 0 0 1 2-2h13" /></symbol>
+      <symbol id="i-coin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9" /><path d="M14.5 9.5c-.5-1-1.5-1.5-2.5-1.5-1.4 0-2.5.8-2.5 2s1 1.7 2.5 2 2.5.8 2.5 2-1.1 2-2.5 2c-1 0-2-.5-2.5-1.5M12 6.5V8m0 8v1.5" /></symbol>
+      <symbol id="i-desk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2" /><path d="M8 20h8M12 16v4" /></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5" /><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6" /><path d="M16 4.7a3.5 3.5 0 0 1 0 6.6M18 14.3c2 .7 3.5 2.6 3.5 5.7" /></symbol>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header" id="top">
+    <div class="bar">
+      <a class="logo" href="index.html" aria-label="Codevelop home"><img src="images/codevelop.webp" alt="Codevelop logo" class="brand-logo" width="160" height="40"></a>
+      <button class="burger" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav aria-label="Main">
+        <ul>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">AI Agents <svg class="chev" viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" /></svg></button>
+            <div class="drop drop--agents">
+              <div class="agents-top"><span class="agents-label">AI Agents</span><a class="agents-all" href="#">View all agents</a></div>
+              <a class="agent" href="customer-support-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-chat" /></svg></span><span class="agent-txt"><b>Customer Support Agents</b><small>24/7 answers across chat &amp; inbox</small></span></a>
+              <a class="agent" href="sales-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-funnel" /></svg></span><span class="agent-txt"><b>Sales &amp; Lead-Generation Agents</b><small>Capture, qualify &amp; follow up with leads</small></span></a>
+              <a class="agent" href="software-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-code" /></svg></span><span class="agent-txt"><b>Software Development Agents</b><small>Code, review &amp; ship faster</small></span></a>
+              <a class="agent" href="workflow-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-flow" /></svg></span><span class="agent-txt"><b>Workflow Automation Agents</b><small>Connect tools &amp; automate routine tasks</small></span></a>
+              <a class="agent" href="marketing-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-megaphone" /></svg></span><span class="agent-txt"><b>Marketing Agents</b><small>Campaigns, content &amp; channel management</small></span></a>
+              <a class="agent" href="research-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-chart" /></svg></span><span class="agent-txt"><b>Research &amp; Data Analyst Agents</b><small>Insights &amp; plain-language reports</small></span></a>
+              <a class="agent" href="internal-knowledge-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-book" /></svg></span><span class="agent-txt"><b>Internal Knowledge Agents</b><small>Instant answers from your company data</small></span></a>
+              <a class="agent" href="finance-accounting-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-coin" /></svg></span><span class="agent-txt"><b>Finance &amp; Accounting Agents</b><small>Invoices, reconciliation &amp; reporting</small></span></a>
+              <a class="agent" href="it-service-desk-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-desk" /></svg></span><span class="agent-txt"><b>IT Service Desk Agents</b><small>Resolve tickets &amp; access requests</small></span></a>
+              <a class="agent" href="hr-recruitment-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-users" /></svg></span><span class="agent-txt"><b>HR &amp; Recruitment Agents</b><small>Screen, schedule &amp; onboard people</small></span></a>
+            </div>
+          </li>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">Connectors <svg class="chev" viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" /></svg></button>
+            <div class="drop drop--agents drop--connectors">
+              <div class="agents-top"><span class="agents-label">Connectors</span><a class="agents-all" href="#">View all connectors</a></div>
+              <a class="agent" href="sap-business-one.html"><span class="agent-ico"><img src="images/sap.png" alt="SAP Business One" loading="lazy"></span><span class="agent-txt"><b>SAP Business One</b><small>ERP integration &amp; consulting</small></span></a>
+              <a class="agent" href="salesforce.html"><span class="agent-ico"><img src="images/salesforce.png" alt="Salesforce" loading="lazy"></span><span class="agent-txt"><b>Salesforce</b><small>CRM &amp; order-to-cash sync</small></span></a>
+              <a class="agent" href="netsuite.html"><span class="agent-ico"><img src="images/netsuite.png" alt="NetSuite" loading="lazy"></span><span class="agent-txt"><b>NetSuite</b><small>ERP, ecommerce &amp; EDI sync</small></span></a>
+              <a class="agent" href="shopify.html"><span class="agent-ico"><img src="images/shopify.png" alt="Shopify" loading="lazy"></span><span class="agent-txt"><b>Shopify</b><small>Ecommerce ↔ back office</small></span></a>
+              <a class="agent" href="quickbooks.html"><span class="agent-ico"><img src="images/quickbooks.png" alt="QuickBooks" loading="lazy"></span><span class="agent-txt"><b>QuickBooks</b><small>Accounting &amp; invoice sync</small></span></a>
+              <a class="agent" href="woocommerce.html"><span class="agent-ico"><img src="images/woocommerce.png" alt="WooCommerce" loading="lazy"></span><span class="agent-txt"><b>WooCommerce</b><small>WordPress store integration</small></span></a>
+              <a class="agent" href="zoho.html"><span class="agent-ico"><img src="images/zoho.png" alt="Zoho" loading="lazy"></span><span class="agent-txt"><b>Zoho</b><small>Zoho One suite integration</small></span></a>
+              <a class="agent" href="zuper.html"><span class="agent-ico"><img src="images/zuper.png" alt="Zuper" loading="lazy"></span><span class="agent-txt"><b>Zuper</b><small>Field service management sync</small></span></a>
+              <a class="agent" href="attio.html"><span class="agent-ico"><img src="images/attio.png" alt="Attio" loading="lazy"></span><span class="agent-txt"><b>Attio</b><small>CRM &amp; record sync</small></span></a>
+              <a class="agent" href="twenty.html"><span class="agent-ico"><img src="images/twenty.png" alt="Twenty" loading="lazy"></span><span class="agent-txt"><b>Twenty</b><small>Open-source CRM sync</small></span></a>
+            </div>
+          </li>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">Services <svg class="chev" viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" /></svg></button>
+            <div class="drop drop--mega">
+              <div class="mega-top"><a class="mega-all" href="services.html">View all services <svg class="ico" width="16" height="16" aria-hidden="true"><use href="#i-arrow" /></svg></a></div>
+              <div class="mega-col">
+                <h4><a href="performance-marketing.html">Performance Marketing</a></h4>
+                <a href="meta-ads.html">Google Ads Management</a>
+                <a href="facebook-ads.html">Facebook Ads</a>
+                <a href="remarketing.html">Remarketing</a>
+              </div>
+              <div class="mega-col">
+                <h4><a href="web-development.html">Web Development Services</a></h4>
+                <a href="custom-website-design.html">Custom Website Design</a>
+                <a href="wordpress-development.html">WordPress Web Development</a>
+                <a href="shopify-development.html">Shopify Web Development</a>
+                <a href="webflow-development.html">Webflow Web Development</a>
+                <a href="framer-development.html">Framer Web Development</a>
+                <a href="mageneto-development.html">Magento Web Development</a>
+                <a href="website-maintenance.html">Website Maintenance</a>
+                <a href="website-redesign.html">Website Redesign</a>
+              </div>
+              <div class="mega-col">
+                <h4><a href="social-media-marketing.html">Social Media Marketing</a></h4>
+                <a href="content-marketing.html">Content Marketing</a>
+              </div>
+              <div class="mega-col">
+                <h4><a href="search-engine-optimization.html">Search Engine Optimization</a></h4>
+                <a href="local-seo.html">Local SEO</a>
+                <a href="seo-audits.html">SEO Audits</a>
+                <a href="technical-seo.html">Technical SEO</a>
+                <a href="enterprise-seo.html">Enterprise SEO</a>
+              </div>
+            </div>
+          </li>
+          <li><button class="top" type="button" aria-expanded="false">Hire Talent <svg class="chev" viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" /></svg></button>
+            <div class="drop"><a href="#">Developers</a><a href="#">Automation Engineers</a><a href="#">Dedicated Teams</a></div>
+          </li>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="#">Success Stories</a></li>
+          <li><a href="#">Insights</a></li>
+        </ul>
+        <a class="hdr-cta hdr-cta-m" href="contact-us.html">Get a Free Automation Review</a>
+      </nav>
+      <a class="hdr-cta" href="contact-us.html">Get a Free Automation Review</a>
+    </div>
+  </header>
+
+  <main id="content">
+
+    <!-- HERO -->
+    <section class="hero-wrap" aria-labelledby="hero-title">
+      <div class="hero hero--page">
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="hero-glow" aria-hidden="true"></div>
+        <div class="ring ring--1" aria-hidden="true"><i></i></div>
+        <div class="ring ring--2" aria-hidden="true"><i></i></div>
+        <div class="container hero-inner">
+          <div class="hero-copy">
+            <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a>  / <a href="salesforce.html">Salesforce</a> / QuickBooks</nav>
+            <h1 class="h-display" id="hero-title">A won deal in Salesforce should end up as an invoice in QuickBooks.</h1>
+            <p class="lead">We connect your CRM to your books so a closed-won opportunity creates the invoice by itself, and so reps can see what has been billed and paid without asking finance. It works with QuickBooks Online and with Desktop.</p>
+            <div class="hero-stack" aria-hidden="true">
+              <span class="hs hs--sap"><img src="images/salesforce.png" alt=""></span><i class="sep"></i>
+              <span class="hs hs--sap"><img src="images/quickbooks.png" alt=""></span>
+            </div>
+            <div class="hero-actions">
+              <a class="btn btn--primary btn--lg btn--pulse" href="contact-us.html">Book a scoping call</a>
+              <a class="btn btn--ghost btn--lg" href="#budget">See budget and timing</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE PROBLEM -->
+    <section class="section" id="basics" aria-labelledby="basics-title">
+      <div class="container basics" data-reveal>
+        <div class="basics-copy">
+          <span class="pill">The problem</span>
+          <h2 class="h-section" id="basics-title">Why sales and finance keep interrupting each other</h2>
+          <p class="lead">Salesforce holds the deal and QuickBooks holds the money. With no link, someone retypes each won deal as an invoice, and every "has this been paid yet?" from a rep becomes a message that pulls finance away from their work.</p>
+          <p>The integration keeps customer records matched, turns closed-won opportunities and approved quotes into QuickBooks invoices, and writes invoice, balance and payment status back to the Salesforce account. Reps can answer their own questions, and finance can stop being the help desk.</p>
+          <p>Your QuickBooks edition shapes the design. QuickBooks Online has a cloud REST API, so flows can run close to real time. QuickBooks Desktop has no cloud API and is reached through the Web Connector on a polling schedule, which makes Desktop syncs behave more like batches than instant updates.</p>
+        </div>
+        <div class="ba">
+          <div class="no"><h3>Systems apart</h3><ul><li>Won deals retyped as invoices</li><li>Reps asking finance who has paid</li><li>Duplicate customers in both tools</li><li>Overdue accounts sold to again</li></ul></div>
+          <div class="yes"><h3>Systems linked</h3><ul><li>Invoices created from closed-won deals</li><li>Paid, partial and overdue status on the account</li><li>One matched customer record</li><li>Overdue balances flagged before the next deal</li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT SYNCS -->
+    <section class="section web" id="mapping" aria-labelledby="map-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Entity mapping</span>
+          <h2 class="h-section" id="map-title">What syncs between Salesforce and QuickBooks, and which way</h2>
+          <p class="lead">Most projects share the same core objects. We agree which system owns each one before anything is built.</p>
+        </div>
+        <div class="map-wrap">
+          <table class="map">
+            <thead>
+              <tr><th scope="col">In Salesforce</th><th scope="col">In QuickBooks</th><th scope="col">Direction</th><th scope="col">What travels</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Accounts and contacts</th><td>Customers</td><td><span class="dir dir--two">Both ways</span></td><td>Names, billing addresses, terms, matched on a shared external ID</td></tr>
+              <tr><th scope="row">Opportunities and quotes</th><td>Invoices (or estimates)</td><td><span class="dir">Salesforce → QuickBooks</span></td><td>Closed-won deals with the right line items, tax and terms</td></tr>
+              <tr><th scope="row">Products and price books</th><td>Products and services</td><td><span class="dir">QuickBooks → Salesforce</span></td><td>Item names, prices and descriptions kept current in the price book</td></tr>
+              <tr><th scope="row">Invoice fields on the account</th><td>Invoice records</td><td><span class="dir">QuickBooks → Salesforce</span></td><td>Invoice number, amount, due date and a link to the PDF</td></tr>
+              <tr><th scope="row">Payment status</th><td>Payments and credit memos</td><td><span class="dir">QuickBooks → Salesforce</span></td><td>Paid, partly paid and overdue status, with the open balance</td></tr>
+              <tr><th scope="row">Credit warnings</th><td>Customer balance and aging</td><td><span class="dir">QuickBooks → Salesforce</span></td><td>Overdue amounts flagged before a rep closes another sale</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">These are the usual directions. Billing usually lives in QuickBooks, but prospects start in Salesforce, so we set a clear point where an account becomes a QuickBooks customer.</p>
+      </div>
+    </section>
+
+    <!-- DEAL LIFECYCLE -->
+    <section class="section" id="workflow" aria-labelledby="flow-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">After go-live</span>
+          <h2 class="h-section" id="flow-title">One won deal, from signature to settled invoice</h2>
+          <p class="lead">Once the link is running, a typical deal passes between the two systems like this, and nobody retypes it.</p>
+        </div>
+        <ol class="tl">
+          <li><h3>Deal won</h3><p>A rep closes the opportunity, and a match check looks for an existing QuickBooks customer before anything is created.</p></li>
+          <li><h3>Invoice created</h3><p>QuickBooks receives an invoice with the correct lines, tax and payment terms, and the invoice number returns to Salesforce.</p></li>
+          <li><h3>Invoice visible</h3><p>The amount, due date and PDF link appear on the account, so sales and customer success can see what was billed.</p></li>
+          <li><h3>Payment recorded</h3><p>When finance records a payment, the status moves to paid or partly paid and the open balance updates in the CRM.</p></li>
+          <li><h3>Overdue flagged</h3><p>If an invoice goes past due, the account shows it, so the rep knows before they send the next proposal.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ROUTES -->
+    <section class="section web" id="routes" aria-labelledby="route-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Choosing a route</span>
+          <h2 class="h-section" id="route-title">How we build the QuickBooks link</h2>
+          <p class="lead">Salesforce's APIs are strong, so the QuickBooks edition decides most of the architecture.</p>
+        </div>
+        <div class="map-wrap">
+          <table class="map">
+            <thead>
+              <tr><th scope="col">Route</th><th scope="col">What it is</th><th scope="col">Suits</th><th scope="col">Keep in mind</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Salesforce REST and Bulk API</th><td>Record-level and batch access, plus Platform Events.</td><td>Triggering on close, and syncing large account volumes</td><td>Daily call limits depend on your edition</td></tr>
+              <tr><th scope="row">QuickBooks Online API</th><td>A cloud REST API secured with OAuth 2.0.</td><td>Modern QBO builds with near real-time invoices</td><td>Rate limits apply, and the app needs review before go-live</td></tr>
+              <tr><th scope="row">Web Connector (Desktop, QBXML)</th><td>An Intuit tool that swaps QBXML with the local company file.</td><td>Reaching QuickBooks Desktop from a cloud CRM</td><td>Runs on a polling schedule, from the host machine</td></tr>
+              <tr><th scope="row">iPaaS connectors</th><td>Prebuilt templates on tools such as Celigo, Workato or Zapier.</td><td>Standard opportunity-to-invoice flows that must launch fast</td><td>The subscription never ends, and templates only bend so far</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">An honest note: if your flow is simply opportunity to invoice to payment status on QuickBooks Online, a prebuilt connector can be the right answer, and we will help you set it up. Custom middleware earns its cost when Desktop, several company files or approval rules are involved.</p>
+      </div>
+    </section>
+
+    <!-- BUDGET + TIMELINE -->
+    <section class="section" id="budget" aria-labelledby="budget-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Budget and timing</span>
+          <h2 class="h-section" id="budget-title">What a Salesforce and QuickBooks build costs, and how long it takes</h2>
+          <p class="lead">Expect roughly $4,000 to $18,000, depending on your QuickBooks edition, the number of objects and the sync direction.</p>
+        </div>
+        <div class="rt-grid" data-stagger>
+          <div class="feature"><h3>One-way invoicing<small>Opportunity to invoice</small></h3><p><b>$4k – $8k</b> to implement, plus a support retainer.</p></div>
+          <div class="feature"><h3>Two-way with payment status<small>Accounts and status back to CRM</small></h3><p><b>$8k – $13k</b> to implement, plus a platform subscription if an iPaaS is used.</p></div>
+          <div class="feature"><h3>Desktop or multi-company<small>Web Connector setup included</small></h3><p><b>$12k – $18k+</b> to implement, with a support retainer and no platform fee.</p></div>
+        </div>
+        <div class="factors"><span>QuickBooks Online or Desktop</span><span>Number of objects</span><span>One-way or two-way sync</span></div>
+        <div class="lanes" style="margin-top:36px">
+          <div class="lane"><h3>One-way invoicing<small>QuickBooks Online</small></h3><div class="lane-bar" style="--w:35%">3–4 weeks</div></div>
+          <div class="lane"><h3>Two-way with payment status<small>Accounts, invoices and balances</small></h3><div class="lane-bar" style="--w:60%">4–6 weeks</div></div>
+          <div class="lane"><h3>Desktop or multi-company<small>Web Connector, approvals, several entities</small></h3><div class="lane-bar" style="--w:100%">6–8 weeks</div></div>
+        </div>
+        <p class="note">The biggest schedule risk is duplicate customer records, so matching rules and a clean-up pass come before any build work. Desktop adds setup because of the Web Connector. Every quote is fixed after the scoping call.</p>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="section web" id="process" aria-labelledby="process-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Our process</span>
+          <h2 class="h-section" id="process-title">Five stages, with a signed mapping sheet before we build</h2>
+          <p class="lead">You receive a fixed-price scope and approve the mapping sheet before any configuration starts.</p>
+        </div>
+        <ol class="tl">
+          <li><h3>Discover</h3><p>We review your Salesforce objects, your QuickBooks edition and which system owns each record.</p></li>
+          <li><h3>Map</h3><p>Every field, direction, matching rule and error case is written down before building.</p></li>
+          <li><h3>Build</h3><p>We build against a Salesforce sandbox and a QuickBooks sandbox or test company file.</p></li>
+          <li><h3>Test</h3><p>Real deals run end to end, including amendments, credit notes, duplicates and failures.</p></li>
+          <li><h3>Support</h3><p>After launch we monitor with logging and alerts, and you get a named contact.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- WHY CODEVELOP -->
+    <section class="section web ai" id="why-us" aria-labelledby="why-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill pill--dark">Why Codevelop</span>
+          <h2 class="h-section" id="why-title">We understand both the sales pipeline and the books</h2>
+          <p class="lead">Connecting a CRM to accounting is more than copying invoices. It means matching customers cleanly and knowing how each QuickBooks edition really behaves.</p>
+        </div>
+        <div class="rt-grid" data-stagger>
+          <div class="feature"><h3>Online and Desktop both covered</h3><p>We build on the QuickBooks Online API or the Desktop Web Connector, and we tell you plainly how each one behaves.</p></div>
+          <div class="feature"><h3>Duplicates dealt with early</h3><p>Matching rules and a de-duplication pass run before the build, so the sync starts from clean customer data.</p></div>
+          <div class="feature"><h3>Payment status that reps trust</h3><p>Paid, partly paid and overdue states come straight from QuickBooks, so the CRM never guesses.</p></div>
+          <div class="feature"><h3>Fixed price up front</h3><p>You approve the mapping sheet and a fixed quote before we build. No open hourly meter.</p></div>
+          <div class="feature"><h3>Retries, dedupe and alerts</h3><p>Every flow has retry logic, duplicate protection and alerts, so a failed record queues for review instead of vanishing.</p></div>
+          <div class="feature"><h3>Rescue and take-over</h3><p>If a connector has stalled, duplicated accounts or stopped matching your sales process, we audit it and then fix or replace it.</p></div>
+        </div>
+        <p class="note">Want the wider view? See our <a href="salesforce.html" style="color:#fff;text-decoration:underline">Salesforce integration services</a> or our <a href="quickbooks.html" style="color:#fff;text-decoration:underline">QuickBooks connector</a> page.</p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="container faq-grid" data-reveal>
+        <div class="faq-head">
+          <span class="pill">Common questions</span>
+          <h2 class="h-section" id="faq-title">Salesforce and QuickBooks FAQ</h2>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item open">
+            <h3><button class="faq-q" type="button" aria-expanded="true">How does Salesforce connect to QuickBooks? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>We use Salesforce's REST, Bulk and Platform Event APIs on one side and the QuickBooks Online REST API, or the Web Connector for Desktop, on the other, coordinated by an iPaaS or by purpose-built middleware.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Does it work with QuickBooks Desktop? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes, through the QuickBooks Web Connector using QBXML. It polls on a schedule instead of updating instantly, so Desktop flows run closer to batches than real time.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Which system should own the customer record? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Usually QuickBooks, since billing lives there. Sales still creates prospects in Salesforce, so we define the point where a Salesforce account becomes a QuickBooks customer.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Can reps see whether an invoice has been paid? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. Invoice status, open balance and payment dates are written back to the account or opportunity, so reps no longer have to ask finance.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">What does it cost? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Most projects fall between $4,000 and $18,000, depending on edition, object count and sync direction. The budget section above has the breakdown.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Can you repair an existing sync? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. A large share of our work is rescuing stalled connectors, duplicated accounts and integrations that no longer match how your sales process runs.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta" id="contact" aria-labelledby="cta-title">
+      <div class="cta-grid">
+        <div class="cta-bar" aria-hidden="true"></div>
+        <div class="cta-box">
+          <div class="ripples" aria-hidden="true"><span></span><span></span><span></span></div>
+          <h2 id="cta-title">Stop retyping won deals as invoices</h2>
+          <p>Every deal entered into QuickBooks by hand is a late invoice and another interruption for finance. A scoped Salesforce and QuickBooks integration removes that work, and you will know the exact cost before we start.</p>
+          <a class="btn btn--primary btn--lg btn-sweep" href="contact-us.html"><span style="position:relative">Book a scoping call</span></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="footer-panel">
+      <div class="footer-flag" aria-hidden="true"></div>
+      <div class="footer-main">
+        <div class="footer-brand">
+          <img src="images/codevelop.webp" alt="Codevelop logo" class="brand-logo" width="160" height="40">
+          <p>At Codevelop, we help businesses turn strategy into scalable results through thoughtful design, performance-driven marketing, and modern technology.</p>
+          <div class="socials">
+            <a href="https://www.facebook.com/Codevelop.usa/" aria-label="Facebook" target="_blank" rel="noopener"><svg class="ico"><use href="#i-fb" /></svg></a>
+            <a href="https://www.instagram.com/codevelop_us/" aria-label="Instagram" target="_blank" rel="noopener"><svg class="ico"><use href="#i-ig" /></svg></a>
+            <a href="https://www.linkedin.com/company/codevelop-us" aria-label="LinkedIn" target="_blank" rel="noopener"><svg class="ico"><use href="#i-in" /></svg></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Services</h3>
+          <ul>
+            <li><a href="performance-marketing.html">Performance Marketing</a></li>
+            <li><a href="#">SEO Services</a></li>
+            <li><a href="#">Social Media Marketing</a></li>
+            <li><a href="web-development.html">Web Development</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Link</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Case Studies</a></li>
+            <li><a href="#">Blogs</a></li>
+            <li><a href="https://codevelopus.com/">Free SEO Audit</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Contact Us</h3>
+          <ul class="contact">
+            <li><svg class="ico"><use href="#i-pin" /></svg><span>555 SE Martin Luther King JR Blvd, Portland, OR 97214</span></li>
+            <li><svg class="ico"><use href="#i-phone" /></svg><a href="tel:+19714809833">+1 971-480-9833</a></li>
+            <li><svg class="ico"><use href="#i-mail" /></svg><a href="mailto:info@codevelop.us">info@codevelop.us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="newsletter">
+        <div class="newsletter-box">
+          <h3>Signup our newsletter to get update information, news, insight or promotions.</h3>
+          <!-- Connect this form to your email provider (set action / method). -->
+          <form class="news-form" action="#" method="post">
+            <label class="sr-only" for="news-email">Email</label>
+            <input id="news-email" type="email" name="email" placeholder="Email" required autocomplete="email">
+            <button class="btn btn--primary" type="submit">Sign up</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <span>Copyright © 2026 Codevelop US, All Rights Reserved.</span>
+      <a href="#">Privacy policy</a>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SAP Business One + EDI Integration | Codevelop</title>
+  <meta name="description"
+    content="Exchange purchase orders, ship notices and invoices with retailers and distributors straight from SAP Business One, with no re-keying and fewer chargebacks. Fixed-price EDI builds from Codevelop.">
+  <link rel="canonical" href="https://codevelopus.com/sap-business-one-edi-integration">
+  <meta name="theme-color" content="#0a3161">
+  <link rel="icon" href="https://codevelopus.com/wp-content/uploads/2026/01/cropped-codevelop-favicon-270x270.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/connector.css">
+  <link rel="stylesheet" href="css/connector-extra.css">
+</head>
+
+<body>
+
+  <!-- Icon sprite -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></symbol>
+      <symbol id="i-funnel" viewBox="0 0 24 24"><path d="M3 4h18l-7 8v6l-4 2v-8L3 4z" /></symbol>
+      <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" /></symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5z" /></symbol>
+      <symbol id="i-fb" viewBox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v7h4v-7h3l1-4h-4V8z" /></symbol>
+      <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="0.8" /></symbol>
+      <symbol id="i-in" viewBox="0 0 24 24"><rect x="3" y="9" width="4" height="12" /><circle cx="5" cy="5" r="2" /><path d="M10 9h4v2a4 4 0 0 1 6 3v7h-4v-6a2 2 0 0 0-4 0v6h-4V9z" /></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" /></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3 7l9 6 9-6" /></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11z" /><circle cx="12" cy="10" r="2.5" /></symbol>
+      <symbol id="i-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16" /></symbol>
+      <symbol id="i-flow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="6" height="6" rx="1" /><rect x="15" y="15" width="6" height="6" rx="1" /><path d="M9 6h4a2 2 0 0 1 2 2v7" /></symbol>
+      <symbol id="i-megaphone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10v4h4l8 5V5L7 10H3z" /><path d="M18.5 9a4 4 0 0 1 0 6" /></symbol>
+      <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2V5z" /><path d="M4 19a2 2 0 0 1 2-2h13" /></symbol>
+      <symbol id="i-coin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9" /><path d="M14.5 9.5c-.5-1-1.5-1.5-2.5-1.5-1.4 0-2.5.8-2.5 2s1 1.7 2.5 2 2.5.8 2.5 2-1.1 2-2.5 2c-1 0-2-.5-2.5-1.5M12 6.5V8m0 8v1.5" /></symbol>
+      <symbol id="i-desk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2" /><path d="M8 20h8M12 16v4" /></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5" /><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6" /><path d="M16 4.7a3.5 3.5 0 0 1 0 6.6M18 14.3c2 .7 3.5 2.6 3.5 5.7" /></symbol>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header" id="top">
+    <div class="bar">
+      <a class="logo" href="index.html" aria-label="Codevelop home"><img src="images/codevelop.webp" alt="Codevelop logo" class="brand-logo" width="160" height="40"></a>
+      <button class="burger" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav aria-label="Main">
+        <ul>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">AI Agents <svg class="chev" viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" /></svg></button>
+            <div class="drop drop--agents">
+              <div class="agents-top"><span class="agents-label">AI Agents</span><a class="agents-all" href="#">View all agents</a></div>
+              <a class="agent" href="customer-support-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-chat" /></svg></span><span class="agent-txt"><b>Customer Support Agents</b><small>24/7 answers across chat &amp; inbox</small></span></a>
+              <a class="agent" href="sales-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-funnel" /></svg></span><span class="agent-txt"><b>Sales &amp; Lead-Generation Agents</b><small>Capture, qualify &amp; follow up with leads</small></span></a>
+              <a class="agent" href="software-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-code" /></svg></span><span class="agent-txt"><b>Software Development Agents</b><small>Code, review &amp; ship faster</small></span></a>
+              <a class="agent" href="workflow-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-flow" /></svg></span><span class="agent-txt"><b>Workflow Automation Agents</b><small>Connect tools &amp; automate routine tasks</small></span></a>
+              <a class="agent" href="marketing-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-megaphone" /></svg></span><span class="agent-txt"><b>Marketing Agents</b><small>Campaigns, content &amp; channel management</small></span></a>
+              <a class="agent" href="research-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-chart" /></svg></span><span class="agent-txt"><b>Research &amp; Data Analyst Agents</b><small>Insights &amp; plain-language reports</small></span></a>
+              <a class="agent" href="internal-knowledge-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-book" /></svg></span><span class="agent-txt"><b>Internal Knowledge Agents</b><small>Instant answers from your company data</small></span></a>
+              <a class="agent" href="finance-accounting-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-coin" /></svg></span><span class="agent-txt"><b>Finance &amp; Accounting Agents</b><small>Invoices, reconciliation &amp; reporting</small></span></a>
+              <a class="agent" href="it-service-desk-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-desk" /></svg></span><span class="agent-txt"><b>IT Service Desk Agents</b><small>Resolve tickets &amp; access requests</small></span></a>
+              <a class="agent" href="hr-recruitment-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-users" /></svg></span><span class="agent-txt"><b>HR &amp; Recruitment Agents</b><small>Screen, schedule &amp; onboard people</small></span></a>
+            </div>
+          </li>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">Connectors <svg class="chev" viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" /></svg></button>
+            <div class="drop drop--agents drop--connectors">
+              <div class="agents-top"><span class="agents-label">Connectors</span><a class="agents-all" href="#">View all connectors</a></div>
+              <a class="agent" href="sap-business-one.html"><span class="agent-ico"><img src="images/sap.png" alt="SAP Business One" loading="lazy"></span><span class="agent-txt"><b>SAP Business One</b><small>ERP integration &amp; consulting</small></span></a>
+              <a class="agent" href="salesforce.html"><span class="agent-ico"><img src="images/salesforce.png" alt="Salesforce" loading="lazy"></span><span class="agent-txt"><b>Salesforce</b><small>CRM &amp; order-to-cash sync</small></span></a>
+              <a class="agent" href="netsuite.html"><span class="agent-ico"><img src="images/netsuite.png" alt="NetSuite" loading="lazy"></span><span class="agent-txt"><b>NetSuite</b><small>ERP, ecommerce &amp; EDI sync</small></span></a>
+              <a class="agent" href="shopify.html"><span class="agent-ico"><img src="images/shopify.png" alt="Shopify" loading="lazy"></span><span class="agent-txt"><b>Shopify</b><small>Ecommerce ↔ back office</small></span></a>
+              <a class="agent" href="quickbooks.html"><span class="agent-ico"><img src="images/quickbooks.png" alt="QuickBooks" loading="lazy"></span><span class="agent-txt"><b>QuickBooks</b><small>Accounting &amp; invoice sync</small></span></a>
+              <a class="agent" href="woocommerce.html"><span class="agent-ico"><img src="images/woocommerce.png" alt="WooCommerce" loading="lazy"></span><span class="agent-txt"><b>WooCommerce</b><small>WordPress store integration</small></span></a>
+              <a class="agent" href="zoho.html"><span class="agent-ico"><img src="images/zoho.png" alt="Zoho" loading="lazy"></span><span class="agent-txt"><b>Zoho</b><small>Zoho One suite integration</small></span></a>
+              <a class="agent" href="zuper.html"><span class="agent-ico"><img src="images/zuper.png" alt="Zuper" loading="lazy"></span><span class="agent-txt"><b>Zuper</b><small>Field service management sync</small></span></a>
+              <a class="agent" href="attio.html"><span class="agent-ico"><img src="images/attio.png" alt="Attio" loading="lazy"></span><span class="agent-txt"><b>Attio</b><small>CRM &amp; record sync</small></span></a>
+              <a class="agent" href="twenty.html"><span class="agent-ico"><img src="images/twenty.png" alt="Twenty" loading="lazy"></span><span class="agent-txt"><b>Twenty</b><small>Open-source CRM sync</small></span></a>
+            </div>
+          </li>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">Services <svg class="chev" viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" /></svg></button>
+            <div class="drop drop--mega">
+              <div class="mega-top"><a class="mega-all" href="services.html">View all services <svg class="ico" width="16" height="16" aria-hidden="true"><use href="#i-arrow" /></svg></a></div>
+              <div class="mega-col">
+                <h4><a href="performance-marketing.html">Performance Marketing</a></h4>
+                <a href="meta-ads.html">Google Ads Management</a>
+                <a href="facebook-ads.html">Facebook Ads</a>
+                <a href="remarketing.html">Remarketing</a>
+              </div>
+              <div class="mega-col">
+                <h4><a href="web-development.html">Web Development Services</a></h4>
+                <a href="custom-website-design.html">Custom Website Design</a>
+                <a href="wordpress-development.html">WordPress Web Development</a>
+                <a href="shopify-development.html">Shopify Web Development</a>
+                <a href="webflow-development.html">Webflow Web Development</a>
+                <a href="framer-development.html">Framer Web Development</a>
+                <a href="mageneto-development.html">Magento Web Development</a>
+                <a href="website-maintenance.html">Website Maintenance</a>
+                <a href="website-redesign.html">Website Redesign</a>
+              </div>
+              <div class="mega-col">
+                <h4><a href="social-media-marketing.html">Social Media Marketing</a></h4>
+                <a href="content-marketing.html">Content Marketing</a>
+              </div>
+              <div class="mega-col">
+                <h4><a href="search-engine-optimization.html">Search Engine Optimization</a></h4>
+                <a href="local-seo.html">Local SEO</a>
+                <a href="seo-audits.html">SEO Audits</a>
+                <a href="technical-seo.html">Technical SEO</a>
+                <a href="enterprise-seo.html">Enterprise SEO</a>
+              </div>
+            </div>
+          </li>
+          <li><button class="top" type="button" aria-expanded="false">Hire Talent <svg class="chev" viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" /></svg></button>
+            <div class="drop"><a href="#">Developers</a><a href="#">Automation Engineers</a><a href="#">Dedicated Teams</a></div>
+          </li>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="#">Success Stories</a></li>
+          <li><a href="#">Insights</a></li>
+        </ul>
+        <a class="hdr-cta hdr-cta-m" href="contact-us.html">Get a Free Automation Review</a>
+      </nav>
+      <a class="hdr-cta" href="contact-us.html">Get a Free Automation Review</a>
+    </div>
+  </header>
+
+  <main id="content">
+
+    <!-- HERO -->
+    <section class="hero-wrap" aria-labelledby="hero-title">
+      <div class="hero hero--page">
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="hero-glow" aria-hidden="true"></div>
+        <div class="ring ring--1" aria-hidden="true"><i></i></div>
+        <div class="ring ring--2" aria-hidden="true"><i></i></div>
+        <div class="container hero-inner">
+          <div class="hero-copy">
+            <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a>  / <a href="sap-business-one.html">SAP Business One</a> / EDI</nav>
+            <h1 class="h-display" id="hero-title">Trade with big retailers straight from SAP Business One.</h1>
+            <p class="lead">We wire your B1 system to your trading partners' EDI so purchase orders arrive as sales orders, and shipments and invoices leave as the exact documents the retailer expects. No portals to key into, no late ship notices, no surprise chargebacks.</p>
+            <div class="hero-stack" aria-hidden="true">
+              <span class="hs hs--sap"><img src="images/edi.png" alt=""></span><i class="sep"></i>
+              <span class="hs hs--sap"><img src="images/sap.png" alt=""></span>
+            </div>
+            <div class="hero-actions">
+              <a class="btn btn--primary btn--lg btn--pulse" href="contact-us.html">Book a scoping call</a>
+              <a class="btn btn--ghost btn--lg" href="#budget">See budget and timing</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE PROBLEM -->
+    <section class="section" id="basics" aria-labelledby="basics-title">
+      <div class="container basics" data-reveal>
+        <div class="basics-copy">
+          <span class="pill">The problem</span>
+          <h2 class="h-section" id="basics-title">Why EDI becomes a full-time job without automation</h2>
+          <p class="lead">Large retailers and distributors do not accept orders by email. They send a structured 850 purchase order, and they expect an 856 ship notice and an 810 invoice back, in the right format and on time. Miss the window and the penalty is usually a chargeback, not just a late delivery.</p>
+          <p>Our integration translates each incoming purchase order into a B1 sales order, then turns your confirmed deliveries and A/R invoices into outbound documents. A 997 acknowledgment confirms receipt at every step, so you always know whether a document arrived or got stuck.</p>
+        </div>
+        <div class="ba">
+          <div class="no"><h3>Systems apart</h3><ul><li>Orders re-keyed from partner portals</li><li>Ship notices built by hand</li><li>Deadlines missed, chargebacks issued</li><li>Failed documents noticed days later</li></ul></div>
+          <div class="yes"><h3>Systems linked</h3><ul><li>Purchase orders land in B1 automatically</li><li>ASNs and invoices generated from B1 data</li><li>Partner rules built into the flow</li><li>Rejections alert you straight away</li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT SYNCS -->
+    <section class="section web" id="mapping" aria-labelledby="map-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Entity mapping</span>
+          <h2 class="h-section" id="map-title">Which EDI documents flow in and out of SAP B1</h2>
+          <p class="lead">Every trading partner publishes its own spec, but most projects revolve around the same set of documents. We follow each partner's guide to the letter.</p>
+        </div>
+        <div class="map-wrap">
+          <table class="map">
+            <thead>
+              <tr><th scope="col">EDI document</th><th scope="col">In SAP B1</th><th scope="col">Direction</th><th scope="col">What travels</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Purchase order (850)</th><td>Sales orders (ORDR)</td><td><span class="dir">Partner → B1</span></td><td>Lines, quantities, ship-to locations, partner item numbers and prices</td></tr>
+              <tr><th scope="row">Order acknowledgment (855)</th><td>Sales order status (ORDR)</td><td><span class="dir">B1 → Partner</span></td><td>Accepted quantities, promised dates, line-level changes</td></tr>
+              <tr><th scope="row">Advance ship notice (856)</th><td>Deliveries (ODLN)</td><td><span class="dir">B1 → Partner</span></td><td>Carton and pallet detail, tracking numbers, GS1-128 label data</td></tr>
+              <tr><th scope="row">Invoice (810)</th><td>A/R invoices (OINV)</td><td><span class="dir">B1 → Partner</span></td><td>Totals and lines tied to the PO and ASN references</td></tr>
+              <tr><th scope="row">Functional acknowledgment (997)</th><td>EDI message log</td><td><span class="dir dir--two">Both ways</span></td><td>Receipt confirmation for each document, with failure alerts</td></tr>
+              <tr><th scope="row">Remittance and deductions (820, 812)</th><td>Incoming payments (ORCT) and credit memos (ORIN)</td><td><span class="dir">Partner → B1</span></td><td>Payment detail and chargeback data logged against the original invoice</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">Document numbers shown are X12. If your partners use EDIFACT, the equivalents are ORDERS, ORDRSP, DESADV and INVOIC, and we map those the same way.</p>
+      </div>
+    </section>
+
+    <!-- DOCUMENT LIFECYCLE -->
+    <section class="section" id="workflow" aria-labelledby="flow-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">After go-live</span>
+          <h2 class="h-section" id="flow-title">One retailer order, from purchase order to paid invoice</h2>
+          <p class="lead">Once the link is live, a typical order moves through your business like this, with no portal logins and no re-typing.</p>
+        </div>
+        <ol class="tl">
+          <li><h3>Order received</h3><p>The retailer's 850 arrives, is checked against their spec, and is acknowledged with a 997 within minutes.</p></li>
+          <li><h3>Order created</h3><p>The translated order becomes a B1 sales order, with partner item numbers and prices matched to your own items.</p></li>
+          <li><h3>Shipment confirmed</h3><p>When the delivery is posted in B1, an 856 goes out with carton, pallet and label data before the retailer's deadline.</p></li>
+          <li><h3>Invoice sent</h3><p>The A/R invoice is converted into an 810 that matches the PO and ASN, so it clears the retailer's checks first time.</p></li>
+          <li><h3>Payment and deductions logged</h3><p>Remittance and chargeback data come back and are recorded against the original invoice for finance to review.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ROUTES -->
+    <section class="section web" id="routes" aria-labelledby="route-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Choosing a route</span>
+          <h2 class="h-section" id="route-title">How we build the EDI link</h2>
+          <p class="lead">EDI has two separate problems: getting documents to and from your partner, and translating them. We solve both, using whichever transport your partner requires.</p>
+        </div>
+        <div class="map-wrap">
+          <table class="map">
+            <thead>
+              <tr><th scope="col">Route</th><th scope="col">What it is</th><th scope="col">Suits</th><th scope="col">Keep in mind</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">VAN (value-added network)</th><td>A managed EDI mailbox that partners already connect to.</td><td>Retailers that require a specific network</td><td>Per-document fees add up at high volume</td></tr>
+              <tr><th scope="row">AS2 or SFTP direct</th><td>Encrypted point-to-point exchange with no middleman.</td><td>Partners that accept a direct connection</td><td>Certificates must be managed on both sides</td></tr>
+              <tr><th scope="row">EDI translator</th><td>Software that converts X12 or EDIFACT to structured data and back.</td><td>Every EDI project, whatever the transport</td><td>Partner mapping guides must be followed exactly</td></tr>
+              <tr><th scope="row">SAP B1 Service Layer / DI API</th><td>Interfaces that create B1 orders, deliveries and invoices.</td><td>Posting orders and producing outbound documents</td><td>Partner item cross-references need ongoing upkeep</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">A common shortcut that backfires: SAP's B1if framework can move EDI files, but with several non-SAP partners a dedicated translator working with the Service Layer is usually quicker to build and much easier to change when a partner updates its spec.</p>
+      </div>
+    </section>
+
+    <!-- BUDGET + TIMELINE -->
+    <section class="section" id="budget" aria-labelledby="budget-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Budget and timing</span>
+          <h2 class="h-section" id="budget-title">What an EDI and SAP B1 build costs, and how long it takes</h2>
+          <p class="lead">Expect roughly $4,000 to $22,000, depending on the number of trading partners, the documents each one requires and whether compliance labelling is included.</p>
+        </div>
+        <div class="rt-grid" data-stagger>
+          <div class="feature"><h3>One partner<small>Core set: 850, 856, 810</small></h3><p><b>$4k – $9k</b> to implement, plus roughly $50 – $300 a month in VAN fees if one is used.</p></div>
+          <div class="feature"><h3>Several partners<small>Standard documents</small></h3><p><b>$8k – $15k</b> to implement, with VAN fees rising alongside partner and document counts.</p></div>
+          <div class="feature"><h3>Full compliance build<small>Labels, chargebacks, custom specs</small></h3><p><b>$14k – $22k+</b> to implement, plus a support retainer and any VAN fees.</p></div>
+        </div>
+        <div class="factors"><span>Trading partner count</span><span>Document types per partner</span><span>Compliance labelling</span></div>
+        <div class="lanes" style="margin-top:36px">
+          <div class="lane"><h3>One trading partner<small>Existing VAN connection</small></h3><div class="lane-bar" style="--w:35%">3–5 weeks</div></div>
+          <div class="lane"><h3>Several partners<small>Standard document sets</small></h3><div class="lane-bar" style="--w:60%">5–8 weeks</div></div>
+          <div class="lane"><h3>Multi-partner compliance build<small>Labels and formal certification</small></h3><div class="lane-bar" style="--w:100%">6–10 weeks</div></div>
+        </div>
+        <p class="note">Partner onboarding and test cycles often set the pace more than development does, since some retailers run a formal certification before go-live. We flag these early, and every quote is fixed once we have reviewed your trading agreements.</p>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="section web" id="process" aria-labelledby="process-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Our process</span>
+          <h2 class="h-section" id="process-title">Five stages, with a signed mapping sheet before we build</h2>
+          <p class="lead">You receive a fixed-price scope and approve the document mapping sheet before any configuration starts.</p>
+        </div>
+        <ol class="tl">
+          <li><h3>Discover</h3><p>We read your partners' EDI specs and note the documents, transport and deadlines each one demands.</p></li>
+          <li><h3>Map</h3><p>Every segment, B1 field, item cross-reference and error rule is written down before building.</p></li>
+          <li><h3>Build</h3><p>We build the translator and B1 posting logic against a sandbox trading-partner setup.</p></li>
+          <li><h3>Test</h3><p>Partner-required test transactions run through to certification, 997 handling included.</p></li>
+          <li><h3>Support</h3><p>After launch we monitor with alerts on failed translations, and you get a named contact.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- WHY CODEVELOP -->
+    <section class="section web ai" id="why-us" aria-labelledby="why-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill pill--dark">Why Codevelop</span>
+          <h2 class="h-section" id="why-title">We understand the retailer's rulebook and your ERP</h2>
+          <p class="lead">EDI is more than file transfer. It means meeting each partner's timing, labelling and formatting rules from inside B1.</p>
+        </div>
+        <div class="rt-grid" data-stagger>
+          <div class="feature"><h3>Chargebacks designed out</h3><p>ASN timing, labelling and invoice matching rules are built into the flow, so penalties stop arriving by surprise.</p></div>
+          <div class="feature"><h3>Both transports covered</h3><p>We connect through a VAN when the partner insists, or direct AS2 and SFTP when they do not.</p></div>
+          <div class="feature"><h3>Item cross-references kept clean</h3><p>Partner item numbers and prices are mapped to your B1 items, with a clear place to update them.</p></div>
+          <div class="feature"><h3>Fixed price up front</h3><p>You approve the mapping sheet and a fixed quote before we build. No open hourly meter.</p></div>
+          <div class="feature"><h3>Errors that name the segment</h3><p>A failed translation or rejected acknowledgment raises an alert pointing to the exact segment, and the document queues for review instead of vanishing.</p></div>
+          <div class="feature"><h3>Rescue and take-over</h3><p>If you are switching provider, or a partner changed its spec and your mapping broke, we audit it and then fix or replace it.</p></div>
+        </div>
+        <p class="note">Looking at the wider picture? See our full <a href="sap-business-one.html" style="color:#fff;text-decoration:underline">SAP Business One integration services</a>, or our <a href="netsuite.html" style="color:#fff;text-decoration:underline">NetSuite connector</a> if EDI is part of an ERP move.</p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="container faq-grid" data-reveal>
+        <div class="faq-head">
+          <span class="pill">Common questions</span>
+          <h2 class="h-section" id="faq-title">SAP B1 and EDI FAQ</h2>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item open">
+            <h3><button class="faq-q" type="button" aria-expanded="true">Which EDI documents can be connected to B1? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>The usual X12 set is 850, 855, 856, 810 and 997, along with 820 and 812 for remittance and deductions. EDIFACT partners use ORDERS, ORDRSP, DESADV and INVOIC, which we map in the same way.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Do you use a VAN or direct AS2? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Either. If a partner mandates a VAN we connect through it. If they support direct AS2 or SFTP, we use that and you avoid per-document network fees.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Can we meet a big-box retailer's requirements? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. Labelling, ship-notice timing and invoice rules are built into the B1 order and shipping flow, so compliance is handled in the process, not found out through a penalty.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">What happens when a document fails? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>You get an alert naming the segment that failed, and the document waits in a review queue. Nothing is dropped without anyone knowing.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">What does it cost? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Most projects fall between $4,000 and $22,000, depending on partner count, document types and whether labelling or a VAN subscription is involved. The budget section above has the breakdown.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Can you take over from a previous EDI provider? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. Taking over partner mappings is a regular part of our work, especially when a VAN or provider is being replaced or a partner has changed its spec.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta" id="contact" aria-labelledby="cta-title">
+      <div class="cta-grid">
+        <div class="cta-bar" aria-hidden="true"></div>
+        <div class="cta-box">
+          <div class="ripples" aria-hidden="true"><span></span><span></span><span></span></div>
+          <h2 id="cta-title">Stop re-keying retailer orders and dodging chargebacks</h2>
+          <p>Every EDI document handled by hand is a missed acknowledgment or a penalty waiting to happen. A scoped SAP B1 and EDI integration removes that risk, and you will know the exact cost before we start.</p>
+          <a class="btn btn--primary btn--lg btn-sweep" href="contact-us.html"><span style="position:relative">Book a scoping call</span></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="footer-panel">
+      <div class="footer-flag" aria-hidden="true"></div>
+      <div class="footer-main">
+        <div class="footer-brand">
+          <img src="images/codevelop.webp" alt="Codevelop logo" class="brand-logo" width="160" height="40">
+          <p>At Codevelop, we help businesses turn strategy into scalable results through thoughtful design, performance-driven marketing, and modern technology.</p>
+          <div class="socials">
+            <a href="https://www.facebook.com/Codevelop.usa/" aria-label="Facebook" target="_blank" rel="noopener"><svg class="ico"><use href="#i-fb" /></svg></a>
+            <a href="https://www.instagram.com/codevelop_us/" aria-label="Instagram" target="_blank" rel="noopener"><svg class="ico"><use href="#i-ig" /></svg></a>
+            <a href="https://www.linkedin.com/company/codevelop-us" aria-label="LinkedIn" target="_blank" rel="noopener"><svg class="ico"><use href="#i-in" /></svg></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Services</h3>
+          <ul>
+            <li><a href="performance-marketing.html">Performance Marketing</a></li>
+            <li><a href="#">SEO Services</a></li>
+            <li><a href="#">Social Media Marketing</a></li>
+            <li><a href="web-development.html">Web Development</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Link</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Case Studies</a></li>
+            <li><a href="#">Blogs</a></li>
+            <li><a href="https://codevelopus.com/">Free SEO Audit</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Contact Us</h3>
+          <ul class="contact">
+            <li><svg class="ico"><use href="#i-pin" /></svg><span>555 SE Martin Luther King JR Blvd, Portland, OR 97214</span></li>
+            <li><svg class="ico"><use href="#i-phone" /></svg><a href="tel:+19714809833">+1 971-480-9833</a></li>
+            <li><svg class="ico"><use href="#i-mail" /></svg><a href="mailto:info@codevelop.us">info@codevelop.us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="newsletter">
+        <div class="newsletter-box">
+          <h3>Signup our newsletter to get update information, news, insight or promotions.</h3>
+          <!-- Connect this form to your email provider (set action / method). -->
+          <form class="news-form" action="#" method="post">
+            <label class="sr-only" for="news-email">Email</label>
+            <input id="news-email" type="email" name="email" placeholder="Email" required autocomplete="email">
+            <button class="btn btn--primary" type="submit">Sign up</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <span>Copyright © 2026 Codevelop US, All Rights Reserved.</span>
+      <a href="#">Privacy policy</a>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>

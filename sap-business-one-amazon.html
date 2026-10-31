@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SAP Business One + Amazon Integration | Codevelop</title>
+  <meta name="description"
+    content="Link Amazon Seller Central to SAP Business One so orders, stock and settlements flow without downloads or spreadsheets. Fixed-price builds from Codevelop, with a named engineer after launch.">
+  <link rel="canonical" href="https://codevelopus.com/sap-business-one-amazon-integration">
+  <meta name="theme-color" content="#0a3161">
+  <link rel="icon" href="https://codevelopus.com/wp-content/uploads/2026/01/cropped-codevelop-favicon-270x270.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/connector.css">
+  <link rel="stylesheet" href="css/connector-extra.css">
+</head>
+
+<body>
+
+  <!-- Icon sprite -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></symbol>
+      <symbol id="i-funnel" viewBox="0 0 24 24"><path d="M3 4h18l-7 8v6l-4 2v-8L3 4z" /></symbol>
+      <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" /></symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5z" /></symbol>
+      <symbol id="i-fb" viewBox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v7h4v-7h3l1-4h-4V8z" /></symbol>
+      <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="0.8" /></symbol>
+      <symbol id="i-in" viewBox="0 0 24 24"><rect x="3" y="9" width="4" height="12" /><circle cx="5" cy="5" r="2" /><path d="M10 9h4v2a4 4 0 0 1 6 3v7h-4v-6a2 2 0 0 0-4 0v6h-4V9z" /></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" /></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3 7l9 6 9-6" /></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11z" /><circle cx="12" cy="10" r="2.5" /></symbol>
+      <symbol id="i-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16" /></symbol>
+      <symbol id="i-flow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="6" height="6" rx="1" /><rect x="15" y="15" width="6" height="6" rx="1" /><path d="M9 6h4a2 2 0 0 1 2 2v7" /></symbol>
+      <symbol id="i-megaphone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10v4h4l8 5V5L7 10H3z" /><path d="M18.5 9a4 4 0 0 1 0 6" /></symbol>
+      <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2V5z" /><path d="M4 19a2 2 0 0 1 2-2h13" /></symbol>
+      <symbol id="i-coin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9" /><path d="M14.5 9.5c-.5-1-1.5-1.5-2.5-1.5-1.4 0-2.5.8-2.5 2s1 1.7 2.5 2 2.5.8 2.5 2-1.1 2-2.5 2c-1 0-2-.5-2.5-1.5M12 6.5V8m0 8v1.5" /></symbol>
+      <symbol id="i-desk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2" /><path d="M8 20h8M12 16v4" /></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5" /><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6" /><path d="M16 4.7a3.5 3.5 0 0 1 0 6.6M18 14.3c2 .7 3.5 2.6 3.5 5.7" /></symbol>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header" id="top">
+    <div class="bar">
+      <a class="logo" href="index.html" aria-label="Codevelop home"><img src="images/codevelop.webp" alt="Codevelop logo" class="brand-logo" width="160" height="40"></a>
+      <button class="burger" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav aria-label="Main">
+        <ul>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">AI Agents <svg class="chev" viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" /></svg></button>
+            <div class="drop drop--agents">
+              <div class="agents-top"><span class="agents-label">AI Agents</span><a class="agents-all" href="#">View all agents</a></div>
+              <a class="agent" href="customer-support-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-chat" /></svg></span><span class="agent-txt"><b>Customer Support Agents</b><small>24/7 answers across chat &amp; inbox</small></span></a>
+              <a class="agent" href="sales-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-funnel" /></svg></span><span class="agent-txt"><b>Sales &amp; Lead-Generation Agents</b><small>Capture, qualify &amp; follow up with leads</small></span></a>
+              <a class="agent" href="software-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-code" /></svg></span><span class="agent-txt"><b>Software Development Agents</b><small>Code, review &amp; ship faster</small></span></a>
+              <a class="agent" href="workflow-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-flow" /></svg></span><span class="agent-txt"><b>Workflow Automation Agents</b><small>Connect tools &amp; automate routine tasks</small></span></a>
+              <a class="agent" href="marketing-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-megaphone" /></svg></span><span class="agent-txt"><b>Marketing Agents</b><small>Campaigns, content &amp; channel management</small></span></a>
+              <a class="agent" href="research-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-chart" /></svg></span><span class="agent-txt"><b>Research &amp; Data Analyst Agents</b><small>Insights &amp; plain-language reports</small></span></a>
+              <a class="agent" href="internal-knowledge-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-book" /></svg></span><span class="agent-txt"><b>Internal Knowledge Agents</b><small>Instant answers from your company data</small></span></a>
+              <a class="agent" href="finance-accounting-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-coin" /></svg></span><span class="agent-txt"><b>Finance &amp; Accounting Agents</b><small>Invoices, reconciliation &amp; reporting</small></span></a>
+              <a class="agent" href="it-service-desk-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-desk" /></svg></span><span class="agent-txt"><b>IT Service Desk Agents</b><small>Resolve tickets &amp; access requests</small></span></a>
+              <a class="agent" href="hr-recruitment-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-users" /></svg></span><span class="agent-txt"><b>HR &amp; Recruitment Agents</b><small>Screen, schedule &amp; onboard people</small></span></a>
+            </div>
+          </li>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">Connectors <svg class="chev" viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" /></svg></button>
+            <div class="drop drop--agents drop--connectors">
+              <div class="agents-top"><span class="agents-label">Connectors</span><a class="agents-all" href="#">View all connectors</a></div>
+              <a class="agent" href="sap-business-one.html"><span class="agent-ico"><img src="images/sap.png" alt="SAP Business One" loading="lazy"></span><span class="agent-txt"><b>SAP Business One</b><small>ERP integration &amp; consulting</small></span></a>
+              <a class="agent" href="salesforce.html"><span class="agent-ico"><img src="images/salesforce.png" alt="Salesforce" loading="lazy"></span><span class="agent-txt"><b>Salesforce</b><small>CRM &amp; order-to-cash sync</small></span></a>
+              <a class="agent" href="netsuite.html"><span class="agent-ico"><img src="images/netsuite.png" alt="NetSuite" loading="lazy"></span><span class="agent-txt"><b>NetSuite</b><small>ERP, ecommerce &amp; EDI sync</small></span></a>
+              <a class="agent" href="shopify.html"><span class="agent-ico"><img src="images/shopify.png" alt="Shopify" loading="lazy"></span><span class="agent-txt"><b>Shopify</b><small>Ecommerce ↔ back office</small></span></a>
+              <a class="agent" href="quickbooks.html"><span class="agent-ico"><img src="images/quickbooks.png" alt="QuickBooks" loading="lazy"></span><span class="agent-txt"><b>QuickBooks</b><small>Accounting &amp; invoice sync</small></span></a>
+              <a class="agent" href="woocommerce.html"><span class="agent-ico"><img src="images/woocommerce.png" alt="WooCommerce" loading="lazy"></span><span class="agent-txt"><b>WooCommerce</b><small>WordPress store integration</small></span></a>
+              <a class="agent" href="zoho.html"><span class="agent-ico"><img src="images/zoho.png" alt="Zoho" loading="lazy"></span><span class="agent-txt"><b>Zoho</b><small>Zoho One suite integration</small></span></a>
+              <a class="agent" href="zuper.html"><span class="agent-ico"><img src="images/zuper.png" alt="Zuper" loading="lazy"></span><span class="agent-txt"><b>Zuper</b><small>Field service management sync</small></span></a>
+              <a class="agent" href="attio.html"><span class="agent-ico"><img src="images/attio.png" alt="Attio" loading="lazy"></span><span class="agent-txt"><b>Attio</b><small>CRM &amp; record sync</small></span></a>
+              <a class="agent" href="twenty.html"><span class="agent-ico"><img src="images/twenty.png" alt="Twenty" loading="lazy"></span><span class="agent-txt"><b>Twenty</b><small>Open-source CRM sync</small></span></a>
+            </div>
+          </li>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">Services <svg class="chev" viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" /></svg></button>
+            <div class="drop drop--mega">
+              <div class="mega-top"><a class="mega-all" href="services.html">View all services <svg class="ico" width="16" height="16" aria-hidden="true"><use href="#i-arrow" /></svg></a></div>
+              <div class="mega-col">
+                <h4><a href="performance-marketing.html">Performance Marketing</a></h4>
+                <a href="meta-ads.html">Google Ads Management</a>
+                <a href="facebook-ads.html">Facebook Ads</a>
+                <a href="remarketing.html">Remarketing</a>
+              </div>
+              <div class="mega-col">
+                <h4><a href="web-development.html">Web Development Services</a></h4>
+                <a href="custom-website-design.html">Custom Website Design</a>
+                <a href="wordpress-development.html">WordPress Web Development</a>
+                <a href="shopify-development.html">Shopify Web Development</a>
+                <a href="webflow-development.html">Webflow Web Development</a>
+                <a href="framer-development.html">Framer Web Development</a>
+                <a href="mageneto-development.html">Magento Web Development</a>
+                <a href="website-maintenance.html">Website Maintenance</a>
+                <a href="website-redesign.html">Website Redesign</a>
+              </div>
+              <div class="mega-col">
+                <h4><a href="social-media-marketing.html">Social Media Marketing</a></h4>
+                <a href="content-marketing.html">Content Marketing</a>
+              </div>
+              <div class="mega-col">
+                <h4><a href="search-engine-optimization.html">Search Engine Optimization</a></h4>
+                <a href="local-seo.html">Local SEO</a>
+                <a href="seo-audits.html">SEO Audits</a>
+                <a href="technical-seo.html">Technical SEO</a>
+                <a href="enterprise-seo.html">Enterprise SEO</a>
+              </div>
+            </div>
+          </li>
+          <li><button class="top" type="button" aria-expanded="false">Hire Talent <svg class="chev" viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" /></svg></button>
+            <div class="drop"><a href="#">Developers</a><a href="#">Automation Engineers</a><a href="#">Dedicated Teams</a></div>
+          </li>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="#">Success Stories</a></li>
+          <li><a href="#">Insights</a></li>
+        </ul>
+        <a class="hdr-cta hdr-cta-m" href="contact-us.html">Get a Free Automation Review</a>
+      </nav>
+      <a class="hdr-cta" href="contact-us.html">Get a Free Automation Review</a>
+    </div>
+  </header>
+
+  <main id="content">
+
+    <!-- HERO -->
+    <section class="hero-wrap" aria-labelledby="hero-title">
+      <div class="hero hero--page">
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="hero-glow" aria-hidden="true"></div>
+        <div class="ring ring--1" aria-hidden="true"><i></i></div>
+        <div class="ring ring--2" aria-hidden="true"><i></i></div>
+        <div class="container hero-inner">
+          <div class="hero-copy">
+            <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a>  / <a href="sap-business-one.html">SAP Business One</a> / Amazon</nav>
+            <h1 class="h-display" id="hero-title">Amazon sales and SAP Business One, finally in agreement.</h1>
+            <p class="lead">We link Amazon Seller Central to B1 so marketplace orders arrive as ERP documents, stock levels travel back to your listings, and every fee, refund and payout is matched to the books. No report downloads, no morning stock edits, no overselling.</p>
+            <div class="hero-stack" aria-hidden="true">
+              <span class="hs hs--sap"><img src="images/amazon.png" alt=""></span><i class="sep"></i>
+              <span class="hs hs--sap"><img src="images/sap.png" alt=""></span>
+            </div>
+            <div class="hero-actions">
+              <a class="btn btn--primary btn--lg btn--pulse" href="contact-us.html">Book a scoping call</a>
+              <a class="btn btn--ghost btn--lg" href="#budget">See budget and timing</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE PROBLEM -->
+    <section class="section" id="basics" aria-labelledby="basics-title">
+      <div class="container basics" data-reveal>
+        <div class="basics-copy">
+          <span class="pill">The problem</span>
+          <h2 class="h-section" id="basics-title">Why Amazon and B1 drift apart</h2>
+          <p class="lead">Amazon holds the order and the buyer. B1 holds the stock, the cost and the financials. With no link between them, somebody downloads order reports and retypes them into the ERP, or edits Amazon stock counts by hand before the day starts. That gap is where oversells, missed refunds and late shipments come from.</p>
+          <p>The integration brings new Amazon orders into B1 as sales orders or A/R invoices, pushes B1 stock back so listings stop overselling, and matches Amazon settlement reports (fees, refunds, reimbursements) to incoming payments. Finance closes the month without a spreadsheet in sight.</p>
+        </div>
+        <div class="ba">
+          <div class="no"><h3>Systems apart</h3><ul><li>Order reports retyped into B1</li><li>Stock edited by hand each morning</li><li>Fees and refunds matched manually</li><li>Overselling when counts lag</li></ul></div>
+          <div class="yes"><h3>Systems linked</h3><ul><li>Orders land in B1 automatically</li><li>One live stock figure for every listing</li><li>Payouts reconciled to the cent</li><li>Refunds and returns booked correctly</li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT SYNCS -->
+    <section class="section web" id="mapping" aria-labelledby="map-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Entity mapping</span>
+          <h2 class="h-section" id="map-title">What syncs between Amazon and SAP B1, and which way</h2>
+          <p class="lead">Most projects share the same core records. We tune the field mapping and the frequency to your fulfilment model and the marketplaces you sell in.</p>
+        </div>
+        <div class="map-wrap">
+          <table class="map">
+            <thead>
+              <tr><th scope="col">On Amazon</th><th scope="col">In SAP B1</th><th scope="col">Direction</th><th scope="col">What travels</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Orders</th><td>Sales orders (ORDR) or A/R invoices (OINV)</td><td><span class="dir">Amazon → B1</span></td><td>New orders, buyer details, shipping address, status</td></tr>
+              <tr><th scope="row">Inventory and pricing</th><td>Items (OITM) and warehouse stock (OITW)</td><td><span class="dir">B1 → Amazon</span></td><td>Stock levels, per-marketplace buffers, price updates</td></tr>
+              <tr><th scope="row">Fulfilment (FBM)</th><td>Deliveries (ODLN)</td><td><span class="dir">B1 → Amazon</span></td><td>Ship confirmation, carrier, tracking number</td></tr>
+              <tr><th scope="row">Settlements</th><td>Incoming payments (ORCT)</td><td><span class="dir">Amazon → B1</span></td><td>Payouts, referral and FBA fees, refunds, reimbursements</td></tr>
+              <tr><th scope="row">Returns</th><td>Returns and credit memos (ORDN, ORIN)</td><td><span class="dir">Amazon → B1</span></td><td>Return authorisations, credits, restock quantities</td></tr>
+              <tr><th scope="row">Regional marketplaces</th><td>One stock pool per warehouse</td><td><span class="dir dir--two">Both ways</span></td><td>US, UK, AU and more, all drawing on one B1 figure</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">These are the usual directions. We change them to fit how you sell, for example by keeping FBA and FBM stock in separate B1 warehouses.</p>
+      </div>
+    </section>
+
+    <!-- ORDER LIFECYCLE -->
+    <section class="section" id="workflow" aria-labelledby="flow-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">After go-live</span>
+          <h2 class="h-section" id="flow-title">One Amazon order, from checkout to bank deposit</h2>
+          <p class="lead">Once the link is running, a typical order looks like this, with nobody downloading a report or touching a spreadsheet.</p>
+        </div>
+        <ol class="tl">
+          <li><h3>Order placed</h3><p>A buyer checks out on Amazon, and the order is pulled into B1 as a sales order or invoice within minutes.</p></li>
+          <li><h3>Stock adjusted</h3><p>The correct warehouse is reduced, and the new quantity, minus your buffer, is pushed to every marketplace listing.</p></li>
+          <li><h3>Shipment confirmed</h3><p>For merchant-fulfilled orders, the carrier and tracking number from B1 return to Amazon so the buyer is notified.</p></li>
+          <li><h3>Refund or return</h3><p>A return becomes a credit memo and restock in B1, so the stock count and the books stay right.</p></li>
+          <li><h3>Payout reconciled</h3><p>The settlement report is parsed and matched against B1 incoming payments, fee by fee.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ROUTES -->
+    <section class="section web" id="routes" aria-labelledby="route-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Choosing a route</span>
+          <h2 class="h-section" id="route-title">How we build the Amazon link</h2>
+          <p class="lead">Amazon's Selling Partner API (SP-API) is the OAuth-based interface that replaced the old MWS API. We pair it with the same B1 interfaces we use on our other SAP projects.</p>
+        </div>
+        <div class="map-wrap">
+          <table class="map">
+            <thead>
+              <tr><th scope="col">Route</th><th scope="col">What it is</th><th scope="col">Suits</th><th scope="col">Keep in mind</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Amazon SP-API</th><td>A REST API for orders, inventory feeds, pricing and reports.</td><td>Live order pull and scheduled stock push</td><td>Rate limits per endpoint, and report data arrives with a delay</td></tr>
+              <tr><th scope="row">SAP B1 Service Layer</th><td>A REST/OData API for B1 business objects.</td><td>Creating orders, invoices and stock changes in B1</td><td>Needs real development skill, and is HANA-first</td></tr>
+              <tr><th scope="row">Settlement report parsing</th><td>Scheduled ingestion of Amazon's financial reports.</td><td>Matching fees and payouts to B1 payments</td><td>Formats differ by marketplace and change from time to time</td></tr>
+              <tr><th scope="row">iPaaS connectors</th><td>Prebuilt templates such as Celigo, CedCommerce or Codisto.</td><td>Standard order and stock sync that must launch fast</td><td>An endless subscription, and settlement logic often needs custom work anyway</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">Where templates usually fall short: most connectors do orders and inventory well but treat settlement reconciliation as an afterthought. If matching fees and payouts to the cent matters to your finance team, budget for a custom piece there, even when the rest runs on a connector.</p>
+      </div>
+    </section>
+
+    <!-- BUDGET + TIMELINE -->
+    <section class="section" id="budget" aria-labelledby="budget-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Budget and timing</span>
+          <h2 class="h-section" id="budget-title">What an Amazon and SAP B1 build costs, and how long it takes</h2>
+          <p class="lead">Expect roughly $3,000 to $18,000, depending on how many marketplaces you sell in and whether settlement reconciliation is included.</p>
+        </div>
+        <div class="rt-grid" data-stagger>
+          <div class="feature"><h3>Templated connector<small>Orders and inventory only</small></h3><p><b>$3k – $7k</b> to implement, plus roughly $99 – $400 a month for the platform.</p></div>
+          <div class="feature"><h3>Connector plus settlements<small>Custom reconciliation layer</small></h3><p><b>$6k – $12k</b> to implement, plus a platform fee and a support retainer.</p></div>
+          <div class="feature"><h3>Custom SP-API build<small>Multi-marketplace</small></h3><p><b>$10k – $18k+</b> to implement, with a support retainer and no platform fee.</p></div>
+        </div>
+        <div class="factors"><span>Number of marketplaces</span><span>FBA, FBM or both</span><span>Settlement reconciliation</span></div>
+        <div class="lanes" style="margin-top:36px">
+          <div class="lane"><h3>Templated connector<small>Single marketplace</small></h3><div class="lane-bar" style="--w:35%">2–4 weeks</div></div>
+          <div class="lane"><h3>Connector plus settlements<small>Custom reconciliation</small></h3><div class="lane-bar" style="--w:60%">4–6 weeks</div></div>
+          <div class="lane"><h3>Custom SP-API build<small>Multi-marketplace, FBA and FBM</small></h3><div class="lane-bar" style="--w:100%">5–8 weeks</div></div>
+        </div>
+        <p class="note">Amazon marketplace and category approvals can run alongside development, so we flag them early to keep your go-live date safe. Every quote is fixed after the scoping call.</p>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="section web" id="process" aria-labelledby="process-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Our process</span>
+          <h2 class="h-section" id="process-title">Five stages, with a signed mapping sheet before we build</h2>
+          <p class="lead">You receive a fixed-price scope and approve the mapping sheet before any configuration starts.</p>
+        </div>
+        <ol class="tl">
+          <li><h3>Discover</h3><p>We list your marketplaces, your fulfilment model and the outcome you need.</p></li>
+          <li><h3>Map</h3><p>Every field, direction, transformation and error rule is written down before building.</p></li>
+          <li><h3>Build</h3><p>We build against a B1 test company and Amazon's sandbox environment.</p></li>
+          <li><h3>Test</h3><p>Real order and settlement scenarios run end to end, refunds and reimbursements included.</p></li>
+          <li><h3>Support</h3><p>After launch we monitor with logging and alerts, and you get a named contact.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- WHY CODEVELOP -->
+    <section class="section web ai" id="why-us" aria-labelledby="why-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill pill--dark">Why Codevelop</span>
+          <h2 class="h-section" id="why-title">We know both the marketplace and the ERP</h2>
+          <p class="lead">Connecting Amazon to B1 is more than moving orders. It means understanding listings, buffers, fees and ERP documents together.</p>
+        </div>
+        <div class="rt-grid" data-stagger>
+          <div class="feature"><h3>Settlements done properly</h3><p>Fees, refunds, reimbursements and payouts are reconciled against B1, not left as a monthly spreadsheet job.</p></div>
+          <div class="feature"><h3>No overselling</h3><p>One B1 stock figure feeds every listing, with buffers you control for each marketplace.</p></div>
+          <div class="feature"><h3>FBA and FBM logic</h3><p>Each fulfilment type is mapped to the right warehouse and document flow in B1.</p></div>
+          <div class="feature"><h3>Fixed price up front</h3><p>You approve the mapping sheet and a fixed quote before we build. No open hourly meter.</p></div>
+          <div class="feature"><h3>Retries, dedupe and alerts</h3><p>Every flow has retry logic, duplicate protection and alerts, so a failed record queues for review instead of vanishing.</p></div>
+          <div class="feature"><h3>Rescue and take-over</h3><p>If a connector is dropping orders or hit SP-API rate limits, we audit it and then fix or replace it.</p></div>
+        </div>
+        <p class="note">Selling elsewhere too? See our full <a href="sap-business-one.html" style="color:#fff;text-decoration:underline">SAP Business One integration services</a>, or our <a href="shopify.html" style="color:#fff;text-decoration:underline">Shopify connector</a> for your own web store.</p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="container faq-grid" data-reveal>
+        <div class="faq-head">
+          <span class="pill">Common questions</span>
+          <h2 class="h-section" id="faq-title">SAP B1 and Amazon FAQ</h2>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item open">
+            <h3><button class="faq-q" type="button" aria-expanded="true">Which Amazon API do you use? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>The Selling Partner API (SP-API), which replaced the older MWS. It covers orders, inventory feeds, pricing and settlement reports across Amazon marketplaces.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Can FBA and FBM orders be handled differently? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. Fulfilled-by-Amazon and merchant-fulfilled orders follow different stock and shipping logic, so we map each to the correct B1 warehouse and document flow.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Are settlement reports covered? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. Fees, refunds, reimbursements and payouts can be matched against B1 incoming payments, so finance isn't reconciling by hand.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Can stock sync to several Amazon marketplaces? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. A single B1 stock level can feed US, UK, AU and other marketplaces, each with its own buffer so you never oversell.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">What does it cost? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Most projects fall between $3,000 and $18,000, depending on marketplace count, order volume and whether settlement reconciliation is included. The budget section above has the breakdown.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Can you take over a connector that keeps breaking? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. Much of our work is rescuing integrations that hit SP-API rate limits, drop orders or fell out of sync after an Amazon API migration.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta" id="contact" aria-labelledby="cta-title">
+      <div class="cta-grid">
+        <div class="cta-bar" aria-hidden="true"></div>
+        <div class="cta-box">
+          <div class="ripples" aria-hidden="true"><span></span><span></span><span></span></div>
+          <h2 id="cta-title">Stop updating stock and matching fees by hand</h2>
+          <p>Every day without a sync means another manual stock edit and another spreadsheet of Amazon fees. A scoped SAP B1 and Amazon integration removes that work, and you will know the exact cost before we start.</p>
+          <a class="btn btn--primary btn--lg btn-sweep" href="contact-us.html"><span style="position:relative">Book a scoping call</span></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="footer-panel">
+      <div class="footer-flag" aria-hidden="true"></div>
+      <div class="footer-main">
+        <div class="footer-brand">
+          <img src="images/codevelop.webp" alt="Codevelop logo" class="brand-logo" width="160" height="40">
+          <p>At Codevelop, we help businesses turn strategy into scalable results through thoughtful design, performance-driven marketing, and modern technology.</p>
+          <div class="socials">
+            <a href="https://www.facebook.com/Codevelop.usa/" aria-label="Facebook" target="_blank" rel="noopener"><svg class="ico"><use href="#i-fb" /></svg></a>
+            <a href="https://www.instagram.com/codevelop_us/" aria-label="Instagram" target="_blank" rel="noopener"><svg class="ico"><use href="#i-ig" /></svg></a>
+            <a href="https://www.linkedin.com/company/codevelop-us" aria-label="LinkedIn" target="_blank" rel="noopener"><svg class="ico"><use href="#i-in" /></svg></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Services</h3>
+          <ul>
+            <li><a href="performance-marketing.html">Performance Marketing</a></li>
+            <li><a href="#">SEO Services</a></li>
+            <li><a href="#">Social Media Marketing</a></li>
+            <li><a href="web-development.html">Web Development</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Link</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Case Studies</a></li>
+            <li><a href="#">Blogs</a></li>
+            <li><a href="https://codevelopus.com/">Free SEO Audit</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Contact Us</h3>
+          <ul class="contact">
+            <li><svg class="ico"><use href="#i-pin" /></svg><span>555 SE Martin Luther King JR Blvd, Portland, OR 97214</span></li>
+            <li><svg class="ico"><use href="#i-phone" /></svg><a href="tel:+19714809833">+1 971-480-9833</a></li>
+            <li><svg class="ico"><use href="#i-mail" /></svg><a href="mailto:info@codevelop.us">info@codevelop.us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="newsletter">
+        <div class="newsletter-box">
+          <h3>Signup our newsletter to get update information, news, insight or promotions.</h3>
+          <!-- Connect this form to your email provider (set action / method). -->
+          <form class="news-form" action="#" method="post">
+            <label class="sr-only" for="news-email">Email</label>
+            <input id="news-email" type="email" name="email" placeholder="Email" required autocomplete="email">
+            <button class="btn btn--primary" type="submit">Sign up</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <span>Copyright © 2026 Codevelop US, All Rights Reserved.</span>
+      <a href="#">Privacy policy</a>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>

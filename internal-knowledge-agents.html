@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Internal Knowledge Agents | Codevelop</title>
+  <meta name="description"
+    content="Codevelop builds AI internal knowledge agents that read your wiki, documents and chat threads and answer your team's questions in seconds, with source links and respect for who can see what.">
+  <link rel="canonical" href="https://codevelopus.com/internal-knowledge-agents.html">
+  <meta name="theme-color" content="#0a3161">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Codevelopus">
+  <meta property="og:title" content="AI Internal Knowledge Agents | Codevelop">
+  <meta property="og:description"
+    content="AI agents that answer your team's questions from your own company data, with source links and permissions respected.">
+  <meta property="og:url" content="https://codevelopus.com/internal-knowledge-agents.html">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="https://codevelopus.com/wp-content/uploads/2026/01/cropped-codevelop-favicon-270x270.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/internal-knowledge-agents.css">
+</head>
+
+<body>
+
+  <!-- Icon sprite -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.4l-5.9 3.3 1.2-6.6L2.5 9.5l6.6-.9L12 2.5z" /></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" /></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></symbol>
+      <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z" /></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" /><path d="M20 20l-4-4" /></symbol>
+      <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="5" /><circle cx="12" cy="12" r="1.5" /></symbol>
+      <symbol id="i-funnel" viewBox="0 0 24 24"><path d="M3 4h18l-7 8v6l-4 2v-8L3 4z" /></symbol>
+      <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" /></symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5z" /></symbol>
+      <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M18 6l-2.5 2.5M8.5 15.5L6 18" /></symbol>
+      <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z" /><path d="M19 17l.8 2.2L22 20l-2.2.8L19 23l-.8-2.2L16 20l2.2-.8L19 17z" /></symbol>
+      <symbol id="i-fb" viewBox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v7h4v-7h3l1-4h-4V8z" /></symbol>
+      <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="0.8" /></symbol>
+      <symbol id="i-in" viewBox="0 0 24 24"><rect x="3" y="9" width="4" height="12" /><circle cx="5" cy="5" r="2" /><path d="M10 9h4v2a4 4 0 0 1 6 3v7h-4v-6a2 2 0 0 0-4 0v6h-4V9z" /></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" /></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3 7l9 6 9-6" /></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11z" /><circle cx="12" cy="10" r="2.5" /></symbol>
+      <symbol id="i-code" viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16" /></symbol>
+      <symbol id="i-flow" viewBox="0 0 24 24"><rect x="3" y="3" width="6" height="6" rx="1" /><rect x="15" y="15" width="6" height="6" rx="1" /><path d="M9 6h4a2 2 0 0 1 2 2v7" /></symbol>
+      <symbol id="i-megaphone" viewBox="0 0 24 24"><path d="M3 10v4h4l8 5V5L7 10H3z" /><path d="M18.5 9a4 4 0 0 1 0 6" /></symbol>
+      <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2V5z" /><path d="M4 19a2 2 0 0 1 2-2h13" /></symbol>
+      <symbol id="i-coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M14.5 9.5c-.5-1-1.5-1.5-2.5-1.5-1.4 0-2.5.8-2.5 2s1 1.7 2.5 2 2.5.8 2.5 2-1.1 2-2.5 2c-1 0-2-.5-2.5-1.5M12 6.5V8m0 8v1.5" /></symbol>
+      <symbol id="i-desk" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2" /><path d="M8 20h8M12 16v4" /></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5" /><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6" /><path d="M16 4.7a3.5 3.5 0 0 1 0 6.6M18 14.3c2 .7 3.5 2.6 3.5 5.7" /></symbol>
+      <!-- new for this page -->
+      <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3c3.2 3.2 3.2 14.8 0 18M12 3c-3.2 3.2-3.2 14.8 0 18" /></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z" /><path d="M9 12l2 2 4-4" /></symbol>
+      <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14-4L4 9M4 4v5h5M4 13a8 8 0 0 0 14 4l2-2M20 20v-5h-5" /></symbol>
+      <symbol id="i-tag" viewBox="0 0 24 24"><path d="M3 12V4h8l10 10-8 8L3 12z" /><circle cx="7.5" cy="7.5" r="1.2" /></symbol>
+      <symbol id="i-inbox" viewBox="0 0 24 24"><path d="M3 13l3-8h12l3 8v6H3v-6z" /><path d="M3 13h5l1 3h6l1-3h5" /></symbol>
+      <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v3" /></symbol>
+      <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4l2-2z" /><path d="M10 21h4" /></symbol>
+      <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z" /><circle cx="12" cy="12" r="3" /></symbol>
+      <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-8-5-8-11a4.5 4.5 0 0 1 8-2.5A4.5 4.5 0 0 1 20 9c0 6-8 11-8 11z" /></symbol>
+      <symbol id="i-db" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3" /><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3" /></symbol>
+      <symbol id="i-file" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6V3z" /><path d="M14 3v4h4M9 12h6M9 16h6" /></symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2" /><path d="M8 11V8a4 4 0 0 1 8 0v3" /></symbol>
+      <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" /></symbol>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header" id="top">
+    <div class="bar">
+      <a class="logo" href="index.html" aria-label="Codevelop home"><img src="images/codevelop.webp"
+          alt="Codevelop logo" class="brand-logo" width="160" height="40"></a>
+      <button class="burger" type="button" aria-label="Open menu"
+        aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav aria-label="Main">
+        <ul>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">AI Agents <svg class="chev"
+                viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop drop--agents">
+              <div class="agents-top">
+                <span class="agents-label">AI Agents</span>
+                <a class="agents-all" href="#">View all agents</a>
+              </div>
+
+              <a class="agent" href="customer-support-agents.html">
+                <span class="agent-ico"><svg class="ico"><use href="#i-chat" /></svg></span>
+                <span class="agent-txt"><b>Customer Support Agents</b><small>24/7 answers across chat &amp; inbox</small></span>
+              </a>
+              <a class="agent" href="sales-lead-generation-agents.html">
+                <span class="agent-ico"><svg class="ico"><use href="#i-funnel" /></svg></span>
+                <span class="agent-txt"><b>Sales &amp; Lead-Generation Agents</b><small>Capture, qualify &amp; follow up with leads</small></span>
+              </a>
+              <a class="agent" href="software-development-agents.html">
+                <span class="agent-ico"><svg class="ico"><use href="#i-code" /></svg></span>
+                <span class="agent-txt"><b>Software Development Agents</b><small>Code, review &amp; ship faster</small></span>
+              </a>
+              <a class="agent" href="workflow-automation-agents.html">
+                <span class="agent-ico"><svg class="ico"><use href="#i-flow" /></svg></span>
+                <span class="agent-txt"><b>Workflow Automation Agents</b><small>Connect tools &amp; automate routine tasks</small></span>
+              </a>
+              <a class="agent" href="#">
+                <span class="agent-ico"><svg class="ico"><use href="#i-megaphone" /></svg></span>
+                <span class="agent-txt"><b>Marketing Agents</b><small>Campaigns, content &amp; channel management</small></span>
+              </a>
+              <a class="agent" href="research-data-analyst-agents.html">
+                <span class="agent-ico"><svg class="ico"><use href="#i-chart" /></svg></span>
+                <span class="agent-txt"><b>Research &amp; Data Analyst Agents</b><small>Insights &amp; plain-language reports</small></span>
+              </a>
+              <a class="agent" href="internal-knowledge-agents.html">
+                <span class="agent-ico"><svg class="ico"><use href="#i-book" /></svg></span>
+                <span class="agent-txt"><b>Internal Knowledge Agents</b><small>Instant answers from your company data</small></span>
+              </a>
+              <a class="agent" href="#">
+                <span class="agent-ico"><svg class="ico"><use href="#i-coin" /></svg></span>
+                <span class="agent-txt"><b>Finance &amp; Accounting Agents</b><small>Invoices, reconciliation &amp; reporting</small></span>
+              </a>
+              <a class="agent" href="#">
+                <span class="agent-ico"><svg class="ico"><use href="#i-desk" /></svg></span>
+                <span class="agent-txt"><b>IT Service Desk Agents</b><small>Resolve tickets &amp; access requests</small></span>
+              </a>
+              <a class="agent" href="#">
+                <span class="agent-ico"><svg class="ico"><use href="#i-users" /></svg></span>
+                <span class="agent-txt"><b>HR &amp; Recruitment Agents</b><small>Screen, schedule &amp; onboard people</small></span>
+              </a>
+            </div>
+          </li>
+          <li><button class="top" type="button" aria-expanded="false">Connectors <svg class="chev" viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop"><a href="#">Business Central</a><a href="#">NetSuite</a><a href="#">Odoo</a><a href="#">Zoho</a></div>
+          </li>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">Services <svg class="chev"
+                viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop drop--mega">
+              <div class="mega-top">
+                <a class="mega-all" href="services.html">View all services <svg class="ico" width="16" height="16"
+                    aria-hidden="true"><use href="#i-arrow" /></svg></a>
+              </div>
+              <div class="mega-col">
+                <h4><a href="performance-marketing.html">Performance Marketing</a></h4>
+                <a href="meta-ads.html">Google Ads Management</a>
+                <a href="facebook-ads.html">Facebook Ads</a>
+                <a href="remarketing.html">Remarketing</a>
+              </div>
+              <div class="mega-col">
+                <h4><a href="web-development.html">Web Development Services</a></h4>
+                <a href="custom-website-design.html">Custom Website Design</a>
+                <a href="wordpress-development.html">WordPress Web Development</a>
+                <a href="shopify-development.html">Shopify Web Development</a>
+                <a href="webflow-development.html">Webflow Web Development</a>
+                <a href="framer-development.html">Framer Web Development</a>
+                <a href="mageneto-development.html">Magento Web Development</a>
+                <a href="website-maintenance.html">Website Maintenance</a>
+                <a href="website-redesign.html">Website Redesign</a>
+              </div>
+              <div class="mega-col">
+                <h4><a href="social-media-marketing.html">Social Media Marketing</a></h4>
+                <a href="content-marketing.html">Content Marketing</a>
+              </div>
+              <div class="mega-col">
+                <h4><a href="search-engine-optimization.html">Search Engine Optimization</a></h4>
+                <a href="local-seo.html">Local SEO</a>
+                <a href="seo-audits.html">SEO Audits</a>
+                <a href="technical-seo.html">Technical SEO</a>
+                <a href="enterprise-seo.html">Enterprise SEO</a>
+              </div>
+            </div>
+          </li>
+          <li><button class="top" type="button" aria-expanded="false">Hire Talent <svg class="chev" viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop"><a href="#">Developers</a><a href="#">Automation Engineers</a><a href="#">Dedicated Teams</a></div>
+          </li>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="#">Success Stories</a></li>
+          <li><a href="#">Insights</a></li>
+        </ul>
+        <a class="hdr-cta hdr-cta-m" href="contact-us.html">Get a Free Automation Review</a>
+      </nav>
+      <a class="hdr-cta" href="contact-us.html">Get a Free Automation Review</a>
+    </div>
+  </header>
+
+  <main id="content">
+
+    <!-- ================= 1 · HERO (animated product video) ================= -->
+    <section class="hero-wrap" aria-labelledby="ik-title">
+      <div class="hero ik-hero">
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="hero-glow" aria-hidden="true"></div>
+        <div class="ring ring--1" aria-hidden="true"><i></i></div>
+        <div class="ring ring--2" aria-hidden="true"><i></i></div>
+        <div class="ring ring--3" aria-hidden="true"><i></i></div>
+
+        <div class="container ik-hero-inner">
+          <div class="ik-copy">
+            <span class="pill">Internal Knowledge Agents</span>
+            <h1 class="h-display" id="ik-title">
+              <span class="w"><span style="--i:0">Your</span></span>
+              <span class="w"><span style="--i:1">company&rsquo;s</span></span>
+              <span class="w"><span style="--i:2">knowledge,</span></span>
+              <span class="w"><span style="--i:3">answered</span></span>
+              <span class="u"><span class="w"><span style="--i:4">in</span></span> <span class="w"><span
+                    style="--i:5">seconds</span></span><svg viewBox="0 0 300 20" preserveAspectRatio="none"
+                  aria-hidden="true">
+                  <path d="M3 14 C 70 4, 160 2, 297 9" pathLength="1" />
+                </svg></span>
+            </h1>
+            <p class="lead">AI agents that read your wiki, documents, chat threads and tickets, then answer your
+              team&rsquo;s questions in Slack, Teams or the browser, with links to the source and respect for who is
+              allowed to see what.
+            </p>
+            <div class="ik-actions">
+              <a class="btn btn--primary btn--lg btn--pulse" href="contact-us.html">Get a Free Automation Review <svg
+                  class="ico"><use href="#i-arrow" /></svg></a>
+              <a class="btn btn--ghost btn--lg" href="#ik-how">See how it works</a>
+            </div>
+            <ul class="ik-checks">
+              <li><svg class="ico"><use href="#i-check" /></svg>Answers with source links</li>
+              <li><svg class="ico"><use href="#i-check" /></svg>Respects your permissions</li>
+              <li><svg class="ico"><use href="#i-check" /></svg>Works in Slack and Teams</li>
+            </ul>
+          </div>
+
+          <div class="ik-stage" id="ik-stage">
+            <div class="ik-video" id="ik-video">
+              <div class="ik-vbar">
+                <span class="ik-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span class="ik-vtitle"><b class="ik-rec" aria-hidden="true"></b><span id="ik-scene-name">Ask in Slack</span></span>
+                <span class="ik-time" id="ik-time" aria-hidden="true">0:00</span>
+              </div>
+
+              <div class="ik-vbody" aria-hidden="true">
+                <!-- scene 1: ask in chat -->
+                <div class="ik-scene is-active" data-name="Ask in Slack">
+                  <div class="ik-chat">
+                    <p class="ik-m me ik-in" style="--n:0">How many vacation days do I get after 2 years?</p>
+                    <p class="ik-m bot ik-in" style="--n:1">Checking the HR handbook&hellip;</p>
+                    <div class="ik-order ik-in" style="--n:2">
+                      <div class="ik-order-top"><b>Leave policy &middot; HR Handbook</b><span>v4.2</span></div>
+                      <div class="ik-track"><i></i><i></i><i></i><u></u></div>
+                      <small>Updated Oct 2026 &middot; Verified by HR</small>
+                    </div>
+                    <p class="ik-m bot ik-in" style="--n:3">You get 22 days a year, plus 2 carry-over days. Want me to start a request?</p>
+                    <p class="ik-m me ik-in" style="--n:4">Yes, Dec 22 to Jan 2</p>
+                    <p class="ik-m bot ik-in" style="--n:5">Sent to your manager. I&rsquo;ll tell you when it&rsquo;s approved.</p>
+                  </div>
+                </div>
+
+                <!-- scene 2: search company data -->
+                <div class="ik-scene" data-name="Searching company data">
+                  <div class="ik-mail ik-in" style="--n:0">
+                    <span class="ik-av">PR</span>
+                    <div><b>Question &middot; VPN on a new laptop</b><small>From Priya, Engineering</small></div>
+                    <em>Searching</em>
+                  </div>
+                  <ul class="ik-pipe">
+                    <li class="ik-in" style="--n:1"><span class="ck" style="--n:1"><svg class="ico"><use href="#i-check" /></svg></span>Searched the wiki and docs<small>6 pages</small></li>
+                    <li class="ik-in" style="--n:2"><span class="ck" style="--n:2"><svg class="ico"><use href="#i-check" /></svg></span>Checked Slack threads and tickets<small>12 threads</small></li>
+                    <li class="ik-in" style="--n:3"><span class="ck" style="--n:3"><svg class="ico"><use href="#i-check" /></svg></span>Skipped files Priya can&rsquo;t open<small>2 hidden</small></li>
+                    <li class="ik-in" style="--n:4"><span class="ck" style="--n:4"><svg class="ico"><use href="#i-check" /></svg></span>Wrote one clear answer with links<small>3 sources</small></li>
+                  </ul>
+                  <div class="ik-done ik-in" style="--n:5"><svg class="ico"><use href="#i-bolt" /></svg>Answered in 6 seconds, nobody interrupted</div>
+                </div>
+
+                <!-- scene 3: knowledge gap -->
+                <div class="ik-scene" data-name="Gap found">
+                  <div class="ik-ticket ik-in" style="--n:0">
+                    <div class="ik-ticket-top"><b>Question with no answer</b><span class="hot">Gap found</span></div>
+                    <div class="ik-tags"><span>Asked 14 times</span><span>No document found</span><span>Topic: Expenses</span></div>
+                  </div>
+                  <div class="ik-sum ik-in" style="--n:1">
+                    <b>Agent suggestion</b>
+                    <p>Drafted a short article on the new expense limits and sent it to Finance to confirm.</p>
+                  </div>
+                  <div class="ik-route ik-in" style="--n:2">
+                    <span class="ik-av ik-av--red">NF</span>
+                    <div><b>Draft sent to Nora in Finance</b><small>Becomes a help article once approved</small></div>
+                  </div>
+                  <div class="ik-done ik-done--soft ik-in" style="--n:3"><svg class="ico"><use href="#i-book" /></svg>Every gap becomes a better answer</div>
+                </div>
+              </div>
+
+              <div class="ik-vtl" role="group" aria-label="Demo scenes">
+                <button class="ik-seg is-on" type="button" aria-label="Show ask in Slack scene"><span>Ask in Slack</span><i></i></button>
+                <button class="ik-seg" type="button" aria-label="Show searching company data scene"><span>Search data</span><i></i></button>
+                <button class="ik-seg" type="button" aria-label="Show gap found scene"><span>Gap found</span><i></i></button>
+              </div>
+            </div>
+
+            <div class="ik-float ik-float--1" aria-hidden="true">
+              <svg class="ico"><use href="#i-clock" /></svg><span><b>6 sec</b><small>average answer time</small></span>
+            </div>
+            <div class="ik-float ik-float--2" aria-hidden="true">
+              <svg class="ico"><use href="#i-db" /></svg><span><b>12+</b><small>tools connected</small></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="stats" aria-label="Internal knowledge agent highlights">
+          <div class="stat">
+            <span class="stat-ico"><svg class="ico-style"><use href="#i-bolt" /></svg></span>
+            <div><strong data-count="10" data-pre="<" data-suf=" sec">&lt;10 sec</strong><span>to a sourced answer</span></div>
+          </div>
+          <div class="stat">
+            <span class="stat-ico"><svg class="ico-style"><use href="#i-refresh" /></svg></span>
+            <div><strong data-count="70" data-suf="%">70%</strong><span>fewer repeat questions</span></div>
+          </div>
+          <div class="stat">
+            <span class="stat-ico"><svg class="ico-style"><use href="#i-clock" /></svg></span>
+            <div><strong>24/7</strong><span>answers, any time zone</span></div>
+          </div>
+          <div class="stat">
+            <span class="stat-ico"><svg class="ico-style"><use href="#i-lock" /></svg></span>
+            <div><strong data-count="100" data-suf="%">100%</strong><span>permission-aware</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 2 · SCATTERED > ORGANISED ================= -->
+    <section class="section ik-sort" id="ik-sort" aria-labelledby="sort-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">One place</span>
+          <h2 class="h-section" id="sort-title">Everything your team knows, finally findable.</h2>
+          <p class="lead">Policies sit in a wiki, answers hide in chat threads and how-tos live in someone&rsquo;s drive. The agent reads them all and keeps them organised behind one question box.</p>
+        </div>
+
+        <div class="ik-sortbox" id="ik-sortbox" role="img" aria-label="Scattered documents organising themselves into four topics: HR, IT, Sales and Finance">
+          <span class="ik-state"><span class="s0">Scattered</span><span class="s1">Organised</span></span>
+          <span class="ik-colh" style="--g:0">HR</span>
+          <span class="ik-colh" style="--g:1">IT</span>
+          <span class="ik-colh" style="--g:2">Sales</span>
+          <span class="ik-colh" style="--g:3">Finance</span>
+          <span class="ik-doc" data-g="0" style="--g:0;--k:0;--n:0;--sx:4%;--sy:10%;--sr:-9deg"><i><svg class="ico"><use href="#i-file" /></svg></i><span class="ik-dt">Leave policy</span></span>
+          <span class="ik-doc" data-g="0" style="--g:0;--k:1;--n:1;--sx:40%;--sy:58%;--sr:7deg"><i><svg class="ico"><use href="#i-users" /></svg></i><span class="ik-dt">Onboarding checklist</span></span>
+          <span class="ik-doc" data-g="0" style="--g:0;--k:2;--n:2;--sx:70%;--sy:6%;--sr:-5deg"><i><svg class="ico"><use href="#i-book" /></svg></i><span class="ik-dt">Benefits FAQ</span></span>
+          <span class="ik-doc" data-g="1" style="--g:1;--k:0;--n:3;--sx:18%;--sy:66%;--sr:10deg"><i><svg class="ico"><use href="#i-lock" /></svg></i><span class="ik-dt">VPN setup guide</span></span>
+          <span class="ik-doc" data-g="1" style="--g:1;--k:1;--n:4;--sx:52%;--sy:12%;--sr:6deg"><i><svg class="ico"><use href="#i-desk" /></svg></i><span class="ik-dt">Laptop request</span></span>
+          <span class="ik-doc" data-g="1" style="--g:1;--k:2;--n:5;--sx:76%;--sy:52%;--sr:-8deg"><i><svg class="ico"><use href="#i-shield" /></svg></i><span class="ik-dt">Security training</span></span>
+          <span class="ik-doc" data-g="2" style="--g:2;--k:0;--n:6;--sx:28%;--sy:34%;--sr:-4deg"><i><svg class="ico"><use href="#i-coin" /></svg></i><span class="ik-dt">Pricing playbook</span></span>
+          <span class="ik-doc" data-g="2" style="--g:2;--k:1;--n:7;--sx:62%;--sy:76%;--sr:8deg"><i><svg class="ico"><use href="#i-chart" /></svg></i><span class="ik-dt">Case study deck</span></span>
+          <span class="ik-doc" data-g="2" style="--g:2;--k:2;--n:8;--sx:8%;--sy:42%;--sr:5deg"><i><svg class="ico"><use href="#i-chat" /></svg></i><span class="ik-dt">Objection handling</span></span>
+          <span class="ik-doc" data-g="3" style="--g:3;--k:0;--n:9;--sx:44%;--sy:34%;--sr:-10deg"><i><svg class="ico"><use href="#i-file" /></svg></i><span class="ik-dt">Expense policy</span></span>
+          <span class="ik-doc" data-g="3" style="--g:3;--k:1;--n:10;--sx:72%;--sy:30%;--sr:4deg"><i><svg class="ico"><use href="#i-db" /></svg></i><span class="ik-dt">Invoice process</span></span>
+          <span class="ik-doc" data-g="3" style="--g:3;--k:2;--n:11;--sx:30%;--sy:8%;--sr:-6deg"><i><svg class="ico"><use href="#i-globe" /></svg></i><span class="ik-dt">Travel rules</span></span>
+        </div>
+        <p class="ik-note">Wiki, drive, chat, tickets and HR tools, connected with read-only access.</p>
+      </div>
+    </section>
+
+    <!-- ================= 3 · COMMAND PALETTE ================= -->
+    <section class="section ik-pal" id="ik-find" aria-labelledby="find-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Instant answers</span>
+          <h2 class="h-section" id="find-title">Find the answer, not just the document.</h2>
+          <p class="lead">Type a few words and the agent shows the best sources and the exact answer, so nobody has to open ten tabs.</p>
+        </div>
+
+        <div class="ik-palette" id="ik-pal">
+          <div class="ik-pbar"><svg class="ico"><use href="#i-search" /></svg><span class="ik-pq" id="ik-pq"></span><i class="ik-caret" aria-hidden="true"></i><kbd>Ctrl K</kbd></div>
+          <ul class="ik-plist" id="ik-plist">
+            <i class="ik-sel" aria-hidden="true"></i>
+            <li class="ik-pr" data-sn="Install the client, sign in with SSO and choose the Corp profile. It takes about two minutes."><span class="ik-pi"><svg class="ico"><use href="#i-lock" /></svg></span><div><b>VPN setup guide</b><small>IT Wiki</small></div><em>Enter</em></li>
+            <li class="ik-pr" data-sn="If it hangs on connecting, restart the client and clear the cached profile. This fixed it for most people."><span class="ik-pi"><svg class="ico"><use href="#i-chat" /></svg></span><div><b>VPN troubleshooting thread</b><small>Slack #it-help</small></div><em>Enter</em></li>
+            <li class="ik-pr" data-sn="Claim within 30 days with a receipt. Client meals are capped at $75 per person."><span class="ik-pi"><svg class="ico"><use href="#i-file" /></svg></span><div><b>Expense policy</b><small>Finance Handbook</small></div><em>Enter</em></li>
+            <li class="ik-pr" data-sn="Copy the template, fill one row per receipt and submit it to Finance by the 25th."><span class="ik-pi"><svg class="ico"><use href="#i-db" /></svg></span><div><b>Expense report template</b><small>Google Sheets</small></div><em>Enter</em></li>
+            <li class="ik-pr" data-sn="Book economy for flights under 6 hours. Hotels over $220 a night need manager approval."><span class="ik-pi"><svg class="ico"><use href="#i-globe" /></svg></span><div><b>Travel and expense rules</b><small>Finance Handbook</small></div><em>Enter</em></li>
+            <li class="ik-pr" data-sn="Use the navy and red palette. Keep the logo clear space equal to the height of the letter C."><span class="ik-pi"><svg class="ico"><use href="#i-eye" /></svg></span><div><b>Brand guidelines</b><small>Marketing Drive</small></div><em>Enter</em></li>
+            <li class="ik-pr" data-sn="Download SVG for web and PNG for slides. Never stretch or recolour the logo."><span class="ik-pi"><svg class="ico"><use href="#i-file" /></svg></span><div><b>Brand logo pack</b><small>Marketing Drive</small></div><em>Enter</em></li>
+            <li class="ik-pr" data-sn="Open the template, duplicate a layout and keep titles to one line."><span class="ik-pi"><svg class="ico"><use href="#i-chart" /></svg></span><div><b>Brand slide template</b><small>Google Slides</small></div><em>Enter</em></li>
+            <li class="ik-pr" data-sn="Full-time staff get 22 days a year plus 2 carry-over days. Request leave in the HR portal."><span class="ik-pi"><svg class="ico"><use href="#i-users" /></svg></span><div><b>Leave policy</b><small>HR Handbook</small></div><em>Enter</em></li>
+          </ul>
+          <div class="ik-pans" id="ik-pans" aria-live="polite">
+            <span class="ik-pans-l"><svg class="ico"><use href="#i-bolt" /></svg>Answer</span>
+            <p id="ik-pans-t"></p>
+            <small id="ik-pans-s"></small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 4 · EVERY TEAM (expanding panels) ================= -->
+    <section class="section ik-teams" id="ik-teams" aria-labelledby="teams-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">For every team</span>
+          <h2 class="h-section" id="teams-title">Every team stops answering the same questions.</h2>
+          <p class="lead">Choose a team to see the questions an agent takes off their plate.</p>
+        </div>
+
+        <div class="ik-pn-row" id="ik-pn-row">
+          <article class="ik-pn is-on">
+            <button class="ik-pn-btn" type="button" aria-expanded="true"><svg class="ico"><use href="#i-users" /></svg><b>People and HR</b></button>
+            <div class="ik-pn-body">
+              <h3>People and HR</h3>
+              <p>New hires, leave and benefits answered without a ticket.</p>
+              <div class="ik-qs"><span style="--n:0">How much parental leave do I get?</span><span style="--n:1">Where do I find my payslip?</span><span style="--n:2">Who approves my time off?</span></div>
+            </div>
+          </article>
+          <article class="ik-pn">
+            <button class="ik-pn-btn" type="button" aria-expanded="false"><svg class="ico"><use href="#i-desk" /></svg><b>IT and security</b></button>
+            <div class="ik-pn-body">
+              <h3>IT and security</h3>
+              <p>Setup guides and access questions solved in the chat.</p>
+              <div class="ik-qs"><span style="--n:0">How do I set up the VPN?</span><span style="--n:1">I lost my MFA device. What now?</span><span style="--n:2">How do I request a new laptop?</span></div>
+            </div>
+          </article>
+          <article class="ik-pn">
+            <button class="ik-pn-btn" type="button" aria-expanded="false"><svg class="ico"><use href="#i-funnel" /></svg><b>Sales</b></button>
+            <div class="ik-pn-body">
+              <h3>Sales</h3>
+              <p>The latest pricing, decks and answers, ready mid-call.</p>
+              <div class="ik-qs"><span style="--n:0">What&rsquo;s our discount policy?</span><span style="--n:1">Best case study for dental clinics?</span><span style="--n:2">How do we answer security questionnaires?</span></div>
+            </div>
+          </article>
+          <article class="ik-pn">
+            <button class="ik-pn-btn" type="button" aria-expanded="false"><svg class="ico"><use href="#i-chat" /></svg><b>Support</b></button>
+            <div class="ik-pn-body">
+              <h3>Support</h3>
+              <p>Agents find the right process and known issues fast.</p>
+              <div class="ik-qs"><span style="--n:0">Refund process for annual plans?</span><span style="--n:1">Known issues in release 4.2?</span><span style="--n:2">Who handles outage escalations?</span></div>
+            </div>
+          </article>
+          <article class="ik-pn">
+            <button class="ik-pn-btn" type="button" aria-expanded="false"><svg class="ico"><use href="#i-shield" /></svg><b>Legal and finance</b></button>
+            <div class="ik-pn-body">
+              <h3>Legal and finance</h3>
+              <p>Templates, limits and sign-off rules in one answer.</p>
+              <div class="ik-qs"><span style="--n:0">Which template do I use for an NDA?</span><span style="--n:1">Limit for client dinners?</span><span style="--n:2">Who signs contracts over $50k?</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 5 · PERMISSIONS (dark) ================= -->
+    <section class="section ik-perm" id="ik-perm" aria-labelledby="perm-title">
+      <div class="engine-dots" aria-hidden="true"></div>
+      <div class="container ik-perm-grid" data-reveal>
+        <div class="ik-perm-copy">
+          <span class="pill pill--dark">Permission-aware</span>
+          <h2 class="h-section" id="perm-title">The right answer for the right person.</h2>
+          <p class="lead">The agent follows the access rules you already have. Two people can ask the same question and get different answers, because they can open different files.</p>
+          <ul class="ik-list ik-list--light">
+            <li><svg class="ico"><use href="#i-shield" /></svg>Mirrors your existing access rules</li>
+            <li><svg class="ico"><use href="#i-lock" /></svg>Never shows or summarises files a person can&rsquo;t open</li>
+            <li><svg class="ico"><use href="#i-eye" /></svg>Every question and source is logged</li>
+          </ul>
+          <a class="btn btn--primary btn--lg" href="contact-us.html">Talk to our team <svg class="ico"><use href="#i-arrow" /></svg></a>
+        </div>
+
+        <div class="ik-who" id="ik-who">
+          <div class="ik-roles" role="tablist" aria-label="Who is asking">
+            <button class="is-on" type="button" role="tab" aria-selected="true"><span>IN</span>Intern</button>
+            <button type="button" role="tab" aria-selected="false"><span>MG</span>Manager</button>
+            <button type="button" role="tab" aria-selected="false"><span>HR</span>HR partner</button>
+          </div>
+          <div class="ik-wq"><svg class="ico"><use href="#i-chat" /></svg>What is the salary band for Senior Engineer?</div>
+
+          <div class="ik-wa is-on">
+            <p class="ik-ln" style="--n:0">I can&rsquo;t share salary bands with your account.</p>
+            <p class="ik-red" style="--n:1"><svg class="ico"><use href="#i-lock" /></svg>Restricted to managers and HR</p>
+            <p class="ik-ln" style="--n:2">You can ask your manager or HR. I can show you the public career levels page.</p>
+            <div class="ik-srcs"><span class="ik-sc ok" style="--n:3"><svg class="ico"><use href="#i-file" /></svg>Career levels</span><span class="ik-sc no" style="--n:4"><svg class="ico"><use href="#i-lock" /></svg>Compensation guide</span></div>
+            <small class="ik-hid">1 document hidden from you</small>
+          </div>
+          <div class="ik-wa">
+            <p class="ik-ln" style="--n:0">The Senior Engineer band is $120k to $150k.</p>
+            <p class="ik-ln" style="--n:1">Offers above $140k need approval from your director.</p>
+            <p class="ik-red" style="--n:2"><svg class="ico"><use href="#i-lock" /></svg>Equity details restricted to HR</p>
+            <div class="ik-srcs"><span class="ik-sc ok" style="--n:3"><svg class="ico"><use href="#i-file" /></svg>Compensation guide</span><span class="ik-sc no" style="--n:4"><svg class="ico"><use href="#i-lock" /></svg>Equity plan</span></div>
+            <small class="ik-hid">1 document hidden from you</small>
+          </div>
+          <div class="ik-wa">
+            <p class="ik-ln" style="--n:0">Senior Engineer band: $120k to $150k, median $134k.</p>
+            <p class="ik-ln" style="--n:1">3 open roles are approved at this level.</p>
+            <p class="ik-ln" style="--n:2">Equity range is 0.05% to 0.12% under plan C.</p>
+            <div class="ik-srcs"><span class="ik-sc ok" style="--n:3"><svg class="ico"><use href="#i-file" /></svg>Compensation guide</span><span class="ik-sc ok" style="--n:4"><svg class="ico"><use href="#i-file" /></svg>Equity plan</span><span class="ik-sc ok" style="--n:5"><svg class="ico"><use href="#i-file" /></svg>Open roles</span></div>
+            <small class="ik-hid ik-hid--ok">All 3 sources available to you</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 6 · FRESHNESS (flip cards) ================= -->
+    <section class="section ik-fresh" id="ik-fresh" aria-labelledby="fresh-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Always current</span>
+          <h2 class="h-section" id="fresh-title">Spots outdated answers before your team does.</h2>
+          <p class="lead">The agent notices old or conflicting documents, asks the owner to confirm and updates what it tells people.</p>
+        </div>
+
+        <div class="ik-health" aria-live="polite"><span>Knowledge health</span><div class="ik-hbar"><i id="ik-hfill"></i></div><b id="ik-hnum">96%</b></div>
+
+        <div class="ik-flips" id="ik-flips">
+          <div class="ik-fc"><div class="ik-fc-in">
+            <div class="ik-f ik-f--front"><span class="ik-f-ico"><svg class="ico"><use href="#i-file" /></svg></span><b>Expense policy</b><small>Last updated 2 years ago</small><em class="old">Outdated</em></div>
+            <div class="ik-f ik-f--back"><span class="ik-f-ico"><svg class="ico"><use href="#i-check" /></svg></span><b>Expense policy</b><small>Updated today &middot; v4. Reviewed by Nora, Finance</small><em class="new">Fresh</em></div>
+          </div></div>
+          <div class="ik-fc"><div class="ik-fc-in">
+            <div class="ik-f ik-f--front"><span class="ik-f-ico"><svg class="ico"><use href="#i-users" /></svg></span><b>Onboarding checklist</b><small>Mentions a tool you retired</small><em class="old">Conflict</em></div>
+            <div class="ik-f ik-f--back"><span class="ik-f-ico"><svg class="ico"><use href="#i-check" /></svg></span><b>Onboarding checklist</b><small>Updated today &middot; v7. Reviewed by Maya, HR</small><em class="new">Fresh</em></div>
+          </div></div>
+          <div class="ik-fc"><div class="ik-fc-in">
+            <div class="ik-f ik-f--front"><span class="ik-f-ico"><svg class="ico"><use href="#i-shield" /></svg></span><b>Security training</b><small>Last updated 14 months ago</small><em class="old">Outdated</em></div>
+            <div class="ik-f ik-f--back"><span class="ik-f-ico"><svg class="ico"><use href="#i-check" /></svg></span><b>Security training</b><small>Updated today &middot; v3. Reviewed by Arjun, IT</small><em class="new">Fresh</em></div>
+          </div></div>
+          <div class="ik-fc"><div class="ik-fc-in">
+            <div class="ik-f ik-f--front"><span class="ik-f-ico"><svg class="ico"><use href="#i-coin" /></svg></span><b>Pricing playbook</b><small>Two versions disagree on discounts</small><em class="old">Conflict</em></div>
+            <div class="ik-f ik-f--back"><span class="ik-f-ico"><svg class="ico"><use href="#i-check" /></svg></span><b>Pricing playbook</b><small>Merged into one &middot; v5. Reviewed by Sam, Sales</small><em class="new">Fresh</em></div>
+          </div></div>
+          <div class="ik-fc"><div class="ik-fc-in">
+            <div class="ik-f ik-f--front"><span class="ik-f-ico"><svg class="ico"><use href="#i-refresh" /></svg></span><b>Refund process</b><small>Last updated 3 years ago</small><em class="old">Outdated</em></div>
+            <div class="ik-f ik-f--back"><span class="ik-f-ico"><svg class="ico"><use href="#i-check" /></svg></span><b>Refund process</b><small>Updated today &middot; v6. Reviewed by Lea, Support</small><em class="new">Fresh</em></div>
+          </div></div>
+          <div class="ik-fc"><div class="ik-fc-in">
+            <div class="ik-f ik-f--front"><span class="ik-f-ico"><svg class="ico"><use href="#i-eye" /></svg></span><b>Brand guidelines</b><small>Old logo still shown on page 3</small><em class="old">Outdated</em></div>
+            <div class="ik-f ik-f--back"><span class="ik-f-ico"><svg class="ico"><use href="#i-check" /></svg></span><b>Brand guidelines</b><small>Updated today &middot; v9. Reviewed by Ivy, Marketing</small><em class="new">Fresh</em></div>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 7 · INSIGHTS (ranking race) ================= -->
+    <section class="section ik-race" id="ik-insights" aria-labelledby="race-title">
+      <div class="container ik-race-grid" data-reveal>
+        <div class="ik-race-copy">
+          <span class="pill">Insights</span>
+          <h2 class="h-section" id="race-title">See what your team is really asking.</h2>
+          <p class="lead">Every question teaches you something. The agent shows which topics people ask about most and where the answers are missing.</p>
+          <ul class="ik-list">
+            <li><svg class="ico"><use href="#i-chart" /></svg>Spot the topics that need a better document</li>
+            <li><svg class="ico"><use href="#i-bell" /></svg>Get alerts when questions have no answer</li>
+            <li><svg class="ico"><use href="#i-users" /></svg>Track which teams use the agent most</li>
+          </ul>
+        </div>
+
+        <div class="ik-rc" id="ik-race" role="img" aria-label="Example ranking of the most asked topics this week">
+          <div class="ik-rc-top"><span><i class="ik-live"></i>Top questions this week</span><small id="ik-rtot">0 questions</small></div>
+          <div class="ik-rc-rows" id="ik-rrows"></div>
+          <div class="ik-gap"><span><svg class="ico"><use href="#i-bell" /></svg></span><div><b>14 questions had no answer</b><small>Draft articles suggested for review</small></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 8 · HOW IT WORKS (staircase) ================= -->
+    <section class="section ik-how" id="ik-how" aria-labelledby="how-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">How it works</span>
+          <h2 class="h-section" id="how-title">Live in your workspace in four steps.</h2>
+        </div>
+
+        <ol class="ik-stair" id="ik-stair">
+          <li class="ik-step" style="--h:52%;--k:0">
+            <span class="ik-step-n">1</span>
+            <h3>Connect your sources</h3>
+            <p>Link your wiki, drive, chat, tickets and HR tools with read-only access.</p>
+          </li>
+          <li class="ik-step" style="--h:67%;--k:1">
+            <span class="ik-step-n">2</span>
+            <h3>Set who can see what</h3>
+            <p>We mirror your existing permissions, so answers only use files each person may open.</p>
+          </li>
+          <li class="ik-step" style="--h:83%;--k:2">
+            <span class="ik-step-n">3</span>
+            <h3>Test with real questions</h3>
+            <p>We run your team&rsquo;s actual questions and tune the answers with your subject experts.</p>
+          </li>
+          <li class="ik-step ik-step--top" style="--h:100%;--k:3">
+            <span class="ik-flag" aria-hidden="true"><svg class="ico"><use href="#i-check" /></svg></span>
+            <span class="ik-step-n">4</span>
+            <h3>Roll out where you work</h3>
+            <p>Launch in Slack, Teams or the browser, with usage and gap reports every week.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ================= FAQ ================= -->
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="container faq-grid" data-reveal>
+        <div class="faq-head">
+          <span class="pill">Common questions</span>
+          <h2 class="h-section" id="faq-title">Internal knowledge agent FAQs</h2>
+        </div>
+        <div class="faq-list" id="faq-list">
+          <div class="faq-item open">
+            <h3><button class="faq-q" type="button" aria-expanded="true">Will it show people things they shouldn&rsquo;t see? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>No. The agent follows the access rules from your connected tools. If a person can&rsquo;t open a file, the agent won&rsquo;t use it, summarise it or confirm it exists in their answer.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Where does it get its answers? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Only from the sources you connect, such as your wiki, drive, chat history and ticket system. Each answer links to the documents it used, and when it can&rsquo;t find a reliable answer it says so and points to the right person.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Which tools can it connect to? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Common tools such as Confluence, Notion, Google Drive, SharePoint, Slack, Microsoft Teams, Jira and Zendesk, plus HR and finance systems with an API. If you use something custom, we can build the connection.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">How does it stay up to date? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>It re-reads your sources on a schedule, flags documents that are old or contradict each other, and asks the owner to confirm. Your team always sees the latest approved version.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Is our company data used to train models? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Your content stays in your own index and is not used to train models for other customers. We confirm the exact data handling and retention settings with you before launch.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+    <section class="cta" id="contact" aria-labelledby="cta-title">
+      <div class="cta-grid">
+        <div class="cta-bar" aria-hidden="true"></div>
+        <div class="cta-box">
+          <div class="ripples" aria-hidden="true"><span></span><span></span><span></span></div>
+          <h2 id="cta-title">Stop answering the same question twice.</h2>
+          <p>Tell us where your team&rsquo;s knowledge lives and we&rsquo;ll show how an agent could answer for you.</p>
+          <a class="btn btn--primary btn--lg btn-sweep" href="contact-us.html"><span style="position:relative">Get a Free Automation Review</span></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="footer-panel">
+      <div class="footer-flag" aria-hidden="true"></div>
+      <div class="footer-main">
+        <div class="footer-brand">
+          <img src="images/codevelop.webp" alt="Codevelop logo" class="brand-logo" width="160" height="40">
+          <p>At Codevelop, we help businesses turn strategy into scalable results through thoughtful design,
+            performance-driven marketing, and modern technology.</p>
+          <div class="socials">
+            <a href="https://www.facebook.com/Codevelop.usa/" aria-label="Facebook" target="_blank" rel="noopener"><svg class="ico"><use href="#i-fb" /></svg></a>
+            <a href="https://www.instagram.com/codevelop_us/" aria-label="Instagram" target="_blank" rel="noopener"><svg class="ico"><use href="#i-ig" /></svg></a>
+            <a href="https://www.linkedin.com/company/codevelop-us" aria-label="LinkedIn" target="_blank" rel="noopener"><svg class="ico"><use href="#i-in" /></svg></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Services</h3>
+          <ul>
+            <li><a href="performance-marketing.html">Performance Marketing</a></li>
+            <li><a href="#">SEO Services</a></li>
+            <li><a href="#">Social Media Marketing</a></li>
+            <li><a href="web-development.html">Web Development</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Link</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Case Studies</a></li>
+            <li><a href="#">Blogs</a></li>
+            <li><a href="https://codevelopus.com/">Free SEO Audit</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Contact Us</h3>
+          <ul class="contact">
+            <li><svg class="ico"><use href="#i-pin" /></svg><span>555 SE Martin Luther King JR Blvd, Portland, OR 97214</span></li>
+            <li><svg class="ico"><use href="#i-phone" /></svg><a href="tel:+19714809833">+1 971-480-9833</a></li>
+            <li><svg class="ico"><use href="#i-mail" /></svg><a href="mailto:info@codevelop.us">info@codevelop.us</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="newsletter">
+        <div class="newsletter-box">
+          <h3>Signup our newsletter to get update information, news, insight or promotions.</h3>
+          <form class="news-form" action="#" method="post">
+            <label class="sr-only" for="news-email">Email</label>
+            <input id="news-email" type="email" name="email" placeholder="Email" required autocomplete="email">
+            <button class="btn btn--primary" type="submit">Sign up</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <span>Copyright © 2026 Codevelop US, All Rights Reserved.</span>
+      <a href="#">Privacy policy</a>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script src="js/internal-knowledge-agents.js"></script>
+</body>
+
+</html>

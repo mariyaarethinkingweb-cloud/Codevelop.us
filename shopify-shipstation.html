@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shopify + ShipStation Integration | Codevelop</title>
+  <meta name="description"
+    content="Route Shopify orders to ShipStation, automate labels and send tracking back to buyers, with routing rules built around your warehouses. Fixed-price setups from Codevelop.">
+  <link rel="canonical" href="https://codevelopus.com/shopify-shipstation-integration">
+  <meta name="theme-color" content="#0a3161">
+  <link rel="icon" href="https://codevelopus.com/wp-content/uploads/2026/01/cropped-codevelop-favicon-270x270.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/connector.css">
+  <link rel="stylesheet" href="css/connector-extra.css">
+</head>
+
+<body>
+
+  <!-- Icon sprite -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></symbol>
+      <symbol id="i-funnel" viewBox="0 0 24 24"><path d="M3 4h18l-7 8v6l-4 2v-8L3 4z" /></symbol>
+      <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" /></symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5z" /></symbol>
+      <symbol id="i-fb" viewBox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v7h4v-7h3l1-4h-4V8z" /></symbol>
+      <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="0.8" /></symbol>
+      <symbol id="i-in" viewBox="0 0 24 24"><rect x="3" y="9" width="4" height="12" /><circle cx="5" cy="5" r="2" /><path d="M10 9h4v2a4 4 0 0 1 6 3v7h-4v-6a2 2 0 0 0-4 0v6h-4V9z" /></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" /></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3 7l9 6 9-6" /></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11z" /><circle cx="12" cy="10" r="2.5" /></symbol>
+      <symbol id="i-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16" /></symbol>
+      <symbol id="i-flow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="6" height="6" rx="1" /><rect x="15" y="15" width="6" height="6" rx="1" /><path d="M9 6h4a2 2 0 0 1 2 2v7" /></symbol>
+      <symbol id="i-megaphone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10v4h4l8 5V5L7 10H3z" /><path d="M18.5 9a4 4 0 0 1 0 6" /></symbol>
+      <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2V5z" /><path d="M4 19a2 2 0 0 1 2-2h13" /></symbol>
+      <symbol id="i-coin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9" /><path d="M14.5 9.5c-.5-1-1.5-1.5-2.5-1.5-1.4 0-2.5.8-2.5 2s1 1.7 2.5 2 2.5.8 2.5 2-1.1 2-2.5 2c-1 0-2-.5-2.5-1.5M12 6.5V8m0 8v1.5" /></symbol>
+      <symbol id="i-desk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2" /><path d="M8 20h8M12 16v4" /></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5" /><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6" /><path d="M16 4.7a3.5 3.5 0 0 1 0 6.6M18 14.3c2 .7 3.5 2.6 3.5 5.7" /></symbol>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header" id="top">
+    <div class="bar">
+      <a class="logo" href="index.html" aria-label="Codevelop home"><img src="images/codevelop.webp" alt="Codevelop logo" class="brand-logo" width="160" height="40"></a>
+      <button class="burger" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav aria-label="Main">
+        <ul>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">AI Agents <svg class="chev" viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" /></svg></button>
+            <div class="drop drop--agents">
+              <div class="agents-top"><span class="agents-label">AI Agents</span><a class="agents-all" href="#">View all agents</a></div>
+              <a class="agent" href="customer-support-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-chat" /></svg></span><span class="agent-txt"><b>Customer Support Agents</b><small>24/7 answers across chat &amp; inbox</small></span></a>
+              <a class="agent" href="sales-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-funnel" /></svg></span><span class="agent-txt"><b>Sales &amp; Lead-Generation Agents</b><small>Capture, qualify &amp; follow up with leads</small></span></a>
+              <a class="agent" href="software-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-code" /></svg></span><span class="agent-txt"><b>Software Development Agents</b><small>Code, review &amp; ship faster</small></span></a>
+              <a class="agent" href="workflow-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-flow" /></svg></span><span class="agent-txt"><b>Workflow Automation Agents</b><small>Connect tools &amp; automate routine tasks</small></span></a>
+              <a class="agent" href="marketing-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-megaphone" /></svg></span><span class="agent-txt"><b>Marketing Agents</b><small>Campaigns, content &amp; channel management</small></span></a>
+              <a class="agent" href="research-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-chart" /></svg></span><span class="agent-txt"><b>Research &amp; Data Analyst Agents</b><small>Insights &amp; plain-language reports</small></span></a>
+              <a class="agent" href="internal-knowledge-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-book" /></svg></span><span class="agent-txt"><b>Internal Knowledge Agents</b><small>Instant answers from your company data</small></span></a>
+              <a class="agent" href="finance-accounting-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-coin" /></svg></span><span class="agent-txt"><b>Finance &amp; Accounting Agents</b><small>Invoices, reconciliation &amp; reporting</small></span></a>
+              <a class="agent" href="it-service-desk-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-desk" /></svg></span><span class="agent-txt"><b>IT Service Desk Agents</b><small>Resolve tickets &amp; access requests</small></span></a>
+              <a class="agent" href="hr-recruitment-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-users" /></svg></span><span class="agent-txt"><b>HR &amp; Recruitment Agents</b><small>Screen, schedule &amp; onboard people</small></span></a>
+            </div>
+          </li>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">Connectors <svg class="chev" viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" /></svg></button>
+            <div class="drop drop--agents drop--connectors">
+              <div class="agents-top"><span class="agents-label">Connectors</span><a class="agents-all" href="#">View all connectors</a></div>
+              <a class="agent" href="sap-business-one.html"><span class="agent-ico"><img src="images/sap.png" alt="SAP Business One" loading="lazy"></span><span class="agent-txt"><b>SAP Business One</b><small>ERP integration &amp; consulting</small></span></a>
+              <a class="agent" href="salesforce.html"><span class="agent-ico"><img src="images/salesforce.png" alt="Salesforce" loading="lazy"></span><span class="agent-txt"><b>Salesforce</b><small>CRM &amp; order-to-cash sync</small></span></a>
+              <a class="agent" href="netsuite.html"><span class="agent-ico"><img src="images/netsuite.png" alt="NetSuite" loading="lazy"></span><span class="agent-txt"><b>NetSuite</b><small>ERP, ecommerce &amp; EDI sync</small></span></a>
+              <a class="agent" href="shopify.html"><span class="agent-ico"><img src="images/shopify.png" alt="Shopify" loading="lazy"></span><span class="agent-txt"><b>Shopify</b><small>Ecommerce ↔ back office</small></span></a>
+              <a class="agent" href="quickbooks.html"><span class="agent-ico"><img src="images/quickbooks.png" alt="QuickBooks" loading="lazy"></span><span class="agent-txt"><b>QuickBooks</b><small>Accounting &amp; invoice sync</small></span></a>
+              <a class="agent" href="woocommerce.html"><span class="agent-ico"><img src="images/woocommerce.png" alt="WooCommerce" loading="lazy"></span><span class="agent-txt"><b>WooCommerce</b><small>WordPress store integration</small></span></a>
+              <a class="agent" href="zoho.html"><span class="agent-ico"><img src="images/zoho.png" alt="Zoho" loading="lazy"></span><span class="agent-txt"><b>Zoho</b><small>Zoho One suite integration</small></span></a>
+              <a class="agent" href="zuper.html"><span class="agent-ico"><img src="images/zuper.png" alt="Zuper" loading="lazy"></span><span class="agent-txt"><b>Zuper</b><small>Field service management sync</small></span></a>
+              <a class="agent" href="attio.html"><span class="agent-ico"><img src="images/attio.png" alt="Attio" loading="lazy"></span><span class="agent-txt"><b>Attio</b><small>CRM &amp; record sync</small></span></a>
+              <a class="agent" href="twenty.html"><span class="agent-ico"><img src="images/twenty.png" alt="Twenty" loading="lazy"></span><span class="agent-txt"><b>Twenty</b><small>Open-source CRM sync</small></span></a>
+            </div>
+          </li>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">Services <svg class="chev" viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" /></svg></button>
+            <div class="drop drop--mega">
+              <div class="mega-top"><a class="mega-all" href="services.html">View all services <svg class="ico" width="16" height="16" aria-hidden="true"><use href="#i-arrow" /></svg></a></div>
+              <div class="mega-col">
+                <h4><a href="performance-marketing.html">Performance Marketing</a></h4>
+                <a href="meta-ads.html">Google Ads Management</a>
+                <a href="facebook-ads.html">Facebook Ads</a>
+                <a href="remarketing.html">Remarketing</a>
+              </div>
+              <div class="mega-col">
+                <h4><a href="web-development.html">Web Development Services</a></h4>
+                <a href="custom-website-design.html">Custom Website Design</a>
+                <a href="wordpress-development.html">WordPress Web Development</a>
+                <a href="shopify-development.html">Shopify Web Development</a>
+                <a href="webflow-development.html">Webflow Web Development</a>
+                <a href="framer-development.html">Framer Web Development</a>
+                <a href="mageneto-development.html">Magento Web Development</a>
+                <a href="website-maintenance.html">Website Maintenance</a>
+                <a href="website-redesign.html">Website Redesign</a>
+              </div>
+              <div class="mega-col">
+                <h4><a href="social-media-marketing.html">Social Media Marketing</a></h4>
+                <a href="content-marketing.html">Content Marketing</a>
+              </div>
+              <div class="mega-col">
+                <h4><a href="search-engine-optimization.html">Search Engine Optimization</a></h4>
+                <a href="local-seo.html">Local SEO</a>
+                <a href="seo-audits.html">SEO Audits</a>
+                <a href="technical-seo.html">Technical SEO</a>
+                <a href="enterprise-seo.html">Enterprise SEO</a>
+              </div>
+            </div>
+          </li>
+          <li><button class="top" type="button" aria-expanded="false">Hire Talent <svg class="chev" viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" /></svg></button>
+            <div class="drop"><a href="#">Developers</a><a href="#">Automation Engineers</a><a href="#">Dedicated Teams</a></div>
+          </li>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="#">Success Stories</a></li>
+          <li><a href="#">Insights</a></li>
+        </ul>
+        <a class="hdr-cta hdr-cta-m" href="contact-us.html">Get a Free Automation Review</a>
+      </nav>
+      <a class="hdr-cta" href="contact-us.html">Get a Free Automation Review</a>
+    </div>
+  </header>
+
+  <main id="content">
+
+    <!-- HERO -->
+    <section class="hero-wrap" aria-labelledby="hero-title">
+      <div class="hero hero--page">
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="hero-glow" aria-hidden="true"></div>
+        <div class="ring ring--1" aria-hidden="true"><i></i></div>
+        <div class="ring ring--2" aria-hidden="true"><i></i></div>
+        <div class="container hero-inner">
+          <div class="hero-copy">
+            <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a>  / <a href="shopify.html">Shopify</a> / ShipStation</nav>
+            <h1 class="h-display" id="hero-title">Shopify orders that ship themselves to the right door.</h1>
+            <p class="lead">We send every new Shopify order to fulfilment, generate the correct carrier label and write the tracking number back the moment a parcel leaves, with no spreadsheet in between. We aren't tied to any one carrier or 3PL, so the routing rules and stock sync are built around how your warehouses really run.</p>
+            <div class="hero-stack" aria-hidden="true">
+              <span class="hs hs--sap"><img src="images/shopify.png" alt=""></span><i class="sep"></i>
+              <span class="hs hs--sap"><img src="images/shipstation.png" alt=""></span>
+            </div>
+            <div class="hero-actions">
+              <a class="btn btn--primary btn--lg btn--pulse" href="contact-us.html">Book a scoping call</a>
+              <a class="btn btn--ghost btn--lg" href="#budget">See budget and timing</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE BASICS -->
+    <section class="section" id="basics" aria-labelledby="basics-title">
+      <div class="container basics" data-reveal>
+        <div class="basics-copy">
+          <span class="pill">The basics</span>
+          <h2 class="h-section" id="basics-title">What Shopify and ShipStation integration does</h2>
+          <p class="lead">It is the automatic flow of orders out to fulfilment and tracking data back into Shopify. ShipStation already has a built-in Shopify connection, so for most merchants the job isn't building a connector. It is configuring routing rules, carrier logic and multi-warehouse splits so the right order reaches the right warehouse with the right service every time.</p>
+          <p>Shipping a parcel is rarely the hard part. Routing is. Multiple warehouses, split shipments, backorders, and marketplace orders arriving alongside direct sales all need rules that a default ShipStation setup doesn't cover. A properly scoped configuration, or a middleware layer, usually pays for itself quickly in less manual sorting.</p>
+        </div>
+        <div class="ba">
+          <div class="no"><h3>Systems apart</h3><ul><li>Orders sorted to warehouses by hand</li><li>Labels bought one at a time</li><li>Tracking pasted back into Shopify</li><li>Backorders shown as shipped</li></ul></div>
+          <div class="yes"><h3>Systems linked</h3><ul><li>Rules send each order to the right node</li><li>Labels created at the best rate</li><li>Tracking written back automatically</li><li>Partial shipments reported honestly</li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT SYNCS -->
+    <section class="section web" id="mapping" aria-labelledby="map-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Entity mapping</span>
+          <h2 class="h-section" id="map-title">What passes between Shopify and ShipStation</h2>
+          <p class="lead">The flow runs both ways: orders go out to fulfilment, and shipping confirmation comes back to the buyer.</p>
+        </div>
+        <div class="map-wrap">
+          <table class="map">
+            <thead>
+              <tr><th scope="col">Data</th><th scope="col">Where it moves</th><th scope="col">Direction</th><th scope="col">What happens</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">New orders</th><td>Shopify to ShipStation</td><td><span class="dir">Shopify → SS</span></td><td>Items, addresses and the shipping method chosen at checkout</td></tr>
+              <tr><th scope="row">Order routing</th><td>Inside ShipStation</td><td><span class="dir dir--two">Rule-based</span></td><td>Rules assign each order to a warehouse, store or queue</td></tr>
+              <tr><th scope="row">Shipping labels</th><td>ShipStation to carrier</td><td><span class="dir">SS → carrier</span></td><td>Labels created at your negotiated rates by weight and destination</td></tr>
+              <tr><th scope="row">Tracking numbers</th><td>ShipStation to Shopify</td><td><span class="dir">SS → Shopify</span></td><td>Tracking pushed back so Shopify emails the shipping confirmation</td></tr>
+              <tr><th scope="row">Stock levels</th><td>Warehouse or 3PL to Shopify</td><td><span class="dir">3PL → Shopify</span></td><td>Available stock synced so the storefront reflects reality</td></tr>
+              <tr><th scope="row">Splits and backorders</th><td>Both systems</td><td><span class="dir dir--two">Both ways</span></td><td>Partial shipments and backorders tracked and shown accurately</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">Fulfilment data often needs to reach an ERP or accounting tool as well. We can chain that on in the same design.</p>
+      </div>
+    </section>
+
+    <!-- ROUTING RULES EXAMPLE -->
+    <section class="section" id="fields" aria-labelledby="fields-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Routing rules</span>
+          <h2 class="h-section" id="fields-title">What "written-down" routing looks like</h2>
+          <p class="lead">In many warehouses, routing lives in someone's head. We turn it into explicit if-then rules. These examples are illustrative, and yours come from your own fulfilment map.</p>
+        </div>
+        <div class="cat-grid" data-stagger>
+          <div class="cat"><h3>By destination</h3><ul class="pair-chips"><li>Country</li><li>State</li><li>Zone</li></ul><p>West-coast addresses go to the nearest node, and international orders go to the warehouse that holds the customs paperwork.</p></div>
+          <div class="cat"><h3>By product</h3><ul class="pair-chips"><li>SKU</li><li>Tag</li><li>Weight</li></ul><p>Heavy or oversized items route to the freight-capable site, and fragile lines get their own packing queue.</p></div>
+          <div class="cat"><h3>By order type</h3><ul class="pair-chips"><li>Marketplace</li><li>Wholesale</li><li>Backorder</li></ul><p>Marketplace orders follow their own carrier rules, and backorders are held or split instead of marking the whole order shipped.</p></div>
+        </div>
+        <p class="note">Undocumented exceptions are the biggest schedule risk, so we dig them out during discovery, before any rule is configured.</p>
+      </div>
+    </section>
+
+    <!-- LIFECYCLE -->
+    <section class="section web" id="workflow" aria-labelledby="flow-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">After go-live</span>
+          <h2 class="h-section" id="flow-title">One order, from checkout to doorstep</h2>
+          <p class="lead">Once the rules are live, a typical order moves without anyone sorting or copying.</p>
+        </div>
+        <ol class="tl">
+          <li><h3>Order placed</h3><p>A customer checks out, and the order lands in ShipStation with items, address and chosen shipping method.</p></li>
+          <li><h3>Rules applied</h3><p>Routing assigns it to the right warehouse, tags it and splits it if the items live in different places.</p></li>
+          <li><h3>Label created</h3><p>A carrier label is generated at your negotiated rate, based on weight and destination.</p></li>
+          <li><h3>Tracking returned</h3><p>The tracking number flows back to Shopify, which sends the buyer their shipping confirmation.</p></li>
+          <li><h3>Stock updated</h3><p>Available quantity is synced so the storefront never promises what has already gone.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ROUTES -->
+    <section class="section" id="routes" aria-labelledby="route-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Choosing a route</span>
+          <h2 class="h-section" id="route-title">Four ways to connect Shopify to fulfilment</h2>
+          <p class="lead">Because ShipStation has a native Shopify connection, most projects are about getting configuration right rather than writing code. Custom work comes in when routing is multi-warehouse or when your 3PL isn't ShipStation.</p>
+        </div>
+        <div class="map-wrap">
+          <table class="map">
+            <thead>
+              <tr><th scope="col">Route</th><th scope="col">What it is</th><th scope="col">Suits</th><th scope="col">Keep in mind</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Native connection</th><td>The built-in Shopify link inside ShipStation's settings.</td><td>Single-warehouse merchants with standard fulfilment</td><td>Default routing rarely fits multi-warehouse needs</td></tr>
+              <tr><th scope="row">Automation rules</th><td>Conditional logic for routing, tagging and splitting orders.</td><td>Multi-warehouse, multi-brand or marketplace-blended flows</td><td>Rules grow complex and need documenting to stay maintainable</td></tr>
+              <tr><th scope="row">Direct 3PL or WMS API</th><td>A custom link to a specific warehouse system, bypassing ShipStation.</td><td>Merchants on a 3PL or WMS that ShipStation serves poorly</td><td>The 3PL must expose a usable API</td></tr>
+              <tr><th scope="row">Middleware</th><td>Orchestration joining Shopify, ShipStation and systems like an ERP or CRM.</td><td>Fulfilment data that must also reach finance or an ERP</td><td>More moving parts to watch after launch</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">ShipStation's native Shopify link already suits most single-warehouse merchants. Our value is usually in the routing rules and stock sync, not in rebuilding a connection that already works.</p>
+      </div>
+    </section>
+
+    <!-- CONSULTANT VS DEFAULT -->
+    <section class="section web" id="compare" aria-labelledby="compare-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Why a consultant</span>
+          <h2 class="h-section" id="compare-title">Default onboarding or a configured setup?</h2>
+          <p class="lead">Standard onboarding gets you connected but seldom shapes routing around your warehouses. We begin with your actual fulfilment map and build the rules to match.</p>
+        </div>
+        <div class="map-wrap">
+          <table class="map">
+            <thead>
+              <tr><th scope="col">&nbsp;</th><th scope="col">Default onboarding</th><th scope="col">Codevelop</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">What gets recommended</th><td>The standard default</td><td>Whatever fits, including a light-touch setup</td></tr>
+              <tr><th scope="row">Multi-warehouse routing</th><td>Left for you to configure</td><td>Scoped and documented in the project</td></tr>
+              <tr><th scope="row">Pricing</th><td>ShipStation subscription only</td><td>Fixed setup price, optional retainer</td></tr>
+              <tr><th scope="row">When it breaks</th><td>A generic support queue</td><td>The engineer who configured it</td></tr>
+              <tr><th scope="row">Other 3PLs</th><td>Out of scope</td><td>Custom API work available</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- BUDGET + TIMELINE -->
+    <section class="section" id="budget" aria-labelledby="budget-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Budget and timing</span>
+          <h2 class="h-section" id="budget-title">What a Shopify and ShipStation setup costs, and how long it takes</h2>
+          <p class="lead">Expect roughly $1,500 to $14,000, driven mainly by warehouse count and how involved the routing is.</p>
+        </div>
+        <div class="rt-grid" data-stagger>
+          <div class="feature"><h3>Native connection and rules<small>Single warehouse</small></h3><p><b>$1.5k – $4.5k</b> to set up, plus your existing ShipStation subscription.</p></div>
+          <div class="feature"><h3>Multi-warehouse routing<small>Configured rule set</small></h3><p><b>$3.5k – $8k</b> to configure, plus a support retainer for rule upkeep.</p></div>
+          <div class="feature"><h3>Custom 3PL, WMS or middleware<small>Bespoke build</small></h3><p><b>$6k – $14k+</b> to implement, with a support retainer and no platform fee.</p></div>
+        </div>
+        <div class="factors"><span>Number of warehouses</span><span>Marketplace and direct orders mixed</span><span>Splits and backorders</span></div>
+        <div class="lanes" style="margin-top:36px">
+          <div class="lane"><h3>Native connection and rules<small>Single warehouse</small></h3><div class="lane-bar" style="--w:25%">1–2 weeks</div></div>
+          <div class="lane"><h3>Multi-warehouse routing<small>Configured rules</small></h3><div class="lane-bar" style="--w:55%">3–6 weeks</div></div>
+          <div class="lane"><h3>Custom 3PL, WMS or middleware<small>Bespoke build</small></h3><div class="lane-bar" style="--w:100%">4–8 weeks</div></div>
+        </div>
+        <p class="note">Every quote is fixed once we have reviewed your real order and fulfilment patterns.</p>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="section web" id="process" aria-labelledby="process-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Our process</span>
+          <h2 class="h-section" id="process-title">Five stages, and a rule sheet you approve first</h2>
+          <p class="lead">You receive a fixed-price scope and sign off the routing sheet before any rule is configured.</p>
+        </div>
+        <ol class="tl">
+          <li><h3>Discover</h3><p>We map your warehouses, volumes, carriers and the outcome you need.</p></li>
+          <li><h3>Map</h3><p>Every field, rule, direction and error case is written down before building.</p></li>
+          <li><h3>Build</h3><p>We configure in a sandbox, against a Shopify development store.</p></li>
+          <li><h3>Test</h3><p>Real order scenarios run end to end, including splits, backorders and failed labels.</p></li>
+          <li><h3>Support</h3><p>After go-live we monitor with logging and alerts, and you get a named contact.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- WHY CODEVELOP -->
+    <section class="section web ai" id="why-us" aria-labelledby="why-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill pill--dark">Why Codevelop</span>
+          <h2 class="h-section" id="why-title">We understand the storefront and the warehouse floor</h2>
+          <p class="lead">An integration only pays off if orders ship correctly after launch. These are the reasons Shopify merchants hand us the link between their store and fulfilment.</p>
+        </div>
+        <div class="rt-grid" data-stagger>
+          <div class="feature"><h3>Vendor-neutral</h3><p>We don't sell a 3PL or a shipping platform, so nothing pushes us toward one. You get the approach that fits your warehouse.</p></div>
+          <div class="feature"><h3>Fixed price up front</h3><p>You approve a signed routing sheet and a fixed quote before a single rule is configured.</p></div>
+          <div class="feature"><h3>A named engineer</h3><p>Whoever configured your setup answers when you add a warehouse or a carrier.</p></div>
+          <div class="feature"><h3>Routing logic documented</h3><p>Exceptions that lived in someone's head become explicit, maintainable rules.</p></div>
+          <div class="feature"><h3>Storefront experience</h3><p>We build and maintain web stores, so we understand order data from checkout to the warehouse.</p></div>
+          <div class="feature"><h3>Rescue and take-over</h3><p>We untangle conflicting rules, repair drifting stock levels and reconnect setups broken by an API change.</p></div>
+          <div class="feature"><h3>AI on fulfilment</h3><p>We build AI agents for exception handling and plain-language fulfilment reporting.</p></div>
+          <div class="feature"><h3>Monitored after launch</h3><p>Alerts ship with every integration, so a stuck order or failed label reaches us before the customer notices.</p></div>
+        </div>
+        <p class="note">Need the ERP side connected too? See <a href="shopify-sap-business-one-integration.html" style="color:#fff;text-decoration:underline">Shopify and SAP Business One</a> or <a href="netsuite.html" style="color:#fff;text-decoration:underline">NetSuite</a>, or the main <a href="shopify.html" style="color:#fff;text-decoration:underline">Shopify integration</a> page.</p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="container faq-grid" data-reveal>
+        <div class="faq-head">
+          <span class="pill">Common questions</span>
+          <h2 class="h-section" id="faq-title">Shopify and ShipStation FAQ</h2>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item open">
+            <h3><button class="faq-q" type="button" aria-expanded="true">Does Shopify connect to ShipStation natively? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. ShipStation has a built-in Shopify connection that imports orders automatically. The default setup rarely copes with multi-warehouse routing or blended marketplace orders without extra configuration.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Can orders be routed to different warehouses automatically? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. We build ShipStation automation rules based on SKU, destination, weight or tags, so orders reach the right warehouse without anyone sorting them.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Do you work with 3PLs other than ShipStation? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. When ShipStation isn't the right fit, we connect Shopify directly to 3PL and WMS platforms such as ShipBob and other warehouse systems.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Does tracking update in Shopify by itself? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. Once a label exists in ShipStation, tracking is pushed to the Shopify order automatically, which triggers the customer's shipping confirmation email.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">How do you handle split shipments and backorders? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>We set up rules so partly fulfilled orders and backordered items are tracked correctly and shown accurately to the buyer, instead of the order appearing fully shipped when it isn't.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Can you repair a broken fulfilment integration? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. Rescue work covers clashing routing rules, stock levels that drifted out of sync, and connections broken by an API change.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">How is pricing set? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>We give a fixed price after reviewing your warehouse count and order patterns. The budget section above shows typical ranges.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta" id="contact" aria-labelledby="cta-title">
+      <div class="cta-grid">
+        <div class="cta-bar" aria-hidden="true"></div>
+        <div class="cta-box">
+          <div class="ripples" aria-hidden="true"><span></span><span></span><span></span></div>
+          <h2 id="cta-title">Stop sorting orders by hand and let the rules do it</h2>
+          <p>Every week your team manually routes orders, fulfilment slows and mistakes creep in. A scoped Shopify and ShipStation setup removes that work, and you will know the exact cost before we start.</p>
+          <a class="btn btn--primary btn--lg btn-sweep" href="contact-us.html"><span style="position:relative">Book a scoping call</span></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="footer-panel">
+      <div class="footer-flag" aria-hidden="true"></div>
+      <div class="footer-main">
+        <div class="footer-brand">
+          <img src="images/codevelop.webp" alt="Codevelop logo" class="brand-logo" width="160" height="40">
+          <p>At Codevelop, we help businesses turn strategy into scalable results through thoughtful design, performance-driven marketing, and modern technology.</p>
+          <div class="socials">
+            <a href="https://www.facebook.com/Codevelop.usa/" aria-label="Facebook" target="_blank" rel="noopener"><svg class="ico"><use href="#i-fb" /></svg></a>
+            <a href="https://www.instagram.com/codevelop_us/" aria-label="Instagram" target="_blank" rel="noopener"><svg class="ico"><use href="#i-ig" /></svg></a>
+            <a href="https://www.linkedin.com/company/codevelop-us" aria-label="LinkedIn" target="_blank" rel="noopener"><svg class="ico"><use href="#i-in" /></svg></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Services</h3>
+          <ul>
+            <li><a href="performance-marketing.html">Performance Marketing</a></li>
+            <li><a href="#">SEO Services</a></li>
+            <li><a href="#">Social Media Marketing</a></li>
+            <li><a href="web-development.html">Web Development</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Link</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Case Studies</a></li>
+            <li><a href="#">Blogs</a></li>
+            <li><a href="https://codevelopus.com/">Free SEO Audit</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Contact Us</h3>
+          <ul class="contact">
+            <li><svg class="ico"><use href="#i-pin" /></svg><span>555 SE Martin Luther King JR Blvd, Portland, OR 97214</span></li>
+            <li><svg class="ico"><use href="#i-phone" /></svg><a href="tel:+19714809833">+1 971-480-9833</a></li>
+            <li><svg class="ico"><use href="#i-mail" /></svg><a href="mailto:info@codevelop.us">info@codevelop.us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="newsletter">
+        <div class="newsletter-box">
+          <h3>Signup our newsletter to get update information, news, insight or promotions.</h3>
+          <!-- Connect this form to your email provider (set action / method). -->
+          <form class="news-form" action="#" method="post">
+            <label class="sr-only" for="news-email">Email</label>
+            <input id="news-email" type="email" name="email" placeholder="Email" required autocomplete="email">
+            <button class="btn btn--primary" type="submit">Sign up</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <span>Copyright © 2026 Codevelop US, All Rights Reserved.</span>
+      <a href="#">Privacy policy</a>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>QuickBooks Integration Services | Codevelop</title>
+  <meta name="description"
+    content="Codevelop connects QuickBooks Online and Desktop to Shopify, Salesforce, WooCommerce, Stripe, HubSpot and POS systems, with a fixed quote and a named engineer after go-live.">
+  <link rel="canonical" href="https://codevelopus.com/quickbooks">
+  <meta name="theme-color" content="#0a3161">
+  <link rel="icon" href="https://codevelopus.com/wp-content/uploads/2026/01/cropped-codevelop-favicon-270x270.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/connector.css">
+</head>
+
+<body>
+
+  <!-- Icon sprite -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-star" viewBox="0 0 24 24">
+        <path d="M12 2.5l2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.4l-5.9 3.3 1.2-6.6L2.5 9.5l6.6-.9L12 2.5z" />
+      </symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24">
+        <path d="M5 12h14M13 6l6 6-6 6" />
+      </symbol>
+      <symbol id="i-check" viewBox="0 0 24 24">
+        <path d="M5 12.5l4.5 4.5L19 7.5" />
+      </symbol>
+      <symbol id="i-chev" viewBox="0 0 24 24">
+        <path d="M6 9l6 6 6-6" />
+      </symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24">
+        <path d="M12 5v14M5 12h14" />
+      </symbol>
+      <symbol id="i-layers" viewBox="0 0 24 24">
+        <path d="M12 3l9 5-9 5-9-5 9-5z" />
+        <path d="M3 13l9 5 9-5" />
+      </symbol>
+      <symbol id="i-grid" viewBox="0 0 24 24">
+        <rect x="3" y="3" width="7" height="7" rx="1.5" />
+        <rect x="14" y="3" width="7" height="7" rx="1.5" />
+        <rect x="3" y="14" width="7" height="7" rx="1.5" />
+        <rect x="14" y="14" width="7" height="7" rx="1.5" />
+      </symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 7v5l3 2" />
+      </symbol>
+      <symbol id="i-code" viewBox="0 0 24 24">
+        <path d="M8 8l-5 4 5 4M16 8l5 4-5 4M14 5l-4 14" />
+      </symbol>
+      <symbol id="i-pen" viewBox="0 0 24 24">
+        <path d="M4 20l4-1 11-11-3-3L5 16l-1 4z" />
+        <path d="M14 6l3 3" />
+      </symbol>
+      <symbol id="i-bolt" viewBox="0 0 24 24">
+        <path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z" />
+      </symbol>
+      <symbol id="i-cms" viewBox="0 0 24 24">
+        <rect x="3" y="4" width="18" height="16" rx="2" />
+        <path d="M3 9h18M8 9v11" />
+      </symbol>
+      <symbol id="i-search" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="7" />
+        <path d="M20 20l-4-4" />
+      </symbol>
+      <symbol id="i-target" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" />
+        <circle cx="12" cy="12" r="5" />
+        <circle cx="12" cy="12" r="1.5" />
+      </symbol>
+      <symbol id="i-funnel" viewBox="0 0 24 24">
+        <path d="M3 4h18l-7 8v6l-4 2v-8L3 4z" />
+      </symbol>
+      <symbol id="i-doc" viewBox="0 0 24 24">
+        <path d="M6 3h9l4 4v14H6V3z" />
+        <path d="M14 3v5h5M9 13h7M9 17h7" />
+      </symbol>
+      <symbol id="i-chart" viewBox="0 0 24 24">
+        <path d="M4 20V10M10 20V4M16 20v-7M22 20H2" />
+      </symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24">
+        <path d="M4 5h16v11H9l-5 4V5z" />
+      </symbol>
+      <symbol id="i-spark" viewBox="0 0 24 24">
+        <path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M18 6l-2.5 2.5M8.5 15.5L6 18" />
+      </symbol>
+      <symbol id="i-eye" viewBox="0 0 24 24">
+        <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z" />
+        <circle cx="12" cy="12" r="3" />
+      </symbol>
+      <symbol id="i-flag" viewBox="0 0 24 24">
+        <path d="M5 21V4M5 4h12l-2 4 2 4H5" />
+      </symbol>
+      <symbol id="i-tooth" viewBox="0 0 24 24">
+        <path
+          d="M7 3C4.5 3 3 5 3 7.5c0 2 1 3 1.5 5S5 21 6.5 21 8 17 9 16s2-1 3-1 2 0 3 1 1 5 2.5 5 1.5-4 2-8.5c.5-2 1.5-3 1.5-5C21 5 19.5 3 17 3c-2 0-3 1-5 1S9 3 7 3z" />
+      </symbol>
+      <symbol id="i-home" viewBox="0 0 24 24">
+        <path d="M3 11l9-7 9 7" />
+        <path d="M5 10v10h14V10" />
+        <path d="M10 20v-5h4v5" />
+      </symbol>
+      <symbol id="i-scale" viewBox="0 0 24 24">
+        <path d="M12 3v18M5 21h14M6 6h12M6 6l-3 7a3 3 0 0 0 6 0L6 6zM18 6l-3 7a3 3 0 0 0 6 0l-3-7z" />
+      </symbol>
+      <symbol id="i-sparkle" viewBox="0 0 24 24">
+        <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z" />
+        <path d="M19 17l.8 2.2L22 20l-2.2.8L19 23l-.8-2.2L16 20l2.2-.8L19 17z" />
+      </symbol>
+      <symbol id="i-fb" viewBox="0 0 24 24">
+        <path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v7h4v-7h3l1-4h-4V8z" />
+      </symbol>
+      <symbol id="i-ig" viewBox="0 0 24 24">
+        <rect x="3" y="3" width="18" height="18" rx="5" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="17.5" cy="6.5" r="0.8" />
+      </symbol>
+      <symbol id="i-in" viewBox="0 0 24 24">
+        <rect x="3" y="9" width="4" height="12" />
+        <circle cx="5" cy="5" r="2" />
+        <path d="M10 9h4v2a4 4 0 0 1 6 3v7h-4v-6a2 2 0 0 0-4 0v6h-4V9z" />
+      </symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24">
+        <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" />
+      </symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24">
+        <rect x="3" y="5" width="18" height="14" rx="2" />
+        <path d="M3 7l9 6 9-6" />
+      </symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24">
+        <path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11z" />
+        <circle cx="12" cy="10" r="2.5" />
+      </symbol>
+      <symbol id="i-pointer" viewBox="0 0 24 24">
+        <path d="M5 3l14 7-6 2-2 6L5 3z" fill="currentColor" />
+      </symbol>
+      <symbol id="i-drag" viewBox="0 0 24 24">
+        <path d="M8 7l-5 5 5 5M16 7l5 5-5 5" />
+      </symbol>
+      <symbol id="i-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16" />
+      </symbol>
+      <symbol id="i-flow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+        stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="6" height="6" rx="1" />
+        <rect x="15" y="15" width="6" height="6" rx="1" />
+        <path d="M9 6h4a2 2 0 0 1 2 2v7" />
+      </symbol>
+      <symbol id="i-megaphone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 10v4h4l8 5V5L7 10H3z" />
+        <path d="M18.5 9a4 4 0 0 1 0 6" />
+      </symbol>
+      <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2V5z" />
+        <path d="M4 19a2 2 0 0 1 2-2h13" />
+      </symbol>
+      <symbol id="i-coin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+        stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="9" />
+        <path
+          d="M14.5 9.5c-.5-1-1.5-1.5-2.5-1.5-1.4 0-2.5.8-2.5 2s1 1.7 2.5 2 2.5.8 2.5 2-1.1 2-2.5 2c-1 0-2-.5-2.5-1.5M12 6.5V8m0 8v1.5" />
+      </symbol>
+      <symbol id="i-desk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+        stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="4" width="18" height="12" rx="2" />
+        <path d="M8 20h8M12 16v4" />
+      </symbol>
+      <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+        stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="9" cy="8" r="3.5" />
+        <path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6" />
+        <path d="M16 4.7a3.5 3.5 0 0 1 0 6.6M18 14.3c2 .7 3.5 2.6 3.5 5.7" />
+      </symbol>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header" id="top">
+    <div class="bar">
+      <a class="logo" href="index.html" aria-label="Codevelop home"><img src="images/codevelop.webp"
+          alt="Codevelop logo" class="brand-logo" width="160" height="40"></a>
+      <button class="burger" type="button" aria-label="Open menu"
+        aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav aria-label="Main">
+        <ul>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">AI Agents <svg class="chev"
+                viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop drop--agents">
+              <div class="agents-top">
+                <span class="agents-label">AI Agents</span>
+                <a class="agents-all" href="#">View all agents</a>
+              </div>
+
+              <a class="agent" href="customer-support-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-chat" />
+                  </svg></span>
+                <span class="agent-txt"><b>Customer Support Agents</b><small>24/7 answers across chat &amp;
+                    inbox</small></span>
+              </a>
+              <a class="agent" href="sales-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-funnel" />
+                  </svg></span>
+                <span class="agent-txt"><b>Sales &amp; Lead-Generation Agents</b><small>Capture, qualify &amp; follow up
+                    with leads</small></span>
+              </a>
+
+              <a class="agent" href="software-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-code" />
+                  </svg></span>
+                <span class="agent-txt"><b>Software Development Agents</b><small>Code, review &amp; ship
+                    faster</small></span>
+              </a>
+              <a class="agent" href="workflow-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-flow" />
+                  </svg></span>
+                <span class="agent-txt"><b>Workflow Automation Agents</b><small>Connect tools &amp; automate routine
+                    tasks</small></span>
+              </a>
+
+              <a class="agent" href="marketing-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-megaphone" />
+                  </svg></span>
+                <span class="agent-txt"><b>Marketing Agents</b><small>Campaigns, content &amp; channel
+                    management</small></span>
+              </a>
+              <a class="agent" href="research-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-chart" />
+                  </svg></span>
+                <span class="agent-txt"><b>Research &amp; Data Analyst Agents</b><small>Insights &amp; plain-language
+                    reports</small></span>
+              </a>
+
+              <a class="agent" href="internal-knowledge-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-book" />
+                  </svg></span>
+                <span class="agent-txt"><b>Internal Knowledge Agents</b><small>Instant answers from your company
+                    data</small></span>
+              </a>
+              <a class="agent" href="finance-accounting-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-coin" />
+                  </svg></span>
+                <span class="agent-txt"><b>Finance &amp; Accounting Agents</b><small>Invoices, reconciliation &amp;
+                    reporting</small></span>
+              </a>
+
+              <a class="agent" href="it-service-desk-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-desk" />
+                  </svg></span>
+                <span class="agent-txt"><b>IT Service Desk Agents</b><small>Resolve tickets &amp; access
+                    requests</small></span>
+              </a>
+              <a class="agent" href="hr-recruitment-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-users" />
+                  </svg></span>
+                <span class="agent-txt"><b>HR &amp; Recruitment Agents</b><small>Screen, schedule &amp; onboard
+                    people</small></span>
+              </a>
+            </div>
+          </li>
+<li class="has-mega"><button class="top" type="button" aria-expanded="false">Connectors <svg class="chev"
+                viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop drop--agents drop--connectors">
+              <div class="agents-top">
+                <span class="agents-label">Connectors</span>
+                <a class="agents-all" href="#">View all connectors</a>
+              </div>
+
+              <a class="agent" href="sap-business-one.html">
+                <span class="agent-ico"><img src="images/sap.png" alt="SAP Business One" loading="lazy"></span>
+                <span class="agent-txt"><b>SAP Business One</b><small>ERP integration &amp; consulting</small></span>
+              </a>
+              <a class="agent" href="salesforce.html">
+                <span class="agent-ico"><img src="images/salesforce.png" alt="Salesforce" loading="lazy"></span>
+                <span class="agent-txt"><b>Salesforce</b><small>CRM &amp; order-to-cash sync</small></span>
+              </a>
+
+              <a class="agent" href="netsuite.html">
+                <span class="agent-ico"><img src="images/netsuite.png" alt="NetSuite" loading="lazy"></span>
+                <span class="agent-txt"><b>NetSuite</b><small>ERP, ecommerce &amp; EDI sync</small></span>
+              </a>
+              <a class="agent" href="shopify.html">
+                <span class="agent-ico"><img src="images/shopify.png" alt="Shopify" loading="lazy"></span>
+                <span class="agent-txt"><b>Shopify</b><small>Ecommerce ↔ back office</small></span>
+              </a>
+
+              <a class="agent" href="quickbooks.html">
+                <span class="agent-ico"><img src="images/quickbooks.png" alt="QuickBooks" loading="lazy"></span>
+                <span class="agent-txt"><b>QuickBooks</b><small>Accounting &amp; invoice sync</small></span>
+              </a>
+              <a class="agent" href="woocommerce.html">
+                <span class="agent-ico"><img src="images/woocommerce.png" alt="WooCommerce" loading="lazy"></span>
+                <span class="agent-txt"><b>WooCommerce</b><small>WordPress store integration</small></span>
+              </a>
+
+              <a class="agent" href="zoho.html">
+                <span class="agent-ico"><img src="images/zoho.png" alt="Zoho" loading="lazy"></span>
+                <span class="agent-txt"><b>Zoho</b><small>Zoho One suite integration</small></span>
+              </a>
+              <a class="agent" href="zuper.html">
+                <span class="agent-ico"><img src="images/zuper.png" alt="Zuper" loading="lazy"></span>
+                <span class="agent-txt"><b>Zuper</b><small>Field service management sync</small></span>
+              </a>
+
+              <a class="agent" href="attio.html">
+                <span class="agent-ico"><img src="images/attio.png" alt="Attio" loading="lazy"></span>
+                <span class="agent-txt"><b>Attio</b><small>CRM &amp; record sync</small></span>
+              </a>
+              <a class="agent" href="twenty.html">
+                <span class="agent-ico"><img src="images/twenty.png" alt="Twenty" loading="lazy"></span>
+                <span class="agent-txt"><b>Twenty</b><small>Open-source CRM sync</small></span>
+              </a>
+            </div>
+          </li>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">Services <svg class="chev"
+                viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop drop--mega">
+              <div class="mega-top">
+                <a class="mega-all" href="services.html">View all services <svg class="ico" width="16" height="16"
+                    aria-hidden="true">
+                    <use href="#i-arrow" />
+                  </svg></a>
+              </div>
+
+              <div class="mega-col">
+                <h4><a href="performance-marketing.html">Performance Marketing</a></h4>
+                <a href="meta-ads.html">Google Ads Management</a>
+                <a href="facebook-ads.html">Facebook Ads</a>
+                <a href="remarketing.html">Remarketing</a>
+              </div>
+
+              <div class="mega-col">
+                <h4><a href="web-development.html">Web Development Services</a></h4>
+                <a href="custom-website-design.html">Custom Website Design</a>
+                <a href="wordpress-development.html">WordPress Web Development</a>
+                <a href="shopify-development.html">Shopify Web Development</a>
+                <a href="webflow-development.html">Webflow Web Development</a>
+                <a href="framer-development.html">Framer Web Development</a>
+                <a href="mageneto-development.html">Magento Web Development</a>
+                <a href="website-maintenance.html">Website Maintenance</a>
+                <a href="website-redesign.html">Website Redesign</a>
+              </div>
+
+              <div class="mega-col">
+                <h4><a href="social-media-marketing.html">Social Media Marketing</a></h4>
+                <a href="content-marketing.html">Content Marketing</a>
+              </div>
+
+              <div class="mega-col">
+                <h4><a href="search-engine-optimization.html">Search Engine Optimization</a></h4>
+                <a href="local-seo.html">Local SEO</a>
+                <a href="seo-audits.html">SEO Audits</a>
+                <a href="technical-seo.html">Technical SEO</a>
+                <a href="enterprise-seo.html">Enterprise SEO</a>
+              </div>
+            </div>
+          </li>
+          <li><button class="top" type="button" aria-expanded="false">Hire Talent <svg class="chev" viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop"><a href="#">Developers</a><a href="#">Automation Engineers</a><a href="#">Dedicated
+                Teams</a></div>
+          </li>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="#">Success Stories</a></li>
+          <li><a href="#">Insights</a></li>
+        </ul>
+        <a class="hdr-cta hdr-cta-m" href="contact-us.html">Get a Free Automation Review</a>
+      </nav>
+      <a class="hdr-cta" href="contact-us.html">Get a Free Automation Review</a>
+    </div>
+  </header>
+
+  <main id="content">
+
+    <!-- HERO -->
+    <section class="hero-wrap" aria-labelledby="hero-title">
+      <div class="hero hero--page">
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="hero-glow" aria-hidden="true"></div>
+        <div class="ring ring--1" aria-hidden="true"><i></i></div>
+        <div class="ring ring--2" aria-hidden="true"><i></i></div>
+        <div class="container hero-inner">
+          <div class="hero-copy">
+            <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a> / QuickBooks</nav>
+            <h1 class="h-display" id="hero-title">QuickBooks, fed automatically by the tools that make and take your money.</h1>
+            <p class="lead">We connect QuickBooks Online and QuickBooks Desktop to your store, CRM, payment processor and POS, so sales, invoices and payouts land in the books without anyone retyping them. We're independent: we don't sell a connector, so we choose the approach that fits your edition and your process.</p>
+            <div class="hero-stack" aria-hidden="true">
+              <span class="hs"><img src="images/salesforce.png" alt=""></span><i class="sep"></i>
+              <span class="hs"><img src="images/shopify.png" alt=""></span><i class="sep"></i>
+              <span class="hs hs--sap"><img src="images/quickbooks.png" alt=""></span><i class="sep"></i>
+              <span class="hs"><img src="images/netsuite.png" alt=""></span><i class="sep"></i>
+              <span class="hs"><img src="images/sap.png" alt=""></span>
+            </div>
+            <div class="hero-actions">
+              <a class="btn btn--primary btn--lg btn--pulse" href="contact-us.html">Book a scoping call</a>
+              <a class="btn btn--ghost btn--lg" href="#budget">See typical budgets</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BASICS -->
+    <section class="section" id="basics" aria-labelledby="basics-title">
+      <div class="container basics" data-reveal>
+        <div class="basics-copy">
+          <span class="pill">The basics</span>
+          <h2 class="h-section" id="basics-title">What QuickBooks integration actually means</h2>
+          <p class="lead">It means QuickBooks and the other apps you run pass data to each other on their own: customers, items, invoices, payments and bills. A Shopify order becomes a QuickBooks invoice, and a Stripe charge becomes a matched payment, within minutes instead of at month-end.</p>
+          <p>Most QuickBooks companies also run a store, a CRM, a payment processor and a POS, and each one is another place where the same sale gets typed in again. Connect them and you get one financial picture, with fewer reconciliation errors and far less copying between screens.</p>
+        </div>
+        <div class="ba">
+          <div class="no"><h3>Without integration</h3><ul><li>Sales retyped as invoices</li><li>Payouts matched by hand</li><li>Reps unable to see who has paid</li><li>Month-end spent hunting for mismatches</li></ul></div>
+          <div class="yes"><h3>With integration</h3><ul><li>Every sale becomes an invoice or receipt</li><li>Payouts match deposits automatically</li><li>Payment status shows in the CRM</li><li>Books that stay close to current</li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SALE TO BOOKS -->
+    <section class="section web" id="sale-to-books" aria-labelledby="s2b-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Sale to ledger</span>
+          <h2 class="h-section" id="s2b-title">One sale, five handoffs, nothing re-keyed</h2>
+        </div>
+        <ol class="tl">
+          <li><h3>Sale made</h3><p>A customer pays on your store, POS or invoice link.</p></li>
+          <li><h3>Record created</h3><p>QuickBooks gets the invoice or sales receipt, with the right customer and items.</p></li>
+          <li><h3>Payment captured</h3><p>The processor's charge is matched to the right invoice.</p></li>
+          <li><h3>Payout reconciled</h3><p>Fees and refunds are split out, so the deposit ties to the bank.</p></li>
+          <li><h3>Teams updated</h3><p>Payment status flows back to the CRM, so sales sees it without asking.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- EDITION -->
+    <section class="section" id="edition" aria-labelledby="edition-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Online or Desktop</span>
+          <h2 class="h-section" id="edition-title">Your QuickBooks edition shapes the whole design</h2>
+          <p class="lead">The two editions connect in very different ways, so we confirm which one you run before anything else.</p>
+        </div>
+        <div class="rt-grid" data-stagger>
+          <div class="feature"><h3>QuickBooks Online<small>Cloud, REST API and webhooks</small></h3><p><b>How it connects</b> through a modern REST API secured with OAuth 2.0, plus webhooks for change events.</p><p><b>What that means</b> near real-time syncing and the widest choice of ready-made connectors.</p></div>
+          <div class="feature"><h3>QuickBooks Desktop<small>Local company file</small></h3><p><b>How it connects</b> through the QuickBooks Web Connector using QBXML, or a hosted middleware agent.</p><p><b>What that means</b> scheduled, batch-style syncing, with some extra setup on the host machine.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPATIBILITY -->
+    <section class="section web" id="compatibility" aria-labelledby="compat-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Compatibility</span>
+          <h2 class="h-section" id="compat-title">What can you connect to QuickBooks?</h2>
+          <p class="lead">Almost anything that exposes an API. These six groups feed sales, invoices and costs into your books in most of our projects.</p>
+        </div>
+        <div class="cat-grid" data-stagger>
+          <div class="cat"><h3>Ecommerce</h3><ul class="pair-chips"><li>Shopify</li><li>WooCommerce</li><li>BigCommerce</li></ul><p>Orders as invoices or sales receipts, items, customers and payouts.</p></div>
+          <div class="cat"><h3>CRM</h3><ul class="pair-chips"><li>Salesforce</li><li>HubSpot</li><li>Zoho CRM</li><li>Twenty</li></ul><p>Customers, invoices and payment status back to sales.</p></div>
+          <div class="cat"><h3>Payments</h3><ul class="pair-chips"><li>Stripe</li><li>Square</li><li>PayPal</li></ul><p>Charges, refunds, fees and deposit reconciliation.</p></div>
+          <div class="cat"><h3>POS &amp; retail</h3><ul class="pair-chips"><li>Square POS</li><li>Shopify POS</li><li>Lightspeed</li></ul><p>Daily sales receipts, tax, tips and item-level revenue.</p></div>
+          <div class="cat"><h3>Inventory &amp; operations</h3><ul class="pair-chips"><li>Cin7</li><li>Katana</li><li>Custom systems</li></ul><p>Items, stock levels, purchase orders and cost of goods sold.</p></div>
+          <div class="cat"><h3>Payroll &amp; expenses</h3><ul class="pair-chips"><li>Gusto</li><li>Expensify</li><li>Bill-pay tools</li></ul><p>Journal entries, bills, expense claims and vendor payments.</p></div>
+        </div>
+        <p class="note">Not on the list? It can almost certainly still be connected. We scope against your process, not a connector catalogue.</p>
+      </div>
+    </section>
+
+    <!-- POPULAR PAIRINGS -->
+    <section class="section" id="pairings" aria-labelledby="pair-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Popular pairings</span>
+          <h2 class="h-section" id="pair-title">Six tools most often paired with QuickBooks</h2>
+          <p class="lead">Each pairing shows what moves, in which direction, and how long a typical build takes.</p>
+        </div>
+        <div class="pair-grid" data-stagger>
+          <a class="pair" href="quickbooks-shopify.html">
+            <div class="pair-top"><span class="pair-tile"><img src="images/quickbooks.png" alt="QuickBooks"></span><span class="pair-wire"></span><span class="pair-tile"><img src="images/shopify.png" alt="Shopify"></span></div>
+            <h3>QuickBooks and Shopify</h3>
+            <p>Orders, refunds and fees post to QuickBooks, and Shopify payouts are matched to bank deposits.</p>
+            <ul class="pair-chips"><li>Orders</li><li>Refunds</li><li>Payouts</li></ul>
+            <div class="pair-meta"><span>Orders out, payouts in</span><b>2–3 weeks</b></div>
+          </a>
+          <a class="pair" href="quickbooks-salesforce.html">
+            <div class="pair-top"><span class="pair-tile"><img src="images/quickbooks.png" alt="QuickBooks"></span><span class="pair-wire"></span><span class="pair-tile"><img src="images/salesforce.png" alt="Salesforce"></span></div>
+            <h3>QuickBooks and Salesforce</h3>
+            <p>Won deals turn into QuickBooks invoices, and payment status returns to the Salesforce account.</p>
+            <ul class="pair-chips"><li>Invoices</li><li>Payments</li><li>Balances</li></ul>
+            <div class="pair-meta"><span>Deals out, payments in</span><b>2–4 weeks</b></div>
+          </a>
+          <a class="pair" href="quickbooks-woocommerce.html">
+            <div class="pair-top"><span class="pair-tile"><img src="images/quickbooks.png" alt="QuickBooks"></span><span class="pair-wire"></span><span class="pair-tile" ><img src="images/Woocommerce.png" alt="WooCommerce"></span></div>
+            <h3>QuickBooks and WooCommerce</h3>
+            <p>WordPress store orders and deposits flow into QuickBooks without anyone exporting a spreadsheet.</p>
+            <ul class="pair-chips"><li>Orders</li><li>Deposits</li><li>Customers</li></ul>
+            <div class="pair-meta"><span>Orders out, deposits in</span><b>2–3 weeks</b></div>
+          </a>
+          <a class="pair" href="quickbooks-stripe.html">
+            <div class="pair-top"><span class="pair-tile"><img src="images/quickbooks.png" alt="QuickBooks"></span><span class="pair-wire"></span><span class="pair-tile" ><img src="images/stripe.png" alt="Stripe"></span></div>
+            <h3>QuickBooks and Stripe</h3>
+            <p>Charges, fees and payouts are recorded and reconciled, so deposits tie out without manual matching.</p>
+            <ul class="pair-chips"><li>Payments</li><li>Fees</li><li>Payouts</li></ul>
+            <div class="pair-meta"><span>Payments in</span><b>1–3 weeks</b></div>
+          </a>
+          <a class="pair" href="quickbooks-hubspot.html">
+            <div class="pair-top"><span class="pair-tile"><img src="images/quickbooks.png" alt="QuickBooks"></span><span class="pair-wire"></span><span class="pair-tile"><img src="images/hubspot.jpg" alt="HubSpot"></span></div>
+            <h3>QuickBooks and HubSpot</h3>
+            <p>Closed deals become invoices, and revenue data returns to HubSpot so marketing sees what paid off.</p>
+            <ul class="pair-chips"><li>Deals</li><li>Invoices</li><li>Revenue</li></ul>
+            <div class="pair-meta"><span>Two-way sync</span><b>2–4 weeks</b></div>
+          </a>
+          <a class="pair" href="quickbooks-pos.html">
+            <div class="pair-top"><span class="pair-tile"><img src="images/quickbooks.png" alt="QuickBooks"></span><span class="pair-wire"></span><span class="pair-tile" ><img src="images/pos.jpg" alt="POS"></span></div>
+            <h3>QuickBooks and POS</h3>
+            <p>Daily takings, tax, tips and card deposits post to QuickBooks as clean summary entries.</p>
+            <ul class="pair-chips"><li>Daily sales</li><li>Tax</li><li>Tips</li></ul>
+            <div class="pair-meta"><span>Sales in</span><b>2–4 weeks</b></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROUTES -->
+    <section class="section web" id="routes" aria-labelledby="route-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Choosing a route</span>
+          <h2 class="h-section" id="route-title">Five ways to connect QuickBooks, and when each one fits</h2>
+          <p class="lead">QuickBooks Online has a cloud REST API with webhooks. QuickBooks Desktop has no cloud API and connects through the Web Connector instead. iPaaS tools wrap both in ready-made templates, and your edition, volume and process decide which is best.</p>
+        </div>
+        <div class="rt-grid" data-stagger>
+          <div class="feature"><h3>QBO REST API<small>QuickBooks Online, OAuth 2.0</small></h3><p><b>Best when</b> you're on Online and want a custom build or near real-time updates.</p><p><b>Trade-off</b> Online only, with rate limits and an app review before production.</p></div>
+          <div class="feature"><h3>Web Connector<small>Desktop with QBXML</small></h3><p><b>Best when</b> you're on Desktop and need it to sync with cloud systems.</p><p><b>Trade-off</b> it runs on the host machine and polls, so it isn't real-time.</p></div>
+          <div class="feature"><h3>Webhooks<small>Online change notifications</small></h3><p><b>Best when</b> a flow should start the moment an invoice or payment changes.</p><p><b>Trade-off</b> Online only, and you still fetch the record over the API afterwards.</p></div>
+          <div class="feature"><h3>iPaaS connectors<small>Celigo, Zapier or MuleSoft</small></h3><p><b>Best when</b> your flow is standard, such as store orders or payment sync.</p><p><b>Trade-off</b> the subscription never ends, and templates only bend so far.</p></div>
+          <div class="feature"><h3>Custom middleware<small>Make, n8n or code</small></h3><p><b>Best when</b> several companies, unusual rules or AI automation are involved.</p><p><b>Trade-off</b> you need a partner to look after it.</p></div>
+        </div>
+        <p class="note">For many standard QuickBooks Online flows a ready-made connector is the right answer. We'll say so, help you configure it, and build custom only when your process, or a Desktop company file, needs it.</p>
+      </div>
+    </section>
+
+    <!-- BUDGET -->
+    <section class="section" id="budget" aria-labelledby="budget-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Typical budgets</span>
+          <h2 class="h-section" id="budget-title">What a QuickBooks integration usually costs</h2>
+          <p class="lead">Most projects land between $2,000 and $18,000. Templates sit at the low end with a monthly fee, while custom builds and most Desktop work sit at the high end with no platform fee.</p>
+        </div>
+        <div class="rt-grid" data-stagger>
+          <div class="feature"><h3>Template connector<small>QuickBooks Online</small></h3><p><b>$2k – $6k</b> to implement, plus about $50 – $500 a month for the platform.</p></div>
+          <div class="feature"><h3>Orchestrated flows<small>Make or n8n</small></h3><p><b>$3.5k – $10k</b> to implement, plus about $50 – $300 a month and a support plan.</p></div>
+          <div class="feature"><h3>Custom API or Web Connector<small>Built around your process</small></h3><p><b>$7k – $18k+</b> to implement, with a support plan and no platform fee.</p></div>
+        </div>
+        <div class="factors"><span>Online or Desktop</span><span>How many records you sync</span><span>One-way or two-way</span><span>Transformation logic in between</span></div>
+        <p class="note">You get a fixed quote after a scoping call, so you know the cost before we configure a single field.</p>
+      </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section class="section web" id="timeline" aria-labelledby="time-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Timeline</span>
+          <h2 class="h-section" id="time-title">How long does it take?</h2>
+          <p class="lead">The biggest delay is rarely development. It's a messy chart of accounts and duplicate customers or items in QuickBooks, so we review that first.</p>
+        </div>
+        <div class="lanes">
+          <div class="lane"><h3>Template connectors<small>Standard records on a ready-made QuickBooks Online flow</small></h3><div class="lane-bar" style="--w:30%">2–3 weeks</div></div>
+          <div class="lane"><h3>Custom builds<small>REST API or Web Connector, sized by records, edition and testing</small></h3><div class="lane-bar" style="--w:100%">5–10 weeks</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="section" id="process" aria-labelledby="proc-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">How we work</span>
+          <h2 class="h-section" id="proc-title">From first call to monitored go-live</h2>
+          <p class="lead">Five stages, every time. You approve a fixed scope and a field mapping sheet before we build anything.</p>
+        </div>
+        <ol class="tl">
+          <li><h3>Discover</h3><p>We list your systems, records, volumes and the outcome you need.</p></li>
+          <li><h3>Map</h3><p>Every field, direction, transformation and error rule goes on one sheet.</p></li>
+          <li><h3>Build</h3><p>We build in a QuickBooks sandbox or a test company file, never your live books.</p></li>
+          <li><h3>Test</h3><p>Real transactions end to end, including failures, retries and duplicates.</p></li>
+          <li><h3>Support</h3><p>Alerts, logs and a named engineer after launch.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- VENDOR VS CONSULTANT -->
+    <section class="section web" id="compare" aria-labelledby="vs-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Why a consultant</span>
+          <h2 class="h-section" id="vs-title">Independent team or connector vendor?</h2>
+          <p class="lead">A connector vendor can only sell you its own connector. We start from your requirement and choose the tool afterwards, which matters most when your workflow doesn't match a template or you run QuickBooks Desktop.</p>
+        </div>
+        <div class="vs-wrap"><div class="vs">
+          <div></div><div>Connector vendor</div><div>Codevelop</div>
+          <div>Recommends</div><div>Their own product</div><div>Whatever fits, theirs included</div>
+          <div>Unusual requirements</div><div>Change requests or workarounds</div><div>Custom logic is our core work</div>
+          <div>Pricing</div><div>Subscription per connector</div><div>Fixed project fee, optional retainer</div>
+          <div>When it breaks</div><div>A ticket queue</div><div>The engineer who built it</div>
+          <div>Several systems</div><div>One connector per pair</div><div>One planned architecture</div>
+        </div></div>
+      </div>
+    </section>
+
+    <!-- WHY CODEVELOP -->
+    <section class="section web ai" id="why-us" aria-labelledby="why-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill pill--dark">Why Codevelop</span>
+          <h2 class="h-section" id="why-title">Built to keep syncing after go-live</h2>
+          <p class="lead">An integration only pays off while it keeps running. Here is what you get beyond the first sync.</p>
+        </div>
+        <div class="rt-grid" data-stagger>
+          <div class="feature"><h3>Vendor-neutral</h3><p>We don't sell a connector, so we have no reason to push one. We recommend what fits, even if we earn nothing from it.</p></div>
+          <div class="feature"><h3>Fixed scope and price</h3><p>You approve a signed mapping sheet and a fixed quote first. No open hourly meter, no mid-project surprises.</p></div>
+          <div class="feature"><h3>A named engineer</h3><p>The person who built your integration answers when something changes. No ticket lottery, no re-explaining your setup.</p></div>
+          <div class="feature"><h3>Online and Desktop</h3><p>We handle both editions, including Web Connector and QBXML work that many integrators avoid.</p></div>
+          <div class="feature"><h3>We build the other side</h3><p>We develop <a href="shopify-development.html">Shopify</a> and <a href="wordpress-development.html">WordPress and WooCommerce</a> stores, so we know the app feeding your books, not just QuickBooks.</p></div>
+          <div class="feature"><h3>Rescue and take-over</h3><p>We fix abandoned custom builds, failed Web Connector syncs and duplicate-record messes. If your last integration failed, we've likely seen it before.</p></div>
+          <div class="feature"><h3>AI on your books</h3><p>We build agents that report in plain language, handle routine invoices and suggest transaction categories from your QuickBooks data.</p></div>
+          <div class="feature"><h3>Monitored after launch</h3><p>Logging, alerts and retries ship with every build, so a failed sync reaches us before it reaches you.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="container faq-grid" data-reveal>
+        <div class="faq-head">
+          <span class="pill">Common questions</span>
+          <h2 class="h-section" id="faq-title">QuickBooks integration FAQ</h2>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item open">
+            <h3><button class="faq-q" type="button" aria-expanded="true">Does QuickBooks have an API? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes, for QuickBooks Online. It has a modern REST API secured with OAuth 2.0. QuickBooks Desktop has no cloud REST API and connects through the Web Connector using QBXML requests instead.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">What's the difference between Online and Desktop integration? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Online connects over its cloud API and webhooks, so it can sync in near real time. Desktop is a local application that connects through the Web Connector or a hosted middleware agent, usually on a schedule.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">What is the QuickBooks Web Connector? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>It's Intuit's tool for QuickBooks Desktop. It runs on the machine that holds the company file and exchanges QBXML requests with a web service on a schedule, which lets Desktop talk to cloud systems it can't reach directly.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Can you sync QuickBooks with Shopify or Salesforce? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. Connecting QuickBooks to Shopify, WooCommerce, Salesforce or HubSpot is among our most common projects, moving customers, invoices, items and payments between the systems automatically.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Is it real-time or scheduled? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>QuickBooks Online can run near real time using webhooks and its API. Desktop follows the Web Connector's polling schedule, so it behaves more like a batch. We match the pattern to your volume and urgency.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Can invoices and payments sync both ways? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. Two-way sync of invoices, payments, customers and items works well, as long as each field has one clear owner. We set those rules up front so you don't end up with duplicate or conflicting records.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">How much does it cost? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Most projects fall between $2,000 and $18,000, depending on the approach, how many records you sync and whether you run Online or Desktop. See the budget section above, then book a scoping call for a fixed quote.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Can you fix a broken QuickBooks integration? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. We repair broken connectors, failed Web Connector syncs, abandoned custom builds and duplicate-record problems, or replace them, whichever costs you less.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Can you connect QuickBooks to a POS or inventory system? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. We link QuickBooks to POS tools like Square and Shopify POS and to inventory platforms, syncing sales receipts, items, stock levels and cost of goods sold.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Does it work for multi-company setups? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. QuickBooks handles one company file per instance, so a group of entities needs one connection per company. We design middleware that routes each record to the right entity and consolidates reporting across them.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta" id="contact" aria-labelledby="cta-title">
+      <div class="cta-grid">
+        <div class="cta-bar" aria-hidden="true"></div>
+        <div class="cta-box">
+          <div class="ripples" aria-hidden="true"><span></span><span></span><span></span></div>
+          <h2 id="cta-title">Ready to connect QuickBooks to the rest of your stack?</h2>
+          <p>Every week your systems stay apart, your team re-keys invoices and payments again. Tell us what you run and you'll get a scoped plan and a fixed price before we build.</p>
+          <a class="btn btn--primary btn--lg btn-sweep" href="contact-us.html"><span style="position:relative">Book a scoping call</span></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+<!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="footer-panel">
+      <div class="footer-flag" aria-hidden="true"></div>
+      <div class="footer-main">
+        <div class="footer-brand">
+          <img src="images/codevelop.webp" alt="Codevelop logo" class="brand-logo" width="160" height="40">
+          <p>At Codevelop, we help businesses turn strategy into scalable results through thoughtful design,
+            performance-driven marketing, and modern technology.</p>
+          <div class="socials">
+            <a href="https://www.facebook.com/Codevelop.usa/" aria-label="Facebook" target="_blank" rel="noopener"><svg
+                class="ico">
+                <use href="#i-fb" />
+              </svg></a>
+            <a href="https://www.instagram.com/codevelop_us/" aria-label="Instagram" target="_blank" rel="noopener"><svg
+                class="ico">
+                <use href="#i-ig" />
+              </svg></a>
+            <a href="https://www.linkedin.com/company/codevelop-us" aria-label="LinkedIn" target="_blank"
+              rel="noopener"><svg class="ico">
+                <use href="#i-in" />
+              </svg></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Services</h3>
+          <ul>
+            <li><a href="performance-marketing.html">Performance Marketing</a></li>
+            <li><a href="#">SEO Services</a></li>
+            <li><a href="#">Social Media Marketing</a></li>
+            <li><a href="web-development.html">Web Development</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Link</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Case Studies</a></li>
+            <li><a href="#">Blogs</a></li>
+            <li><a href="https://codevelopus.com/">Free SEO Audit</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Contact Us</h3>
+          <ul class="contact">
+            <li><svg class="ico">
+                <use href="#i-pin" />
+              </svg><span>555 SE Martin Luther King JR Blvd, Portland, OR 97214</span></li>
+            <li><svg class="ico">
+                <use href="#i-phone" />
+              </svg><a href="tel:+19714809833">+1 971-480-9833</a></li>
+            <li><svg class="ico">
+                <use href="#i-mail" />
+              </svg><a href="mailto:info@codevelop.us">info@codevelop.us</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="newsletter">
+        <div class="newsletter-box">
+          <h3>Signup our newsletter to get update information, news, insight or promotions.</h3>
+          <!-- Connect this form to your email provider (set action / method). -->
+          <form class="news-form" action="#" method="post">
+            <label class="sr-only" for="news-email">Email</label>
+            <input id="news-email" type="email" name="email" placeholder="Email" required autocomplete="email">
+            <button class="btn btn--primary" type="submit">Sign up</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <span>Copyright © 2026 Codevelop US, All Rights Reserved.</span>
+      <a href="#">Privacy policy</a>
+    </div>
+  </footer>
+
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>

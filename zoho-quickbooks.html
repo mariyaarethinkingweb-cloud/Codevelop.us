@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zoho + QuickBooks Integration | Codevelop</title>
+  <meta name="description"
+    content="Connect Zoho CRM or Zoho Books to QuickBooks so won deals become invoices and payment status flows back, for Online and Desktop. Fixed-price builds from Codevelop, with a named engineer after launch.">
+  <link rel="canonical" href="https://codevelopus.com/zoho-quickbooks-integration">
+  <meta name="theme-color" content="#0a3161">
+  <link rel="icon" href="https://codevelopus.com/wp-content/uploads/2026/01/cropped-codevelop-favicon-270x270.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/connector.css">
+  <link rel="stylesheet" href="css/connector-extra.css">
+</head>
+
+<body>
+
+  <!-- Icon sprite -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></symbol>
+      <symbol id="i-funnel" viewBox="0 0 24 24"><path d="M3 4h18l-7 8v6l-4 2v-8L3 4z" /></symbol>
+      <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" /></symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5z" /></symbol>
+      <symbol id="i-fb" viewBox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v7h4v-7h3l1-4h-4V8z" /></symbol>
+      <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="0.8" /></symbol>
+      <symbol id="i-in" viewBox="0 0 24 24"><rect x="3" y="9" width="4" height="12" /><circle cx="5" cy="5" r="2" /><path d="M10 9h4v2a4 4 0 0 1 6 3v7h-4v-6a2 2 0 0 0-4 0v6h-4V9z" /></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" /></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3 7l9 6 9-6" /></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11z" /><circle cx="12" cy="10" r="2.5" /></symbol>
+      <symbol id="i-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16" /></symbol>
+      <symbol id="i-flow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="6" height="6" rx="1" /><rect x="15" y="15" width="6" height="6" rx="1" /><path d="M9 6h4a2 2 0 0 1 2 2v7" /></symbol>
+      <symbol id="i-megaphone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10v4h4l8 5V5L7 10H3z" /><path d="M18.5 9a4 4 0 0 1 0 6" /></symbol>
+      <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2V5z" /><path d="M4 19a2 2 0 0 1 2-2h13" /></symbol>
+      <symbol id="i-coin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9" /><path d="M14.5 9.5c-.5-1-1.5-1.5-2.5-1.5-1.4 0-2.5.8-2.5 2s1 1.7 2.5 2 2.5.8 2.5 2-1.1 2-2.5 2c-1 0-2-.5-2.5-1.5M12 6.5V8m0 8v1.5" /></symbol>
+      <symbol id="i-desk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2" /><path d="M8 20h8M12 16v4" /></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5" /><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6" /><path d="M16 4.7a3.5 3.5 0 0 1 0 6.6M18 14.3c2 .7 3.5 2.6 3.5 5.7" /></symbol>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header" id="top">
+    <div class="bar">
+      <a class="logo" href="index.html" aria-label="Codevelop home"><img src="images/codevelop.webp" alt="Codevelop logo" class="brand-logo" width="160" height="40"></a>
+      <button class="burger" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav aria-label="Main">
+        <ul>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">AI Agents <svg class="chev" viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" /></svg></button>
+            <div class="drop drop--agents">
+              <div class="agents-top"><span class="agents-label">AI Agents</span><a class="agents-all" href="#">View all agents</a></div>
+              <a class="agent" href="customer-support-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-chat" /></svg></span><span class="agent-txt"><b>Customer Support Agents</b><small>24/7 answers across chat &amp; inbox</small></span></a>
+              <a class="agent" href="sales-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-funnel" /></svg></span><span class="agent-txt"><b>Sales &amp; Lead-Generation Agents</b><small>Capture, qualify &amp; follow up with leads</small></span></a>
+              <a class="agent" href="software-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-code" /></svg></span><span class="agent-txt"><b>Software Development Agents</b><small>Code, review &amp; ship faster</small></span></a>
+              <a class="agent" href="workflow-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-flow" /></svg></span><span class="agent-txt"><b>Workflow Automation Agents</b><small>Connect tools &amp; automate routine tasks</small></span></a>
+              <a class="agent" href="marketing-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-megaphone" /></svg></span><span class="agent-txt"><b>Marketing Agents</b><small>Campaigns, content &amp; channel management</small></span></a>
+              <a class="agent" href="research-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-chart" /></svg></span><span class="agent-txt"><b>Research &amp; Data Analyst Agents</b><small>Insights &amp; plain-language reports</small></span></a>
+              <a class="agent" href="internal-knowledge-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-book" /></svg></span><span class="agent-txt"><b>Internal Knowledge Agents</b><small>Instant answers from your company data</small></span></a>
+              <a class="agent" href="finance-accounting-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-coin" /></svg></span><span class="agent-txt"><b>Finance &amp; Accounting Agents</b><small>Invoices, reconciliation &amp; reporting</small></span></a>
+              <a class="agent" href="it-service-desk-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-desk" /></svg></span><span class="agent-txt"><b>IT Service Desk Agents</b><small>Resolve tickets &amp; access requests</small></span></a>
+              <a class="agent" href="hr-recruitment-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-users" /></svg></span><span class="agent-txt"><b>HR &amp; Recruitment Agents</b><small>Screen, schedule &amp; onboard people</small></span></a>
+            </div>
+          </li>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">Connectors <svg class="chev" viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" /></svg></button>
+            <div class="drop drop--agents drop--connectors">
+              <div class="agents-top"><span class="agents-label">Connectors</span><a class="agents-all" href="#">View all connectors</a></div>
+              <a class="agent" href="sap-business-one.html"><span class="agent-ico"><img src="images/sap.png" alt="SAP Business One" loading="lazy"></span><span class="agent-txt"><b>SAP Business One</b><small>ERP integration &amp; consulting</small></span></a>
+              <a class="agent" href="salesforce.html"><span class="agent-ico"><img src="images/salesforce.png" alt="Salesforce" loading="lazy"></span><span class="agent-txt"><b>Salesforce</b><small>CRM &amp; order-to-cash sync</small></span></a>
+              <a class="agent" href="netsuite.html"><span class="agent-ico"><img src="images/netsuite.png" alt="NetSuite" loading="lazy"></span><span class="agent-txt"><b>NetSuite</b><small>ERP, ecommerce &amp; EDI sync</small></span></a>
+              <a class="agent" href="shopify.html"><span class="agent-ico"><img src="images/shopify.png" alt="Shopify" loading="lazy"></span><span class="agent-txt"><b>Shopify</b><small>Ecommerce ↔ back office</small></span></a>
+              <a class="agent" href="quickbooks.html"><span class="agent-ico"><img src="images/quickbooks.png" alt="QuickBooks" loading="lazy"></span><span class="agent-txt"><b>QuickBooks</b><small>Accounting &amp; invoice sync</small></span></a>
+              <a class="agent" href="woocommerce.html"><span class="agent-ico"><img src="images/woocommerce.png" alt="WooCommerce" loading="lazy"></span><span class="agent-txt"><b>WooCommerce</b><small>WordPress store integration</small></span></a>
+              <a class="agent" href="zoho.html"><span class="agent-ico"><img src="images/zoho.png" alt="Zoho" loading="lazy"></span><span class="agent-txt"><b>Zoho</b><small>Zoho One suite integration</small></span></a>
+              <a class="agent" href="zuper.html"><span class="agent-ico"><img src="images/zuper.png" alt="Zuper" loading="lazy"></span><span class="agent-txt"><b>Zuper</b><small>Field service management sync</small></span></a>
+              <a class="agent" href="attio.html"><span class="agent-ico"><img src="images/attio.png" alt="Attio" loading="lazy"></span><span class="agent-txt"><b>Attio</b><small>CRM &amp; record sync</small></span></a>
+              <a class="agent" href="twenty.html"><span class="agent-ico"><img src="images/twenty.png" alt="Twenty" loading="lazy"></span><span class="agent-txt"><b>Twenty</b><small>Open-source CRM sync</small></span></a>
+            </div>
+          </li>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">Services <svg class="chev" viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" /></svg></button>
+            <div class="drop drop--mega">
+              <div class="mega-top"><a class="mega-all" href="services.html">View all services <svg class="ico" width="16" height="16" aria-hidden="true"><use href="#i-arrow" /></svg></a></div>
+              <div class="mega-col">
+                <h4><a href="performance-marketing.html">Performance Marketing</a></h4>
+                <a href="meta-ads.html">Google Ads Management</a>
+                <a href="facebook-ads.html">Facebook Ads</a>
+                <a href="remarketing.html">Remarketing</a>
+              </div>
+              <div class="mega-col">
+                <h4><a href="web-development.html">Web Development Services</a></h4>
+                <a href="custom-website-design.html">Custom Website Design</a>
+                <a href="wordpress-development.html">WordPress Web Development</a>
+                <a href="shopify-development.html">Shopify Web Development</a>
+                <a href="webflow-development.html">Webflow Web Development</a>
+                <a href="framer-development.html">Framer Web Development</a>
+                <a href="mageneto-development.html">Magento Web Development</a>
+                <a href="website-maintenance.html">Website Maintenance</a>
+                <a href="website-redesign.html">Website Redesign</a>
+              </div>
+              <div class="mega-col">
+                <h4><a href="social-media-marketing.html">Social Media Marketing</a></h4>
+                <a href="content-marketing.html">Content Marketing</a>
+              </div>
+              <div class="mega-col">
+                <h4><a href="search-engine-optimization.html">Search Engine Optimization</a></h4>
+                <a href="local-seo.html">Local SEO</a>
+                <a href="seo-audits.html">SEO Audits</a>
+                <a href="technical-seo.html">Technical SEO</a>
+                <a href="enterprise-seo.html">Enterprise SEO</a>
+              </div>
+            </div>
+          </li>
+          <li><button class="top" type="button" aria-expanded="false">Hire Talent <svg class="chev" viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" /></svg></button>
+            <div class="drop"><a href="#">Developers</a><a href="#">Automation Engineers</a><a href="#">Dedicated Teams</a></div>
+          </li>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="#">Success Stories</a></li>
+          <li><a href="#">Insights</a></li>
+        </ul>
+        <a class="hdr-cta hdr-cta-m" href="contact-us.html">Get a Free Automation Review</a>
+      </nav>
+      <a class="hdr-cta" href="contact-us.html">Get a Free Automation Review</a>
+    </div>
+  </header>
+
+  <main id="content">
+
+    <!-- HERO -->
+    <section class="hero-wrap" aria-labelledby="hero-title">
+      <div class="hero hero--page">
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="hero-glow" aria-hidden="true"></div>
+        <div class="ring ring--1" aria-hidden="true"><i></i></div>
+        <div class="ring ring--2" aria-hidden="true"><i></i></div>
+        <div class="container hero-inner">
+          <div class="hero-copy">
+            <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a> / <a href="#">Connectors</a> / <a href="zoho.html">Zoho</a> / QuickBooks</nav>
+            <h1 class="h-display" id="hero-title">Keep your Zoho apps and your QuickBooks books telling the same story.</h1>
+            <p class="lead">We link Zoho CRM or Zoho Books to QuickBooks so customers, invoices and tax settings are entered once, and so payment status returns to the Zoho record where sales can see it. It runs on QuickBooks Online or Desktop, and is built in Deluge, REST or middleware as your setup demands.</p>
+            <div class="hero-stack" aria-hidden="true">
+              <span class="hs hs--sap"><img src="images/zoho.png" alt=""></span><i class="sep"></i>
+              <span class="hs hs--sap"><img src="images/quickbooks.png" alt=""></span>
+            </div>
+            <div class="hero-actions">
+              <a class="btn btn--primary btn--lg btn--pulse" href="contact-us.html">Book a scoping call</a>
+              <a class="btn btn--ghost btn--lg" href="#budget">See budget and timing</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE PROBLEM -->
+    <section class="section" id="basics" aria-labelledby="basics-title">
+      <div class="container basics" data-reveal>
+        <div class="basics-copy">
+          <span class="pill">The problem</span>
+          <h2 class="h-section" id="basics-title">Why the same customer gets typed in twice</h2>
+          <p class="lead">Plenty of teams run Zoho CRM or Zoho Books for the customer relationship and QuickBooks for the accounting. The result is the same customer and the same invoice entered in two places, with sales unable to tell whether a deal has actually been paid.</p>
+          <p>The integration keeps both sides aligned. A won deal in Zoho becomes a QuickBooks invoice, new customers created in either system appear in the other, and payment status flows back so the account owner sees who has paid. We build the Zoho side with its REST APIs and Deluge scripting, and the QuickBooks side with the Online API or the Desktop Web Connector, so it fits the edition you actually run.</p>
+        </div>
+        <div class="ba">
+          <div class="no"><h3>Systems apart</h3><ul><li>Customers keyed into both systems</li><li>Won deals retyped as invoices</li><li>Tax codes that disagree</li><li>Sales asking finance who has paid</li></ul></div>
+          <div class="yes"><h3>Systems linked</h3><ul><li>Customers created once, matched everywhere</li><li>Invoices posted from won deals</li><li>Tax rates mapped to the right codes</li><li>Payment status visible in Zoho</li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT SYNCS -->
+    <section class="section web" id="mapping" aria-labelledby="map-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Entity mapping</span>
+          <h2 class="h-section" id="map-title">What syncs between Zoho and QuickBooks, and which way</h2>
+          <p class="lead">These are the records we sync most often, and the directions they usually run. Zoho CRM and Zoho Books both follow the same pattern.</p>
+        </div>
+        <div class="map-wrap">
+          <table class="map">
+            <thead>
+              <tr><th scope="col">In Zoho</th><th scope="col">In QuickBooks</th><th scope="col">Direction</th><th scope="col">What travels</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Accounts, contacts or customers</th><td>Customers</td><td><span class="dir dir--two">Both ways</span></td><td>Names, addresses and terms, so a customer created in either system appears in the other</td></tr>
+              <tr><th scope="row">Won deals or Zoho Books invoices</th><td>Invoices</td><td><span class="dir">Zoho → QuickBooks</span></td><td>Line items, quantities, prices and payment terms</td></tr>
+              <tr><th scope="row">Payment status fields</th><td>Payments and balances</td><td><span class="dir">QuickBooks → Zoho</span></td><td>Paid, partly paid and overdue states shown on the Zoho record</td></tr>
+              <tr><th scope="row">Products and price lists</th><td>Products and services</td><td><span class="dir dir--two">Both ways</span></td><td>Item names and prices kept consistent across the two systems</td></tr>
+              <tr><th scope="row">Tax settings</th><td>Tax rates and codes</td><td><span class="dir dir--two">Both ways</span></td><td>Rates mapped so invoices calculate the same amount on both sides</td></tr>
+              <tr><th scope="row">CRM dashboards</th><td>Revenue and payment totals</td><td><span class="dir">QuickBooks → Zoho</span></td><td>Real invoiced and collected figures shown in Zoho analytics</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">These are the usual directions. If you use both Zoho CRM and Zoho Books, we decide which of them talks to QuickBooks, so the same invoice never arrives twice.</p>
+      </div>
+    </section>
+
+    <!-- DEAL LIFECYCLE -->
+    <section class="section" id="workflow" aria-labelledby="flow-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">After go-live</span>
+          <h2 class="h-section" id="flow-title">One Zoho deal, from Won to paid in QuickBooks</h2>
+          <p class="lead">Once the link is running, a typical deal moves between the two systems like this, with no second round of data entry.</p>
+        </div>
+        <ol class="tl">
+          <li><h3>Deal marked Won</h3><p>A Deluge function or webhook fires on the stage change, and the account is matched against existing QuickBooks customers.</p></li>
+          <li><h3>Customer resolved</h3><p>If the customer exists, it is reused. If not, a new QuickBooks customer is created with the right terms and tax settings.</p></li>
+          <li><h3>Invoice posted</h3><p>QuickBooks receives the invoice with mapped lines and tax, and the invoice number is written back to the Zoho deal.</p></li>
+          <li><h3>Payment recorded</h3><p>When finance records a payment, the status changes to paid or partly paid and returns to the Zoho record.</p></li>
+          <li><h3>Dashboards updated</h3><p>Invoiced and collected totals appear in Zoho dashboards, so revenue reports match the books.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ROUTES -->
+    <section class="section web" id="routes" aria-labelledby="route-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Choosing a route</span>
+          <h2 class="h-section" id="route-title">How we build the Zoho link</h2>
+          <p class="lead">Zoho offers REST APIs and Deluge scripting. QuickBooks Online has a cloud API, and Desktop depends on the Web Connector. The right mix depends on your edition and volumes.</p>
+        </div>
+        <div class="map-wrap">
+          <table class="map">
+            <thead>
+              <tr><th scope="col">Route</th><th scope="col">What it is</th><th scope="col">Suits</th><th scope="col">Keep in mind</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Zoho REST API and Deluge</th><td>Zoho's own APIs and scripting language for triggering syncs.</td><td>Logic that starts inside Zoho CRM or Books</td><td>Deluge alone cannot reach QuickBooks Desktop</td></tr>
+              <tr><th scope="row">QuickBooks Online API</th><td>A cloud REST API secured with OAuth 2.0.</td><td>Near real-time sync when both systems are cloud-based</td><td>Rate limits apply, and the app needs review before go-live</td></tr>
+              <tr><th scope="row">Web Connector (Desktop, QBXML)</th><td>Intuit's tool for exchanging data with a local company file.</td><td>Businesses still running QuickBooks Desktop</td><td>Runs on a polling schedule from the host machine</td></tr>
+              <tr><th scope="row">Custom middleware</th><td>Orchestration built over both APIs, often with n8n, Make or code.</td><td>Two-way sync with transformation logic</td><td>Needs a partner who can maintain it</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">An honest note: if you are on QuickBooks Online and your records are standard, a templated connector may already do the job. We will say so, and only build custom Deluge or middleware when your requirement, or a Desktop company file, really needs it.</p>
+      </div>
+    </section>
+
+    <!-- BUDGET + TIMELINE -->
+    <section class="section" id="budget" aria-labelledby="budget-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Budget and timing</span>
+          <h2 class="h-section" id="budget-title">What a Zoho and QuickBooks build costs, and how long it takes</h2>
+          <p class="lead">Expect roughly $2,500 to $16,000, depending on the number of records, the sync direction and whether QuickBooks is Online or Desktop.</p>
+        </div>
+        <div class="rt-grid" data-stagger>
+          <div class="feature"><h3>Templated connector<small>QuickBooks Online, standard records</small></h3><p><b>$2.5k – $6k</b> to implement, plus roughly $50 – $300 a month for the platform.</p></div>
+          <div class="feature"><h3>iPaaS orchestration<small>Make or n8n flows</small></h3><p><b>$4k – $10k</b> to implement, plus a platform fee and support retainer.</p></div>
+          <div class="feature"><h3>Custom Deluge or Desktop build<small>Two-way sync, Web Connector</small></h3><p><b>$7k – $16k+</b> to implement, with a support retainer and no platform fee.</p></div>
+        </div>
+        <div class="factors"><span>Number of records</span><span>One-way or two-way sync</span><span>QuickBooks Online or Desktop</span></div>
+        <div class="lanes" style="margin-top:36px">
+          <div class="lane"><h3>Templated connector<small>Standard records, QuickBooks Online</small></h3><div class="lane-bar" style="--w:35%">2–4 weeks</div></div>
+          <div class="lane"><h3>iPaaS orchestration<small>Make or n8n with business rules</small></h3><div class="lane-bar" style="--w:60%">4–6 weeks</div></div>
+          <div class="lane"><h3>Custom Deluge or Desktop build<small>Two-way sync, Web Connector setup</small></h3><div class="lane-bar" style="--w:100%">5–9 weeks</div></div>
+        </div>
+        <p class="note">Cleaning up data inside Zoho, such as duplicate contacts and inconsistent customer records, is usually a bigger schedule risk than the build itself. Every quote is fixed after the scoping call.</p>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="section web" id="process" aria-labelledby="process-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Our process</span>
+          <h2 class="h-section" id="process-title">Five stages, with a signed mapping sheet before we build</h2>
+          <p class="lead">You receive a fixed-price scope and approve the mapping sheet before any configuration starts.</p>
+        </div>
+        <ol class="tl">
+          <li><h3>Discover</h3><p>We review your Zoho apps, your QuickBooks edition, the records involved and the outcome you need.</p></li>
+          <li><h3>Map</h3><p>Every field, direction, tax rule and error case is written down before building.</p></li>
+          <li><h3>Build</h3><p>We build in Zoho Deluge, the QuickBooks API or middleware, tested in sandboxes on both sides.</p></li>
+          <li><h3>Test</h3><p>Real transactions run end to end, including failures, retries and duplicate handling.</p></li>
+          <li><h3>Support</h3><p>After launch we monitor with logging and alerts, and you get a named contact.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- WHY CODEVELOP -->
+    <section class="section web ai" id="why-us" aria-labelledby="why-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill pill--dark">Why Codevelop</span>
+          <h2 class="h-section" id="why-title">We know the Zoho suite and the QuickBooks side</h2>
+          <p class="lead">Connecting Zoho to QuickBooks takes fluency in both: Deluge and Zoho's data model on one side, and the Online and Desktop editions of QuickBooks on the other.</p>
+        </div>
+        <div class="rt-grid" data-stagger>
+          <div class="feature"><h3>Fluent in Deluge</h3><p>We write and maintain the Zoho-side scripts ourselves, instead of leaving you with code nobody understands.</p></div>
+          <div class="feature"><h3>Online and Desktop covered</h3><p>We build on the QuickBooks Online API or the Desktop Web Connector, and we explain plainly how each behaves.</p></div>
+          <div class="feature"><h3>Tax mapped properly</h3><p>Tax rates and codes are matched on both sides, so an invoice never shows a different total in each system.</p></div>
+          <div class="feature"><h3>Fixed price up front</h3><p>You approve the mapping sheet and a fixed quote before we build. No open hourly meter.</p></div>
+          <div class="feature"><h3>Clean-up included</h3><p>We handle duplicate contacts and inconsistent customer records in Zoho before they reach your books.</p></div>
+          <div class="feature"><h3>Rescue and take-over</h3><p>If a connector broke, a Deluge script was abandoned or duplicates piled up, we audit it and then fix or replace it.</p></div>
+        </div>
+        <p class="note">Want the wider view? See our <a href="zoho.html" style="color:#fff;text-decoration:underline">Zoho integration services</a> or our <a href="quickbooks.html" style="color:#fff;text-decoration:underline">QuickBooks connector</a> page.</p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="container faq-grid" data-reveal>
+        <div class="faq-head">
+          <span class="pill">Common questions</span>
+          <h2 class="h-section" id="faq-title">Zoho and QuickBooks FAQ</h2>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item open">
+            <h3><button class="faq-q" type="button" aria-expanded="true">Can you sync Zoho with both QuickBooks Online and Desktop? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. We use the QuickBooks Online REST API for cloud setups and the Web Connector with QBXML for Desktop, so the integration matches the edition you run.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Does payment status flow back into Zoho? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. When an invoice is paid in QuickBooks, the status can sync to the matching Zoho record, so sales can check without logging into the books.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Does it work with Zoho Books as well as Zoho CRM? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. Zoho Books syncs with QuickBooks in the same way, matching customers, invoices and payments between the two accounting-facing systems.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Is the sync real time? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Zoho and QuickBooks Online can sync close to real time through webhooks and REST APIs. QuickBooks Desktop is limited to the Web Connector's polling schedule.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">What does it cost? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Most projects fall between $2,500 and $16,000, depending on record count, sync direction and QuickBooks edition. The budget section above has the breakdown.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Can you fix a broken Zoho and QuickBooks sync? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. Rescuing broken connectors, abandoned Deluge scripts and duplicate-record clean-ups is a large share of our work.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta" id="contact" aria-labelledby="cta-title">
+      <div class="cta-grid">
+        <div class="cta-bar" aria-hidden="true"></div>
+        <div class="cta-box">
+          <div class="ripples" aria-hidden="true"><span></span><span></span><span></span></div>
+          <h2 id="cta-title">Stop keying the same customer into two systems</h2>
+          <p>Every week your CRM and your books stay apart, your team re-enters customers and invoices by hand. A scoped Zoho and QuickBooks integration removes that work, and you will know the exact cost before we start.</p>
+          <a class="btn btn--primary btn--lg btn-sweep" href="contact-us.html"><span style="position:relative">Book a scoping call</span></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="footer-panel">
+      <div class="footer-flag" aria-hidden="true"></div>
+      <div class="footer-main">
+        <div class="footer-brand">
+          <img src="images/codevelop.webp" alt="Codevelop logo" class="brand-logo" width="160" height="40">
+          <p>At Codevelop, we help businesses turn strategy into scalable results through thoughtful design, performance-driven marketing, and modern technology.</p>
+          <div class="socials">
+            <a href="https://www.facebook.com/Codevelop.usa/" aria-label="Facebook" target="_blank" rel="noopener"><svg class="ico"><use href="#i-fb" /></svg></a>
+            <a href="https://www.instagram.com/codevelop_us/" aria-label="Instagram" target="_blank" rel="noopener"><svg class="ico"><use href="#i-ig" /></svg></a>
+            <a href="https://www.linkedin.com/company/codevelop-us" aria-label="LinkedIn" target="_blank" rel="noopener"><svg class="ico"><use href="#i-in" /></svg></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Services</h3>
+          <ul>
+            <li><a href="performance-marketing.html">Performance Marketing</a></li>
+            <li><a href="#">SEO Services</a></li>
+            <li><a href="#">Social Media Marketing</a></li>
+            <li><a href="web-development.html">Web Development</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Link</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Case Studies</a></li>
+            <li><a href="#">Blogs</a></li>
+            <li><a href="https://codevelopus.com/">Free SEO Audit</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Contact Us</h3>
+          <ul class="contact">
+            <li><svg class="ico"><use href="#i-pin" /></svg><span>555 SE Martin Luther King JR Blvd, Portland, OR 97214</span></li>
+            <li><svg class="ico"><use href="#i-phone" /></svg><a href="tel:+19714809833">+1 971-480-9833</a></li>
+            <li><svg class="ico"><use href="#i-mail" /></svg><a href="mailto:info@codevelop.us">info@codevelop.us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="newsletter">
+        <div class="newsletter-box">
+          <h3>Signup our newsletter to get update information, news, insight or promotions.</h3>
+          <!-- Connect this form to your email provider (set action / method). -->
+          <form class="news-form" action="#" method="post">
+            <label class="sr-only" for="news-email">Email</label>
+            <input id="news-email" type="email" name="email" placeholder="Email" required autocomplete="email">
+            <button class="btn btn--primary" type="submit">Sign up</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <span>Copyright © 2026 Codevelop US, All Rights Reserved.</span>
+      <a href="#">Privacy policy</a>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>

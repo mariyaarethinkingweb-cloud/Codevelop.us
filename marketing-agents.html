@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Marketing Agents | Codevelop</title>
+  <meta name="description"
+    content="Codevelop builds AI marketing agents that plan, write, schedule and report on campaigns across email, social and ads, inside your brand rules and budget limits.">
+  <link rel="canonical" href="https://codevelopus.com/marketing-agents.html">
+  <meta name="theme-color" content="#0a3161">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Codevelopus">
+  <meta property="og:title" content="AI Marketing Agents | Codevelop">
+  <meta property="og:description"
+    content="AI agents that turn one brief into campaigns across every channel, stay on brand, and report results in plain language.">
+  <meta property="og:url" content="https://codevelopus.com/marketing-agents.html">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="https://codevelopus.com/wp-content/uploads/2026/01/cropped-codevelop-favicon-270x270.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/marketing-agents.css">
+</head>
+
+<body>
+
+  <!-- Icon sprite -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" /></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></symbol>
+      <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z" /></symbol>
+      <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="5" /><circle cx="12" cy="12" r="1.5" /></symbol>
+      <symbol id="i-funnel" viewBox="0 0 24 24"><path d="M3 4h18l-7 8v6l-4 2v-8L3 4z" /></symbol>
+      <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" /></symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5z" /></symbol>
+      <symbol id="i-fb" viewBox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v7h4v-7h3l1-4h-4V8z" /></symbol>
+      <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="0.8" /></symbol>
+      <symbol id="i-in" viewBox="0 0 24 24"><rect x="3" y="9" width="4" height="12" /><circle cx="5" cy="5" r="2" /><path d="M10 9h4v2a4 4 0 0 1 6 3v7h-4v-6a2 2 0 0 0-4 0v6h-4V9z" /></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" /></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3 7l9 6 9-6" /></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11z" /><circle cx="12" cy="10" r="2.5" /></symbol>
+      <symbol id="i-code" viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16" /></symbol>
+      <symbol id="i-flow" viewBox="0 0 24 24"><rect x="3" y="3" width="6" height="6" rx="1" /><rect x="15" y="15" width="6" height="6" rx="1" /><path d="M9 6h4a2 2 0 0 1 2 2v7" /></symbol>
+      <symbol id="i-megaphone" viewBox="0 0 24 24"><path d="M3 10v4h4l8 5V5L7 10H3z" /><path d="M18.5 9a4 4 0 0 1 0 6" /></symbol>
+      <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2V5z" /><path d="M4 19a2 2 0 0 1 2-2h13" /></symbol>
+      <symbol id="i-coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M14.5 9.5c-.5-1-1.5-1.5-2.5-1.5-1.4 0-2.5.8-2.5 2s1 1.7 2.5 2 2.5.8 2.5 2-1.1 2-2.5 2c-1 0-2-.5-2.5-1.5M12 6.5V8m0 8v1.5" /></symbol>
+      <symbol id="i-desk" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2" /><path d="M8 20h8M12 16v4" /></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5" /><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6" /><path d="M16 4.7a3.5 3.5 0 0 1 0 6.6M18 14.3c2 .7 3.5 2.6 3.5 5.7" /></symbol>
+      <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3c3.2 3.2 3.2 14.8 0 18M12 3c-3.2 3.2-3.2 14.8 0 18" /></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z" /><path d="M9 12l2 2 4-4" /></symbol>
+      <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z" /><circle cx="12" cy="12" r="3" /></symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2" /><path d="M8 11V8a4 4 0 0 1 8 0v3" /></symbol>
+      <!-- new for this page -->
+      <symbol id="i-pen" viewBox="0 0 24 24"><path d="M4 20l4-1 11-11-3-3L5 16l-1 4z" /><path d="M14 7l3 3" /></symbol>
+      <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M3 10h18M8 3v4M16 3v4" /></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" /><path d="M20 20l-4-4" /></symbol>
+      <symbol id="i-trend" viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8" /><path d="M15 7h6v6" /></symbol>
+      <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z" /><path d="M19 16l.7 2.3L22 19l-2.3.7L19 22l-.7-2.3L16 19l2.3-.7L19 16z" /></symbol>
+      <symbol id="i-ads" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M7 15l2.5-6L12 15M7.8 13h3.4M15 9v6h1.5a3 3 0 0 0 0-6H15z" /></symbol>
+      <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2" /><circle cx="9" cy="10" r="2" /><path d="M21 16l-5-5-9 9" /></symbol>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header" id="top">
+    <div class="bar">
+      <a class="logo" href="index.html" aria-label="Codevelop home"><img src="images/codevelop.webp"
+          alt="Codevelop logo" class="brand-logo" width="160" height="40"></a>
+      <button class="burger" type="button" aria-label="Open menu"
+        aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav aria-label="Main">
+        <ul>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">AI Agents <svg class="chev"
+                viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop drop--agents">
+              <div class="agents-top">
+                <span class="agents-label">AI Agents</span>
+                <a class="agents-all" href="#">View all agents</a>
+              </div>
+
+              <a class="agent" href="customer-support-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-chat" />
+                  </svg></span>
+                <span class="agent-txt"><b>Customer Support Agents</b><small>24/7 answers across chat &amp;
+                    inbox</small></span>
+              </a>
+              <a class="agent" href="sales-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-funnel" />
+                  </svg></span>
+                <span class="agent-txt"><b>Sales &amp; Lead-Generation Agents</b><small>Capture, qualify &amp; follow up
+                    with leads</small></span>
+              </a>
+
+              <a class="agent" href="software-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-code" />
+                  </svg></span>
+                <span class="agent-txt"><b>Software Development Agents</b><small>Code, review &amp; ship
+                    faster</small></span>
+              </a>
+              <a class="agent" href="workflow-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-flow" />
+                  </svg></span>
+                <span class="agent-txt"><b>Workflow Automation Agents</b><small>Connect tools &amp; automate routine
+                    tasks</small></span>
+              </a>
+
+              <a class="agent" href="marketing-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-megaphone" />
+                  </svg></span>
+                <span class="agent-txt"><b>Marketing Agents</b><small>Campaigns, content &amp; channel
+                    management</small></span>
+              </a>
+              <a class="agent" href="research-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-chart" />
+                  </svg></span>
+                <span class="agent-txt"><b>Research &amp; Data Analyst Agents</b><small>Insights &amp; plain-language
+                    reports</small></span>
+              </a>
+
+              <a class="agent" href="internal-knowledge-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-book" />
+                  </svg></span>
+                <span class="agent-txt"><b>Internal Knowledge Agents</b><small>Instant answers from your company
+                    data</small></span>
+              </a>
+              <a class="agent" href="#">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-coin" />
+                  </svg></span>
+                <span class="agent-txt"><b>Finance &amp; Accounting Agents</b><small>Invoices, reconciliation &amp;
+                    reporting</small></span>
+              </a>
+
+              <a class="agent" href="#">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-desk" />
+                  </svg></span>
+                <span class="agent-txt"><b>IT Service Desk Agents</b><small>Resolve tickets &amp; access
+                    requests</small></span>
+              </a>
+              <a class="agent" href="#">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-users" />
+                  </svg></span>
+                <span class="agent-txt"><b>HR &amp; Recruitment Agents</b><small>Screen, schedule &amp; onboard
+                    people</small></span>
+              </a>
+            </div>
+          </li>
+     <li class="has-mega"><button class="top" type="button" aria-expanded="false">Connectors <svg class="chev" viewBox="0 0 10 10">
+    <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+  </svg></button>
+  <div class="drop drop--agents drop--connectors">
+    <div class="agents-top">
+      <span class="agents-label">Connectors</span>
+      <a class="agents-all" href="#">View all connectors</a>
+    </div>
+
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-sap">SAP</i></span>
+      <span class="agent-txt"><b>SAP Business One</b><small>ERP integration &amp; consulting</small></span>
+    </a>
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-sf">SF</i></span>
+      <span class="agent-txt"><b>Salesforce</b><small>CRM &amp; order-to-cash sync</small></span>
+    </a>
+
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-ns">N</i></span>
+      <span class="agent-txt"><b>NetSuite</b><small>ERP, ecommerce &amp; EDI sync</small></span>
+    </a>
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-shop">S</i></span>
+      <span class="agent-txt"><b>Shopify</b><small>Ecommerce ↔ back office</small></span>
+    </a>
+
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-qb">qb</i></span>
+      <span class="agent-txt"><b>QuickBooks</b><small>Accounting &amp; invoice sync</small></span>
+    </a>
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-woo">Woo</i></span>
+      <span class="agent-txt"><b>WooCommerce</b><small>WordPress store integration</small></span>
+    </a>
+
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-zoho"><s></s><s></s><s></s><s></s></i></span>
+      <span class="agent-txt"><b>Zoho</b><small>Zoho One suite integration</small></span>
+    </a>
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-zuper">Zu</i></span>
+      <span class="agent-txt"><b>Zuper</b><small>Field service management sync</small></span>
+    </a>
+
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-attio">At</i></span>
+      <span class="agent-txt"><b>Attio</b><small>CRM &amp; record sync</small></span>
+    </a>
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-twenty">20</i></span>
+      <span class="agent-txt"><b>Twenty</b><small>Open-source CRM sync</small></span>
+    </a>
+  </div>
+</li>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">Services <svg class="chev"
+                viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop drop--mega">
+              <div class="mega-top">
+                <a class="mega-all" href="services.html">View all services <svg class="ico" width="16" height="16"
+                    aria-hidden="true">
+                    <use href="#i-arrow" />
+                  </svg></a>
+              </div>
+
+              <div class="mega-col">
+                <h4><a href="performance-marketing.html">Performance Marketing</a></h4>
+                <a href="meta-ads.html">Google Ads Management</a>
+                <a href="facebook-ads.html">Facebook Ads</a>
+                <a href="remarketing.html">Remarketing</a>
+              </div>
+
+              <div class="mega-col">
+                <h4><a href="web-development.html">Web Development Services</a></h4>
+                <a href="custom-website-design.html">Custom Website Design</a>
+                <a href="wordpress-development.html">WordPress Web Development</a>
+                <a href="shopify-development.html">Shopify Web Development</a>
+                <a href="webflow-development.html">Webflow Web Development</a>
+                <a href="framer-development.html">Framer Web Development</a>
+                <a href="mageneto-development.html">Magento Web Development</a>
+                <a href="website-maintenance.html">Website Maintenance</a>
+                <a href="website-redesign.html">Website Redesign</a>
+              </div>
+
+              <div class="mega-col">
+                <h4><a href="social-media-marketing.html">Social Media Marketing</a></h4>
+                <a href="content-marketing.html">Content Marketing</a>
+              </div>
+
+              <div class="mega-col">
+                <h4><a href="search-engine-optimization.html">Search Engine Optimization</a></h4>
+                <a href="local-seo.html">Local SEO</a>
+                <a href="seo-audits.html">SEO Audits</a>
+                <a href="technical-seo.html">Technical SEO</a>
+                <a href="enterprise-seo.html">Enterprise SEO</a>
+              </div>
+            </div>
+          </li>
+          <li><button class="top" type="button" aria-expanded="false">Hire Talent <svg class="chev" viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop"><a href="#">Developers</a><a href="#">Automation Engineers</a><a href="#">Dedicated
+                Teams</a></div>
+          </li>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="#">Success Stories</a></li>
+          <li><a href="#">Insights</a></li>
+        </ul>
+        <a class="hdr-cta hdr-cta-m" href="contact-us.html">Get a Free Automation Review</a>
+      </nav>
+      <a class="hdr-cta" href="contact-us.html">Get a Free Automation Review</a>
+    </div>
+  </header>
+
+
+  <main id="content">
+
+    <!-- ================= 1 · HERO (animated product video, same style as other agent pages) ================= -->
+    <section class="hero-wrap" aria-labelledby="mk-title">
+      <div class="hero mk-hero">
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="hero-glow" aria-hidden="true"></div>
+        <div class="ring ring--1" aria-hidden="true"><i></i></div>
+        <div class="ring ring--2" aria-hidden="true"><i></i></div>
+        <div class="ring ring--3" aria-hidden="true"><i></i></div>
+
+        <div class="container mk-hero-inner">
+          <div class="mk-copy">
+            <span class="pill">Marketing Agents</span>
+            <h1 class="h-display" id="mk-title">
+              <span class="w"><span style="--i:0">Launch</span></span>
+              <span class="w"><span style="--i:1">campaigns</span></span>
+              <span class="w"><span style="--i:2">without</span></span>
+              <span class="w"><span style="--i:3">the</span></span>
+              <span class="u"><span class="w"><span style="--i:4">busywork</span></span><svg viewBox="0 0 300 20"
+                  preserveAspectRatio="none" aria-hidden="true">
+                  <path d="M3 14 C 70 4, 160 2, 297 9" pathLength="1" />
+                </svg></span>
+            </h1>
+            <p class="lead">AI agents that plan, write, schedule and report on your campaigns across email, social and
+              ads, inside your brand rules, so your marketers spend their time on strategy instead of copy-paste.</p>
+            <div class="mk-actions">
+              <a class="btn btn--primary btn--lg btn--pulse" href="contact-us.html">Get a Free Marketing Review <svg
+                  class="ico"><use href="#i-arrow" /></svg></a>
+              <a class="btn btn--ghost btn--lg" href="#mk-how">See how it works</a>
+            </div>
+            <ul class="mk-checks">
+              <li><svg class="ico"><use href="#i-check" /></svg>Works with your ad &amp; email tools</li>
+              <li><svg class="ico"><use href="#i-check" /></svg>Every draft brand-checked</li>
+              <li><svg class="ico"><use href="#i-check" /></svg>Big spends go to a person</li>
+            </ul>
+          </div>
+
+          <div class="mk-stage" id="mk-stage">
+            <div class="mk-video">
+              <div class="mk-vbar">
+                <span class="mk-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span class="mk-vtitle"><b class="mk-rec" aria-hidden="true"></b><span id="mk-scene-name">Brief in</span></span>
+                <span class="mk-time" id="mk-time" aria-hidden="true">0:00</span>
+              </div>
+
+              <div class="mk-vbody" aria-hidden="true">
+                <!-- scene 1: brief in -->
+                <div class="mk-scene is-active" data-name="Brief in">
+                  <div class="mk-chat">
+                    <p class="mk-m me mk-in" style="--n:0">Launch the Spring range. Budget is $3,000.</p>
+                    <p class="mk-m bot mk-in" style="--n:1">Got it. I&rsquo;ll draft it for email, Instagram and search ads.</p>
+                    <div class="mk-order mk-in" style="--n:2">
+                      <div class="mk-order-top"><b>Spring Launch &middot; 3 channels</b><span>Draft ready</span></div>
+                      <div class="mk-track"><i></i><i></i><i></i><u></u></div>
+                      <small>14 assets &middot; 3 audiences &middot; 2-week schedule</small>
+                    </div>
+                    <p class="mk-m bot mk-in" style="--n:3">Ad spend is over $1,000, so I&rsquo;m asking Priya to approve.</p>
+                    <p class="mk-m me mk-in" style="--n:4">Approved</p>
+                    <p class="mk-m bot mk-in" style="--n:5">Done. The first email goes out Tuesday at 9 AM.</p>
+                  </div>
+                </div>
+
+                <!-- scene 2: campaign build -->
+                <div class="mk-scene" data-name="Campaign build">
+                  <div class="mk-mail mk-in" style="--n:0">
+                    <span class="mk-av">SL</span>
+                    <div><b>Brief &middot; Spring Launch</b><small>Email, Instagram, Google Ads &middot; $3,000</small></div>
+                    <em>Building</em>
+                  </div>
+                  <ul class="mk-pipe">
+                    <li class="mk-in" style="--n:1"><span class="ck"><svg class="ico"><use href="#i-check" /></svg></span>Audience segments built<small>3 segments</small></li>
+                    <li class="mk-in" style="--n:2"><span class="ck"><svg class="ico"><use href="#i-check" /></svg></span>Copy written for every channel<small>14 variants</small></li>
+                    <li class="mk-in" style="--n:3"><span class="ck"><svg class="ico"><use href="#i-check" /></svg></span>Images resized for each placement<small>22 sizes</small></li>
+                    <li class="mk-in" style="--n:4"><span class="ck"><svg class="ico"><use href="#i-check" /></svg></span>Posts and emails scheduled<small>2 weeks</small></li>
+                  </ul>
+                  <!-- <div class="mk-done mk-in" style="--n:5"><svg class="ico"><use href="#i-bolt" /></svg>Built in 4 minutes, all on brand</div> -->
+                </div>
+
+                <!-- scene 3: performance -->
+                <div class="mk-scene" data-name="Performance">
+                  <div class="mk-ticket mk-in" style="--n:0">
+                    <div class="mk-ticket-top"><b>Week 1 &middot; Spring Launch</b><span class="hot">Live</span></div>
+                    <div class="mk-tags"><span>Email 41% opens</span><span>Instagram 3.2% CTR</span><span>Search $1.84 CPC</span></div>
+                  </div>
+                  <div class="mk-sum mk-in" style="--n:1">
+                    <b>Agent summary</b>
+                    <p>Moved $300 from display to search, which converts twice as well. Paused one ad with low engagement.</p>
+                  </div>
+                  <div class="mk-route mk-in" style="--n:2">
+                    <span class="mk-av mk-av--red">PS</span>
+                    <div><b>Budget request sent to Priya</b><small>Search needs +$500 to keep pace</small></div>
+                  </div>
+                  <div class="mk-done mk-done--soft mk-in" style="--n:3"><svg class="ico"><use href="#i-users" /></svg>People make the big calls</div>
+                </div>
+              </div>
+
+              <!-- <div class="mk-vtl" role="group" aria-label="Demo scenes">
+                <button class="mk-seg is-on" type="button" aria-label="Show brief scene"><span>Brief in</span><i></i></button>
+                <button class="mk-seg" type="button" aria-label="Show campaign build scene"><span>Campaign build</span><i></i></button>
+                <button class="mk-seg" type="button" aria-label="Show performance scene"><span>Performance</span><i></i></button>
+              </div> -->
+            </div>
+
+            <div class="mk-float mk-float--1" aria-hidden="true">
+              <svg class="ico"><use href="#i-clock" /></svg><span><b>4 min</b><small>to build a campaign</small></span>
+            </div>
+            <div class="mk-float mk-float--2" aria-hidden="true">
+              <svg class="ico"><use href="#i-trend" /></svg><span><b>3x</b><small>more content shipped</small></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="stats" aria-label="Marketing agent highlights">
+          <div class="stat">
+            <span class="stat-ico"><svg class="ico-style"><use href="#i-bolt" /></svg></span>
+            <div><strong data-count="4" data-suf=" min">4 min</strong><span>to build a campaign</span></div>
+          </div>
+          <div class="stat">
+            <span class="stat-ico"><svg class="ico-style"><use href="#i-trend" /></svg></span>
+            <div><strong data-count="3" data-suf="x">3x</strong><span>more content shipped</span></div>
+          </div>
+          <div class="stat">
+            <span class="stat-ico"><svg class="ico-style"><use href="#i-clock" /></svg></span>
+            <div><strong>24/7</strong><span>budget &amp; ad monitoring</span></div>
+          </div>
+          <div class="stat">
+            <span class="stat-ico"><svg class="ico-style"><use href="#i-shield" /></svg></span>
+            <div><strong data-count="100" data-suf="%">100%</strong><span>of drafts brand-checked</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 2 · CONTENT STUDIO (typewriter fan-out) ================= -->
+    <section class="section mk-studio-sec" aria-labelledby="studio-title">
+      <div class="container">
+        <div class="section-head mk-rv">
+          <span class="pill">What it does</span>
+          <h2 class="h-section" id="studio-title">One brief in. Every channel out.</h2>
+          <p class="lead">Write what you want to promote once. The agent drafts the email, the social posts and the ads,
+            each sized to the channel&rsquo;s limits.</p>
+        </div>
+
+        <div class="mk-studio mk-rv" id="mk-studio" style="--rd:1">
+          <div class="mk-brief">
+            <span class="mk-brief-lbl"><svg class="ico"><use href="#i-spark" /></svg>Campaign brief</span>
+            <div class="mk-input"><span id="mk-brief-text">Promote our Spring sale: 20% off all skincare, ends Sunday.</span></div>
+            <button class="mk-gen" id="mk-gen" type="button"><svg class="ico"><use href="#i-pen" /></svg>Write for every channel</button>
+            <div class="mk-sugs" role="group" aria-label="Example briefs">
+              <span class="mk-sugs-lbl">Try another brief</span>
+              <button class="mk-sug is-on" type="button" aria-pressed="true">Spring sale</button>
+              <button class="mk-sug" type="button" aria-pressed="false">Webinar invite</button>
+              <button class="mk-sug" type="button" aria-pressed="false">Product launch</button>
+            </div>
+          </div>
+
+          <div class="mk-chans" aria-live="polite">
+            <article class="mk-ch is-ready" data-lim="50" style="--w:74%">
+              <header><span class="mk-ch-ico"><svg class="ico"><use href="#i-mail" /></svg></span><b>Email</b><em>Subject</em><i class="mk-ch-ok"><svg class="ico"><use href="#i-check" /></svg></i></header>
+              <p class="mk-ch-a">Your spring reset: 20% off ends Sunday</p>
+              <p class="mk-ch-b">Every serum, cleanser and SPF is 20% off until Sunday night. Free delivery over $40.</p>
+              <div class="mk-meter"><i></i><span class="mk-count">37 / 50</span></div>
+            </article>
+            <article class="mk-ch is-ready" data-lim="125" style="--w:53%">
+              <header><span class="mk-ch-ico mk-ch-ico--red"><svg class="ico"><use href="#i-ig" /></svg></span><b>Instagram</b><em>Hook</em><i class="mk-ch-ok"><svg class="ico"><use href="#i-check" /></svg></i></header>
+              <p class="mk-ch-a">Fresh skin for a fresh season. Everything is 20% off until Sunday.</p>
+              <p class="mk-ch-b">#springskincare #skinlysale #glowup</p>
+              <div class="mk-meter"><i></i><span class="mk-count">66 / 125</span></div>
+            </article>
+            <article class="mk-ch is-ready" data-lim="210" style="--w:38%">
+              <header><span class="mk-ch-ico"><svg class="ico"><use href="#i-in" /></svg></span><b>LinkedIn</b><em>Hook</em><i class="mk-ch-ok"><svg class="ico"><use href="#i-check" /></svg></i></header>
+              <p class="mk-ch-a">Our biggest spring sale is live: 20% off the full skincare range through Sunday.</p>
+              <p class="mk-ch-b">A good time to restock the team gift drawer too. Link in the comments.</p>
+              <div class="mk-meter"><i></i><span class="mk-count">80 / 210</span></div>
+            </article>
+            <article class="mk-ch is-ready" data-lim="30" style="--w:77%">
+              <header><span class="mk-ch-ico mk-ch-ico--red"><svg class="ico"><use href="#i-ads" /></svg></span><b>Google Ads</b><em>Headline</em><i class="mk-ch-ok"><svg class="ico"><use href="#i-check" /></svg></i></header>
+              <p class="mk-ch-a">Spring Skincare 20% Off</p>
+              <p class="mk-ch-b">Serums, cleansers and SPF on sale. Ends Sunday. Free delivery over $40.</p>
+              <div class="mk-meter"><i></i><span class="mk-count">23 / 30</span></div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 3 · USE CASES (expanding panels) ================= -->
+    <section class="section mk-uses" aria-labelledby="uses-title">
+      <div class="container">
+        <div class="section-head mk-rv">
+          <span class="pill">What teams hand over</span>
+          <h2 class="h-section" id="uses-title">The marketing work that never ends, handled.</h2>
+          <p class="lead">Pick one area to start. Most teams add the next one within a month.</p>
+        </div>
+
+        <div class="mk-panels mk-rv" id="mk-panels" style="--rd:1">
+          <button class="mk-panel is-on" type="button" aria-expanded="true">
+            <span class="mk-p-num" aria-hidden="true">01</span>
+            <span class="mk-p-ico"><svg class="ico"><use href="#i-pen" /></svg></span>
+            <span class="mk-p-v">Content creation</span>
+            <span class="mk-p-body">
+              <b class="mk-p-h">Content creation</b>
+              <span class="mk-p-d">Blogs, captions, emails and ad copy drafted in your voice and queued for review.</span>
+              <span class="mk-p-stat"><strong>3x</strong><small>more content per marketer</small></span>
+            </span>
+            <i class="mk-p-bar" aria-hidden="true"></i>
+          </button>
+          <button class="mk-panel" type="button" aria-expanded="false">
+            <span class="mk-p-num" aria-hidden="true">02</span>
+            <span class="mk-p-ico"><svg class="ico"><use href="#i-cal" /></svg></span>
+            <span class="mk-p-v">Social scheduling</span>
+            <span class="mk-p-body">
+              <b class="mk-p-h">Social scheduling</b>
+              <span class="mk-p-d">Posts planned for the times your audience is active, with comments that need a reply flagged.</span>
+              <span class="mk-p-stat"><strong>5 channels</strong><small>from one calendar</small></span>
+            </span>
+            <i class="mk-p-bar" aria-hidden="true"></i>
+          </button>
+          <button class="mk-panel" type="button" aria-expanded="false">
+            <span class="mk-p-num" aria-hidden="true">03</span>
+            <span class="mk-p-ico"><svg class="ico"><use href="#i-mail" /></svg></span>
+            <span class="mk-p-v">Email campaigns</span>
+            <span class="mk-p-body">
+              <b class="mk-p-h">Email campaigns</b>
+              <span class="mk-p-d">Segments built from your CRM, subject lines tested and sends timed for each subscriber.</span>
+              <span class="mk-p-stat"><strong>12 segments</strong><small>personalised per send</small></span>
+            </span>
+            <i class="mk-p-bar" aria-hidden="true"></i>
+          </button>
+          <button class="mk-panel" type="button" aria-expanded="false">
+            <span class="mk-p-num" aria-hidden="true">04</span>
+            <span class="mk-p-ico"><svg class="ico"><use href="#i-ads" /></svg></span>
+            <span class="mk-p-v">Paid ads</span>
+            <span class="mk-p-body">
+              <b class="mk-p-h">Paid ads</b>
+              <span class="mk-p-d">Budget shifted toward what converts, weak ads paused and fresh variations tested every week.</span>
+              <span class="mk-p-stat"><strong>Daily</strong><small>budget and bid checks</small></span>
+            </span>
+            <i class="mk-p-bar" aria-hidden="true"></i>
+          </button>
+          <button class="mk-panel" type="button" aria-expanded="false">
+            <span class="mk-p-num" aria-hidden="true">05</span>
+            <span class="mk-p-ico"><svg class="ico"><use href="#i-search" /></svg></span>
+            <span class="mk-p-v">SEO content</span>
+            <span class="mk-p-body">
+              <b class="mk-p-h">SEO content</b>
+              <span class="mk-p-d">Keyword gaps found, briefs written and old pages refreshed when rankings start to slip.</span>
+              <span class="mk-p-stat"><strong>Weekly</strong><small>ranking checks</small></span>
+            </span>
+            <i class="mk-p-bar" aria-hidden="true"></i>
+          </button>
+          <button class="mk-panel" type="button" aria-expanded="false">
+            <span class="mk-p-num" aria-hidden="true">06</span>
+            <span class="mk-p-ico"><svg class="ico"><use href="#i-chart" /></svg></span>
+            <span class="mk-p-v">Reporting</span>
+            <span class="mk-p-body">
+              <b class="mk-p-h">Reporting</b>
+              <span class="mk-p-d">Numbers pulled from every channel and explained in plain language before Monday&rsquo;s meeting.</span>
+              <span class="mk-p-stat"><strong>1 report</strong><small>instead of 6 dashboards</small></span>
+            </span>
+            <i class="mk-p-bar" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 4 · HOW IT WORKS (scroll-drawn timeline) ================= -->
+    <section class="section mk-how" id="mk-how" aria-labelledby="how-title">
+      <div class="container">
+        <div class="section-head mk-rv">
+          <span class="pill">How it works</span>
+          <h2 class="h-section" id="how-title">From first call to campaigns running in about a month.</h2>
+        </div>
+
+        <div class="mk-tl" id="mk-tl">
+          <span class="mk-tl-line" aria-hidden="true"><i></i></span>
+
+          <div class="mk-tl-step mk-tl-step--l">
+            <div class="mk-tl-card">
+              <span class="mk-tl-ico"><svg class="ico"><use href="#i-search" /></svg></span>
+              <h3>Audit your channels</h3>
+              <p>We review your tools, past campaigns and where your team loses the most hours each week.</p>
+            </div>
+            <span class="mk-tl-node">1</span>
+            <span class="mk-tl-meta">Week 1</span>
+          </div>
+
+          <div class="mk-tl-step mk-tl-step--r">
+            <div class="mk-tl-card">
+              <span class="mk-tl-ico"><svg class="ico"><use href="#i-book" /></svg></span>
+              <h3>Load your brand rules</h3>
+              <p>Tone of voice, banned words, approval limits and spend caps go in before the agent writes a word.</p>
+            </div>
+            <span class="mk-tl-node">2</span>
+            <span class="mk-tl-meta">Week 1&ndash;2</span>
+          </div>
+
+          <div class="mk-tl-step mk-tl-step--l">
+            <div class="mk-tl-card">
+              <span class="mk-tl-ico"><svg class="ico"><use href="#i-eye" /></svg></span>
+              <h3>Run in draft mode</h3>
+              <p>The agent drafts and plans while your team approves every piece. We tune it from their edits.</p>
+            </div>
+            <span class="mk-tl-node">3</span>
+            <span class="mk-tl-meta">Week 2&ndash;3</span>
+          </div>
+
+          <div class="mk-tl-step mk-tl-step--r">
+            <div class="mk-tl-card">
+              <span class="mk-tl-ico"><svg class="ico"><use href="#i-trend" /></svg></span>
+              <h3>Go live and improve</h3>
+              <p>Routine posts and reports run on their own. New campaigns and spend changes still come to you.</p>
+            </div>
+            <span class="mk-tl-node">4</span>
+            <span class="mk-tl-meta">Week 4+</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 5 · BRAND SAFETY (live draft checker) ================= -->
+    <section class="section mk-guard-sec" aria-labelledby="guard-title">
+      <div class="engine-dots" aria-hidden="true"></div>
+      <div class="container mk-guard-grid">
+        <div class="mk-guard-copy mk-rv">
+          <span class="pill pill--dark">You stay in control</span>
+          <h2 class="h-section" id="guard-title">Nothing goes out that doesn&rsquo;t sound like you.</h2>
+          <p class="lead">Every draft is checked against your brand guide, legal rules and spend limits before anyone
+            sees it. Anything risky waits for a person.</p>
+          <ul class="mk-list">
+            <li><svg class="ico"><use href="#i-book" /></svg>Your tone, words to avoid and required disclaimers</li>
+            <li><svg class="ico"><use href="#i-coin" /></svg>Daily spend caps and who approves larger budgets</li>
+            <li><svg class="ico"><use href="#i-eye" /></svg>A full history of what was posted, changed and why</li>
+          </ul>
+          <a class="btn btn--primary btn--lg" href="contact-us.html">Talk to our team <svg class="ico"><use href="#i-arrow" /></svg></a>
+        </div>
+
+        <div class="mk-guard mk-rv" id="mk-guard" style="--rd:2; --sc:98%">
+          <div class="mk-post">
+            <div class="mk-post-top">
+              <span class="mk-av mk-av--red">SK</span>
+              <div><b>Skinly &middot; Instagram draft</b><small>Scheduled for Thu, 10:00 AM</small></div>
+              <span class="mk-post-tag">Checking</span>
+            </div>
+            <div class="mk-post-img" aria-hidden="true"><svg class="ico"><use href="#i-image" /></svg></div>
+            <p class="mk-post-txt">
+              Our <span class="mk-fix is-fixed"><s>revolutionary</s><ins>new</ins></span> serum
+              <span class="mk-fix is-fixed"><s>cures</s><ins>helps soothe</ins></span> dry skin
+              <span class="mk-fix is-fixed"><s>overnight, guaranteed!!!</s><ins>in as little as a week.</ins></span>
+              <span class="mk-fix is-fixed"><s>BUY NOW</s><ins>Shop the Spring range</ins></span>
+              <span class="mk-fix is-fixed"><s></s><ins>Results vary.</ins></span>
+            </p>
+            <span class="mk-beam" aria-hidden="true"></span>
+          </div>
+
+          <div class="mk-guard-foot">
+            <ul class="mk-chk">
+              <li class="is-ok"><i><svg class="ico"><use href="#i-check" /></svg></i>Tone matches brand guide</li>
+              <li class="is-ok"><i><svg class="ico"><use href="#i-check" /></svg></i>No medical claims</li>
+              <li class="is-ok"><i><svg class="ico"><use href="#i-check" /></svg></i>No all-caps or &ldquo;!!!&rdquo;</li>
+              <li class="is-ok"><i><svg class="ico"><use href="#i-check" /></svg></i>Disclaimer added</li>
+            </ul>
+            <div class="mk-score">
+              <span>Brand score</span>
+              <strong id="mk-score">98</strong>
+              <div class="mk-score-bar"><i></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 6 · RESULTS (before / after morphing bars) ================= -->
+    <section class="section mk-res-sec" aria-labelledby="res-title">
+      <div class="container">
+        <div class="section-head mk-rv">
+          <span class="pill">What changes</span>
+          <h2 class="h-section" id="res-title">Same team. Far more output.</h2>
+          <p class="lead">Flip the switch to compare a typical month before and after a marketing agent takes on the routine work.</p>
+        </div>
+
+        <div class="mk-res mk-rv" id="mk-res" data-mode="after" style="--rd:1">
+          <div class="mk-res-head">
+            <span class="mk-res-lbl">Illustrative example &middot; 4-person marketing team</span>
+            <button class="mk-switch" id="mk-switch" type="button" role="switch" aria-checked="true" aria-label="Show results with agents">
+              <span class="mk-sw-a">Without agents</span><i></i><span class="mk-sw-b">With agents</span>
+            </button>
+          </div>
+
+          <div class="mk-chart">
+            <div class="mk-metric" data-before="24" data-after="90" style="--h:100%">
+              <div class="mk-bar-wrap"><div class="mk-bar"><span class="mk-val">90</span></div></div>
+              <b>Posts published</b><small>per month</small><span class="mk-delta">+275%</span>
+            </div>
+            <div class="mk-metric" data-before="6" data-after="40" style="--h:100%">
+              <div class="mk-bar-wrap"><div class="mk-bar"><span class="mk-val">40</span></div></div>
+              <b>Ad variations tested</b><small>per month</small><span class="mk-delta">+567%</span>
+            </div>
+            <div class="mk-metric" data-before="2" data-after="12" style="--h:100%">
+              <div class="mk-bar-wrap"><div class="mk-bar"><span class="mk-val">12</span></div></div>
+              <b>Email segments</b><small>personalised per send</small><span class="mk-delta">6x</span>
+            </div>
+            <div class="mk-metric mk-metric--low" data-before="10" data-after="1" style="--h:10%">
+              <div class="mk-bar-wrap"><div class="mk-bar"><span class="mk-val">1</span></div></div>
+              <b>Hours on reporting</b><small>per week, lower is better</small><span class="mk-delta">&minus;90%</span>
+            </div>
+          </div>
+          <p class="mk-res-note">Figures are an example to show the kind of change teams see. Your results depend on your channels, volume and how much you hand over.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 7 · FAQ ================= -->
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="container faq-grid" data-reveal>
+        <div class="faq-head">
+          <span class="pill">Common questions</span>
+          <h2 class="h-section" id="faq-title">Marketing agent FAQs</h2>
+        </div>
+        <div class="faq-list" id="faq-list">
+          <div class="faq-item open">
+            <h3><button class="faq-q" type="button" aria-expanded="true">Will the content actually sound like our brand? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>We set the agent up with your brand guide, past campaigns and the words you never use. Every draft is checked against those rules, and your team&rsquo;s edits during draft mode teach it what &ldquo;on brand&rdquo; means for you.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Can it spend our ad budget on its own? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Only inside the limits you set. You choose a daily cap and how much it can shift between campaigns. Anything above that, like a new campaign or a bigger budget, is sent to a person to approve first.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Which tools does it work with? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Common platforms such as HubSpot, Mailchimp, Klaviyo, Google Ads, Meta Ads, LinkedIn, Google Analytics, Shopify and WordPress, plus anything with an API. If you use something custom, we can build the connection.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Does it replace our marketing team? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>No. It takes over the repetitive parts: resizing, scheduling, first drafts, routine reports and bid checks. Your team keeps strategy, creative direction and every decision that matters.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">How quickly can we start? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Most teams have a first channel running within a few weeks. It starts in draft mode, so nothing is published until your team is happy with what it produces.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+    <section class="cta" id="contact" aria-labelledby="cta-title">
+      <div class="cta-grid">
+        <div class="cta-bar" aria-hidden="true"></div>
+        <div class="cta-box">
+          <div class="ripples" aria-hidden="true"><span></span><span></span><span></span></div>
+          <h2 id="cta-title">Give your marketers their week back.</h2>
+          <p>Tell us which channel takes the most time and we&rsquo;ll show how an agent could run it.</p>
+          <a class="btn btn--primary btn--lg btn-sweep" href="contact-us.html"><span style="position:relative">Get a Free Marketing Review</span></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="footer-panel">
+      <div class="footer-flag" aria-hidden="true"></div>
+      <div class="footer-main">
+        <div class="footer-brand">
+          <img src="images/codevelop.webp" alt="Codevelop logo" class="brand-logo" width="160" height="40">
+          <p>At Codevelop, we help businesses turn strategy into scalable results through thoughtful design,
+            performance-driven marketing, and modern technology.</p>
+          <div class="socials">
+            <a href="https://www.facebook.com/Codevelop.usa/" aria-label="Facebook" target="_blank" rel="noopener"><svg class="ico"><use href="#i-fb" /></svg></a>
+            <a href="https://www.instagram.com/codevelop_us/" aria-label="Instagram" target="_blank" rel="noopener"><svg class="ico"><use href="#i-ig" /></svg></a>
+            <a href="https://www.linkedin.com/company/codevelop-us" aria-label="LinkedIn" target="_blank" rel="noopener"><svg class="ico"><use href="#i-in" /></svg></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Services</h3>
+          <ul>
+            <li><a href="performance-marketing.html">Performance Marketing</a></li>
+            <li><a href="#">SEO Services</a></li>
+            <li><a href="#">Social Media Marketing</a></li>
+            <li><a href="web-development.html">Web Development</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Link</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Case Studies</a></li>
+            <li><a href="#">Blogs</a></li>
+            <li><a href="https://codevelopus.com/">Free SEO Audit</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Contact Us</h3>
+          <ul class="contact">
+            <li><svg class="ico"><use href="#i-pin" /></svg><span>555 SE Martin Luther King JR Blvd, Portland, OR 97214</span></li>
+            <li><svg class="ico"><use href="#i-phone" /></svg><a href="tel:+19714809833">+1 971-480-9833</a></li>
+            <li><svg class="ico"><use href="#i-mail" /></svg><a href="mailto:info@codevelop.us">info@codevelop.us</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="newsletter">
+        <div class="newsletter-box">
+          <h3>Signup our newsletter to get update information, news, insight or promotions.</h3>
+          <form class="news-form" action="#" method="post">
+            <label class="sr-only" for="news-email">Email</label>
+            <input id="news-email" type="email" name="email" placeholder="Email" required autocomplete="email">
+            <button class="btn btn--primary" type="submit">Sign up</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <span>Copyright © 2026 Codevelop US, All Rights Reserved.</span>
+      <a href="#">Privacy policy</a>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script src="js/marketing-agents.js"></script>
+</body>
+
+</html>

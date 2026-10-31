@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Workflow Automation Agents | Codevelop</title>
+  <meta name="description"
+    content="Codevelop builds AI workflow automation agents that run approvals, data entry, reports and hand-offs across your existing apps, with every run logged and exceptions routed to your team.">
+  <link rel="canonical" href="https://codevelopus.com/workflow-automation-agents.html">
+  <meta name="theme-color" content="#0a3161">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Codevelopus">
+  <meta property="og:title" content="AI Workflow Automation Agents | Codevelop">
+  <meta property="og:description"
+    content="AI agents that connect your apps and run repetitive business processes end to end, so your team only handles the exceptions.">
+  <meta property="og:url" content="https://codevelopus.com/workflow-automation-agents.html">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="https://codevelopus.com/wp-content/uploads/2026/01/cropped-codevelop-favicon-270x270.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/workflow-agents.css">
+</head>
+
+<body>
+
+  <!-- Icon sprite -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" /></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></symbol>
+      <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z" /></symbol>
+      <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="5" /><circle cx="12" cy="12" r="1.5" /></symbol>
+      <symbol id="i-funnel" viewBox="0 0 24 24"><path d="M3 4h18l-7 8v6l-4 2v-8L3 4z" /></symbol>
+      <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" /></symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5z" /></symbol>
+      <symbol id="i-fb" viewBox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v7h4v-7h3l1-4h-4V8z" /></symbol>
+      <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="0.8" /></symbol>
+      <symbol id="i-in" viewBox="0 0 24 24"><rect x="3" y="9" width="4" height="12" /><circle cx="5" cy="5" r="2" /><path d="M10 9h4v2a4 4 0 0 1 6 3v7h-4v-6a2 2 0 0 0-4 0v6h-4V9z" /></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" /></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3 7l9 6 9-6" /></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11z" /><circle cx="12" cy="10" r="2.5" /></symbol>
+      <symbol id="i-code" viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16" /></symbol>
+      <symbol id="i-flow" viewBox="0 0 24 24"><rect x="3" y="3" width="6" height="6" rx="1" /><rect x="15" y="15" width="6" height="6" rx="1" /><path d="M9 6h4a2 2 0 0 1 2 2v7" /></symbol>
+      <symbol id="i-megaphone" viewBox="0 0 24 24"><path d="M3 10v4h4l8 5V5L7 10H3z" /><path d="M18.5 9a4 4 0 0 1 0 6" /></symbol>
+      <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2V5z" /><path d="M4 19a2 2 0 0 1 2-2h13" /></symbol>
+      <symbol id="i-coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M14.5 9.5c-.5-1-1.5-1.5-2.5-1.5-1.4 0-2.5.8-2.5 2s1 1.7 2.5 2 2.5.8 2.5 2-1.1 2-2.5 2c-1 0-2-.5-2.5-1.5M12 6.5V8m0 8v1.5" /></symbol>
+      <symbol id="i-desk" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2" /><path d="M8 20h8M12 16v4" /></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5" /><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6" /><path d="M16 4.7a3.5 3.5 0 0 1 0 6.6M18 14.3c2 .7 3.5 2.6 3.5 5.7" /></symbol>
+      <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3c3.2 3.2 3.2 14.8 0 18M12 3c-3.2 3.2-3.2 14.8 0 18" /></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z" /><path d="M9 12l2 2 4-4" /></symbol>
+      <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z" /><circle cx="12" cy="12" r="3" /></symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2" /><path d="M8 11V8a4 4 0 0 1 8 0v3" /></symbol>
+      <!-- new for this page -->
+      <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14-4L4 9M4 4v5h5M4 13a8 8 0 0 0 14 4l2-2M20 20v-5h-5" /></symbol>
+      <symbol id="i-inbox" viewBox="0 0 24 24"><path d="M3 13l3-8h12l3 8v6H3v-6z" /><path d="M3 13h5l1 3h6l1-3h5" /></symbol>
+      <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4l2-2z" /><path d="M10 21h4" /></symbol>
+      <symbol id="i-file" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6V3z" /><path d="M14 3v4h4M9 12h6M9 16h6" /></symbol>
+      <symbol id="i-db" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3" /><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3" /></symbol>
+      <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h8M18 7h2M4 17h2M12 17h8" /><circle cx="15" cy="7" r="2.5" /><circle cx="9" cy="17" r="2.5" /></symbol>
+      <symbol id="i-split" viewBox="0 0 24 24"><path d="M12 3v6M12 9l-6 6v6M12 9l6 6v6" /></symbol>
+      <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4l13 8-13 8V4z" /></symbol>
+      <symbol id="i-left" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6" /></symbol>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header" id="top">
+    <div class="bar">
+      <a class="logo" href="index.html" aria-label="Codevelop home"><img src="images/codevelop.webp"
+          alt="Codevelop logo" class="brand-logo" width="160" height="40"></a>
+      <button class="burger" type="button" aria-label="Open menu"
+        aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav aria-label="Main">
+        <ul>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">AI Agents <svg class="chev"
+                viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop drop--agents">
+              <div class="agents-top">
+                <span class="agents-label">AI Agents</span>
+                <a class="agents-all" href="#">View all agents</a>
+              </div>
+
+              <a class="agent" href="customer-support-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-chat" />
+                  </svg></span>
+                <span class="agent-txt"><b>Customer Support Agents</b><small>24/7 answers across chat &amp;
+                    inbox</small></span>
+              </a>
+              <a class="agent" href="sales-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-funnel" />
+                  </svg></span>
+                <span class="agent-txt"><b>Sales &amp; Lead-Generation Agents</b><small>Capture, qualify &amp; follow up
+                    with leads</small></span>
+              </a>
+
+              <a class="agent" href="software-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-code" />
+                  </svg></span>
+                <span class="agent-txt"><b>Software Development Agents</b><small>Code, review &amp; ship
+                    faster</small></span>
+              </a>
+              <a class="agent" href="workflow-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-flow" />
+                  </svg></span>
+                <span class="agent-txt"><b>Workflow Automation Agents</b><small>Connect tools &amp; automate routine
+                    tasks</small></span>
+              </a>
+
+              <a class="agent" href="marketing-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-megaphone" />
+                  </svg></span>
+                <span class="agent-txt"><b>Marketing Agents</b><small>Campaigns, content &amp; channel
+                    management</small></span>
+              </a>
+              <a class="agent" href="research-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-chart" />
+                  </svg></span>
+                <span class="agent-txt"><b>Research &amp; Data Analyst Agents</b><small>Insights &amp; plain-language
+                    reports</small></span>
+              </a>
+
+              <a class="agent" href="internal-knowledge-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-book" />
+                  </svg></span>
+                <span class="agent-txt"><b>Internal Knowledge Agents</b><small>Instant answers from your company
+                    data</small></span>
+              </a>
+              <a class="agent" href="#">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-coin" />
+                  </svg></span>
+                <span class="agent-txt"><b>Finance &amp; Accounting Agents</b><small>Invoices, reconciliation &amp;
+                    reporting</small></span>
+              </a>
+
+              <a class="agent" href="#">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-desk" />
+                  </svg></span>
+                <span class="agent-txt"><b>IT Service Desk Agents</b><small>Resolve tickets &amp; access
+                    requests</small></span>
+              </a>
+              <a class="agent" href="#">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-users" />
+                  </svg></span>
+                <span class="agent-txt"><b>HR &amp; Recruitment Agents</b><small>Screen, schedule &amp; onboard
+                    people</small></span>
+              </a>
+            </div>
+          </li>
+     <li class="has-mega"><button class="top" type="button" aria-expanded="false">Connectors <svg class="chev" viewBox="0 0 10 10">
+    <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+  </svg></button>
+  <div class="drop drop--agents drop--connectors">
+    <div class="agents-top">
+      <span class="agents-label">Connectors</span>
+      <a class="agents-all" href="#">View all connectors</a>
+    </div>
+
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-sap">SAP</i></span>
+      <span class="agent-txt"><b>SAP Business One</b><small>ERP integration &amp; consulting</small></span>
+    </a>
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-sf">SF</i></span>
+      <span class="agent-txt"><b>Salesforce</b><small>CRM &amp; order-to-cash sync</small></span>
+    </a>
+
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-ns">N</i></span>
+      <span class="agent-txt"><b>NetSuite</b><small>ERP, ecommerce &amp; EDI sync</small></span>
+    </a>
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-shop">S</i></span>
+      <span class="agent-txt"><b>Shopify</b><small>Ecommerce ↔ back office</small></span>
+    </a>
+
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-qb">qb</i></span>
+      <span class="agent-txt"><b>QuickBooks</b><small>Accounting &amp; invoice sync</small></span>
+    </a>
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-woo">Woo</i></span>
+      <span class="agent-txt"><b>WooCommerce</b><small>WordPress store integration</small></span>
+    </a>
+
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-zoho"><s></s><s></s><s></s><s></s></i></span>
+      <span class="agent-txt"><b>Zoho</b><small>Zoho One suite integration</small></span>
+    </a>
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-zuper">Zu</i></span>
+      <span class="agent-txt"><b>Zuper</b><small>Field service management sync</small></span>
+    </a>
+
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-attio">At</i></span>
+      <span class="agent-txt"><b>Attio</b><small>CRM &amp; record sync</small></span>
+    </a>
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-twenty">20</i></span>
+      <span class="agent-txt"><b>Twenty</b><small>Open-source CRM sync</small></span>
+    </a>
+  </div>
+</li>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">Services <svg class="chev"
+                viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop drop--mega">
+              <div class="mega-top">
+                <a class="mega-all" href="services.html">View all services <svg class="ico" width="16" height="16"
+                    aria-hidden="true">
+                    <use href="#i-arrow" />
+                  </svg></a>
+              </div>
+
+              <div class="mega-col">
+                <h4><a href="performance-marketing.html">Performance Marketing</a></h4>
+                <a href="meta-ads.html">Google Ads Management</a>
+                <a href="facebook-ads.html">Facebook Ads</a>
+                <a href="remarketing.html">Remarketing</a>
+              </div>
+
+              <div class="mega-col">
+                <h4><a href="web-development.html">Web Development Services</a></h4>
+                <a href="custom-website-design.html">Custom Website Design</a>
+                <a href="wordpress-development.html">WordPress Web Development</a>
+                <a href="shopify-development.html">Shopify Web Development</a>
+                <a href="webflow-development.html">Webflow Web Development</a>
+                <a href="framer-development.html">Framer Web Development</a>
+                <a href="mageneto-development.html">Magento Web Development</a>
+                <a href="website-maintenance.html">Website Maintenance</a>
+                <a href="website-redesign.html">Website Redesign</a>
+              </div>
+
+              <div class="mega-col">
+                <h4><a href="social-media-marketing.html">Social Media Marketing</a></h4>
+                <a href="content-marketing.html">Content Marketing</a>
+              </div>
+
+              <div class="mega-col">
+                <h4><a href="search-engine-optimization.html">Search Engine Optimization</a></h4>
+                <a href="local-seo.html">Local SEO</a>
+                <a href="seo-audits.html">SEO Audits</a>
+                <a href="technical-seo.html">Technical SEO</a>
+                <a href="enterprise-seo.html">Enterprise SEO</a>
+              </div>
+            </div>
+          </li>
+          <li><button class="top" type="button" aria-expanded="false">Hire Talent <svg class="chev" viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop"><a href="#">Developers</a><a href="#">Automation Engineers</a><a href="#">Dedicated
+                Teams</a></div>
+          </li>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="#">Success Stories</a></li>
+          <li><a href="#">Insights</a></li>
+        </ul>
+        <a class="hdr-cta hdr-cta-m" href="contact-us.html">Get a Free Automation Review</a>
+      </nav>
+      <a class="hdr-cta" href="contact-us.html">Get a Free Automation Review</a>
+    </div>
+  </header>
+
+
+  <main id="content">
+
+    <!-- ================= 1 · HERO (animated product video) ================= -->
+    <section class="hero-wrap" aria-labelledby="wf-title">
+      <div class="hero wf-hero">
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="hero-glow" aria-hidden="true"></div>
+        <div class="ring ring--1" aria-hidden="true"><i></i></div>
+        <div class="ring ring--2" aria-hidden="true"><i></i></div>
+        <div class="ring ring--3" aria-hidden="true"><i></i></div>
+
+        <div class="container wf-hero-inner">
+          <div class="wf-copy">
+            <span class="pill">Workflow Automation Agents</span>
+            <h1 class="h-display" id="wf-title">
+              <span class="w"><span style="--i:0">Put</span></span>
+              <span class="w"><span style="--i:1">repetitive</span></span>
+              <span class="w"><span style="--i:2">work</span></span>
+              <span class="w"><span style="--i:3">on</span></span>
+              <span class="u"><span class="w"><span style="--i:4">autopilot</span></span><svg viewBox="0 0 300 20"
+                  preserveAspectRatio="none" aria-hidden="true">
+                  <path d="M3 14 C 70 4, 160 2, 297 9" pathLength="1" />
+                </svg></span>
+            </h1>
+            <p class="lead">AI agents that run your approvals, data entry, reports and hand-offs across the apps you
+              already use, so your team stops copying data between tabs and focuses on work that needs judgment.
+            </p>
+            <div class="wf-actions">
+              <a class="btn btn--primary btn--lg btn--pulse" href="contact-us.html">Get a Free Automation Review <svg
+                  class="ico"><use href="#i-arrow" /></svg></a>
+              <a class="btn btn--ghost btn--lg" href="#wf-how">See how it works</a>
+            </div>
+            <ul class="wf-checks">
+              <li><svg class="ico"><use href="#i-check" /></svg>Connects your existing apps</li>
+              <li><svg class="ico"><use href="#i-check" /></svg>Every run is logged</li>
+              <li><svg class="ico"><use href="#i-check" /></svg>Exceptions go to a person</li>
+            </ul>
+          </div>
+
+          <div class="wf-stage" id="wf-stage">
+            <div class="wf-video" id="wf-video">
+              <div class="wf-vbar">
+                <span class="wf-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span class="wf-vtitle"><b class="wf-rec" aria-hidden="true"></b><span id="wf-scene-name">Request in</span></span>
+                <span class="wf-time" id="wf-time" aria-hidden="true">0:00</span>
+              </div>
+
+              <div class="wf-vbody" aria-hidden="true">
+                <!-- scene 1: request in -->
+                <div class="wf-scene is-active" data-name="Request in">
+                  <div class="wf-chat">
+                    <p class="wf-m me wf-in" style="--n:0">New invoice from Acme Supplies for $4,820.</p>
+                    <p class="wf-m bot wf-in" style="--n:1">Got it. I&rsquo;ll check it against PO-1187 and the vendor record.</p>
+                    <div class="wf-order wf-in" style="--n:2">
+                      <div class="wf-order-top"><b>INV-2291 &middot; Acme Supplies</b><span>Matched</span></div>
+                      <div class="wf-track"><i></i><i></i><i></i><u></u></div>
+                      <small>12 fields read &middot; PO matched &middot; Vendor verified</small>
+                    </div>
+                    <p class="wf-m bot wf-in" style="--n:3">Amounts match. Over $4,000, so I&rsquo;m asking Dana to approve.</p>
+                    <p class="wf-m me wf-in" style="--n:4">Approved</p>
+                    <p class="wf-m bot wf-in" style="--n:5">Done. The bill is posted and queued for payment.</p>
+                  </div>
+                </div>
+
+                <!-- scene 2: workflow run -->
+                <div class="wf-scene" data-name="Workflow run">
+                  <div class="wf-mail wf-in" style="--n:0">
+                    <span class="wf-av">IN</span>
+                    <div><b>Trigger &middot; New invoice email</b><small>INV-2291 &middot; Acme Supplies &middot; PDF</small></div>
+                    <em>Running</em>
+                  </div>
+                  <ul class="wf-pipe">
+                    <li class="wf-in" style="--n:1"><span class="ck" style="--n:1"><svg class="ico"><use href="#i-check" /></svg></span>Data extracted from the PDF<small>12 fields</small></li>
+                    <li class="wf-in" style="--n:2"><span class="ck" style="--n:2"><svg class="ico"><use href="#i-check" /></svg></span>Matched to purchase order<small>PO-1187</small></li>
+                    <li class="wf-in" style="--n:3"><span class="ck" style="--n:3"><svg class="ico"><use href="#i-check" /></svg></span>Approval requested in Slack<small>Dana K.</small></li>
+                    <li class="wf-in" style="--n:4"><span class="ck" style="--n:4"><svg class="ico"><use href="#i-check" /></svg></span>Posted to QuickBooks<small>Bill #7714</small></li>
+                  </ul>
+                  <div class="wf-done wf-in" style="--n:5"><svg class="ico"><use href="#i-bolt" /></svg>Finished in 9 seconds, nothing re-typed</div>
+                </div>
+
+                <!-- scene 3: exceptions to people -->
+                <div class="wf-scene" data-name="Exceptions">
+                  <div class="wf-ticket wf-in" style="--n:0">
+                    <div class="wf-ticket-top"><b>Onboarding &middot; Sam T., day 1</b><span class="hot">Mostly done</span></div>
+                    <div class="wf-tags"><span>Accounts created</span><span>Laptop ordered</span><span>Welcome email sent</span></div>
+                  </div>
+                  <div class="wf-sum wf-in" style="--n:1">
+                    <b>Agent summary</b>
+                    <p>Created 6 accounts, booked orientation and added Sam to the team channel. One document is missing.</p>
+                  </div>
+                  <div class="wf-route wf-in" style="--n:2">
+                    <span class="wf-av wf-av--red">MH</span>
+                    <div><b>Exception sent to Maya in HR</b><small>Work-permit document not uploaded</small></div>
+                  </div>
+                  <div class="wf-done wf-done--soft wf-in" style="--n:3"><svg class="ico"><use href="#i-users" /></svg>People handle exceptions, not routine</div>
+                </div>
+              </div>
+
+              <div class="wf-vtl" role="group" aria-label="Demo scenes">
+                <button class="wf-seg is-on" type="button" aria-label="Show request in scene"><span>Request in</span><i></i></button>
+                <button class="wf-seg" type="button" aria-label="Show workflow run scene"><span>Workflow run</span><i></i></button>
+                <button class="wf-seg" type="button" aria-label="Show exceptions scene"><span>Exceptions</span><i></i></button>
+              </div>
+            </div>
+
+            <div class="wf-float wf-float--1" aria-hidden="true">
+              <svg class="ico"><use href="#i-clock" /></svg><span><b>&lt;10 sec</b><small>per invoice processed</small></span>
+            </div>
+            <div class="wf-float wf-float--2" aria-hidden="true">
+              <svg class="ico"><use href="#i-refresh" /></svg><span><b>80%</b><small>less manual entry</small></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="stats" aria-label="Workflow agent highlights">
+          <div class="stat">
+            <span class="stat-ico"><svg class="ico-style"><use href="#i-bolt" /></svg></span>
+            <div><strong data-count="10" data-pre="<" data-suf=" sec">&lt;10 sec</strong><span>per routine task</span></div>
+          </div>
+          <div class="stat">
+            <span class="stat-ico"><svg class="ico-style"><use href="#i-refresh" /></svg></span>
+            <div><strong data-count="80" data-suf="%">80%</strong><span>less manual entry</span></div>
+          </div>
+          <div class="stat">
+            <span class="stat-ico"><svg class="ico-style"><use href="#i-clock" /></svg></span>
+            <div><strong>24/7</strong><span>always-on workflows</span></div>
+          </div>
+          <div class="stat">
+            <span class="stat-ico"><svg class="ico-style"><use href="#i-eye" /></svg></span>
+            <div><strong data-count="100" data-suf="%">100%</strong><span>of runs logged</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 2 · WHAT IT DOES (live workflow canvas) ================= -->
+    <section class="section wf-do" id="wf-do" aria-labelledby="do-title">
+      <div class="container">
+        <div class="section-head wf-rv">
+          <span class="pill">What it does</span>
+          <h2 class="h-section" id="do-title">See a workflow build itself, then run.</h2>
+          <p class="lead">Pick a process. The agent lays out the steps, connects your apps and runs each one in order, with a log of every action.</p>
+        </div>
+
+        <div class="wf-lab wf-rv" id="wf-lab" style="--rd:1">
+          <div class="wf-picks" role="tablist" aria-label="Example workflows">
+            <button class="wf-pick is-on" type="button" role="tab" aria-selected="true"><svg class="ico"><use href="#i-coin" /></svg>Invoice approval</button>
+            <button class="wf-pick" type="button" role="tab" aria-selected="false"><svg class="ico"><use href="#i-funnel" /></svg>Lead routing</button>
+            <button class="wf-pick" type="button" role="tab" aria-selected="false"><svg class="ico"><use href="#i-users" /></svg>Employee onboarding</button>
+          </div>
+
+          <div class="wf-canvas-scroll">
+            <div class="wf-canvas" id="wf-canvas" role="img" aria-label="Example workflow diagram of connected steps"></div>
+          </div>
+
+          <div class="wf-log" aria-label="Run log">
+            <div class="wf-log-head"><i class="wf-live"></i>Run log</div>
+            <ul id="wf-log"></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 3 · USE CASES (card deck) ================= -->
+    <section class="section wf-cases" id="wf-cases" aria-labelledby="cases-title">
+      <div class="container wf-deck-grid">
+        <div class="wf-deck-copy wf-rv">
+          <span class="pill">What teams automate</span>
+          <h2 class="h-section" id="cases-title">If it follows a pattern, an agent can run it.</h2>
+          <p class="lead">Start with the task your team repeats most. Flip through common starting points.</p>
+          <div class="wf-deck-ctl">
+            <button class="wf-round" id="wf-prev" type="button" aria-label="Previous example"><svg class="ico"><use href="#i-left" /></svg></button>
+            <button class="wf-round" id="wf-next" type="button" aria-label="Next example"><svg class="ico"><use href="#i-arrow" /></svg></button>
+            <span class="wf-dots2" id="wf-dots2" aria-hidden="true"><i class="is-on"></i><i></i><i></i><i></i><i></i><i></i></span>
+          </div>
+        </div>
+
+        <div class="wf-deck wf-rv" id="wf-deck" style="--rd:1" aria-label="Automation examples">
+          <article class="wf-card">
+            <span class="wf-card-ico"><svg class="ico"><use href="#i-split" /></svg></span>
+            <h3>Approvals and routing</h3>
+            <p>Requests reach the right approver with the context they need, and chase until answered.</p>
+            <div class="wf-flowrow"><span class="wf-chip wf-chip--in">Invoice over $4,000</span><i class="wf-arrow"><svg class="ico"><use href="#i-arrow" /></svg></i><span class="wf-chip wf-chip--out">Sent to the right approver</span></div>
+          </article>
+          <article class="wf-card">
+            <span class="wf-card-ico"><svg class="ico"><use href="#i-refresh" /></svg></span>
+            <h3>Data sync between apps</h3>
+            <p>Records stay matched across your CRM, billing and support tools without anyone re-typing.</p>
+            <div class="wf-flowrow"><span class="wf-chip wf-chip--in">Deal won in CRM</span><i class="wf-arrow"><svg class="ico"><use href="#i-arrow" /></svg></i><span class="wf-chip wf-chip--out">Customer created in billing</span></div>
+          </article>
+          <article class="wf-card">
+            <span class="wf-card-ico"><svg class="ico"><use href="#i-file" /></svg></span>
+            <h3>Document handling</h3>
+            <p>Reads PDFs, emails and forms, pulls out the fields and files them where they belong.</p>
+            <div class="wf-flowrow"><span class="wf-chip wf-chip--in">Contract PDF arrives</span><i class="wf-arrow"><svg class="ico"><use href="#i-arrow" /></svg></i><span class="wf-chip wf-chip--out">Fields extracted and filed</span></div>
+          </article>
+          <article class="wf-card">
+            <span class="wf-card-ico"><svg class="ico"><use href="#i-chart" /></svg></span>
+            <h3>Reports on a schedule</h3>
+            <p>Pulls numbers from your tools, writes the summary and sends it before the meeting starts.</p>
+            <div class="wf-flowrow"><span class="wf-chip wf-chip--in">Monday, 8:00 AM</span><i class="wf-arrow"><svg class="ico"><use href="#i-arrow" /></svg></i><span class="wf-chip wf-chip--out">Weekly report in your inbox</span></div>
+          </article>
+          <article class="wf-card">
+            <span class="wf-card-ico"><svg class="ico"><use href="#i-users" /></svg></span>
+            <h3>People operations</h3>
+            <p>Onboarding and offboarding checklists run themselves across HR, IT and facilities.</p>
+            <div class="wf-flowrow"><span class="wf-chip wf-chip--in">Offer letter signed</span><i class="wf-arrow"><svg class="ico"><use href="#i-arrow" /></svg></i><span class="wf-chip wf-chip--out">Accounts and laptop ready</span></div>
+          </article>
+          <article class="wf-card">
+            <span class="wf-card-ico"><svg class="ico"><use href="#i-bell" /></svg></span>
+            <h3>Alerts and follow-ups</h3>
+            <p>Nudges owners when work stalls and tells managers only when it matters.</p>
+            <div class="wf-flowrow"><span class="wf-chip wf-chip--in">Ticket idle for 24 hours</span><i class="wf-arrow"><svg class="ico"><use href="#i-arrow" /></svg></i><span class="wf-chip wf-chip--out">Owner nudged, manager told</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 4 · HOW IT WORKS (progress dial) ================= -->
+    <section class="section wf-how" id="wf-how" aria-labelledby="how-title">
+      <div class="container">
+        <div class="section-head wf-rv">
+          <span class="pill">How it works</span>
+          <h2 class="h-section" id="how-title">From messy process to running workflow in four steps.</h2>
+        </div>
+
+        <div class="wf-dial wf-rv" id="wf-dial" style="--rd:1">
+          <ol class="wf-steps">
+            <li><button class="wf-step is-on" type="button" aria-expanded="true">
+              <span class="wf-step-n">1</span><b>Map the process</b>
+              <span class="wf-step-d"><span>We pick one repetitive workflow and write down every step, rule and exception with the people who do it.</span></span>
+            </button></li>
+            <li><button class="wf-step" type="button" aria-expanded="false">
+              <span class="wf-step-n">2</span><b>Build and connect</b>
+              <span class="wf-step-d"><span>We connect your apps, build the flow and set the rules for when the agent acts and when it asks.</span></span>
+            </button></li>
+            <li><button class="wf-step" type="button" aria-expanded="false">
+              <span class="wf-step-n">3</span><b>Test alongside your team</b>
+              <span class="wf-step-d"><span>The agent runs in shadow mode first. It shows what it would do, and your team compares it with the real result.</span></span>
+            </button></li>
+            <li><button class="wf-step" type="button" aria-expanded="false">
+              <span class="wf-step-n">4</span><b>Go live and tune</b>
+              <span class="wf-step-d"><span>We switch it on, watch the run log and improve the rules every week as new cases appear.</span></span>
+            </button></li>
+          </ol>
+
+          <div class="wf-ring" aria-hidden="true">
+            <svg viewBox="0 0 200 200">
+              <defs>
+                <linearGradient id="wf-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a3161" /><stop offset="1" stop-color="#e11d48" /></linearGradient>
+              </defs>
+              <circle class="wf-ring-track" cx="100" cy="100" r="84" />
+              <circle class="wf-ring-prog" id="wf-prog" cx="100" cy="100" r="84" stroke="url(#wf-g)" stroke-dasharray="527.8" stroke-dashoffset="395.9" transform="rotate(-90 100 100)" />
+              <circle class="wf-rdot is-on" cx="184" cy="100" r="7" />
+              <circle class="wf-rdot" cx="100" cy="184" r="7" />
+              <circle class="wf-rdot" cx="16" cy="100" r="7" />
+              <circle class="wf-rdot" cx="100" cy="16" r="7" />
+            </svg>
+            <div class="wf-ring-c">
+              <div class="is-on"><span class="wf-rc-ico"><svg class="ico"><use href="#i-target" /></svg></span><b>Step 1 of 4</b><small>Map</small></div>
+              <div><span class="wf-rc-ico"><svg class="ico"><use href="#i-flow" /></svg></span><b>Step 2 of 4</b><small>Build</small></div>
+              <div><span class="wf-rc-ico"><svg class="ico"><use href="#i-eye" /></svg></span><b>Step 3 of 4</b><small>Test</small></div>
+              <div><span class="wf-rc-ico"><svg class="ico"><use href="#i-play" /></svg></span><b>Step 4 of 4</b><small>Go live</small></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 5 · HUMAN CONTROL (autonomy dial) ================= -->
+    <section class="section wf-hand" id="wf-control" aria-labelledby="hand-title">
+      <div class="engine-dots" aria-hidden="true"></div>
+      <div class="container wf-hand-grid">
+        <div class="wf-hand-copy wf-rv">
+          <span class="pill pill--dark">You stay in control</span>
+          <h2 class="h-section" id="hand-title">You decide how much the agent does on its own.</h2>
+          <p class="lead">Start with suggestions only. Move to approvals. Switch on auto-run for the tasks you trust, inside limits you set.</p>
+          <ul class="wf-list wf-list--light">
+            <li><svg class="ico"><use href="#i-sliders" /></svg>Set spend limits, working hours and who approves</li>
+            <li><svg class="ico"><use href="#i-eye" /></svg>Every run is logged, so you can see why it acted</li>
+            <li><svg class="ico"><use href="#i-users" /></svg>Unsure cases go to a person, never a guess</li>
+          </ul>
+          <a class="btn btn--primary btn--lg" href="contact-us.html">Talk to our team <svg class="ico"><use href="#i-arrow" /></svg></a>
+        </div>
+
+        <div class="wf-auto wf-rv" id="wf-auto" data-s="0" style="--rd:2" aria-label="Example: the same refund request handled at three autonomy levels">
+          <div class="wf-seg-ctl" style="--i:0">
+            <i class="wf-seg-thumb"></i>
+            <button class="is-on" type="button">Suggest</button>
+            <button type="button">Ask first</button>
+            <button type="button">Auto-run</button>
+          </div>
+
+          <div class="wf-req">
+            <div class="wf-req-top">
+              <span class="wf-av">RF</span>
+              <div><b>Refund request &middot; Order #5521</b><small>Sam T. &middot; late delivery</small></div>
+              <em>$42</em>
+            </div>
+
+            <div class="wf-states">
+              <div class="wf-st wf-st0">
+                <p class="wf-st-t">Agent drafted a reply and a $42 refund.</p>
+                <div class="wf-draft">&ldquo;Hi Sam, sorry your order arrived late. We&rsquo;ve prepared a $42 refund&hellip;&rdquo;</div>
+                <div class="wf-btns"><span class="wf-fake wf-fake--ghost">Review draft</span></div>
+                <small class="wf-foot">You take the action. The agent only suggests.</small>
+              </div>
+              <div class="wf-st wf-st1">
+                <p class="wf-st-t">Ready to refund $42 to Sam T.</p>
+                <div class="wf-draft">Checked: order is late, refund is under your limit, customer is in good standing.</div>
+                <div class="wf-btns"><span class="wf-fake wf-fake--go">Approve</span><span class="wf-fake wf-fake--ghost">Edit</span></div>
+                <small class="wf-foot">Nothing happens until you approve.</small>
+              </div>
+              <div class="wf-st wf-st2">
+                <p class="wf-st-t">Refunded $42 and emailed Sam.</p>
+                <div class="wf-draft">Payment reversed in Stripe. Support ticket closed. Logged at 09:41.</div>
+                <span class="wf-stamp">Done by agent</span>
+                <small class="wf-foot">Inside your limit. You can review it any time.</small>
+              </div>
+            </div>
+          </div>
+
+          <ul class="wf-guards">
+            <li><svg class="ico"><use href="#i-shield" /></svg>Limit: $50 per refund</li>
+            <li><svg class="ico"><use href="#i-clock" /></svg>Business hours only</li>
+            <li><svg class="ico"><use href="#i-bell" /></svg>Escalates if unsure</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 7 · RESULTS (time-saved calculator) ================= -->
+    <section class="section wf-calc-sec" id="wf-results" aria-labelledby="calc-title">
+      <div class="container">
+        <div class="section-head wf-rv">
+          <span class="pill">What changes</span>
+          <h2 class="h-section" id="calc-title">Estimate the hours you could get back.</h2>
+          <p class="lead">Move the sliders to match one repetitive process in your business.</p>
+        </div>
+
+        <div class="wf-calc wf-rv" id="wf-calc" style="--rd:1">
+          <div class="wf-calc-in">
+            <div class="wf-field">
+              <label for="wf-tasks">Tasks per week <output id="wf-tasks-v">200</output></label>
+              <input id="wf-tasks" type="range" min="10" max="1000" step="10" value="200">
+            </div>
+            <div class="wf-field">
+              <label for="wf-mins">Minutes per task <output id="wf-mins-v">8 min</output></label>
+              <input id="wf-mins" type="range" min="1" max="60" step="1" value="8">
+            </div>
+            <div class="wf-field">
+              <label for="wf-share">Share the agent handles <output id="wf-share-v">70%</output></label>
+              <input id="wf-share" type="range" min="20" max="95" step="5" value="70">
+            </div>
+            <p class="wf-calc-note">This is a rough estimate. Real savings depend on your process, volume and how many cases need a person.</p>
+          </div>
+
+          <div class="wf-calc-out" aria-live="polite">
+            <div class="wf-gauge">
+              <svg viewBox="0 0 200 200" aria-hidden="true">
+                <circle class="wf-g-track" cx="100" cy="100" r="82" />
+                <circle class="wf-g-prog" id="wf-gauge" cx="100" cy="100" r="82" stroke-dasharray="515.2" stroke-dashoffset="154.6" transform="rotate(-90 100 100)" />
+              </svg>
+              <div class="wf-g-c"><strong id="wf-hours">81</strong><span>hours saved<br>per month</span></div>
+            </div>
+            <p class="wf-days">About <b id="wf-days">121</b> working days a year</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 8 · FAQ ================= -->
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="container faq-grid" data-reveal>
+        <div class="faq-head">
+          <span class="pill">Common questions</span>
+          <h2 class="h-section" id="faq-title">Workflow agent FAQs</h2>
+        </div>
+        <div class="faq-list" id="faq-list">
+          <div class="faq-item open">
+            <h3><button class="faq-q" type="button" aria-expanded="true">Which process should we automate first? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Pick something your team repeats often, that follows clear rules and loses time to copying data between apps. Invoice handling, lead routing and onboarding checklists are common starting points. We review your options in the free automation review.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">How is this different from simple automation rules? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Fixed rules break when input is messy. An agent can read emails, PDFs and free-text requests, decide what they mean and pick the next step, while still following the rules and limits you set.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">What happens if the agent gets something wrong? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Cases it is unsure about go to a person instead of being guessed. Every run is logged so you can see what happened and why, and we tighten the rules when we spot a pattern.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Which apps can it connect to? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Common tools such as Slack, Gmail, Google Sheets, Salesforce, HubSpot, QuickBooks and Jira, plus any system with an API or webhook. If you use something custom, we can build the connection.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">How long does setup take? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>A first workflow is usually live within a few weeks, depending on how many apps are involved and how quickly we get access. We run it in shadow mode first so your team can check it before it acts.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+    <section class="cta" id="contact" aria-labelledby="cta-title">
+      <div class="cta-grid">
+        <div class="cta-bar" aria-hidden="true"></div>
+        <div class="cta-box">
+          <div class="ripples" aria-hidden="true"><span></span><span></span><span></span></div>
+          <h2 id="cta-title">Stop copying data between tabs.</h2>
+          <p>Tell us which process eats your team&rsquo;s week and we&rsquo;ll show how an agent could run it.</p>
+          <a class="btn btn--primary btn--lg btn-sweep" href="contact-us.html"><span style="position:relative">Get a Free Automation Review</span></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="footer-panel">
+      <div class="footer-flag" aria-hidden="true"></div>
+      <div class="footer-main">
+        <div class="footer-brand">
+          <img src="images/codevelop.webp" alt="Codevelop logo" class="brand-logo" width="160" height="40">
+          <p>At Codevelop, we help businesses turn strategy into scalable results through thoughtful design,
+            performance-driven marketing, and modern technology.</p>
+          <div class="socials">
+            <a href="https://www.facebook.com/Codevelop.usa/" aria-label="Facebook" target="_blank" rel="noopener"><svg class="ico"><use href="#i-fb" /></svg></a>
+            <a href="https://www.instagram.com/codevelop_us/" aria-label="Instagram" target="_blank" rel="noopener"><svg class="ico"><use href="#i-ig" /></svg></a>
+            <a href="https://www.linkedin.com/company/codevelop-us" aria-label="LinkedIn" target="_blank" rel="noopener"><svg class="ico"><use href="#i-in" /></svg></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Services</h3>
+          <ul>
+            <li><a href="performance-marketing.html">Performance Marketing</a></li>
+            <li><a href="#">SEO Services</a></li>
+            <li><a href="#">Social Media Marketing</a></li>
+            <li><a href="web-development.html">Web Development</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Link</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Case Studies</a></li>
+            <li><a href="#">Blogs</a></li>
+            <li><a href="https://codevelopus.com/">Free SEO Audit</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Contact Us</h3>
+          <ul class="contact">
+            <li><svg class="ico"><use href="#i-pin" /></svg><span>555 SE Martin Luther King JR Blvd, Portland, OR 97214</span></li>
+            <li><svg class="ico"><use href="#i-phone" /></svg><a href="tel:+19714809833">+1 971-480-9833</a></li>
+            <li><svg class="ico"><use href="#i-mail" /></svg><a href="mailto:info@codevelop.us">info@codevelop.us</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="newsletter">
+        <div class="newsletter-box">
+          <h3>Signup our newsletter to get update information, news, insight or promotions.</h3>
+          <form class="news-form" action="#" method="post">
+            <label class="sr-only" for="news-email">Email</label>
+            <input id="news-email" type="email" name="email" placeholder="Email" required autocomplete="email">
+            <button class="btn btn--primary" type="submit">Sign up</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <span>Copyright © 2026 Codevelop US, All Rights Reserved.</span>
+      <a href="#">Privacy policy</a>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script src="js/workflow-agents.js"></script>
+</body>
+
+</html>

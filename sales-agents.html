@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Sales &amp; Lead-Generation Agents | Codevelop</title>
+  <meta name="description"
+    content="Codevelop builds AI sales and lead-generation agents that capture, qualify and follow up with every lead, then book meetings straight into your reps' calendars.">
+  <link rel="canonical" href="https://codevelopus.com/sales-lead-generation-agents.html">
+  <meta name="theme-color" content="#0a3161">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Codevelopus">
+  <meta property="og:title" content="AI Sales &amp; Lead-Generation Agents | Codevelop">
+  <meta property="og:description"
+    content="AI agents that capture, qualify and follow up with leads, then book meetings for your sales team.">
+  <meta property="og:url" content="https://codevelopus.com/sales-lead-generation-agents.html">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="https://codevelopus.com/wp-content/uploads/2026/01/cropped-codevelop-favicon-270x270.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/sales-agents.css">
+</head>
+
+<body>
+
+  <!-- Icon sprite -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.4l-5.9 3.3 1.2-6.6L2.5 9.5l6.6-.9L12 2.5z" /></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" /></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></symbol>
+      <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z" /></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" /><path d="M20 20l-4-4" /></symbol>
+      <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="5" /><circle cx="12" cy="12" r="1.5" /></symbol>
+      <symbol id="i-funnel" viewBox="0 0 24 24"><path d="M3 4h18l-7 8v6l-4 2v-8L3 4z" /></symbol>
+      <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" /></symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5z" /></symbol>
+      <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M18 6l-2.5 2.5M8.5 15.5L6 18" /></symbol>
+      <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z" /><path d="M19 17l.8 2.2L22 20l-2.2.8L19 23l-.8-2.2L16 20l2.2-.8L19 17z" /></symbol>
+      <symbol id="i-fb" viewBox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v7h4v-7h3l1-4h-4V8z" /></symbol>
+      <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="0.8" /></symbol>
+      <symbol id="i-in" viewBox="0 0 24 24"><rect x="3" y="9" width="4" height="12" /><circle cx="5" cy="5" r="2" /><path d="M10 9h4v2a4 4 0 0 1 6 3v7h-4v-6a2 2 0 0 0-4 0v6h-4V9z" /></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" /></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3 7l9 6 9-6" /></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11z" /><circle cx="12" cy="10" r="2.5" /></symbol>
+      <symbol id="i-code" viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16" /></symbol>
+      <symbol id="i-flow" viewBox="0 0 24 24"><rect x="3" y="3" width="6" height="6" rx="1" /><rect x="15" y="15" width="6" height="6" rx="1" /><path d="M9 6h4a2 2 0 0 1 2 2v7" /></symbol>
+      <symbol id="i-megaphone" viewBox="0 0 24 24"><path d="M3 10v4h4l8 5V5L7 10H3z" /><path d="M18.5 9a4 4 0 0 1 0 6" /></symbol>
+      <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2V5z" /><path d="M4 19a2 2 0 0 1 2-2h13" /></symbol>
+      <symbol id="i-coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M14.5 9.5c-.5-1-1.5-1.5-2.5-1.5-1.4 0-2.5.8-2.5 2s1 1.7 2.5 2 2.5.8 2.5 2-1.1 2-2.5 2c-1 0-2-.5-2.5-1.5M12 6.5V8m0 8v1.5" /></symbol>
+      <symbol id="i-desk" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2" /><path d="M8 20h8M12 16v4" /></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5" /><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6" /><path d="M16 4.7a3.5 3.5 0 0 1 0 6.6M18 14.3c2 .7 3.5 2.6 3.5 5.7" /></symbol>
+      <!-- new for this page -->
+      <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3c3.2 3.2 3.2 14.8 0 18M12 3c-3.2 3.2-3.2 14.8 0 18" /></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z" /><path d="M9 12l2 2 4-4" /></symbol>
+      <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14-4L4 9M4 4v5h5M4 13a8 8 0 0 0 14 4l2-2M20 20v-5h-5" /></symbol>
+      <symbol id="i-tag" viewBox="0 0 24 24"><path d="M3 12V4h8l10 10-8 8L3 12z" /><circle cx="7.5" cy="7.5" r="1.2" /></symbol>
+      <symbol id="i-inbox" viewBox="0 0 24 24"><path d="M3 13l3-8h12l3 8v6H3v-6z" /><path d="M3 13h5l1 3h6l1-3h5" /></symbol>
+      <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v3" /></symbol>
+      <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4l2-2z" /><path d="M10 21h4" /></symbol>
+      <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z" /><circle cx="12" cy="12" r="3" /></symbol>
+      <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-8-5-8-11a4.5 4.5 0 0 1 8-2.5A4.5 4.5 0 0 1 20 9c0 6-8 11-8 11z" /></symbol>
+      <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" /></symbol>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header" id="top">
+    <div class="bar">
+      <a class="logo" href="index.html" aria-label="Codevelop home"><img src="images/codevelop.webp"
+          alt="Codevelop logo" class="brand-logo" width="160" height="40"></a>
+      <button class="burger" type="button" aria-label="Open menu"
+        aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav aria-label="Main">
+        <ul>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">AI Agents <svg class="chev"
+                viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop drop--agents">
+              <div class="agents-top">
+                <span class="agents-label">AI Agents</span>
+                <a class="agents-all" href="#">View all agents</a>
+              </div>
+
+              <a class="agent" href="customer-support-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-chat" />
+                  </svg></span>
+                <span class="agent-txt"><b>Customer Support Agents</b><small>24/7 answers across chat &amp;
+                    inbox</small></span>
+              </a>
+              <a class="agent" href="sales-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-funnel" />
+                  </svg></span>
+                <span class="agent-txt"><b>Sales &amp; Lead-Generation Agents</b><small>Capture, qualify &amp; follow up
+                    with leads</small></span>
+              </a>
+
+              <a class="agent" href="software-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-code" />
+                  </svg></span>
+                <span class="agent-txt"><b>Software Development Agents</b><small>Code, review &amp; ship
+                    faster</small></span>
+              </a>
+              <a class="agent" href="workflow-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-flow" />
+                  </svg></span>
+                <span class="agent-txt"><b>Workflow Automation Agents</b><small>Connect tools &amp; automate routine
+                    tasks</small></span>
+              </a>
+
+              <a class="agent" href="marketing-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-megaphone" />
+                  </svg></span>
+                <span class="agent-txt"><b>Marketing Agents</b><small>Campaigns, content &amp; channel
+                    management</small></span>
+              </a>
+              <a class="agent" href="research-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-chart" />
+                  </svg></span>
+                <span class="agent-txt"><b>Research &amp; Data Analyst Agents</b><small>Insights &amp; plain-language
+                    reports</small></span>
+              </a>
+
+              <a class="agent" href="internal-knowledge-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-book" />
+                  </svg></span>
+                <span class="agent-txt"><b>Internal Knowledge Agents</b><small>Instant answers from your company
+                    data</small></span>
+              </a>
+              <a class="agent" href="#">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-coin" />
+                  </svg></span>
+                <span class="agent-txt"><b>Finance &amp; Accounting Agents</b><small>Invoices, reconciliation &amp;
+                    reporting</small></span>
+              </a>
+
+              <a class="agent" href="#">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-desk" />
+                  </svg></span>
+                <span class="agent-txt"><b>IT Service Desk Agents</b><small>Resolve tickets &amp; access
+                    requests</small></span>
+              </a>
+              <a class="agent" href="#">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-users" />
+                  </svg></span>
+                <span class="agent-txt"><b>HR &amp; Recruitment Agents</b><small>Screen, schedule &amp; onboard
+                    people</small></span>
+              </a>
+            </div>
+          </li>
+     <li class="has-mega"><button class="top" type="button" aria-expanded="false">Connectors <svg class="chev" viewBox="0 0 10 10">
+    <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+  </svg></button>
+  <div class="drop drop--agents drop--connectors">
+    <div class="agents-top">
+      <span class="agents-label">Connectors</span>
+      <a class="agents-all" href="#">View all connectors</a>
+    </div>
+
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-sap">SAP</i></span>
+      <span class="agent-txt"><b>SAP Business One</b><small>ERP integration &amp; consulting</small></span>
+    </a>
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-sf">SF</i></span>
+      <span class="agent-txt"><b>Salesforce</b><small>CRM &amp; order-to-cash sync</small></span>
+    </a>
+
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-ns">N</i></span>
+      <span class="agent-txt"><b>NetSuite</b><small>ERP, ecommerce &amp; EDI sync</small></span>
+    </a>
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-shop">S</i></span>
+      <span class="agent-txt"><b>Shopify</b><small>Ecommerce ↔ back office</small></span>
+    </a>
+
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-qb">qb</i></span>
+      <span class="agent-txt"><b>QuickBooks</b><small>Accounting &amp; invoice sync</small></span>
+    </a>
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-woo">Woo</i></span>
+      <span class="agent-txt"><b>WooCommerce</b><small>WordPress store integration</small></span>
+    </a>
+
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-zoho"><s></s><s></s><s></s><s></s></i></span>
+      <span class="agent-txt"><b>Zoho</b><small>Zoho One suite integration</small></span>
+    </a>
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-zuper">Zu</i></span>
+      <span class="agent-txt"><b>Zuper</b><small>Field service management sync</small></span>
+    </a>
+
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-attio">At</i></span>
+      <span class="agent-txt"><b>Attio</b><small>CRM &amp; record sync</small></span>
+    </a>
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-twenty">20</i></span>
+      <span class="agent-txt"><b>Twenty</b><small>Open-source CRM sync</small></span>
+    </a>
+  </div>
+</li>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">Services <svg class="chev"
+                viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop drop--mega">
+              <div class="mega-top">
+                <a class="mega-all" href="services.html">View all services <svg class="ico" width="16" height="16"
+                    aria-hidden="true">
+                    <use href="#i-arrow" />
+                  </svg></a>
+              </div>
+
+              <div class="mega-col">
+                <h4><a href="performance-marketing.html">Performance Marketing</a></h4>
+                <a href="meta-ads.html">Google Ads Management</a>
+                <a href="facebook-ads.html">Facebook Ads</a>
+                <a href="remarketing.html">Remarketing</a>
+              </div>
+
+              <div class="mega-col">
+                <h4><a href="web-development.html">Web Development Services</a></h4>
+                <a href="custom-website-design.html">Custom Website Design</a>
+                <a href="wordpress-development.html">WordPress Web Development</a>
+                <a href="shopify-development.html">Shopify Web Development</a>
+                <a href="webflow-development.html">Webflow Web Development</a>
+                <a href="framer-development.html">Framer Web Development</a>
+                <a href="mageneto-development.html">Magento Web Development</a>
+                <a href="website-maintenance.html">Website Maintenance</a>
+                <a href="website-redesign.html">Website Redesign</a>
+              </div>
+
+              <div class="mega-col">
+                <h4><a href="social-media-marketing.html">Social Media Marketing</a></h4>
+                <a href="content-marketing.html">Content Marketing</a>
+              </div>
+
+              <div class="mega-col">
+                <h4><a href="search-engine-optimization.html">Search Engine Optimization</a></h4>
+                <a href="local-seo.html">Local SEO</a>
+                <a href="seo-audits.html">SEO Audits</a>
+                <a href="technical-seo.html">Technical SEO</a>
+                <a href="enterprise-seo.html">Enterprise SEO</a>
+              </div>
+            </div>
+          </li>
+          <li><button class="top" type="button" aria-expanded="false">Hire Talent <svg class="chev" viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop"><a href="#">Developers</a><a href="#">Automation Engineers</a><a href="#">Dedicated
+                Teams</a></div>
+          </li>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="#">Success Stories</a></li>
+          <li><a href="#">Insights</a></li>
+        </ul>
+        <a class="hdr-cta hdr-cta-m" href="contact-us.html">Get a Free Automation Review</a>
+      </nav>
+      <a class="hdr-cta" href="contact-us.html">Get a Free Automation Review</a>
+    </div>
+  </header>
+
+  <main id="content">
+
+    <!-- ================= 1 · HERO (animated product video) ================= -->
+    <section class="hero-wrap" aria-labelledby="sl-title">
+      <div class="hero sl-hero">
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="hero-glow" aria-hidden="true"></div>
+        <div class="ring ring--1" aria-hidden="true"><i></i></div>
+        <div class="ring ring--2" aria-hidden="true"><i></i></div>
+        <div class="ring ring--3" aria-hidden="true"><i></i></div>
+
+        <div class="container sl-hero-inner">
+          <div class="sl-copy">
+            <span class="pill">Sales &amp; Lead-Generation Agents</span>
+            <h1 class="h-display" id="sl-title">
+              <span class="w"><span style="--i:0">Turn</span></span>
+              <span class="w"><span style="--i:1">more</span></span>
+              <span class="w"><span style="--i:2">visitors</span></span>
+              <span class="w"><span style="--i:3">into</span></span>
+              <span class="u"><span class="w"><span style="--i:4">booked</span></span> <span class="w"><span
+                    style="--i:5">meetings</span></span><svg viewBox="0 0 300 20" preserveAspectRatio="none"
+                  aria-hidden="true">
+                  <path d="M3 14 C 70 4, 160 2, 297 9" pathLength="1" />
+                </svg></span>
+            </h1>
+            <p class="lead">AI agents that greet every visitor, ask the right questions, score each lead and book
+              meetings straight into your reps&rsquo; calendars, so your sales team only talks to people who are ready to buy.
+            </p>
+            <div class="sl-actions">
+              <a class="btn btn--primary btn--lg btn--pulse" href="contact-us.html">Get a Free Automation Review <svg
+                  class="ico"><use href="#i-arrow" /></svg></a>
+              <a class="btn btn--ghost btn--lg" href="#sl-how">See how it works</a>
+            </div>
+            <ul class="sl-checks">
+              <li><svg class="ico"><use href="#i-check" /></svg>Connects to your CRM</li>
+              <li><svg class="ico"><use href="#i-check" /></svg>Replies in under a minute</li>
+              <li><svg class="ico"><use href="#i-check" /></svg>Reps get a full lead brief</li>
+            </ul>
+          </div>
+
+          <div class="sl-stage" id="sl-stage">
+            <div class="sl-video" id="sl-video">
+              <div class="sl-vbar">
+                <span class="sl-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span class="sl-vtitle"><b class="sl-rec" aria-hidden="true"></b><span id="sl-scene-name">Website chat</span></span>
+                <span class="sl-time" id="sl-time" aria-hidden="true">0:00</span>
+              </div>
+
+              <div class="sl-vbody" aria-hidden="true">
+                <!-- scene 1: qualify in chat -->
+                <div class="sl-scene is-active" data-name="Website chat">
+                  <div class="sl-chat">
+                    <p class="sl-m me sl-in" style="--n:0">Hi, what would pricing look like for a team of 12?</p>
+                    <p class="sl-m bot sl-in" style="--n:1">Happy to help. Are you replacing a current tool, or starting fresh?</p>
+                    <div class="sl-order sl-in" style="--n:2">
+                      <div class="sl-order-top"><b>Maya R. &middot; Northwind Dental</b><span>Hot 92</span></div>
+                      <div class="sl-track"><i></i><i></i><i></i><u></u></div>
+                      <small>Need confirmed &middot; Budget fits &middot; Starts this month</small>
+                    </div>
+                    <p class="sl-m bot sl-in" style="--n:3">Sounds like a great fit. Daniel has Thursday 2:30 PM open. Shall I book it?</p>
+                    <p class="sl-m me sl-in" style="--n:4">Yes, book it</p>
+                    <p class="sl-m bot sl-in" style="--n:5">Booked. The invite is on its way to your inbox.</p>
+                  </div>
+                </div>
+
+                <!-- scene 2: CRM + scoring -->
+                <div class="sl-scene" data-name="Lead scoring">
+                  <div class="sl-mail sl-in" style="--n:0">
+                    <span class="sl-av">NW</span>
+                    <div><b>New lead &middot; Northwind Dental</b><small>Form: Request a quote &middot; 12 seats</small></div>
+                    <em>New</em>
+                  </div>
+                  <ul class="sl-pipe">
+                    <li class="sl-in" style="--n:1"><span class="ck" style="--n:1"><svg class="ico"><use href="#i-check" /></svg></span>Company details enriched<small>51-200 staff</small></li>
+                    <li class="sl-in" style="--n:2"><span class="ck" style="--n:2"><svg class="ico"><use href="#i-check" /></svg></span>Scored against your ideal customer<small>92 / 100</small></li>
+                    <li class="sl-in" style="--n:3"><span class="ck" style="--n:3"><svg class="ico"><use href="#i-check" /></svg></span>Checked for duplicates<small>None found</small></li>
+                    <li class="sl-in" style="--n:4"><span class="ck" style="--n:4"><svg class="ico"><use href="#i-check" /></svg></span>Created in HubSpot and assigned<small>Daniel R.</small></li>
+                  </ul>
+                  <div class="sl-done sl-in" style="--n:5"><svg class="ico"><use href="#i-bolt" /></svg>In your CRM in 6 seconds, ready to work</div>
+                </div>
+
+                <!-- scene 3: follow-up + booking -->
+                <div class="sl-scene" data-name="Follow-up">
+                  <div class="sl-ticket sl-in" style="--n:0">
+                    <div class="sl-ticket-top"><b>Follow-up sequence &middot; Day 2</b><span class="hot">Replied</span></div>
+                    <div class="sl-tags"><span>Email 1 sent</span><span>Email 2 opened</span><span>Reply detected</span></div>
+                  </div>
+                  <div class="sl-sum sl-in" style="--n:1">
+                    <b>Agent reply</b>
+                    <p>Sent the case study and offered Thursday 2:30 PM or Friday 10:00. The lead chose Thursday.</p>
+                  </div>
+                  <div class="sl-route sl-in" style="--n:2">
+                    <span class="sl-av sl-av--red">DR</span>
+                    <div><b>Meeting booked with Daniel R.</b><small>Lead brief and notes added to the CRM</small></div>
+                  </div>
+                  <div class="sl-done sl-done--soft sl-in" style="--n:3"><svg class="ico"><use href="#i-users" /></svg>Your rep joins a warm call, not a cold one</div>
+                </div>
+              </div>
+
+              <div class="sl-vtl" role="group" aria-label="Demo scenes">
+                <button class="sl-seg is-on" type="button" aria-label="Show website chat scene"><span>Website chat</span><i></i></button>
+                <button class="sl-seg" type="button" aria-label="Show lead scoring scene"><span>Lead scoring</span><i></i></button>
+                <button class="sl-seg" type="button" aria-label="Show follow-up scene"><span>Follow-up</span><i></i></button>
+              </div>
+            </div>
+
+            <div class="sl-float sl-float--1" aria-hidden="true">
+              <svg class="ico"><use href="#i-clock" /></svg><span><b>&lt;1 min</b><small>speed to lead</small></span>
+            </div>
+            <div class="sl-float sl-float--2" aria-hidden="true">
+              <svg class="ico"><use href="#i-chart" /></svg><span><b>3x</b><small>more meetings booked</small></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="stats" aria-label="Sales agent highlights">
+          <div class="stat">
+            <span class="stat-ico"><svg class="ico-style"><use href="#i-bolt" /></svg></span>
+            <div><strong data-count="1" data-pre="<" data-suf=" min">&lt;1 min</strong><span>speed to lead</span></div>
+          </div>
+          <div class="stat">
+            <span class="stat-ico"><svg class="ico-style"><use href="#i-target" /></svg></span>
+            <div><strong data-count="3" data-suf="x">3x</strong><span>more meetings booked</span></div>
+          </div>
+          <div class="stat">
+            <span class="stat-ico"><svg class="ico-style"><use href="#i-clock" /></svg></span>
+            <div><strong>24/7</strong><span>lead capture</span></div>
+          </div>
+          <div class="stat">
+            <span class="stat-ico"><svg class="ico-style"><use href="#i-check" /></svg></span>
+            <div><strong data-count="100" data-suf="%">100%</strong><span>of leads followed up</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 2 · WHAT IT DOES (sticky lead journey) ================= -->
+    <section class="section sl-do" id="sl-do" aria-labelledby="do-title">
+      <div class="container">
+        <div class="section-head sl-rv">
+          <span class="pill">What it does</span>
+          <h2 class="h-section" id="do-title">Every lead captured, qualified and followed up.</h2>
+          <p class="lead">The agent works your lead flow from first click to booked call, inside the CRM and calendar you already use.</p>
+        </div>
+
+        <div class="sl-do-grid">
+          <div class="sl-do-stick sl-rv" style="--rd:1">
+            <div class="sl-funnel" id="sl-funnel" aria-hidden="true">
+              <div class="sl-fn-head"><i class="sl-live"></i>Live lead journey<em>One lead, start to finish</em></div>
+              <ul class="sl-fn-rows">
+                <li class="sl-fn-row is-on" style="--k:0"><span class="sl-fn-ico"><svg class="ico"><use href="#i-chat" /></svg></span><span class="sl-fn-txt"><b>Captured</b><small>Reply in seconds</small></span><i class="sl-fn-state"><svg class="ico"><use href="#i-check" /></svg></i></li>
+                <li class="sl-fn-row" style="--k:1"><span class="sl-fn-ico"><svg class="ico"><use href="#i-search" /></svg></span><span class="sl-fn-txt"><b>Qualified</b><small>Need, budget, timeline</small></span><i class="sl-fn-state"><svg class="ico"><use href="#i-check" /></svg></i></li>
+                <li class="sl-fn-row" style="--k:2"><span class="sl-fn-ico"><svg class="ico"><use href="#i-book" /></svg></span><span class="sl-fn-txt"><b>Enriched</b><small>Company, role, industry</small></span><i class="sl-fn-state"><svg class="ico"><use href="#i-check" /></svg></i></li>
+                <li class="sl-fn-row" style="--k:3"><span class="sl-fn-ico"><svg class="ico"><use href="#i-funnel" /></svg></span><span class="sl-fn-txt"><b>Scored</b><small>Ranked against your ideal customer</small></span><i class="sl-fn-state"><svg class="ico"><use href="#i-check" /></svg></i></li>
+                <li class="sl-fn-row" style="--k:4"><span class="sl-fn-ico"><svg class="ico"><use href="#i-refresh" /></svg></span><span class="sl-fn-txt"><b>Followed up</b><small>Email, SMS, WhatsApp</small></span><i class="sl-fn-state"><svg class="ico"><use href="#i-check" /></svg></i></li>
+                <li class="sl-fn-row" style="--k:5"><span class="sl-fn-ico"><svg class="ico"><use href="#i-clock" /></svg></span><span class="sl-fn-txt"><b>Booked</b><small>Invite in your rep&rsquo;s calendar</small></span><i class="sl-fn-state"><svg class="ico"><use href="#i-check" /></svg></i></li>
+              </ul>
+              <div class="sl-fn-lead">
+                <span class="sl-av">MR</span>
+                <div><b>Maya R. &middot; Northwind Dental</b><small id="sl-fn-status">Started a chat from the pricing page</small></div>
+                <em id="sl-fn-badge">New</em>
+              </div>
+            </div>
+          </div>
+
+          <ol class="sl-do-list">
+            <li class="sl-do-step is-on" data-status="Started a chat from the pricing page" data-badge="New">
+              <div class="sl-do-top"><span class="sl-card-ico"><svg class="ico"><use href="#i-chat" /></svg></span><h3>Capture and engage</h3></div>
+              <p>Starts a conversation with website visitors, form fills and ad leads within seconds, instead of waiting for a rep.</p>
+              <ul class="sl-eg"><li>Website chat</li><li>Lead forms</li><li>Ad leads</li></ul>
+            </li>
+            <li class="sl-do-step" data-status="Answered 4 qualifying questions" data-badge="Warm">
+              <div class="sl-do-top"><span class="sl-card-ico"><svg class="ico"><use href="#i-search" /></svg></span><h3>Qualify with real questions</h3></div>
+              <p>Asks about need, budget, timeline and team size in a natural chat, using your own qualification rules.</p>
+              <ul class="sl-eg"><li>Budget</li><li>Timeline</li><li>Need</li></ul>
+            </li>
+            <li class="sl-do-step" data-status="Company enriched: 51-200 staff" data-badge="Warm">
+              <div class="sl-do-top"><span class="sl-card-ico"><svg class="ico"><use href="#i-book" /></svg></span><h3>Enrich lead data</h3></div>
+              <p>Fills in company size, industry and role from public sources, so reps skip the manual research.</p>
+              <ul class="sl-eg"><li>Company</li><li>Role</li><li>Industry</li></ul>
+            </li>
+            <li class="sl-do-step" data-status="Scored 92 / 100 against your ideal customer" data-badge="Hot 92">
+              <div class="sl-do-top"><span class="sl-card-ico"><svg class="ico"><use href="#i-funnel" /></svg></span><h3>Score and prioritise</h3></div>
+              <p>Ranks every lead against your ideal customer profile, so the hottest ones get attention first.</p>
+              <ul class="sl-eg"><li>Fit score</li><li>Intent</li><li>Priority</li></ul>
+            </li>
+            <li class="sl-do-step" data-status="Replied to follow-up email 2" data-badge="Hot 92">
+              <div class="sl-do-top"><span class="sl-card-ico"><svg class="ico"><use href="#i-refresh" /></svg></span><h3>Follow up automatically</h3></div>
+              <p>Sends timely emails, texts and WhatsApp messages, adapts to replies and stops once a lead is ready to talk.</p>
+              <ul class="sl-eg"><li>Email</li><li>SMS</li><li>WhatsApp</li></ul>
+            </li>
+            <li class="sl-do-step" data-status="Booked Thursday 2:30 PM with Daniel" data-badge="Booked">
+              <div class="sl-do-top"><span class="sl-card-ico"><svg class="ico"><use href="#i-clock" /></svg></span><h3>Book meetings</h3></div>
+              <p>Checks rep calendars, offers times and sends invites, with reminders that cut down no-shows.</p>
+              <ul class="sl-eg"><li>Calendar sync</li><li>Reminders</li><li>Rescheduling</li></ul>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 3 · SOURCES → AGENT → OUTCOMES ================= -->
+    <section class="section sl-ch" id="sl-channels" aria-labelledby="ch-title">
+      <div class="container">
+        <div class="section-head sl-rv">
+          <span class="pill">Every lead source</span>
+          <h2 class="h-section" id="ch-title">Capture leads wherever they come from.</h2>
+          <p class="lead">Website visitors, ad leads and cold prospects all get the same fast, on-brand conversation.</p>
+        </div>
+
+        <div class="sl-hub sl-rv" id="sl-hub" style="--rd:1">
+          <div class="sl-hub-col">
+            <article class="sl-src">
+              <div class="sl-src-top"><span class="sl-src-ico"><svg class="ico"><use href="#i-chat" /></svg></span><h3>Website chat</h3></div>
+              <p>Talks like your best rep, answers pricing and books the call.</p>
+              <span class="sl-tick" data-items="Maya R. asked about pricing|Visitor from Google, 3 pages deep|Chat started on the demo page">Maya R. asked about pricing</span>
+            </article>
+            <article class="sl-src">
+              <div class="sl-src-top"><span class="sl-src-ico"><svg class="ico"><use href="#i-target" /></svg></span><h3>Ad and form leads</h3></div>
+              <p>Replies within a minute, before the lead goes cold.</p>
+              <span class="sl-tick" data-items="Meta form: Spring offer|Google form: Quote request|Landing page: Free audit">Meta form: Spring offer</span>
+            </article>
+            <article class="sl-src">
+              <div class="sl-src-top"><span class="sl-src-ico"><svg class="ico"><use href="#i-mail" /></svg></span><h3>Outbound prospects</h3></div>
+              <p>Personalised first emails and follow-ups that stop on reply.</p>
+              <span class="sl-tick" data-items="Email 1 sent to Northwind|Follow-up queued for day 3|Reply detected from Acme">Email 1 sent to Northwind</span>
+            </article>
+          </div>
+
+          <svg class="sl-hub-lines" viewBox="0 0 100 440" preserveAspectRatio="none" aria-hidden="true">
+            <path class="t" d="M0 68 C 55 68, 45 220, 100 220" />
+            <path class="t" d="M0 220 L 100 220" />
+            <path class="t" d="M0 372 C 55 372, 45 220, 100 220" />
+            <path class="f" d="M0 68 C 55 68, 45 220, 100 220" />
+            <path class="f" d="M0 220 L 100 220" />
+            <path class="f" d="M0 372 C 55 372, 45 220, 100 220" />
+            <circle class="sl-pkt" r="3.4"><animateMotion dur="2.4s" repeatCount="indefinite" path="M0 68 C 55 68, 45 220, 100 220" /></circle>
+            <circle class="sl-pkt" r="3.4"><animateMotion dur="1.9s" repeatCount="indefinite" path="M0 220 L 100 220" /></circle>
+            <circle class="sl-pkt" r="3.4"><animateMotion dur="2.8s" repeatCount="indefinite" path="M0 372 C 55 372, 45 220, 100 220" /></circle>
+          </svg>
+
+          <div class="sl-hub-mid">
+            <i class="sl-ripple"></i><i class="sl-ripple"></i><i class="sl-ripple"></i>
+            <div class="sl-core"><svg class="ico"><use href="#i-sparkle" /></svg>Sales agent<small>Engages, qualifies, books</small></div>
+          </div>
+
+          <svg class="sl-hub-lines" viewBox="0 0 100 440" preserveAspectRatio="none" aria-hidden="true">
+            <path class="t" d="M0 220 C 55 220, 45 68, 100 68" />
+            <path class="t" d="M0 220 L 100 220" />
+            <path class="t" d="M0 220 C 55 220, 45 372, 100 372" />
+            <path class="f" d="M0 220 C 55 220, 45 68, 100 68" />
+            <path class="f" d="M0 220 L 100 220" />
+            <path class="f" d="M0 220 C 55 220, 45 372, 100 372" />
+            <circle class="sl-pkt" r="3.4"><animateMotion dur="2.6s" repeatCount="indefinite" path="M0 220 C 55 220, 45 68, 100 68" /></circle>
+            <circle class="sl-pkt" r="3.4"><animateMotion dur="2.1s" repeatCount="indefinite" path="M0 220 L 100 220" /></circle>
+            <circle class="sl-pkt" r="3.4"><animateMotion dur="3s" repeatCount="indefinite" path="M0 220 C 55 220, 45 372, 100 372" /></circle>
+          </svg>
+
+          <div class="sl-hub-col">
+            <article class="sl-src sl-src--out">
+              <div class="sl-src-top"><span class="sl-src-ico"><svg class="ico"><use href="#i-funnel" /></svg></span><h3>Scored and synced</h3></div>
+              <p>Every lead lands in your CRM with a fit score and an owner.</p>
+              <span class="sl-tick" data-items="Maya R. &middot; 92 &middot; HubSpot|Harbor Realty &middot; 84 &middot; HubSpot|Bluebird Cafe &middot; 63 &middot; nurture">Maya R. &middot; 92 &middot; HubSpot</span>
+            </article>
+            <article class="sl-src sl-src--out">
+              <div class="sl-src-top"><span class="sl-src-ico"><svg class="ico"><use href="#i-phone" /></svg></span><h3>Nurtured on WhatsApp, SMS and email</h3></div>
+              <p>Reaches leads where they reply fastest, until they are ready.</p>
+              <span class="sl-tick" data-items="WhatsApp reply sent in 12s|SMS reminder before the call|Email 2 opened by Maya">WhatsApp reply sent in 12s</span>
+            </article>
+            <article class="sl-src sl-src--out">
+              <div class="sl-src-top"><span class="sl-src-ico"><svg class="ico"><use href="#i-clock" /></svg></span><h3>Meeting booked</h3></div>
+              <p>Your rep joins a warm call with the full lead brief.</p>
+              <span class="sl-tick" data-items="Thu 2:30 PM with Daniel R.|Fri 10:00 AM with Priya S.|Mon 4:00 PM with Daniel R.">Thu 2:30 PM with Daniel R.</span>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 4 · HOW IT WORKS (scroll-drawn timeline) ================= -->
+    <section class="section sl-how" id="sl-how" aria-labelledby="how-title">
+      <div class="container">
+        <div class="section-head sl-rv">
+          <span class="pill">How it works</span>
+          <h2 class="h-section" id="how-title">From brief to booked meetings in four steps.</h2>
+        </div>
+
+        <div class="sl-tl" id="sl-tl">
+          <div class="sl-tl-rail" aria-hidden="true"><i class="sl-tl-fill"></i><b class="sl-tl-dot"></b></div>
+          <ol class="sl-tl-list">
+            <li class="sl-tl-item">
+              <div class="sl-tl-card">
+                <h3>Define your ideal customer</h3>
+                <p>We map your best customers, the questions that qualify a lead and what counts as a hot one.</p>
+              </div>
+              <span class="sl-tl-n">1</span>
+              <div class="sl-tl-vis" aria-hidden="true">
+                <b class="sl-vis-t">Ideal customer profile</b>
+                <div class="sl-vchips"><span style="--n:0">Dental groups</span><span style="--n:1">10-50 staff</span><span style="--n:2">3+ locations</span><span style="--n:3">Wants online bookings</span></div>
+                <div class="sl-hot"><span>Hot lead</span><div class="sl-hot-bar"><i></i></div><em>80+</em></div>
+              </div>
+            </li>
+            <li class="sl-tl-item">
+              <div class="sl-tl-card">
+                <h3>Connect CRM and channels</h3>
+                <p>Link your CRM, calendar, website, forms and messaging so the agent can act in real time.</p>
+              </div>
+              <span class="sl-tl-n">2</span>
+              <div class="sl-tl-vis" aria-hidden="true">
+                <b class="sl-vis-t">Connections</b>
+                <ul class="sl-plugs">
+                  <li style="--n:0"><svg class="ico"><use href="#i-users" /></svg>CRM<i><svg class="ico"><use href="#i-check" /></svg></i></li>
+                  <li style="--n:1"><svg class="ico"><use href="#i-clock" /></svg>Calendar<i><svg class="ico"><use href="#i-check" /></svg></i></li>
+                  <li style="--n:2"><svg class="ico"><use href="#i-globe" /></svg>Website<i><svg class="ico"><use href="#i-check" /></svg></i></li>
+                  <li style="--n:3"><svg class="ico"><use href="#i-inbox" /></svg>Forms<i><svg class="ico"><use href="#i-check" /></svg></i></li>
+                  <li style="--n:4"><svg class="ico"><use href="#i-phone" /></svg>WhatsApp<i><svg class="ico"><use href="#i-check" /></svg></i></li>
+                </ul>
+                <div class="sl-sync"><i></i>Live sync on</div>
+              </div>
+            </li>
+            <li class="sl-tl-item">
+              <div class="sl-tl-card">
+                <h3>Launch in your voice</h3>
+                <p>Messages and follow-up sequences are written in your tone, approved by you, then switched on.</p>
+              </div>
+              <span class="sl-tl-n">3</span>
+              <div class="sl-tl-vis" aria-hidden="true">
+                <b class="sl-vis-t">Follow-up &middot; Email 1</b>
+                <div class="sl-msg">
+                  <span class="sl-typing"><i></i><i></i><i></i></span>
+                  <p style="--n:0">Hi Maya, I saw Northwind is opening a third clinic.</p>
+                  <p style="--n:1">Worth 15 minutes on Thursday?</p>
+                </div>
+                <span class="sl-stamp"><svg class="ico"><use href="#i-check" /></svg>Approved by you</span>
+              </div>
+            </li>
+            <li class="sl-tl-item">
+              <div class="sl-tl-card">
+                <h3>Optimise on pipeline</h3>
+                <p>We track replies, meetings and revenue by source, then refine questions and timing every week.</p>
+              </div>
+              <span class="sl-tl-n">4</span>
+              <div class="sl-tl-vis" aria-hidden="true">
+                <b class="sl-vis-t">Meetings booked, week by week</b>
+                <div class="sl-bars">
+                  <span style="--h:28%;--n:0"><i></i><em>W1</em></span>
+                  <span style="--h:46%;--n:1"><i></i><em>W2</em></span>
+                  <span style="--h:67%;--n:2"><i></i><em>W3</em></span>
+                  <span style="--h:90%;--n:3"><i></i><em>W4</em></span>
+                </div>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 5 · HUMAN HANDOFF (live lead queue) ================= -->
+    <section class="section sl-hand" id="sl-handoff" aria-labelledby="hand-title">
+      <div class="engine-dots" aria-hidden="true"></div>
+      <div class="container sl-hand-grid">
+        <div class="sl-hand-copy sl-rv">
+          <span class="pill pill--dark">Human in the loop</span>
+          <h2 class="h-section" id="hand-title">Your reps only talk to buyers who are ready.</h2>
+          <p class="lead">The agent handles the first conversation and keeps nurturing everyone else. When a lead is ready, your rep gets the full brief and a booked slot.</p>
+          <ul class="sl-list sl-list--light">
+            <li><svg class="ico"><use href="#i-target" /></svg>You define what counts as a qualified lead</li>
+            <li><svg class="ico"><use href="#i-check" /></svg>Brief includes need, budget, timeline and chat history</li>
+            <li><svg class="ico"><use href="#i-eye" /></svg>Reps can take over any conversation at any time</li>
+          </ul>
+          <a class="btn btn--primary btn--lg" href="contact-us.html">Talk to our team <svg class="ico"><use href="#i-arrow" /></svg></a>
+        </div>
+
+        <div class="sl-board sl-rv" id="sl-board" style="--rd:2" aria-label="Lead queue: ready leads are handed to reps, the rest keep being nurtured">
+          <div class="sl-board-head"><b>Lead queue</b><span><i></i>Ready at 80</span></div>
+          <ul class="sl-rows">
+            <li class="sl-row" style="--s:92;--i:0">
+              <span class="sl-av">NW</span>
+              <div class="sl-row-main">
+                <div class="sl-row-top"><b>Northwind Dental</b><span class="sl-tag sl-tag--go">Booked &middot; Daniel R.</span></div>
+                <div class="sl-meter"><i></i></div>
+                <small>12 seats, wants a demo Thursday</small>
+              </div>
+              <em class="sl-num" data-to="92">92</em>
+            </li>
+            <li class="sl-row" style="--s:84;--i:1">
+              <span class="sl-av sl-av--red">HR</span>
+              <div class="sl-row-main">
+                <div class="sl-row-top"><b>Harbor Realty</b><span class="sl-tag sl-tag--go">Booked &middot; Priya S.</span></div>
+                <div class="sl-meter"><i></i></div>
+                <small>Budget confirmed, starts this month</small>
+              </div>
+              <em class="sl-num" data-to="84">84</em>
+            </li>
+            <li class="sl-row" style="--s:63;--i:2">
+              <span class="sl-av">BC</span>
+              <div class="sl-row-main">
+                <div class="sl-row-top"><b>Bluebird Cafe</b><span class="sl-tag">Nurturing</span></div>
+                <div class="sl-meter"><i></i></div>
+                <small>Interested, timeline unclear</small>
+              </div>
+              <em class="sl-num" data-to="63">63</em>
+            </li>
+            <li class="sl-row" style="--s:47;--i:3">
+              <span class="sl-av sl-av--red">OF</span>
+              <div class="sl-row-main">
+                <div class="sl-row-top"><b>Orion Fitness</b><span class="sl-tag">Nurturing</span></div>
+                <div class="sl-meter"><i></i></div>
+                <small>Opened email 1, no reply yet</small>
+              </div>
+              <em class="sl-num" data-to="47">47</em>
+            </li>
+            <li class="sl-row" style="--s:28;--i:4">
+              <span class="sl-av">LC</span>
+              <div class="sl-row-main">
+                <div class="sl-row-top"><b>Lakeside Co</b><span class="sl-tag">Nurturing</span></div>
+                <div class="sl-meter"><i></i></div>
+                <small>Browsing, follow-ups continue</small>
+              </div>
+              <em class="sl-num" data-to="28">28</em>
+            </li>
+          </ul>
+          <div class="sl-brief">
+            <div class="sl-brief-top"><b>Lead brief</b><span>Northwind Dental &rarr; Daniel R.</span></div>
+            <ul>
+              <li style="--n:0"><svg class="ico"><use href="#i-check" /></svg>Needs pricing for 12 seats</li>
+              <li style="--n:1"><svg class="ico"><use href="#i-check" /></svg>Budget confirmed</li>
+              <li style="--n:2"><svg class="ico"><use href="#i-check" /></svg>Starts this month</li>
+              <li style="--n:3"><svg class="ico"><use href="#i-check" /></svg>Demo booked Thursday 2:30 PM</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 6 · INTEGRATIONS (orbit) ================= -->
+    <section class="section sl-int" id="sl-integrations" aria-labelledby="int-title">
+      <div class="container">
+        <div class="section-head sl-rv">
+          <span class="pill">Integrations</span>
+          <h2 class="h-section" id="int-title">Plugs into your CRM and calendar.</h2>
+          <p class="lead">No new tools for your reps to learn. Leads and notes land where they already work.</p>
+        </div>
+
+        <div class="sl-orbit-wrap sl-rv" style="--rd:1">
+        <div class="sl-orbit" id="sl-orbit" role="img" aria-label="Sales agent connected to HubSpot, Salesforce, Pipedrive, Zoho CRM, Google Calendar, Calendly, Outlook and Slack">
+          <i class="sl-orb-line sl-orb-line--a"></i>
+          <i class="sl-orb-line sl-orb-line--b"></i>
+          <div class="sl-orbit-core"><i class="sl-ripple"></i><i class="sl-ripple"></i><span><svg class="ico"><use href="#i-sparkle" /></svg>Sales agent</span></div>
+
+          <div class="sl-ring sl-ring--a">
+            <div class="sl-node" style="--a:0deg"><div class="sl-unrot"><span class="sl-chip"><b>H</b>HubSpot</span></div></div>
+            <div class="sl-node" style="--a:90deg"><div class="sl-unrot"><span class="sl-chip"><b>S</b>Salesforce</span></div></div>
+            <div class="sl-node" style="--a:180deg"><div class="sl-unrot"><span class="sl-chip"><b>P</b>Pipedrive</span></div></div>
+            <div class="sl-node" style="--a:270deg"><div class="sl-unrot"><span class="sl-chip"><b>Z</b>Zoho CRM</span></div></div>
+          </div>
+          <div class="sl-ring sl-ring--b">
+            <div class="sl-node" style="--a:45deg"><div class="sl-unrot"><span class="sl-chip"><b>G</b>Google Calendar</span></div></div>
+            <div class="sl-node" style="--a:135deg"><div class="sl-unrot"><span class="sl-chip"><b>C</b>Calendly</span></div></div>
+            <div class="sl-node" style="--a:225deg"><div class="sl-unrot"><span class="sl-chip"><b>O</b>Outlook</span></div></div>
+            <div class="sl-node" style="--a:315deg"><div class="sl-unrot"><span class="sl-chip"><b>S</b>Slack</span></div></div>
+          </div>
+        </div>
+        </div>
+
+        <!-- <div class="sl-more sl-rv" style="--rd:2">
+          <span>Also connects to</span>
+          <span class="sl-chip"><b>W</b>WhatsApp</span><span class="sl-chip"><b>G</b>Gmail</span><span class="sl-chip"><b>M</b>Mailchimp</span><span class="sl-chip"><b>A</b>ActiveCampaign</span><span class="sl-chip"><b>L</b>LinkedIn</span><span class="sl-chip"><b>M</b>Meta Lead Ads</span><span class="sl-chip"><b>G</b>Google Ads</span><span class="sl-chip"><b>Z</b>Zapier</span>
+        </div> -->
+      </div>
+    </section>
+
+    <!-- ================= 7 · BEFORE / AFTER (speed-to-lead race) ================= -->
+    <section class="section sl-cmp" id="sl-results" aria-labelledby="cmp-title">
+      <div class="container">
+        <div class="section-head sl-rv">
+          <span class="pill">What changes</span>
+          <h2 class="h-section" id="cmp-title">More meetings, less chasing.</h2>
+        </div>
+
+        <div class="sl-race sl-rv" id="sl-race" style="--rd:1">
+          <div class="sl-lane sl-lane--slow">
+            <div class="sl-lane-head"><h3>Without an agent</h3><span class="sl-lane-tag">Hours or days</span></div>
+            <div class="sl-lane-track" aria-hidden="true"><i class="sl-lane-fill"></i><b class="sl-lane-dot"></b></div>
+            <div class="sl-lane-ends" aria-hidden="true"><span>Form submitted</span><span class="sl-lane-pop sl-lane-pop--cold">Gone cold</span></div>
+            <div class="sl-heat" aria-hidden="true"><span>Lead interest</span><div><i></i></div></div>
+            <ul>
+              <li style="--n:0"><svg class="ico"><use href="#i-x" /></svg>Leads wait hours or days for a reply</li>
+              <li style="--n:1"><svg class="ico"><use href="#i-x" /></svg>Reps spend time on unqualified leads</li>
+              <li style="--n:2"><svg class="ico"><use href="#i-x" /></svg>Follow-ups are forgotten after the first email</li>
+              <li style="--n:3"><svg class="ico"><use href="#i-x" /></svg>Ad leads go cold before anyone calls</li>
+              <li style="--n:4"><svg class="ico"><use href="#i-x" /></svg>Pipeline reports rely on manual notes</li>
+            </ul>
+          </div>
+          <div class="sl-lane sl-lane--fast">
+            <div class="sl-lane-head"><h3>With a Codevelop agent</h3><span class="sl-lane-tag">Under a minute</span></div>
+            <div class="sl-lane-track" aria-hidden="true"><i class="sl-lane-fill"></i><b class="sl-lane-dot"></b></div>
+            <div class="sl-lane-ends" aria-hidden="true"><span>Form submitted</span><span class="sl-lane-pop"><svg class="ico"><use href="#i-check" /></svg>Meeting booked</span></div>
+            <div class="sl-heat" aria-hidden="true"><span>Lead interest</span><div><i></i></div></div>
+            <ul>
+              <li style="--n:0"><svg class="ico"><use href="#i-check" /></svg>Every lead answered in under a minute</li>
+              <li style="--n:1"><svg class="ico"><use href="#i-check" /></svg>Reps only see qualified, scored leads</li>
+              <li style="--n:2"><svg class="ico"><use href="#i-check" /></svg>Follow-ups run on schedule until a reply</li>
+              <li style="--n:3"><svg class="ico"><use href="#i-check" /></svg>Ad leads qualified while still interested</li>
+              <li style="--n:4"><svg class="ico"><use href="#i-check" /></svg>CRM updated automatically</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 8 · FAQ ================= -->
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="container faq-grid" data-reveal>
+        <div class="faq-head">
+          <span class="pill">Common questions</span>
+          <h2 class="h-section" id="faq-title">Sales agent FAQs</h2>
+          <div class="sl-ask" aria-hidden="true">
+            <!-- <span class="sl-ask-b">Can you book it for Thursday?</span>
+            <span class="sl-ask-b sl-ask-b--bot"><i></i><i></i><i></i></span> -->
+          </div>
+        </div>
+        <div class="faq-list" id="faq-list">
+          <div class="faq-item open">
+            <h3><button class="faq-q" type="button" aria-expanded="true">Will it replace my sales team? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>No. The agent handles first replies, qualification and follow-up. Your people still run the calls, negotiate and close the deals.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">How does it decide a lead is qualified? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>It uses criteria you set, such as budget, timeline, company size and need. We tune the scoring with your past won and lost deals so it learns what a good lead looks like for you.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Can it send outreach emails on its own? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes, or in approval mode where your team reviews each message first. It respects unsubscribe requests and sending limits, and it stops the sequence as soon as someone replies.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Which CRM does it work with? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>We integrate with platforms like HubSpot, Salesforce, Pipedrive and Zoho CRM. If you use something custom, we can connect through its API.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">How quickly will we see results? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Faster replies show up as soon as the agent goes live. Pipeline impact depends on your lead volume and sales cycle, and we report on meetings and revenue by source every week.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+    <section class="cta" id="contact" aria-labelledby="cta-title">
+      <div class="cta-grid">
+        <div class="cta-bar" aria-hidden="true"></div>
+        <div class="cta-box">
+          <div class="ripples" aria-hidden="true"><span></span><span></span><span></span></div>
+          <h2 id="cta-title">Never let a good lead go cold again.</h2>
+          <p>Tell us how leads reach you today and we&rsquo;ll show where an agent can reply faster and book more meetings.</p>
+          <a class="btn btn--primary btn--lg btn-sweep" href="contact-us.html"><span style="position:relative">Get a Free Automation Review</span></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="footer-panel">
+      <div class="footer-flag" aria-hidden="true"></div>
+      <div class="footer-main">
+        <div class="footer-brand">
+          <img src="images/codevelop.webp" alt="Codevelop logo" class="brand-logo" width="160" height="40">
+          <p>At Codevelop, we help businesses turn strategy into scalable results through thoughtful design,
+            performance-driven marketing, and modern technology.</p>
+          <div class="socials">
+            <a href="https://www.facebook.com/Codevelop.usa/" aria-label="Facebook" target="_blank" rel="noopener"><svg class="ico"><use href="#i-fb" /></svg></a>
+            <a href="https://www.instagram.com/codevelop_us/" aria-label="Instagram" target="_blank" rel="noopener"><svg class="ico"><use href="#i-ig" /></svg></a>
+            <a href="https://www.linkedin.com/company/codevelop-us" aria-label="LinkedIn" target="_blank" rel="noopener"><svg class="ico"><use href="#i-in" /></svg></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Services</h3>
+          <ul>
+            <li><a href="performance-marketing.html">Performance Marketing</a></li>
+            <li><a href="#">SEO Services</a></li>
+            <li><a href="#">Social Media Marketing</a></li>
+            <li><a href="web-development.html">Web Development</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Link</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Case Studies</a></li>
+            <li><a href="#">Blogs</a></li>
+            <li><a href="https://codevelopus.com/">Free SEO Audit</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Contact Us</h3>
+          <ul class="contact">
+            <li><svg class="ico"><use href="#i-pin" /></svg><span>555 SE Martin Luther King JR Blvd, Portland, OR 97214</span></li>
+            <li><svg class="ico"><use href="#i-phone" /></svg><a href="tel:+19714809833">+1 971-480-9833</a></li>
+            <li><svg class="ico"><use href="#i-mail" /></svg><a href="mailto:info@codevelop.us">info@codevelop.us</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="newsletter">
+        <div class="newsletter-box">
+          <h3>Signup our newsletter to get update information, news, insight or promotions.</h3>
+          <form class="news-form" action="#" method="post">
+            <label class="sr-only" for="news-email">Email</label>
+            <input id="news-email" type="email" name="email" placeholder="Email" required autocomplete="email">
+            <button class="btn btn--primary" type="submit">Sign up</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <span>Copyright © 2026 Codevelop US, All Rights Reserved.</span>
+      <a href="#">Privacy policy</a>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script src="js/sales-agents.js"></script>
+</body>
+
+</html>

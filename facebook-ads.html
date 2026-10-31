@@ -194,6 +194,43 @@
         <path d="M3 17l6-6 4 4 8-8" />
         <path d="M15 7h6v6" />
       </symbol>
+      <symbol id="i-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16" />
+      </symbol>
+      <symbol id="i-flow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+        stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="6" height="6" rx="1" />
+        <rect x="15" y="15" width="6" height="6" rx="1" />
+        <path d="M9 6h4a2 2 0 0 1 2 2v7" />
+      </symbol>
+      <symbol id="i-megaphone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 10v4h4l8 5V5L7 10H3z" />
+        <path d="M18.5 9a4 4 0 0 1 0 6" />
+      </symbol>
+      <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2V5z" />
+        <path d="M4 19a2 2 0 0 1 2-2h13" />
+      </symbol>
+      <symbol id="i-coin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+        stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="9" />
+        <path
+          d="M14.5 9.5c-.5-1-1.5-1.5-2.5-1.5-1.4 0-2.5.8-2.5 2s1 1.7 2.5 2 2.5.8 2.5 2-1.1 2-2.5 2c-1 0-2-.5-2.5-1.5M12 6.5V8m0 8v1.5" />
+      </symbol>
+      <symbol id="i-desk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+        stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="4" width="18" height="12" rx="2" />
+        <path d="M8 20h8M12 16v4" />
+      </symbol>
+      <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+        stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="9" cy="8" r="3.5" />
+        <path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6" />
+        <path d="M16 4.7a3.5 3.5 0 0 1 0 6.6M18 14.3c2 .7 3.5 2.6 3.5 5.7" />
+      </symbol>
     </defs>
   </svg>
 
@@ -208,18 +245,131 @@
         aria-expanded="false"><span></span><span></span><span></span></button>
       <nav aria-label="Main">
         <ul>
-          <li><button class="top" type="button" aria-expanded="false">AI Agents <svg class="chev" viewBox="0 0 10 10">
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">AI Agents <svg class="chev"
+                viewBox="0 0 10 10">
                 <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
               </svg></button>
-            <div class="drop"><a href="#">Sales &amp; Lead Agents</a><a href="#">Support Agents</a><a href="#">Finance
-                Agents</a><a href="#">Email &amp; Document Agents</a></div>
+            <div class="drop drop--agents">
+              <div class="agents-top">
+                <span class="agents-label">AI Agents</span>
+                <a class="agents-all" href="#">View all agents</a>
+              </div>
+
+              <a class="agent" href="#">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-funnel" />
+                  </svg></span>
+                <span class="agent-txt"><b>Lead Generation Agents</b><small>Capture, qualify &amp; follow up with
+                    leads</small></span>
+              </a>
+              <a class="agent" href="#">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-mail" />
+                  </svg></span>
+                <span class="agent-txt"><b>Email &amp; Document Agents</b><small>Triage, draft &amp; reply at
+                    scale</small></span>
+              </a>
+
+              <a class="agent" href="#">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-chat" />
+                  </svg></span>
+                <span class="agent-txt"><b>Customer Support Agents</b><small>24/7 answers across chat &amp;
+                    inbox</small></span>
+              </a>
+              <a class="agent" href="#">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-chart" />
+                  </svg></span>
+                <span class="agent-txt"><b>Reporting &amp; Analytics Agents</b><small>Plain-language performance
+                    reports</small></span>
+              </a>
+
+              <a class="agent" href="#">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-search" />
+                  </svg></span>
+                <span class="agent-txt"><b>SEO &amp; Content Agents</b><small>Briefs, drafts &amp; on-page
+                    fixes</small></span>
+              </a>
+              <a class="agent" href="#">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-spark" />
+                  </svg></span>
+                <span class="agent-txt"><b>Social Media Agents</b><small>Plan, post &amp; reply across
+                    channels</small></span>
+              </a>
+
+              <a class="agent" href="#">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-target" />
+                  </svg></span>
+                <span class="agent-txt"><b>Ad Optimization Agents</b><small>Budgets, bids &amp; creative
+                    testing</small></span>
+              </a>
+              <a class="agent" href="#">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-check" />
+                  </svg></span>
+                <span class="agent-txt"><b>AI Workflow Audit</b><small>Find the best tasks to automate</small></span>
+              </a>
+            </div>
           </li>
-          <li><button class="top" type="button" aria-expanded="false">Connectors <svg class="chev" viewBox="0 0 10 10">
-                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
-              </svg></button>
-            <div class="drop"><a href="#">Business Central</a><a href="#">NetSuite</a><a href="#">Odoo</a><a
-                href="#">Zoho</a></div>
-          </li>
+     <li class="has-mega"><button class="top" type="button" aria-expanded="false">Connectors <svg class="chev" viewBox="0 0 10 10">
+    <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+  </svg></button>
+  <div class="drop drop--agents drop--connectors">
+    <div class="agents-top">
+      <span class="agents-label">Connectors</span>
+      <a class="agents-all" href="#">View all connectors</a>
+    </div>
+
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-sap">SAP</i></span>
+      <span class="agent-txt"><b>SAP Business One</b><small>ERP integration &amp; consulting</small></span>
+    </a>
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-sf">SF</i></span>
+      <span class="agent-txt"><b>Salesforce</b><small>CRM &amp; order-to-cash sync</small></span>
+    </a>
+
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-ns">N</i></span>
+      <span class="agent-txt"><b>NetSuite</b><small>ERP, ecommerce &amp; EDI sync</small></span>
+    </a>
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-shop">S</i></span>
+      <span class="agent-txt"><b>Shopify</b><small>Ecommerce ↔ back office</small></span>
+    </a>
+
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-qb">qb</i></span>
+      <span class="agent-txt"><b>QuickBooks</b><small>Accounting &amp; invoice sync</small></span>
+    </a>
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-woo">Woo</i></span>
+      <span class="agent-txt"><b>WooCommerce</b><small>WordPress store integration</small></span>
+    </a>
+
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-zoho"><s></s><s></s><s></s><s></s></i></span>
+      <span class="agent-txt"><b>Zoho</b><small>Zoho One suite integration</small></span>
+    </a>
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-zuper">Zu</i></span>
+      <span class="agent-txt"><b>Zuper</b><small>Field service management sync</small></span>
+    </a>
+
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-attio">At</i></span>
+      <span class="agent-txt"><b>Attio</b><small>CRM &amp; record sync</small></span>
+    </a>
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-twenty">20</i></span>
+      <span class="agent-txt"><b>Twenty</b><small>Open-source CRM sync</small></span>
+    </a>
+  </div>
+</li>
           <li class="has-mega"><button class="top" type="button" aria-expanded="false">Services <svg class="chev"
                 viewBox="0 0 10 10">
                 <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
@@ -236,37 +386,36 @@
                 <h4><a href="performance-marketing.html">Performance Marketing</a></h4>
                 <a href="meta-ads.html">Google Ads Management</a>
                 <a href="facebook-ads.html">Facebook Ads</a>
-                <a href="#">Remarketing</a>
+                <a href="remarketing.html">Remarketing</a>
               </div>
 
               <div class="mega-col">
                 <h4><a href="web-development.html">Web Development Services</a></h4>
-                <a href="#">Custom Website Design</a>
+                <a href="custom-website-design.html">Custom Website Design</a>
                 <a href="wordpress-development.html">WordPress Web Development</a>
                 <a href="shopify-development.html">Shopify Web Development</a>
                 <a href="webflow-development.html">Webflow Web Development</a>
                 <a href="framer-development.html">Framer Web Development</a>
                 <a href="mageneto-development.html">Magento Web Development</a>
-                <a href="#">Website Maintenance</a>
-                <a href="#">Website Redesign</a>
+                <a href="website-maintenance.html">Website Maintenance</a>
+                <a href="website-redesign.html">Website Redesign</a>
               </div>
 
               <div class="mega-col">
-                <h4><a href="#">Social Media Marketing</a></h4>
-                <a href="#">Content Marketing</a>
+                <h4><a href="social-media-marketing.html">Social Media Marketing</a></h4>
+                <a href="content-marketing.html">Content Marketing</a>
               </div>
 
               <div class="mega-col">
-                <h4><a href="#">Search Engine Optimization</a></h4>
-                <a href="#">Local SEO</a>
-                <a href="#">SEO Audits</a>
-                <a href="#">Technical SEO</a>
-                <a href="#">Enterprise SEO</a>
+                <h4><a href="search-engine-optimization.html">Search Engine Optimization</a></h4>
+                <a href="local-seo.html">Local SEO</a>
+                <a href="seo-audits.html">SEO Audits</a>
+                <a href="technical-seo.html">Technical SEO</a>
+                <a href="enterprise-seo.html">Enterprise SEO</a>
               </div>
             </div>
           </li>
-          <li><button class="top" type="button" aria-expanded="false">Hire Talent <svg class="chev"
-                viewBox="0 0 10 10">
+          <li><button class="top" type="button" aria-expanded="false">Hire Talent <svg class="chev" viewBox="0 0 10 10">
                 <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
               </svg></button>
             <div class="drop"><a href="#">Developers</a><a href="#">Automation Engineers</a><a href="#">Dedicated
@@ -488,9 +637,10 @@
       </div>
     </section>
 
-   <!-- ================= GOOGLE ADS SERVICES: AI AD STUDIO ================= -->
+    <!-- ================= GOOGLE ADS SERVICES: AI AD STUDIO ================= -->
     <section class="section sv-sec" id="offer" aria-labelledby="offer-title">
-      <div class="sv-bg" aria-hidden="true"><span class="sv-orb sv-orb--1"></span><span class="sv-orb sv-orb--2"></span></div>
+      <div class="sv-bg" aria-hidden="true"><span class="sv-orb sv-orb--1"></span><span class="sv-orb sv-orb--2"></span>
+      </div>
 
       <div class="container" data-reveal>
         <div class="section-head">
@@ -506,49 +656,66 @@
           <div class="sv-tabs" role="tablist" aria-label="Google Ads services">
 
             <button class="sv-tab" type="button" role="tab" aria-selected="true" data-chan="Search Ads">
-              <span class="sv-tab-ico"><svg class="ico"><use href="#i-search" /></svg></span>
+              <span class="sv-tab-ico"><svg class="ico">
+                  <use href="#i-search" />
+                </svg></span>
               <span class="sv-tab-body">
-                <span class="sv-tab-top"><span class="sv-tab-title">AI Search Ads</span><span class="sv-tab-n">01</span></span>
+                <span class="sv-tab-top"><span class="sv-tab-title">AI Search Ads</span><span
+                    class="sv-tab-n">01</span></span>
                 <span class="sv-tab-more"><span>
-                  <span class="sv-tab-desc">Reach customers actively looking for your services in Portland. AI groups search terms by buyer intent, adjusts bids per query and tests ad variants automatically.</span>
-                  <span class="sv-tags"><i>Intent clustering</i><i>Smart bidding</i><i>A/B copy</i></span>
-                </span></span>
+                    <span class="sv-tab-desc">Reach customers actively looking for your services in Portland. AI groups
+                      search terms by buyer intent, adjusts bids per query and tests ad variants automatically.</span>
+                    <span class="sv-tags"><i>Intent clustering</i><i>Smart bidding</i><i>A/B copy</i></span>
+                  </span></span>
               </span>
               <i class="sv-tab-bar"></i>
             </button>
 
             <button class="sv-tab" type="button" role="tab" aria-selected="false" data-chan="Display Ads">
-              <span class="sv-tab-ico"><svg class="ico"><use href="#i-display" /></svg></span>
+              <span class="sv-tab-ico"><svg class="ico">
+                  <use href="#i-display" />
+                </svg></span>
               <span class="sv-tab-body">
-                <span class="sv-tab-top"><span class="sv-tab-title">Predictive Display Ads</span><span class="sv-tab-n">02</span></span>
+                <span class="sv-tab-top"><span class="sv-tab-title">Predictive Display Ads</span><span
+                    class="sv-tab-n">02</span></span>
                 <span class="sv-tab-more"><span>
-                  <span class="sv-tab-desc">Predictive audience models find people likely to convert across the Google Display Network. Responsive creative adapts to every screen, and winning combinations get more budget.</span>
-                  <span class="sv-tags"><i>Predictive audiences</i><i>Responsive creative</i><i>Auto budget</i></span>
-                </span></span>
+                    <span class="sv-tab-desc">Predictive audience models find people likely to convert across the Google
+                      Display Network. Responsive creative adapts to every screen, and winning combinations get more
+                      budget.</span>
+                    <span class="sv-tags"><i>Predictive audiences</i><i>Responsive creative</i><i>Auto budget</i></span>
+                  </span></span>
               </span>
               <i class="sv-tab-bar"></i>
             </button>
 
             <button class="sv-tab" type="button" role="tab" aria-selected="false" data-chan="Video Ads">
-              <span class="sv-tab-ico"><svg class="ico"><use href="#i-play" /></svg></span>
+              <span class="sv-tab-ico"><svg class="ico">
+                  <use href="#i-play" />
+                </svg></span>
               <span class="sv-tab-body">
-                <span class="sv-tab-top"><span class="sv-tab-title">Smart Video Ads</span><span class="sv-tab-n">03</span></span>
+                <span class="sv-tab-top"><span class="sv-tab-title">Smart Video Ads</span><span
+                    class="sv-tab-n">03</span></span>
                 <span class="sv-tab-more"><span>
-                  <span class="sv-tab-desc">Tell your story on YouTube with in-stream and out-stream video. Machine learning matches each cut to the viewers most likely to watch, engage and visit your site.</span>
-                  <span class="sv-tags"><i>Viewer matching</i><i>Cut testing</i><i>View-through tracking</i></span>
-                </span></span>
+                    <span class="sv-tab-desc">Tell your story on YouTube with in-stream and out-stream video. Machine
+                      learning matches each cut to the viewers most likely to watch, engage and visit your site.</span>
+                    <span class="sv-tags"><i>Viewer matching</i><i>Cut testing</i><i>View-through tracking</i></span>
+                  </span></span>
               </span>
               <i class="sv-tab-bar"></i>
             </button>
 
             <button class="sv-tab" type="button" role="tab" aria-selected="false" data-chan="Shopping Ads">
-              <span class="sv-tab-ico"><svg class="ico"><use href="#i-cart" /></svg></span>
+              <span class="sv-tab-ico"><svg class="ico">
+                  <use href="#i-cart" />
+                </svg></span>
               <span class="sv-tab-body">
-                <span class="sv-tab-top"><span class="sv-tab-title">Feed-Driven Shopping Ads</span><span class="sv-tab-n">04</span></span>
+                <span class="sv-tab-top"><span class="sv-tab-title">Feed-Driven Shopping Ads</span><span
+                    class="sv-tab-n">04</span></span>
                 <span class="sv-tab-more"><span>
-                  <span class="sv-tab-desc">For e-commerce brands. We optimize your product feed with AI, then let automated bidding push your best sellers in Google search results and the Shopping tab.</span>
-                  <span class="sv-tags"><i>Feed optimization</i><i>Auto bidding</i><i>Best-seller boost</i></span>
-                </span></span>
+                    <span class="sv-tab-desc">For e-commerce brands. We optimize your product feed with AI, then let
+                      automated bidding push your best sellers in Google search results and the Shopping tab.</span>
+                    <span class="sv-tags"><i>Feed optimization</i><i>Auto bidding</i><i>Best-seller boost</i></span>
+                  </span></span>
               </span>
               <i class="sv-tab-bar"></i>
             </button>
@@ -567,18 +734,24 @@
               <!-- Search -->
               <div class="sv-p is-active">
                 <div class="sv-fr sv-search">
-                  <div class="sv-sbar"><svg class="ico"><use href="#i-search" /></svg><span class="sv-typed">google ads management portland</span><i class="sv-caret"></i></div>
+                  <div class="sv-sbar"><svg class="ico">
+                      <use href="#i-search" />
+                    </svg><span class="sv-typed">google ads management portland</span><i class="sv-caret"></i></div>
                   <div class="sv-card sv-ad">
-                    <div class="sv-meta"><span class="sv-tag">Sponsored</span><span>codevelopus.com/google-ads</span></div>
+                    <div class="sv-meta"><span class="sv-tag">Sponsored</span><span>codevelopus.com/google-ads</span>
+                    </div>
                     <h4>AI-Powered Google Ads Management in Portland</h4>
                     <p>Machine-learning PPC campaigns built for ROI. Get qualified leads, not wasted clicks.</p>
                     <div class="sv-row"><span class="sv-stars">★★★★★</span><span>Free consultation</span></div>
                     <div class="sv-links"><span>Search Ads</span><span>Shopping Ads</span><span>Get a Quote</span></div>
                   </div>
-                  <div class="sv-card sv-org"><i class="sv-ln sv-ln--t"></i><i class="sv-ln"></i><i class="sv-ln sv-ln--s"></i></div>
+                  <div class="sv-card sv-org"><i class="sv-ln sv-ln--t"></i><i class="sv-ln"></i><i
+                      class="sv-ln sv-ln--s"></i></div>
                   <div class="sv-card sv-org"><i class="sv-ln sv-ln--t"></i><i class="sv-ln"></i></div>
                 </div>
-                <span class="sv-ai sv-ai--a"><svg class="ico"><use href="#i-bolt" /></svg>AI raised bid +12% on “ppc portland”</span>
+                <span class="sv-ai sv-ai--a"><svg class="ico">
+                    <use href="#i-bolt" />
+                  </svg>AI raised bid +12% on “ppc portland”</span>
                 <span class="sv-ai sv-ai--b"><i></i>#1 position</span>
               </div>
 
@@ -593,18 +766,25 @@
                       </div>
                       <div class="sv-cols">
                         <div class="sv-article">
-                          <i class="sv-ln sv-ln--t"></i><span class="sv-hero-img"></span><i class="sv-ln"></i><i class="sv-ln"></i><i class="sv-ln sv-ln--s"></i>
+                          <i class="sv-ln sv-ln--t"></i><span class="sv-hero-img"></span><i class="sv-ln"></i><i
+                            class="sv-ln"></i><i class="sv-ln sv-ln--s"></i>
                         </div>
-                        <div class="sv-mpu"><small>Ad</small><strong>Get 3× more qualified leads</strong><span class="sv-btn">Get a Quote</span></div>
+                        <div class="sv-mpu"><small>Ad</small><strong>Get 3× more qualified leads</strong><span
+                            class="sv-btn">Get a Quote</span></div>
                       </div>
                     </div>
                   </div>
                   <div class="sv-aud">
-                    <svg viewBox="0 0 36 36"><circle class="bg" cx="18" cy="18" r="15.9" pathLength="100" /><circle class="fg" cx="18" cy="18" r="15.9" pathLength="100" /></svg>
+                    <svg viewBox="0 0 36 36">
+                      <circle class="bg" cx="18" cy="18" r="15.9" pathLength="100" />
+                      <circle class="fg" cx="18" cy="18" r="15.9" pathLength="100" />
+                    </svg>
                     <b>92%</b><small>audience match</small>
                   </div>
                 </div>
-                <span class="sv-ai sv-ai--a"><svg class="ico"><use href="#i-target" /></svg>Predicted audience: in-market</span>
+                <span class="sv-ai sv-ai--a"><svg class="ico">
+                    <use href="#i-target" />
+                  </svg>Predicted audience: in-market</span>
                 <span class="sv-ai sv-ai--b"><i></i>CTR 3.8%</span>
               </div>
 
@@ -614,8 +794,11 @@
                   <div class="sv-player">
                     <span class="sv-vtxt">More views.<br>More leads.</span>
                     <div class="sv-bars">
-                      <i style="--h:30%;--d:.5s"></i><i style="--h:42%;--d:.7s"></i><i style="--h:55%;--d:.9s"></i><i style="--h:70%;--d:1.1s"></i><i style="--h:92%;--d:1.3s"></i>
-                      <svg class="sv-line" viewBox="0 0 100 50" preserveAspectRatio="none"><polyline points="8,35 29,29 50,22.5 71,15 92,4" pathLength="1" /></svg>
+                      <i style="--h:30%;--d:.5s"></i><i style="--h:42%;--d:.7s"></i><i style="--h:55%;--d:.9s"></i><i
+                        style="--h:70%;--d:1.1s"></i><i style="--h:92%;--d:1.3s"></i>
+                      <svg class="sv-line" viewBox="0 0 100 50" preserveAspectRatio="none">
+                        <polyline points="8,35 29,29 50,22.5 71,15 92,4" pathLength="1" />
+                      </svg>
                     </div>
                     <span class="sv-play"></span>
                     <span class="sv-adbadge">Ad · 0:15</span>
@@ -628,7 +811,9 @@
                     <span class="sv-cta">Visit site</span>
                   </div>
                 </div>
-                <span class="sv-ai sv-ai--a"><svg class="ico"><use href="#i-cpu" /></svg>AI matched this cut to likely viewers</span>
+                <span class="sv-ai sv-ai--a"><svg class="ico">
+                    <use href="#i-cpu" />
+                  </svg>AI matched this cut to likely viewers</span>
                 <span class="sv-ai sv-ai--b"><i></i>68% watched</span>
               </div>
 
@@ -636,26 +821,39 @@
               <div class="sv-p">
                 <div class="sv-fr sv-shop">
                   <div class="sv-ptop">
-                    <span class="sv-pill">All</span><span class="sv-pill on">Shopping</span><span class="sv-pill">Images</span>
-                    <span class="sv-cart"><svg class="ico"><use href="#i-cart" /></svg><em>1</em></span>
+                    <span class="sv-pill">All</span><span class="sv-pill on">Shopping</span><span
+                      class="sv-pill">Images</span>
+                    <span class="sv-cart"><svg class="ico">
+                        <use href="#i-cart" />
+                      </svg><em>1</em></span>
                   </div>
                   <div class="sv-grid">
                     <div class="sv-prod">
-                      <span class="sv-pimg"><em>AI pick</em><svg viewBox="0 0 24 24"><path d="M4 15v-3a8 8 0 0 1 16 0v3" /><rect x="3" y="14" width="4" height="6" rx="2" /><rect x="17" y="14" width="4" height="6" rx="2" /></svg></span>
+                      <span class="sv-pimg"><em>AI pick</em><svg viewBox="0 0 24 24">
+                          <path d="M4 15v-3a8 8 0 0 1 16 0v3" />
+                          <rect x="3" y="14" width="4" height="6" rx="2" />
+                          <rect x="17" y="14" width="4" height="6" rx="2" />
+                        </svg></span>
                       <span class="sv-pname">Wireless Headphones</span>
                       <span class="sv-pprice">$89 <s>$119</s></span>
                       <span class="sv-pstars">★★★★★</span>
                       <span class="sv-add sv-add--go">Add to cart</span>
                     </div>
                     <div class="sv-prod">
-                      <span class="sv-pimg sv-pimg--b"><em>Sponsored</em><svg viewBox="0 0 24 24"><rect x="7" y="6" width="10" height="12" rx="3" /><path d="M9 6l1-3h4l1 3M9 18l1 3h4l1-3M12 10v2.5l1.5 1" /></svg></span>
+                      <span class="sv-pimg sv-pimg--b"><em>Sponsored</em><svg viewBox="0 0 24 24">
+                          <rect x="7" y="6" width="10" height="12" rx="3" />
+                          <path d="M9 6l1-3h4l1 3M9 18l1 3h4l1-3M12 10v2.5l1.5 1" />
+                        </svg></span>
                       <span class="sv-pname">Smart Watch Pro</span>
                       <span class="sv-pprice">$149 <s>$199</s></span>
                       <span class="sv-pstars">★★★★★</span>
                       <span class="sv-add">Add to cart</span>
                     </div>
                     <div class="sv-prod">
-                      <span class="sv-pimg sv-pimg--c"><em>Sponsored</em><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6L5 8z" /><path d="M9 8a3 3 0 0 1 6 0" /></svg></span>
+                      <span class="sv-pimg sv-pimg--c"><em>Sponsored</em><svg viewBox="0 0 24 24">
+                          <path d="M5 8h14l-1 12H6L5 8z" />
+                          <path d="M9 8a3 3 0 0 1 6 0" />
+                        </svg></span>
                       <span class="sv-pname">Everyday Tote Bag</span>
                       <span class="sv-pprice">$39 <s>$55</s></span>
                       <span class="sv-pstars">★★★★☆</span>
@@ -663,7 +861,9 @@
                     </div>
                   </div>
                 </div>
-                <span class="sv-ai sv-ai--a"><svg class="ico"><use href="#i-bolt" /></svg>Feed optimized · best seller boosted</span>
+                <span class="sv-ai sv-ai--a"><svg class="ico">
+                    <use href="#i-bolt" />
+                  </svg>Feed optimized · best seller boosted</span>
                 <span class="sv-ai sv-ai--b"><i></i>ROAS 5.2×</span>
               </div>
             </div>
@@ -811,7 +1011,8 @@
                 <div>
                   <p>AI analyzes search terms, audience behavior and conversion data far faster than manual review. At
                     <b>Codevelop</b>, it powers smarter bidding, intent-based keyword grouping, wasted-spend detection
-                    and ad copy testing, so budget shifts toward what actually produces leads.</p>
+                    and ad copy testing, so budget shifts toward what actually produces leads.
+                  </p>
                 </div>
               </div>
             </div>

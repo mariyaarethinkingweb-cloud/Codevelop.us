@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zoho and Twilio Integration | Codevelop</title>
+  <meta name="description"
+    content="Give agents click-to-call, screen pops, automatic call logging and SMS inside Zoho CRM and Desk with Twilio and PhoneBridge. Fixed-price integration from Codevelop.">
+  <link rel="canonical" href="https://codevelopus.com/zoho-twilio-integration">
+  <meta name="theme-color" content="#0a3161">
+  <link rel="icon" href="https://codevelopus.com/wp-content/uploads/2026/01/cropped-codevelop-favicon-270x270.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/connector.css">
+</head>
+
+<body>
+
+  <!-- Icon sprite -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-star" viewBox="0 0 24 24">
+        <path d="M12 2.5l2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.4l-5.9 3.3 1.2-6.6L2.5 9.5l6.6-.9L12 2.5z" />
+      </symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24">
+        <path d="M5 12h14M13 6l6 6-6 6" />
+      </symbol>
+      <symbol id="i-check" viewBox="0 0 24 24">
+        <path d="M5 12.5l4.5 4.5L19 7.5" />
+      </symbol>
+      <symbol id="i-chev" viewBox="0 0 24 24">
+        <path d="M6 9l6 6 6-6" />
+      </symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24">
+        <path d="M12 5v14M5 12h14" />
+      </symbol>
+      <symbol id="i-layers" viewBox="0 0 24 24">
+        <path d="M12 3l9 5-9 5-9-5 9-5z" />
+        <path d="M3 13l9 5 9-5" />
+      </symbol>
+      <symbol id="i-grid" viewBox="0 0 24 24">
+        <rect x="3" y="3" width="7" height="7" rx="1.5" />
+        <rect x="14" y="3" width="7" height="7" rx="1.5" />
+        <rect x="3" y="14" width="7" height="7" rx="1.5" />
+        <rect x="14" y="14" width="7" height="7" rx="1.5" />
+      </symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 7v5l3 2" />
+      </symbol>
+      <symbol id="i-code" viewBox="0 0 24 24">
+        <path d="M8 8l-5 4 5 4M16 8l5 4-5 4M14 5l-4 14" />
+      </symbol>
+      <symbol id="i-pen" viewBox="0 0 24 24">
+        <path d="M4 20l4-1 11-11-3-3L5 16l-1 4z" />
+        <path d="M14 6l3 3" />
+      </symbol>
+      <symbol id="i-bolt" viewBox="0 0 24 24">
+        <path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z" />
+      </symbol>
+      <symbol id="i-cms" viewBox="0 0 24 24">
+        <rect x="3" y="4" width="18" height="16" rx="2" />
+        <path d="M3 9h18M8 9v11" />
+      </symbol>
+      <symbol id="i-search" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="7" />
+        <path d="M20 20l-4-4" />
+      </symbol>
+      <symbol id="i-target" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" />
+        <circle cx="12" cy="12" r="5" />
+        <circle cx="12" cy="12" r="1.5" />
+      </symbol>
+      <symbol id="i-funnel" viewBox="0 0 24 24">
+        <path d="M3 4h18l-7 8v6l-4 2v-8L3 4z" />
+      </symbol>
+      <symbol id="i-doc" viewBox="0 0 24 24">
+        <path d="M6 3h9l4 4v14H6V3z" />
+        <path d="M14 3v5h5M9 13h7M9 17h7" />
+      </symbol>
+      <symbol id="i-chart" viewBox="0 0 24 24">
+        <path d="M4 20V10M10 20V4M16 20v-7M22 20H2" />
+      </symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24">
+        <path d="M4 5h16v11H9l-5 4V5z" />
+      </symbol>
+      <symbol id="i-spark" viewBox="0 0 24 24">
+        <path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M18 6l-2.5 2.5M8.5 15.5L6 18" />
+      </symbol>
+      <symbol id="i-eye" viewBox="0 0 24 24">
+        <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z" />
+        <circle cx="12" cy="12" r="3" />
+      </symbol>
+      <symbol id="i-flag" viewBox="0 0 24 24">
+        <path d="M5 21V4M5 4h12l-2 4 2 4H5" />
+      </symbol>
+      <symbol id="i-tooth" viewBox="0 0 24 24">
+        <path
+          d="M7 3C4.5 3 3 5 3 7.5c0 2 1 3 1.5 5S5 21 6.5 21 8 17 9 16s2-1 3-1 2 0 3 1 1 5 2.5 5 1.5-4 2-8.5c.5-2 1.5-3 1.5-5C21 5 19.5 3 17 3c-2 0-3 1-5 1S9 3 7 3z" />
+      </symbol>
+      <symbol id="i-home" viewBox="0 0 24 24">
+        <path d="M3 11l9-7 9 7" />
+        <path d="M5 10v10h14V10" />
+        <path d="M10 20v-5h4v5" />
+      </symbol>
+      <symbol id="i-scale" viewBox="0 0 24 24">
+        <path d="M12 3v18M5 21h14M6 6h12M6 6l-3 7a3 3 0 0 0 6 0L6 6zM18 6l-3 7a3 3 0 0 0 6 0l-3-7z" />
+      </symbol>
+      <symbol id="i-sparkle" viewBox="0 0 24 24">
+        <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z" />
+        <path d="M19 17l.8 2.2L22 20l-2.2.8L19 23l-.8-2.2L16 20l2.2-.8L19 17z" />
+      </symbol>
+      <symbol id="i-fb" viewBox="0 0 24 24">
+        <path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v7h4v-7h3l1-4h-4V8z" />
+      </symbol>
+      <symbol id="i-ig" viewBox="0 0 24 24">
+        <rect x="3" y="3" width="18" height="18" rx="5" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="17.5" cy="6.5" r="0.8" />
+      </symbol>
+      <symbol id="i-in" viewBox="0 0 24 24">
+        <rect x="3" y="9" width="4" height="12" />
+        <circle cx="5" cy="5" r="2" />
+        <path d="M10 9h4v2a4 4 0 0 1 6 3v7h-4v-6a2 2 0 0 0-4 0v6h-4V9z" />
+      </symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24">
+        <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" />
+      </symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24">
+        <rect x="3" y="5" width="18" height="14" rx="2" />
+        <path d="M3 7l9 6 9-6" />
+      </symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24">
+        <path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11z" />
+        <circle cx="12" cy="10" r="2.5" />
+      </symbol>
+      <symbol id="i-pointer" viewBox="0 0 24 24">
+        <path d="M5 3l14 7-6 2-2 6L5 3z" fill="currentColor" />
+      </symbol>
+      <symbol id="i-drag" viewBox="0 0 24 24">
+        <path d="M8 7l-5 5 5 5M16 7l5 5-5 5" />
+      </symbol>
+      <symbol id="i-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16" />
+      </symbol>
+      <symbol id="i-flow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+        stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="6" height="6" rx="1" />
+        <rect x="15" y="15" width="6" height="6" rx="1" />
+        <path d="M9 6h4a2 2 0 0 1 2 2v7" />
+      </symbol>
+      <symbol id="i-megaphone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 10v4h4l8 5V5L7 10H3z" />
+        <path d="M18.5 9a4 4 0 0 1 0 6" />
+      </symbol>
+      <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2V5z" />
+        <path d="M4 19a2 2 0 0 1 2-2h13" />
+      </symbol>
+      <symbol id="i-coin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+        stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="9" />
+        <path
+          d="M14.5 9.5c-.5-1-1.5-1.5-2.5-1.5-1.4 0-2.5.8-2.5 2s1 1.7 2.5 2 2.5.8 2.5 2-1.1 2-2.5 2c-1 0-2-.5-2.5-1.5M12 6.5V8m0 8v1.5" />
+      </symbol>
+      <symbol id="i-desk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+        stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="4" width="18" height="12" rx="2" />
+        <path d="M8 20h8M12 16v4" />
+      </symbol>
+      <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+        stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="9" cy="8" r="3.5" />
+        <path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6" />
+        <path d="M16 4.7a3.5 3.5 0 0 1 0 6.6M18 14.3c2 .7 3.5 2.6 3.5 5.7" />
+      </symbol>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header" id="top">
+    <div class="bar">
+      <a class="logo" href="index.html" aria-label="Codevelop home"><img src="images/codevelop.webp"
+          alt="Codevelop logo" class="brand-logo" width="160" height="40"></a>
+      <button class="burger" type="button" aria-label="Open menu"
+        aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav aria-label="Main">
+        <ul>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">AI Agents <svg class="chev"
+                viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop drop--agents">
+              <div class="agents-top">
+                <span class="agents-label">AI Agents</span>
+                <a class="agents-all" href="#">View all agents</a>
+              </div>
+
+              <a class="agent" href="customer-support-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-chat" />
+                  </svg></span>
+                <span class="agent-txt"><b>Customer Support Agents</b><small>24/7 answers across chat &amp;
+                    inbox</small></span>
+              </a>
+              <a class="agent" href="sales-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-funnel" />
+                  </svg></span>
+                <span class="agent-txt"><b>Sales &amp; Lead-Generation Agents</b><small>Capture, qualify &amp; follow up
+                    with leads</small></span>
+              </a>
+
+              <a class="agent" href="software-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-code" />
+                  </svg></span>
+                <span class="agent-txt"><b>Software Development Agents</b><small>Code, review &amp; ship
+                    faster</small></span>
+              </a>
+              <a class="agent" href="workflow-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-flow" />
+                  </svg></span>
+                <span class="agent-txt"><b>Workflow Automation Agents</b><small>Connect tools &amp; automate routine
+                    tasks</small></span>
+              </a>
+
+              <a class="agent" href="marketing-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-megaphone" />
+                  </svg></span>
+                <span class="agent-txt"><b>Marketing Agents</b><small>Campaigns, content &amp; channel
+                    management</small></span>
+              </a>
+              <a class="agent" href="research-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-chart" />
+                  </svg></span>
+                <span class="agent-txt"><b>Research &amp; Data Analyst Agents</b><small>Insights &amp; plain-language
+                    reports</small></span>
+              </a>
+
+              <a class="agent" href="internal-knowledge-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-book" />
+                  </svg></span>
+                <span class="agent-txt"><b>Internal Knowledge Agents</b><small>Instant answers from your company
+                    data</small></span>
+              </a>
+              <a class="agent" href="finance-accounting-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-coin" />
+                  </svg></span>
+                <span class="agent-txt"><b>Finance &amp; Accounting Agents</b><small>Invoices, reconciliation &amp;
+                    reporting</small></span>
+              </a>
+
+              <a class="agent" href="it-service-desk-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-desk" />
+                  </svg></span>
+                <span class="agent-txt"><b>IT Service Desk Agents</b><small>Resolve tickets &amp; access
+                    requests</small></span>
+              </a>
+              <a class="agent" href="hr-recruitment-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-users" />
+                  </svg></span>
+                <span class="agent-txt"><b>HR &amp; Recruitment Agents</b><small>Screen, schedule &amp; onboard
+                    people</small></span>
+              </a>
+            </div>
+          </li>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">Connectors <svg class="chev"
+                viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop drop--agents drop--connectors">
+              <div class="agents-top">
+                <span class="agents-label">Connectors</span>
+                <a class="agents-all" href="#">View all connectors</a>
+              </div>
+
+              <a class="agent" href="sap-business-one.html">
+                <span class="agent-ico"><i class="cn cn-sap">SAP</i></span>
+                <span class="agent-txt"><b>SAP Business One</b><small>ERP integration &amp; consulting</small></span>
+              </a>
+              <a class="agent" href="salesforce.html">
+                <span class="agent-ico"><i class="cn cn-sf">SF</i></span>
+                <span class="agent-txt"><b>Salesforce</b><small>CRM &amp; order-to-cash sync</small></span>
+              </a>
+
+              <a class="agent" href="netsuite.html">
+                <span class="agent-ico"><i class="cn cn-ns">N</i></span>
+                <span class="agent-txt"><b>NetSuite</b><small>ERP, ecommerce &amp; EDI sync</small></span>
+              </a>
+              <a class="agent" href="shopify.html">
+                <span class="agent-ico"><i class="cn cn-shop">S</i></span>
+                <span class="agent-txt"><b>Shopify</b><small>Ecommerce ↔ back office</small></span>
+              </a>
+
+              <a class="agent" href="quickbooks.html">
+                <span class="agent-ico"><i class="cn cn-qb">qb</i></span>
+                <span class="agent-txt"><b>QuickBooks</b><small>Accounting &amp; invoice sync</small></span>
+              </a>
+              <a class="agent" href="woocommerce.html">
+                <span class="agent-ico"><i class="cn cn-woo">Woo</i></span>
+                <span class="agent-txt"><b>WooCommerce</b><small>WordPress store integration</small></span>
+              </a>
+
+              <a class="agent" href="#">
+                <span class="agent-ico"><i class="cn cn-zoho"><s></s><s></s><s></s><s></s></i></span>
+                <span class="agent-txt"><b>Zoho</b><small>Zoho One suite integration</small></span>
+              </a>
+              <a class="agent" href="#">
+                <span class="agent-ico"><i class="cn cn-zuper">Zu</i></span>
+                <span class="agent-txt"><b>Zuper</b><small>Field service management sync</small></span>
+              </a>
+
+              <a class="agent" href="#">
+                <span class="agent-ico"><i class="cn cn-attio">At</i></span>
+                <span class="agent-txt"><b>Attio</b><small>CRM &amp; record sync</small></span>
+              </a>
+              <a class="agent" href="#">
+                <span class="agent-ico"><i class="cn cn-twenty">20</i></span>
+                <span class="agent-txt"><b>Twenty</b><small>Open-source CRM sync</small></span>
+              </a>
+            </div>
+          </li>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">Services <svg class="chev"
+                viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop drop--mega">
+              <div class="mega-top">
+                <a class="mega-all" href="services.html">View all services <svg class="ico" width="16" height="16"
+                    aria-hidden="true">
+                    <use href="#i-arrow" />
+                  </svg></a>
+              </div>
+
+              <div class="mega-col">
+                <h4><a href="performance-marketing.html">Performance Marketing</a></h4>
+                <a href="meta-ads.html">Google Ads Management</a>
+                <a href="facebook-ads.html">Facebook Ads</a>
+                <a href="remarketing.html">Remarketing</a>
+              </div>
+
+              <div class="mega-col">
+                <h4><a href="web-development.html">Web Development Services</a></h4>
+                <a href="custom-website-design.html">Custom Website Design</a>
+                <a href="wordpress-development.html">WordPress Web Development</a>
+                <a href="shopify-development.html">Shopify Web Development</a>
+                <a href="webflow-development.html">Webflow Web Development</a>
+                <a href="framer-development.html">Framer Web Development</a>
+                <a href="mageneto-development.html">Magento Web Development</a>
+                <a href="website-maintenance.html">Website Maintenance</a>
+                <a href="website-redesign.html">Website Redesign</a>
+              </div>
+
+              <div class="mega-col">
+                <h4><a href="social-media-marketing.html">Social Media Marketing</a></h4>
+                <a href="content-marketing.html">Content Marketing</a>
+              </div>
+
+              <div class="mega-col">
+                <h4><a href="search-engine-optimization.html">Search Engine Optimization</a></h4>
+                <a href="local-seo.html">Local SEO</a>
+                <a href="seo-audits.html">SEO Audits</a>
+                <a href="technical-seo.html">Technical SEO</a>
+                <a href="enterprise-seo.html">Enterprise SEO</a>
+              </div>
+            </div>
+          </li>
+          <li><button class="top" type="button" aria-expanded="false">Hire Talent <svg class="chev" viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop"><a href="#">Developers</a><a href="#">Automation Engineers</a><a href="#">Dedicated
+                Teams</a></div>
+          </li>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="#">Success Stories</a></li>
+          <li><a href="#">Insights</a></li>
+        </ul>
+        <a class="hdr-cta hdr-cta-m" href="contact-us.html">Get a Free Automation Review</a>
+      </nav>
+      <a class="hdr-cta" href="contact-us.html">Get a Free Automation Review</a>
+    </div>
+  </header>
+
+
+  <main id="content">
+
+    <!-- HERO -->
+    <section class="hero-wrap" aria-labelledby="hero-title">
+      <div class="hero hero--page">
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="hero-glow" aria-hidden="true"></div>
+        <div class="ring ring--1" aria-hidden="true"><i></i></div>
+        <div class="ring ring--2" aria-hidden="true"><i></i></div>
+        <div class="container hero-inner">
+          <div class="hero-copy">
+            <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a> / <a href="#">Connectors</a> / Zoho / Twilio</nav>
+            <h1 class="h-display" id="hero-title">Zoho and Twilio, so every call and text lands on the right customer record.</h1>
+            <p class="lead">We connect Zoho CRM and Desk to Twilio so agents get click-to-call, screen pops, automatic call logging and SMS workflows without switching between apps.</p>
+            <div class="hero-stack" aria-hidden="true">
+              <span class="hs hs--sap"><img src="images/zoho.png" alt=""></span><i class="sep"></i>
+              <span class="hs hs--sap"><img src="images/twilio.png" alt=""></span>
+            </div>
+            <div class="hero-actions">
+              <a class="btn btn--primary btn--lg btn--pulse" href="contact-us.html">Book a scoping call</a>
+              <a class="btn btn--ghost btn--lg" href="#budget">See typical budgets</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BASICS -->
+    <section class="section" id="basics" aria-labelledby="basics-title">
+      <div class="container basics" data-reveal>
+        <div class="basics-copy">
+          <span class="pill">The basics</span>
+          <h2 class="h-section" id="basics-title">What this integration actually does</h2>
+          <p class="lead">Twilio supplies the calling and messaging, and Zoho holds the CRM or helpdesk record that each call belongs to. Without a link, agents dial in one app and type notes in another, and inbound calls arrive with no hint of who's calling.</p>
+          <p>This integration pairs Zoho's PhoneBridge framework with Twilio's REST APIs. Agents get click-to-call inside Zoho, a screen pop that shows the caller's record on inbound calls, automatic call logging, and SMS workflows started from CRM or Desk records.</p>
+        </div>
+        <div class="ba">
+          <div class="no"><h3>Without integration</h3><ul><li>Dialling in one app, noting in another</li><li>Inbound calls with no caller context</li><li>Calls that never get logged</li><li>Texts living in a separate inbox</li></ul></div>
+          <div class="yes"><h3>With integration</h3><ul><li>Click-to-call from any record</li><li>Caller's record pops up on inbound calls</li><li>Duration, outcome and recording logged</li><li>SMS sent and logged on the record</li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FLOW -->
+    <section class="section web" id="call-flow" aria-labelledby="flow-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Ring to record</span>
+          <h2 class="h-section" id="flow-title">One call, five handoffs, no manual notes</h2>
+        </div>
+        <ol class="tl">
+          <li><h3>Call starts</h3><p>An agent clicks to dial, or a customer rings your Twilio number.</p></li>
+          <li><h3>Record surfaces</h3><p>Caller ID finds the matching Zoho CRM or Desk record and pops it on screen.</p></li>
+          <li><h3>Conversation happens</h3><p>The agent talks with full context in front of them.</p></li>
+          <li><h3>Call logged</h3><p>Duration, outcome and the recording link are saved to the record.</p></li>
+          <li><h3>Follow-up triggered</h3><p>An SMS goes out, or a missed call creates a Desk ticket.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- DATA FLOW -->
+    <section class="section" id="data-flow" aria-labelledby="sync-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Data flow</span>
+          <h2 class="h-section" id="sync-title">What syncs, and which way</h2>
+          <p class="lead">These are the call and messaging events we connect most often between Twilio and Zoho.</p>
+        </div>
+        <div class="cat-grid" data-stagger>
+          <div class="cat"><h3>Click-to-call</h3><ul class="pair-chips"><li>Zoho → Twilio</li></ul><p>Agents dial straight from a Zoho CRM or Desk record.</p></div>
+          <div class="cat"><h3>Screen pops</h3><ul class="pair-chips"><li>Twilio → Zoho</li></ul><p>Inbound calls surface the matching customer record automatically.</p></div>
+          <div class="cat"><h3>Call logging</h3><ul class="pair-chips"><li>Twilio → Zoho</li></ul><p>Duration, outcome and recording link are logged to the record.</p></div>
+          <div class="cat"><h3>SMS workflows</h3><ul class="pair-chips"><li>Zoho ↔ Twilio</li></ul><p>Automated or agent-triggered texts are sent and logged on the record.</p></div>
+          <div class="cat"><h3>Call recording links</h3><ul class="pair-chips"><li>Twilio → Zoho</li></ul><p>Recording URLs are attached to the CRM or Desk activity.</p></div>
+          <div class="cat"><h3>Desk ticket creation</h3><ul class="pair-chips"><li>Twilio → Zoho</li></ul><p>Missed or inbound calls can create a Zoho Desk ticket automatically.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROUTES -->
+    <section class="section web" id="routes" aria-labelledby="route-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Choosing a route</span>
+          <h2 class="h-section" id="route-title">Four building blocks, and when each one fits</h2>
+          <p class="lead">Zoho's PhoneBridge is built for telephony integrations, and it works alongside Twilio's Voice and Messaging REST APIs and webhooks for live call and SMS events.</p>
+        </div>
+        <div class="rt-grid" data-stagger>
+          <div class="feature"><h3>Zoho PhoneBridge<small>Zoho's native telephony framework</small></h3><p><b>Best when</b> you want click-to-call and screen pops inside CRM or Desk.</p><p><b>Trade-off</b> it needs a PhoneBridge-compliant adapter for Twilio.</p></div>
+          <div class="feature"><h3>Twilio Voice API<small>Call control and events</small></h3><p><b>Best when</b> you're triggering calls and receiving call status events.</p><p><b>Trade-off</b> webhook reliability needs retry handling on our side.</p></div>
+          <div class="feature"><h3>Twilio Messaging API<small>Sending and receiving SMS</small></h3><p><b>Best when</b> you want two-way texting tied to CRM records.</p><p><b>Trade-off</b> SMS opt-in rules differ by country.</p></div>
+          <div class="feature"><h3>Zoho Deluge<small>Native scripting</small></h3><p><b>Best when</b> you need custom logic on top of the PhoneBridge adapter.</p><p><b>Trade-off</b> it suits lightweight logic, not very high call volumes.</p></div>
+        </div>
+        <p class="note">PhoneBridge covers most click-to-call and screen-pop needs out of the box. We write custom Deluge only for workflow logic it doesn't handle, such as creating Desk tickets from missed calls.</p>
+      </div>
+    </section>
+
+    <!-- BUDGET -->
+    <section class="section" id="budget" aria-labelledby="budget-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Typical budgets</span>
+          <h2 class="h-section" id="budget-title">What Zoho and Twilio integration usually costs</h2>
+          <p class="lead">Most projects land between $2,000 and $12,000, depending on how many telephony features are in scope. Twilio's own calling and messaging charges are billed separately by Twilio.</p>
+        </div>
+        <div class="rt-grid" data-stagger>
+          <div class="feature"><h3>Click-to-call and screen pops<small>The core setup</small></h3><p><b>$2k – $4.5k</b> to implement, plus Twilio's usage charges.</p></div>
+          <div class="feature"><h3>Call logging and SMS<small>Full workflows</small></h3><p><b>$4.5k – $8.5k</b> to implement, plus Twilio usage and an optional support plan.</p></div>
+          <div class="feature"><h3>Desk automation and routing<small>Custom ticket logic</small></h3><p><b>$8k – $12k+</b> to implement, with a support plan recommended.</p></div>
+        </div>
+        <div class="factors"><span>PhoneBridge features in scope</span><span>One-way or two-way SMS</span><span>Missed calls creating tickets</span><span>Number of agents and numbers</span></div>
+        <p class="note">You get a fixed quote after a scoping call, so you know the cost before we build.</p>
+      </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section class="section web" id="timeline" aria-labelledby="time-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Timeline</span>
+          <h2 class="h-section" id="time-title">How long does it take?</h2>
+          <p class="lead">Twilio number provisioning and carrier verification can take longer than the build itself, so we start that on day one.</p>
+        </div>
+        <div class="lanes">
+          <div class="lane"><h3>Click-to-call and screen pops<small>Core PhoneBridge setup linking Twilio to Zoho CRM or Desk</small></h3><div class="lane-bar" style="--w:45%">2–3 weeks</div></div>
+          <div class="lane"><h3>Logging, SMS and automation<small>Custom Deluge workflows on top of the PhoneBridge adapter</small></h3><div class="lane-bar" style="--w:100%">4–6 weeks</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="section" id="process" aria-labelledby="proc-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">How we work</span>
+          <h2 class="h-section" id="proc-title">From first call to monitored go-live</h2>
+          <p class="lead">Five stages, every time. You approve a fixed scope and a mapping sheet before we build anything.</p>
+        </div>
+        <ol class="tl">
+          <li><h3>Discover</h3><p>We map your Twilio numbers, Zoho apps and the agent workflow you want to support.</p></li>
+          <li><h3>Map</h3><p>Every field, direction, transformation and error rule goes on one sheet.</p></li>
+          <li><h3>Build</h3><p>We configure the PhoneBridge adapter and build Deluge workflows for call and SMS events.</p></li>
+          <li><h3>Test</h3><p>Real call and SMS scenarios, including missed calls, voicemail and multi-agent routing.</p></li>
+          <li><h3>Support</h3><p>Alerts, logs and a named engineer after launch.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- WHY CODEVELOP -->
+    <section class="section web ai" id="why-us" aria-labelledby="why-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill pill--dark">Why Codevelop</span>
+          <h2 class="h-section" id="why-title">Calls your team can rely on</h2>
+          <p class="lead">A telephony integration only helps while every call is captured. Here is how we keep it that way.</p>
+        </div>
+        <div class="rt-grid" data-stagger>
+          <div class="feature"><h3>Fixed scope and price</h3><p>You approve a signed mapping sheet and a fixed quote first. No open hourly meter, no mid-project surprises.</p></div>
+          <div class="feature"><h3>A named engineer</h3><p>The person who built your integration answers when a call, number or routing question comes up.</p></div>
+          <div class="feature"><h3>Rescue and take-over</h3><p>We regularly take over PhoneBridge setups that were only half finished or have stopped logging calls correctly.</p></div>
+          <div class="feature"><h3>Monitored after launch</h3><p>Logging, alerts and retries ship with every build, so a missed webhook reaches us before it reaches your agents.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="container faq-grid" data-reveal>
+        <div class="faq-head">
+          <span class="pill">Common questions</span>
+          <h2 class="h-section" id="faq-title">Zoho and Twilio FAQ</h2>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item open">
+            <h3><button class="faq-q" type="button" aria-expanded="true">What is Zoho PhoneBridge? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>PhoneBridge is Zoho's native framework for connecting telephony providers such as Twilio to Zoho CRM and Desk. It powers click-to-call, screen pops and call logging.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Can inbound calls show the caller's CRM record automatically? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. A screen pop can bring up the matching Zoho CRM or Desk record the moment a call arrives, based on caller ID.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Can we send SMS from a CRM record? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. Agents can send a text from a Zoho record, and replies are logged back against that same record.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Can missed calls create a support ticket automatically? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. We can set missed or inbound calls to create a Zoho Desk ticket automatically, so nothing slips through.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">How much does it cost? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Most projects run between $2,000 and $12,000, depending on which telephony features are in scope. Twilio's usage charges are billed separately. See the budget section above.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Can you fix a broken Zoho and Twilio setup? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. We regularly take over PhoneBridge configurations that were only partly set up or have stopped logging calls properly.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta" id="contact" aria-labelledby="cta-title">
+      <div class="cta-grid">
+        <div class="cta-bar" aria-hidden="true"></div>
+        <div class="cta-box">
+          <div class="ripples" aria-hidden="true"><span></span><span></span><span></span></div>
+          <h2 id="cta-title">Ready to connect Twilio to Zoho?</h2>
+          <p>Every call logged by hand is a note your team might forget to take. Tell us how your agents work and you'll get a scoped plan and a fixed price before we build.</p>
+          <a class="btn btn--primary btn--lg btn-sweep" href="contact-us.html"><span style="position:relative">Book a scoping call</span></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+<!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="footer-panel">
+      <div class="footer-flag" aria-hidden="true"></div>
+      <div class="footer-main">
+        <div class="footer-brand">
+          <img src="images/codevelop.webp" alt="Codevelop logo" class="brand-logo" width="160" height="40">
+          <p>At Codevelop, we help businesses turn strategy into scalable results through thoughtful design,
+            performance-driven marketing, and modern technology.</p>
+          <div class="socials">
+            <a href="https://www.facebook.com/Codevelop.usa/" aria-label="Facebook" target="_blank" rel="noopener"><svg
+                class="ico">
+                <use href="#i-fb" />
+              </svg></a>
+            <a href="https://www.instagram.com/codevelop_us/" aria-label="Instagram" target="_blank" rel="noopener"><svg
+                class="ico">
+                <use href="#i-ig" />
+              </svg></a>
+            <a href="https://www.linkedin.com/company/codevelop-us" aria-label="LinkedIn" target="_blank"
+              rel="noopener"><svg class="ico">
+                <use href="#i-in" />
+              </svg></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Services</h3>
+          <ul>
+            <li><a href="performance-marketing.html">Performance Marketing</a></li>
+            <li><a href="#">SEO Services</a></li>
+            <li><a href="#">Social Media Marketing</a></li>
+            <li><a href="web-development.html">Web Development</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Link</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Case Studies</a></li>
+            <li><a href="#">Blogs</a></li>
+            <li><a href="https://codevelopus.com/">Free SEO Audit</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Contact Us</h3>
+          <ul class="contact">
+            <li><svg class="ico">
+                <use href="#i-pin" />
+              </svg><span>555 SE Martin Luther King JR Blvd, Portland, OR 97214</span></li>
+            <li><svg class="ico">
+                <use href="#i-phone" />
+              </svg><a href="tel:+19714809833">+1 971-480-9833</a></li>
+            <li><svg class="ico">
+                <use href="#i-mail" />
+              </svg><a href="mailto:info@codevelop.us">info@codevelop.us</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="newsletter">
+        <div class="newsletter-box">
+          <h3>Signup our newsletter to get update information, news, insight or promotions.</h3>
+          <!-- Connect this form to your email provider (set action / method). -->
+          <form class="news-form" action="#" method="post">
+            <label class="sr-only" for="news-email">Email</label>
+            <input id="news-email" type="email" name="email" placeholder="Email" required autocomplete="email">
+            <button class="btn btn--primary" type="submit">Sign up</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <span>Copyright © 2026 Codevelop US, All Rights Reserved.</span>
+      <a href="#">Privacy policy</a>
+    </div>
+  </footer>
+
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>

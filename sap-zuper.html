@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SAP Business One + Zuper Integration | Codevelop</title>
+  <meta name="description"
+    content="Link Zuper field service to SAP Business One so jobs, equipment, parts and invoices move without re-keying. Fixed-scope builds from Codevelop, with a named engineer after launch.">
+  <link rel="canonical" href="https://codevelopus.com/sap-business-one-zuper-integration">
+  <meta name="theme-color" content="#0a3161">
+  <link rel="icon" href="https://codevelopus.com/wp-content/uploads/2026/01/cropped-codevelop-favicon-270x270.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/connector.css">
+  <link rel="stylesheet" href="css/connector-extra.css">
+</head>
+
+<body>
+
+  <!-- Icon sprite -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-star" viewBox="0 0 24 24">
+        <path d="M12 2.5l2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.4l-5.9 3.3 1.2-6.6L2.5 9.5l6.6-.9L12 2.5z" />
+      </symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24">
+        <path d="M5 12h14M13 6l6 6-6 6" />
+      </symbol>
+      <symbol id="i-check" viewBox="0 0 24 24">
+        <path d="M5 12.5l4.5 4.5L19 7.5" />
+      </symbol>
+      <symbol id="i-chev" viewBox="0 0 24 24">
+        <path d="M6 9l6 6 6-6" />
+      </symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24">
+        <path d="M12 5v14M5 12h14" />
+      </symbol>
+      <symbol id="i-layers" viewBox="0 0 24 24">
+        <path d="M12 3l9 5-9 5-9-5 9-5z" />
+        <path d="M3 13l9 5 9-5" />
+      </symbol>
+      <symbol id="i-grid" viewBox="0 0 24 24">
+        <rect x="3" y="3" width="7" height="7" rx="1.5" />
+        <rect x="14" y="3" width="7" height="7" rx="1.5" />
+        <rect x="3" y="14" width="7" height="7" rx="1.5" />
+        <rect x="14" y="14" width="7" height="7" rx="1.5" />
+      </symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 7v5l3 2" />
+      </symbol>
+      <symbol id="i-code" viewBox="0 0 24 24">
+        <path d="M8 8l-5 4 5 4M16 8l5 4-5 4M14 5l-4 14" />
+      </symbol>
+      <symbol id="i-pen" viewBox="0 0 24 24">
+        <path d="M4 20l4-1 11-11-3-3L5 16l-1 4z" />
+        <path d="M14 6l3 3" />
+      </symbol>
+      <symbol id="i-bolt" viewBox="0 0 24 24">
+        <path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z" />
+      </symbol>
+      <symbol id="i-cms" viewBox="0 0 24 24">
+        <rect x="3" y="4" width="18" height="16" rx="2" />
+        <path d="M3 9h18M8 9v11" />
+      </symbol>
+      <symbol id="i-search" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="7" />
+        <path d="M20 20l-4-4" />
+      </symbol>
+      <symbol id="i-target" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" />
+        <circle cx="12" cy="12" r="5" />
+        <circle cx="12" cy="12" r="1.5" />
+      </symbol>
+      <symbol id="i-funnel" viewBox="0 0 24 24">
+        <path d="M3 4h18l-7 8v6l-4 2v-8L3 4z" />
+      </symbol>
+      <symbol id="i-doc" viewBox="0 0 24 24">
+        <path d="M6 3h9l4 4v14H6V3z" />
+        <path d="M14 3v5h5M9 13h7M9 17h7" />
+      </symbol>
+      <symbol id="i-chart" viewBox="0 0 24 24">
+        <path d="M4 20V10M10 20V4M16 20v-7M22 20H2" />
+      </symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24">
+        <path d="M4 5h16v11H9l-5 4V5z" />
+      </symbol>
+      <symbol id="i-spark" viewBox="0 0 24 24">
+        <path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M18 6l-2.5 2.5M8.5 15.5L6 18" />
+      </symbol>
+      <symbol id="i-eye" viewBox="0 0 24 24">
+        <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z" />
+        <circle cx="12" cy="12" r="3" />
+      </symbol>
+      <symbol id="i-flag" viewBox="0 0 24 24">
+        <path d="M5 21V4M5 4h12l-2 4 2 4H5" />
+      </symbol>
+      <symbol id="i-tooth" viewBox="0 0 24 24">
+        <path
+          d="M7 3C4.5 3 3 5 3 7.5c0 2 1 3 1.5 5S5 21 6.5 21 8 17 9 16s2-1 3-1 2 0 3 1 1 5 2.5 5 1.5-4 2-8.5c.5-2 1.5-3 1.5-5C21 5 19.5 3 17 3c-2 0-3 1-5 1S9 3 7 3z" />
+      </symbol>
+      <symbol id="i-home" viewBox="0 0 24 24">
+        <path d="M3 11l9-7 9 7" />
+        <path d="M5 10v10h14V10" />
+        <path d="M10 20v-5h4v5" />
+      </symbol>
+      <symbol id="i-scale" viewBox="0 0 24 24">
+        <path d="M12 3v18M5 21h14M6 6h12M6 6l-3 7a3 3 0 0 0 6 0L6 6zM18 6l-3 7a3 3 0 0 0 6 0l-3-7z" />
+      </symbol>
+      <symbol id="i-sparkle" viewBox="0 0 24 24">
+        <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z" />
+        <path d="M19 17l.8 2.2L22 20l-2.2.8L19 23l-.8-2.2L16 20l2.2-.8L19 17z" />
+      </symbol>
+      <symbol id="i-fb" viewBox="0 0 24 24">
+        <path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v7h4v-7h3l1-4h-4V8z" />
+      </symbol>
+      <symbol id="i-ig" viewBox="0 0 24 24">
+        <rect x="3" y="3" width="18" height="18" rx="5" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="17.5" cy="6.5" r="0.8" />
+      </symbol>
+      <symbol id="i-in" viewBox="0 0 24 24">
+        <rect x="3" y="9" width="4" height="12" />
+        <circle cx="5" cy="5" r="2" />
+        <path d="M10 9h4v2a4 4 0 0 1 6 3v7h-4v-6a2 2 0 0 0-4 0v6h-4V9z" />
+      </symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24">
+        <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" />
+      </symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24">
+        <rect x="3" y="5" width="18" height="14" rx="2" />
+        <path d="M3 7l9 6 9-6" />
+      </symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24">
+        <path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11z" />
+        <circle cx="12" cy="10" r="2.5" />
+      </symbol>
+      <symbol id="i-pointer" viewBox="0 0 24 24">
+        <path d="M5 3l14 7-6 2-2 6L5 3z" fill="currentColor" />
+      </symbol>
+      <symbol id="i-drag" viewBox="0 0 24 24">
+        <path d="M8 7l-5 5 5 5M16 7l5 5-5 5" />
+      </symbol>
+      <symbol id="i-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16" />
+      </symbol>
+      <symbol id="i-flow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+        stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="6" height="6" rx="1" />
+        <rect x="15" y="15" width="6" height="6" rx="1" />
+        <path d="M9 6h4a2 2 0 0 1 2 2v7" />
+      </symbol>
+      <symbol id="i-megaphone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 10v4h4l8 5V5L7 10H3z" />
+        <path d="M18.5 9a4 4 0 0 1 0 6" />
+      </symbol>
+      <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2V5z" />
+        <path d="M4 19a2 2 0 0 1 2-2h13" />
+      </symbol>
+      <symbol id="i-coin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+        stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="9" />
+        <path
+          d="M14.5 9.5c-.5-1-1.5-1.5-2.5-1.5-1.4 0-2.5.8-2.5 2s1 1.7 2.5 2 2.5.8 2.5 2-1.1 2-2.5 2c-1 0-2-.5-2.5-1.5M12 6.5V8m0 8v1.5" />
+      </symbol>
+      <symbol id="i-desk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+        stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="4" width="18" height="12" rx="2" />
+        <path d="M8 20h8M12 16v4" />
+      </symbol>
+      <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+        stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="9" cy="8" r="3.5" />
+        <path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6" />
+        <path d="M16 4.7a3.5 3.5 0 0 1 0 6.6M18 14.3c2 .7 3.5 2.6 3.5 5.7" />
+      </symbol>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header" id="top">
+    <div class="bar">
+      <a class="logo" href="index.html" aria-label="Codevelop home"><img src="images/codevelop.webp"
+          alt="Codevelop logo" class="brand-logo" width="160" height="40"></a>
+      <button class="burger" type="button" aria-label="Open menu"
+        aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav aria-label="Main">
+        <ul>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">AI Agents <svg class="chev"
+                viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop drop--agents">
+              <div class="agents-top">
+                <span class="agents-label">AI Agents</span>
+                <a class="agents-all" href="#">View all agents</a>
+              </div>
+
+              <a class="agent" href="customer-support-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-chat" />
+                  </svg></span>
+                <span class="agent-txt"><b>Customer Support Agents</b><small>24/7 answers across chat &amp;
+                    inbox</small></span>
+              </a>
+              <a class="agent" href="sales-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-funnel" />
+                  </svg></span>
+                <span class="agent-txt"><b>Sales &amp; Lead-Generation Agents</b><small>Capture, qualify &amp; follow up
+                    with leads</small></span>
+              </a>
+
+              <a class="agent" href="software-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-code" />
+                  </svg></span>
+                <span class="agent-txt"><b>Software Development Agents</b><small>Code, review &amp; ship
+                    faster</small></span>
+              </a>
+              <a class="agent" href="workflow-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-flow" />
+                  </svg></span>
+                <span class="agent-txt"><b>Workflow Automation Agents</b><small>Connect tools &amp; automate routine
+                    tasks</small></span>
+              </a>
+
+              <a class="agent" href="marketing-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-megaphone" />
+                  </svg></span>
+                <span class="agent-txt"><b>Marketing Agents</b><small>Campaigns, content &amp; channel
+                    management</small></span>
+              </a>
+              <a class="agent" href="research-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-chart" />
+                  </svg></span>
+                <span class="agent-txt"><b>Research &amp; Data Analyst Agents</b><small>Insights &amp; plain-language
+                    reports</small></span>
+              </a>
+
+              <a class="agent" href="internal-knowledge-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-book" />
+                  </svg></span>
+                <span class="agent-txt"><b>Internal Knowledge Agents</b><small>Instant answers from your company
+                    data</small></span>
+              </a>
+              <a class="agent" href="finance-accounting-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-coin" />
+                  </svg></span>
+                <span class="agent-txt"><b>Finance &amp; Accounting Agents</b><small>Invoices, reconciliation &amp;
+                    reporting</small></span>
+              </a>
+
+              <a class="agent" href="it-service-desk-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-desk" />
+                  </svg></span>
+                <span class="agent-txt"><b>IT Service Desk Agents</b><small>Resolve tickets &amp; access
+                    requests</small></span>
+              </a>
+              <a class="agent" href="hr-recruitment-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-users" />
+                  </svg></span>
+                <span class="agent-txt"><b>HR &amp; Recruitment Agents</b><small>Screen, schedule &amp; onboard
+                    people</small></span>
+              </a>
+            </div>
+          </li>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">Connectors <svg class="chev"
+                viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop drop--agents drop--connectors">
+              <div class="agents-top">
+                <span class="agents-label">Connectors</span>
+                <a class="agents-all" href="#">View all connectors</a>
+              </div>
+
+              <a class="agent" href="sap-business-one.html">
+                <span class="agent-ico"><img src="images/sap.png" alt="SAP Business One" loading="lazy"></span>
+                <span class="agent-txt"><b>SAP Business One</b><small>ERP integration &amp; consulting</small></span>
+              </a>
+              <a class="agent" href="salesforce.html">
+                <span class="agent-ico"><img src="images/salesforce.png" alt="Salesforce" loading="lazy"></span>
+                <span class="agent-txt"><b>Salesforce</b><small>CRM &amp; order-to-cash sync</small></span>
+              </a>
+
+              <a class="agent" href="netsuite.html">
+                <span class="agent-ico"><img src="images/netsuite.png" alt="NetSuite" loading="lazy"></span>
+                <span class="agent-txt"><b>NetSuite</b><small>ERP, ecommerce &amp; EDI sync</small></span>
+              </a>
+              <a class="agent" href="shopify.html">
+                <span class="agent-ico"><img src="images/shopify.png" alt="Shopify" loading="lazy"></span>
+                <span class="agent-txt"><b>Shopify</b><small>Ecommerce ↔ back office</small></span>
+              </a>
+
+              <a class="agent" href="quickbooks.html">
+                <span class="agent-ico"><img src="images/quickbooks.png" alt="QuickBooks" loading="lazy"></span>
+                <span class="agent-txt"><b>QuickBooks</b><small>Accounting &amp; invoice sync</small></span>
+              </a>
+              <a class="agent" href="woocommerce.html">
+                <span class="agent-ico"><img src="images/woocommerce.png" alt="WooCommerce" loading="lazy"></span>
+                <span class="agent-txt"><b>WooCommerce</b><small>WordPress store integration</small></span>
+              </a>
+
+              <a class="agent" href="zoho.html">
+                <span class="agent-ico"><img src="images/zoho.png" alt="Zoho" loading="lazy"></span>
+                <span class="agent-txt"><b>Zoho</b><small>Zoho One suite integration</small></span>
+              </a>
+              <a class="agent" href="zuper.html">
+                <span class="agent-ico"><img src="images/zuper.png" alt="Zuper" loading="lazy"></span>
+                <span class="agent-txt"><b>Zuper</b><small>Field service management sync</small></span>
+              </a>
+
+              <a class="agent" href="attio.html">
+                <span class="agent-ico"><img src="images/attio.png" alt="Attio" loading="lazy"></span>
+                <span class="agent-txt"><b>Attio</b><small>CRM &amp; record sync</small></span>
+              </a>
+              <a class="agent" href="twenty.html">
+                <span class="agent-ico"><img src="images/twenty.png" alt="Twenty" loading="lazy"></span>
+                <span class="agent-txt"><b>Twenty</b><small>Open-source CRM sync</small></span>
+              </a>
+            </div>
+          </li>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">Services <svg class="chev"
+                viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop drop--mega">
+              <div class="mega-top">
+                <a class="mega-all" href="services.html">View all services <svg class="ico" width="16" height="16"
+                    aria-hidden="true">
+                    <use href="#i-arrow" />
+                  </svg></a>
+              </div>
+
+              <div class="mega-col">
+                <h4><a href="performance-marketing.html">Performance Marketing</a></h4>
+                <a href="meta-ads.html">Google Ads Management</a>
+                <a href="facebook-ads.html">Facebook Ads</a>
+                <a href="remarketing.html">Remarketing</a>
+              </div>
+
+              <div class="mega-col">
+                <h4><a href="web-development.html">Web Development Services</a></h4>
+                <a href="custom-website-design.html">Custom Website Design</a>
+                <a href="wordpress-development.html">WordPress Web Development</a>
+                <a href="shopify-development.html">Shopify Web Development</a>
+                <a href="webflow-development.html">Webflow Web Development</a>
+                <a href="framer-development.html">Framer Web Development</a>
+                <a href="mageneto-development.html">Magento Web Development</a>
+                <a href="website-maintenance.html">Website Maintenance</a>
+                <a href="website-redesign.html">Website Redesign</a>
+              </div>
+
+              <div class="mega-col">
+                <h4><a href="social-media-marketing.html">Social Media Marketing</a></h4>
+                <a href="content-marketing.html">Content Marketing</a>
+              </div>
+
+              <div class="mega-col">
+                <h4><a href="search-engine-optimization.html">Search Engine Optimization</a></h4>
+                <a href="local-seo.html">Local SEO</a>
+                <a href="seo-audits.html">SEO Audits</a>
+                <a href="technical-seo.html">Technical SEO</a>
+                <a href="enterprise-seo.html">Enterprise SEO</a>
+              </div>
+            </div>
+          </li>
+          <li><button class="top" type="button" aria-expanded="false">Hire Talent <svg class="chev" viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop"><a href="#">Developers</a><a href="#">Automation Engineers</a><a href="#">Dedicated
+                Teams</a></div>
+          </li>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="#">Success Stories</a></li>
+          <li><a href="#">Insights</a></li>
+        </ul>
+        <a class="hdr-cta hdr-cta-m" href="contact-us.html">Get a Free Automation Review</a>
+      </nav>
+      <a class="hdr-cta" href="contact-us.html">Get a Free Automation Review</a>
+    </div>
+  </header>
+
+  <main id="content">
+
+    <!-- HERO -->
+    <section class="hero-wrap" aria-labelledby="hero-title">
+      <div class="hero hero--page">
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="hero-glow" aria-hidden="true"></div>
+        <div class="ring ring--1" aria-hidden="true"><i></i></div>
+        <div class="ring ring--2" aria-hidden="true"><i></i></div>
+        <div class="container hero-inner">
+          <div class="hero-copy">
+            <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a>  / <a href="sap-business-one.html">SAP Business One</a> / Zuper</nav>
+            <h1 class="h-display" id="hero-title">SAP Business One and Zuper, running off one set of records.</h1>
+            <p class="lead">We connect your ERP to Zuper so customers, equipment, parts and contracts reach your technicians on their own, and every finished job lands back in B1 ready to bill. The sync is shaped around how your crews actually work, not squeezed into a fixed template.</p>
+            <div class="hero-stack" aria-hidden="true">
+              <span class="hs hs--sap"><img src="images/sap.png" alt=""></span><i class="sep"></i>
+              <span class="hs hs--sap"><img src="images/zuper.png" alt=""></span>
+            </div>
+            <div class="hero-actions">
+              <a class="btn btn--primary btn--lg btn--pulse" href="contact-us.html">Book a scoping call</a>
+              <a class="btn btn--ghost btn--lg" href="#budget">See budget and timing</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE PROBLEM -->
+    <section class="section" id="basics" aria-labelledby="basics-title">
+      <div class="container basics" data-reveal>
+        <div class="basics-copy">
+          <span class="pill">The problem</span>
+          <h2 class="h-section" id="basics-title">Two systems, two versions of the truth</h2>
+          <p class="lead">SAP B1 knows the money side of your service business: customers, price lists, stock and invoices. Zuper knows the work side: jobs, technicians, schedules and what was found on site. When they don't talk, the office retypes every job and crews drive out on stale customer and parts data.</p>
+          <p>Connect them and dispatchers schedule against live ERP records, technicians open a job and see the equipment history, and a closed job turns into a B1 document without a second round of typing. For a team closing hundreds of jobs a month, that is a lot of admin time back and invoices that go out sooner.</p>
+        </div>
+        <div class="ba">
+          <div class="no"><h3>Systems apart</h3><ul><li>Jobs retyped from B1 into Zuper</li><li>Quotes based on outdated stock</li><li>Parts used never reach the ERP</li><li>Invoices wait on paperwork</li></ul></div>
+          <div class="yes"><h3>Systems linked</h3><ul><li>Service calls show up as jobs in minutes</li><li>Van stock matches B1 warehouses</li><li>Parts post to the right warehouse</li><li>Billing drafted when the job closes</li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT SYNCS -->
+    <section class="section web" id="mapping" aria-labelledby="map-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Entity mapping</span>
+          <h2 class="h-section" id="map-title">What moves between SAP B1 and Zuper</h2>
+          <p class="lead">Every record a field operation leans on can travel: customers, service calls, equipment, parts, warehouses, contracts and billing. Direction and trigger are set per record, to match how your teams really work.</p>
+        </div>
+        <div class="map-wrap">
+          <table class="map">
+            <thead>
+              <tr><th scope="col">In SAP B1</th><th scope="col">In Zuper</th><th scope="col">Direction</th><th scope="col">Usually triggered by</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Business partners (OCRD)</th><td>Customers and properties</td><td><span class="dir">B1 → Zuper</span></td><td>New or changed record</td></tr>
+              <tr><th scope="row">Service calls (OSCL)</th><td>Jobs</td><td><span class="dir dir--two">Both ways</span></td><td>New call or status change</td></tr>
+              <tr><th scope="row">Equipment cards (OINS)</th><td>Assets</td><td><span class="dir">B1 → Zuper</span></td><td>New or changed card</td></tr>
+              <tr><th scope="row">Items (OITM)</th><td>Products and parts</td><td><span class="dir">B1 → Zuper</span></td><td>Master data change</td></tr>
+              <tr><th scope="row">Warehouses (OWHS)</th><td>Technician and vehicle stock</td><td><span class="dir">B1 → Zuper</span></td><td>Schedule or near real time</td></tr>
+              <tr><th scope="row">Service contracts (OCTR)</th><td>Service contracts</td><td><span class="dir">B1 → Zuper</span></td><td>New or renewed contract</td></tr>
+              <tr><th scope="row">Sales orders (ORDR)</th><td>Approved quotes and finished jobs</td><td><span class="dir">Zuper → B1</span></td><td>Quote approval or job completion</td></tr>
+              <tr><th scope="row">A/R invoices (OINV)</th><td>Invoices</td><td><span class="dir dir--two">Either way</span></td><td>Job completion</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">These are the usual directions. If crews create new customers on site we add a reverse flow for business partners, and if billing lives in Zuper the invoice flow turns around. The mapping bends to your process, not the other way round.</p>
+      </div>
+    </section>
+
+    <!-- FIELD DETAIL -->
+    <section class="section" id="fields" aria-labelledby="fields-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Field-level detail</span>
+          <h2 class="h-section" id="fields-title">What travels inside each record</h2>
+          <p class="lead">Before anything is built, you sign off a field-by-field sheet. These are the standard fields we map for each area.</p>
+        </div>
+        <div class="cat-grid" data-stagger>
+          <div class="cat"><h3>Customers and sites</h3><ul class="pair-chips"><li>Card code</li><li>Contacts</li><li>Ship-to sites</li></ul><p>Name, contacts, payment terms and customer group. Each ship-to address becomes a Zuper property, so crews arrive at the right site.</p></div>
+          <div class="cat"><h3>Service calls and jobs</h3><ul class="pair-chips"><li>Status</li><li>Technician</li><li>Notes</li></ul><p>Subject, priority, customer, equipment, schedule and resolution notes. A status change in Zuper writes back to the B1 call.</p></div>
+          <div class="cat"><h3>Equipment</h3><ul class="pair-chips"><li>Serials</li><li>Warranty</li><li>History</li></ul><p>Serial numbers, linked item code, install date and warranty or contract link, so technicians see the past before they knock.</p></div>
+          <div class="cat"><h3>Parts and items</h3><ul class="pair-chips"><li>Pricing</li><li>Units</li><li>Stock</li></ul><p>Code, description, unit of measure, price list values and per-warehouse quantities. Parts used on a job reduce the correct B1 warehouse.</p></div>
+          <div class="cat"><h3>Van and truck stock</h3><ul class="pair-chips"><li>Warehouses</li><li>Vehicles</li><li>Counts</li></ul><p>B1 warehouse codes map to Zuper stock locations, with each vehicle modelled as its own warehouse, so van counts finally match SAP.</p></div>
+          <div class="cat"><h3>Orders and billing</h3><ul class="pair-chips"><li>Sales orders</li><li>Invoices</li><li>Due dates</li></ul><p>A finished job creates a B1 sales order or invoice draft with lines, quantities, unit prices and warehouse codes already filled in.</p></div>
+        </div>
+        <p class="note">Beyond the standard set, we also map user-defined fields, job photos, signatures and custom checklists. That is the layer where off-the-shelf templates tend to run out.</p>
+      </div>
+    </section>
+
+    <!-- JOB LIFECYCLE -->
+    <section class="section web" id="workflow" aria-labelledby="flow-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">After go-live</span>
+          <h2 class="h-section" id="flow-title">One job, from first call to invoice</h2>
+          <p class="lead">Once the link is live, an everyday service job runs like this, with nobody re-keying anything and no paperwork waiting in a tray.</p>
+        </div>
+        <ol class="tl">
+          <li><h3>Call logged</h3><p>A breakdown comes in and the office records a service call in B1 against the customer and their equipment card.</p></li>
+          <li><h3>Job created</h3><p>Within a minute a matching Zuper job exists, with the site, asset history and priority attached.</p></li>
+          <li><h3>Crew dispatched</h3><p>Dispatch assigns a technician, who reviews past visits and checks parts against live van stock.</p></li>
+          <li><h3>Job closed</h3><p>The technician logs parts, takes photos and a signature, and closes the job. Status and notes return to the B1 call.</p></li>
+          <li><h3>Billing drafted</h3><p>Parts post to the right warehouse and a sales order or invoice draft appears in B1, ready the same day.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ROUTES -->
+    <section class="section" id="routes" aria-labelledby="route-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Choosing a route</span>
+          <h2 class="h-section" id="route-title">Three ways to build the Zuper link</h2>
+          <p class="lead">Zuper offers a REST API with webhooks. On the B1 side we use the Service Layer (HANA, and SQL from version 10) or the DI API for older SQL installs. In our experience Zuper has no built-in B1 connector, so the link runs through middleware of some kind.</p>
+        </div>
+        <div class="rt-grid" data-stagger>
+          <div class="feature"><h3>Vendor template<small>Prebuilt B1 to Zuper iPaaS flow</small></h3><p><b>Best when</b> your process matches the standard records and you want the quickest launch.</p><p><b>Trade-off</b> a monthly subscription and little room for custom fields or rules.</p></div>
+          <div class="feature"><h3>Orchestrated build<small>Make or n8n across both APIs</small></h3><p><b>Best when</b> you need a standard core plus approvals, custom rules or a third system in the chain.</p><p><b>Trade-off</b> a modest platform cost, and someone has to own it.</p></div>
+          <div class="feature"><h3>Custom middleware<small>Service Layer plus Zuper API and webhooks</small></h3><p><b>Best when</b> volumes are high, transformations are complex or the server is on premise.</p><p><b>Trade-off</b> a bigger build, so you will want a support retainer.</p></div>
+        </div>
+        <p class="note">If a vendor template covers everything you need, buying it is the right call and we will configure it for you. Most service businesses we scope are about 80% standard and 20% custom, and that 20% (user-defined fields, approvals, van stock rules, photo handling) is where an independent partner earns its fee.</p>
+      </div>
+    </section>
+
+    <!-- BUDGET + TIMELINE -->
+    <section class="section web" id="budget" aria-labelledby="budget-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Budget and timing</span>
+          <h2 class="h-section" id="budget-title">What a Zuper and SAP B1 build costs, and how long it takes</h2>
+          <p class="lead">Template setups sit at the low end of both scales. Custom middleware with user-defined fields and bespoke logic sits at the top, with no platform fee.</p>
+        </div>
+        <div class="rt-grid" data-stagger>
+          <div class="feature"><h3>Template setup<small>Standard records only</small></h3><p><b>$3k – $8k</b> to implement, plus the platform subscription.</p></div>
+          <div class="feature"><h3>Orchestrated build<small>Standard core plus custom rules</small></h3><p><b>$5k – $12k</b> to implement, plus a light platform and support plan.</p></div>
+          <div class="feature"><h3>Custom middleware<small>Fully bespoke</small></h3><p><b>$10k+</b> to implement, with support only and no platform fee.</p></div>
+        </div>
+        <div class="factors"><span>Number of record types</span><span>One-way or two-way</span><span>Custom fields and approvals</span></div>
+        <div class="lanes" style="margin-top:36px">
+          <div class="lane"><h3>Template setup<small>Standard records</small></h3><div class="lane-bar" style="--w:35%">2–4 weeks</div></div>
+          <div class="lane"><h3>Orchestrated build<small>Standard plus custom rules</small></h3><div class="lane-bar" style="--w:60%">4–6 weeks</div></div>
+          <div class="lane"><h3>Custom middleware<small>Full bespoke build</small></h3><div class="lane-bar" style="--w:100%">6–10 weeks</div></div>
+        </div>
+        <p class="note">Every quote is a fixed price after the scoping call. The mapping sheet you approve is the agreement on what syncs, so the number is settled before any configuration begins.</p>
+      </div>
+    </section>
+
+    <!-- WHY CODEVELOP -->
+    <section class="section web ai" id="why-us" aria-labelledby="why-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill pill--dark">Why Codevelop</span>
+          <h2 class="h-section" id="why-title">We know both ends of a field service sync</h2>
+          <p class="lead">Connecting SAP B1 to Zuper takes more than moving rows. It takes an understanding of ERP objects and of dispatch, van stock and on-site data capture.</p>
+        </div>
+        <div class="rt-grid" data-stagger>
+          <div class="feature"><h3>Two-way job sync</h3><p>Service calls and Zuper jobs stay aligned in both directions, including status changes and resolution notes.</p></div>
+          <div class="feature"><h3>The custom 20% handled</h3><p>User-defined fields, approvals, photos, signatures and checklists are mapped, not left as a manual workaround.</p></div>
+          <div class="feature"><h3>Live van and warehouse stock</h3><p>Technicians see real ERP quantities, and parts used on site deduct from the right warehouse.</p></div>
+          <div class="feature"><h3>Fixed price up front</h3><p>You approve the mapping sheet and a fixed quote before we build. No open hourly meter.</p></div>
+          <div class="feature"><h3>Retries, dedupe and alerts</h3><p>Every flow ships with retry logic, duplicate protection and alerts, so a failed record queues for review instead of vanishing.</p></div>
+          <div class="feature"><h3>Rescue and take-over</h3><p>If a connector you bought isn't working, we audit it, then fix or replace it, whichever costs you less.</p></div>
+        </div>
+        <p class="note" style="color:rgba(255,255,255,.88)">Need the rest of your stack connected too? See our full <a href="sap-business-one.html" style="color:#fff;text-decoration:underline">SAP Business One integration services</a> for ecommerce, CRM, payments and EDI.</p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="container faq-grid" data-reveal>
+        <div class="faq-head">
+          <span class="pill">Common questions</span>
+          <h2 class="h-section" id="faq-title">SAP B1 and Zuper FAQ</h2>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item open">
+            <h3><button class="faq-q" type="button" aria-expanded="true">Is there a native SAP Business One connector in Zuper? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Not that we have seen. The link normally runs through middleware: a vendor template, an iPaaS workflow, or custom code against both APIs. That middle layer is what we design, build and support.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Does it work with on-premise B1? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. We connect through a secure agent or an exposed Service Layer endpoint over VPN or TLS, and the network setup is part of the build.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Do you support both HANA and SQL versions of B1? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. We use the Service Layer on HANA, and on SQL from version 10, and the DI API on older SQL deployments.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Can technicians see live stock in Zuper? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. B1 warehouse quantities sync to Zuper stock locations, including van stock set up per technician, either on a schedule or close to real time.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Can invoices sync automatically? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes, in either direction. Most teams raise the invoice in B1 from the completed Zuper job. Some invoice in Zuper and post a summary back to B1. We set up whichever system owns billing.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">What happens if a sync fails? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Each flow has retries, duplicate protection, error logging and alerts to a named inbox. A failed record waits in a review queue rather than disappearing silently.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Are photos, signatures and checklists included? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. Job attachments and checklist answers can post to the B1 service call as attachments or user-defined field values, a gap that many templates leave open.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">We bought a connector and it isn't working. Can you help? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. We audit the current setup, correct the mapping or replace the approach, and then take over support if you want us to.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta" id="contact" aria-labelledby="cta-title">
+      <div class="cta-grid">
+        <div class="cta-bar" aria-hidden="true"></div>
+        <div class="cta-box">
+          <div class="ripples" aria-hidden="true"><span></span><span></span><span></span></div>
+          <h2 id="cta-title">Make your ERP and your field crews act like one system</h2>
+          <p>A properly scoped SAP B1 and Zuper integration can be live in weeks, with a fixed price and a mapping sheet you approve before we build. Tell us what you run and we will send a scoped plan.</p>
+          <a class="btn btn--primary btn--lg btn-sweep" href="contact-us.html"><span style="position:relative">Book a scoping call</span></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+<!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="footer-panel">
+      <div class="footer-flag" aria-hidden="true"></div>
+      <div class="footer-main">
+        <div class="footer-brand">
+          <img src="images/codevelop.webp" alt="Codevelop logo" class="brand-logo" width="160" height="40">
+          <p>At Codevelop, we help businesses turn strategy into scalable results through thoughtful design,
+            performance-driven marketing, and modern technology.</p>
+          <div class="socials">
+            <a href="https://www.facebook.com/Codevelop.usa/" aria-label="Facebook" target="_blank" rel="noopener"><svg
+                class="ico">
+                <use href="#i-fb" />
+              </svg></a>
+            <a href="https://www.instagram.com/codevelop_us/" aria-label="Instagram" target="_blank" rel="noopener"><svg
+                class="ico">
+                <use href="#i-ig" />
+              </svg></a>
+            <a href="https://www.linkedin.com/company/codevelop-us" aria-label="LinkedIn" target="_blank"
+              rel="noopener"><svg class="ico">
+                <use href="#i-in" />
+              </svg></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Services</h3>
+          <ul>
+            <li><a href="performance-marketing.html">Performance Marketing</a></li>
+            <li><a href="#">SEO Services</a></li>
+            <li><a href="#">Social Media Marketing</a></li>
+            <li><a href="web-development.html">Web Development</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Link</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Case Studies</a></li>
+            <li><a href="#">Blogs</a></li>
+            <li><a href="https://codevelopus.com/">Free SEO Audit</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Contact Us</h3>
+          <ul class="contact">
+            <li><svg class="ico">
+                <use href="#i-pin" />
+              </svg><span>555 SE Martin Luther King JR Blvd, Portland, OR 97214</span></li>
+            <li><svg class="ico">
+                <use href="#i-phone" />
+              </svg><a href="tel:+19714809833">+1 971-480-9833</a></li>
+            <li><svg class="ico">
+                <use href="#i-mail" />
+              </svg><a href="mailto:info@codevelop.us">info@codevelop.us</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="newsletter">
+        <div class="newsletter-box">
+          <h3>Signup our newsletter to get update information, news, insight or promotions.</h3>
+          <!-- Connect this form to your email provider (set action / method). -->
+          <form class="news-form" action="#" method="post">
+            <label class="sr-only" for="news-email">Email</label>
+            <input id="news-email" type="email" name="email" placeholder="Email" required autocomplete="email">
+            <button class="btn btn--primary" type="submit">Sign up</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <span>Copyright © 2026 Codevelop US, All Rights Reserved.</span>
+      <a href="#">Privacy policy</a>
+    </div>
+  </footer>
+
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>

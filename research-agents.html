@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Research &amp; Data Analyst Agents | Codevelop</title>
+  <meta name="description"
+    content="Codevelop builds AI research and data analyst agents that search, read and analyse your sources, then deliver plain-language reports with every figure traced back to where it came from.">
+  <link rel="canonical" href="https://codevelopus.com/research-data-analyst-agents.html">
+  <meta name="theme-color" content="#0a3161">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Codevelopus">
+  <meta property="og:title" content="AI Research &amp; Data Analyst Agents | Codevelop">
+  <meta property="og:description"
+    content="AI agents that turn scattered data and sources into sourced, plain-language reports in minutes.">
+  <meta property="og:url" content="https://codevelopus.com/research-data-analyst-agents.html">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="https://codevelopus.com/wp-content/uploads/2026/01/cropped-codevelop-favicon-270x270.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/research-agents.css">
+</head>
+
+<body>
+
+  <!-- Icon sprite -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.4l-5.9 3.3 1.2-6.6L2.5 9.5l6.6-.9L12 2.5z" /></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" /></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></symbol>
+      <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z" /></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" /><path d="M20 20l-4-4" /></symbol>
+      <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="5" /><circle cx="12" cy="12" r="1.5" /></symbol>
+      <symbol id="i-funnel" viewBox="0 0 24 24"><path d="M3 4h18l-7 8v6l-4 2v-8L3 4z" /></symbol>
+      <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" /></symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5z" /></symbol>
+      <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M18 6l-2.5 2.5M8.5 15.5L6 18" /></symbol>
+      <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z" /><path d="M19 17l.8 2.2L22 20l-2.2.8L19 23l-.8-2.2L16 20l2.2-.8L19 17z" /></symbol>
+      <symbol id="i-fb" viewBox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v7h4v-7h3l1-4h-4V8z" /></symbol>
+      <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="0.8" /></symbol>
+      <symbol id="i-in" viewBox="0 0 24 24"><rect x="3" y="9" width="4" height="12" /><circle cx="5" cy="5" r="2" /><path d="M10 9h4v2a4 4 0 0 1 6 3v7h-4v-6a2 2 0 0 0-4 0v6h-4V9z" /></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" /></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3 7l9 6 9-6" /></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11z" /><circle cx="12" cy="10" r="2.5" /></symbol>
+      <symbol id="i-code" viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16" /></symbol>
+      <symbol id="i-flow" viewBox="0 0 24 24"><rect x="3" y="3" width="6" height="6" rx="1" /><rect x="15" y="15" width="6" height="6" rx="1" /><path d="M9 6h4a2 2 0 0 1 2 2v7" /></symbol>
+      <symbol id="i-megaphone" viewBox="0 0 24 24"><path d="M3 10v4h4l8 5V5L7 10H3z" /><path d="M18.5 9a4 4 0 0 1 0 6" /></symbol>
+      <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2V5z" /><path d="M4 19a2 2 0 0 1 2-2h13" /></symbol>
+      <symbol id="i-coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M14.5 9.5c-.5-1-1.5-1.5-2.5-1.5-1.4 0-2.5.8-2.5 2s1 1.7 2.5 2 2.5.8 2.5 2-1.1 2-2.5 2c-1 0-2-.5-2.5-1.5M12 6.5V8m0 8v1.5" /></symbol>
+      <symbol id="i-desk" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2" /><path d="M8 20h8M12 16v4" /></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5" /><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6" /><path d="M16 4.7a3.5 3.5 0 0 1 0 6.6M18 14.3c2 .7 3.5 2.6 3.5 5.7" /></symbol>
+      <!-- new for this page -->
+      <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3c3.2 3.2 3.2 14.8 0 18M12 3c-3.2 3.2-3.2 14.8 0 18" /></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z" /><path d="M9 12l2 2 4-4" /></symbol>
+      <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14-4L4 9M4 4v5h5M4 13a8 8 0 0 0 14 4l2-2M20 20v-5h-5" /></symbol>
+      <symbol id="i-tag" viewBox="0 0 24 24"><path d="M3 12V4h8l10 10-8 8L3 12z" /><circle cx="7.5" cy="7.5" r="1.2" /></symbol>
+      <symbol id="i-inbox" viewBox="0 0 24 24"><path d="M3 13l3-8h12l3 8v6H3v-6z" /><path d="M3 13h5l1 3h6l1-3h5" /></symbol>
+      <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v3" /></symbol>
+      <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4l2-2z" /><path d="M10 21h4" /></symbol>
+      <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z" /><circle cx="12" cy="12" r="3" /></symbol>
+      <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-8-5-8-11a4.5 4.5 0 0 1 8-2.5A4.5 4.5 0 0 1 20 9c0 6-8 11-8 11z" /></symbol>
+      <symbol id="i-db" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3" /><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3" /></symbol>
+      <symbol id="i-file" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6V3z" /><path d="M14 3v4h4M9 12h6M9 16h6" /></symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2" /><path d="M8 11V8a4 4 0 0 1 8 0v3" /></symbol>
+      <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" /></symbol>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <!-- ================= HEADER ================= -->
+ <header class="site-header" id="top">
+    <div class="bar">
+      <a class="logo" href="index.html" aria-label="Codevelop home"><img src="images/codevelop.webp"
+          alt="Codevelop logo" class="brand-logo" width="160" height="40"></a>
+      <button class="burger" type="button" aria-label="Open menu"
+        aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav aria-label="Main">
+        <ul>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">AI Agents <svg class="chev"
+                viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop drop--agents">
+              <div class="agents-top">
+                <span class="agents-label">AI Agents</span>
+                <a class="agents-all" href="#">View all agents</a>
+              </div>
+
+              <a class="agent" href="customer-support-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-chat" />
+                  </svg></span>
+                <span class="agent-txt"><b>Customer Support Agents</b><small>24/7 answers across chat &amp;
+                    inbox</small></span>
+              </a>
+              <a class="agent" href="sales-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-funnel" />
+                  </svg></span>
+                <span class="agent-txt"><b>Sales &amp; Lead-Generation Agents</b><small>Capture, qualify &amp; follow up
+                    with leads</small></span>
+              </a>
+
+              <a class="agent" href="software-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-code" />
+                  </svg></span>
+                <span class="agent-txt"><b>Software Development Agents</b><small>Code, review &amp; ship
+                    faster</small></span>
+              </a>
+              <a class="agent" href="workflow-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-flow" />
+                  </svg></span>
+                <span class="agent-txt"><b>Workflow Automation Agents</b><small>Connect tools &amp; automate routine
+                    tasks</small></span>
+              </a>
+
+              <a class="agent" href="marketing-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-megaphone" />
+                  </svg></span>
+                <span class="agent-txt"><b>Marketing Agents</b><small>Campaigns, content &amp; channel
+                    management</small></span>
+              </a>
+              <a class="agent" href="research-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-chart" />
+                  </svg></span>
+                <span class="agent-txt"><b>Research &amp; Data Analyst Agents</b><small>Insights &amp; plain-language
+                    reports</small></span>
+              </a>
+
+              <a class="agent" href="internal-knowledge-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-book" />
+                  </svg></span>
+                <span class="agent-txt"><b>Internal Knowledge Agents</b><small>Instant answers from your company
+                    data</small></span>
+              </a>
+              <a class="agent" href="#">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-coin" />
+                  </svg></span>
+                <span class="agent-txt"><b>Finance &amp; Accounting Agents</b><small>Invoices, reconciliation &amp;
+                    reporting</small></span>
+              </a>
+
+              <a class="agent" href="#">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-desk" />
+                  </svg></span>
+                <span class="agent-txt"><b>IT Service Desk Agents</b><small>Resolve tickets &amp; access
+                    requests</small></span>
+              </a>
+              <a class="agent" href="#">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-users" />
+                  </svg></span>
+                <span class="agent-txt"><b>HR &amp; Recruitment Agents</b><small>Screen, schedule &amp; onboard
+                    people</small></span>
+              </a>
+            </div>
+          </li>
+     <li class="has-mega"><button class="top" type="button" aria-expanded="false">Connectors <svg class="chev" viewBox="0 0 10 10">
+    <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+  </svg></button>
+  <div class="drop drop--agents drop--connectors">
+    <div class="agents-top">
+      <span class="agents-label">Connectors</span>
+      <a class="agents-all" href="#">View all connectors</a>
+    </div>
+
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-sap">SAP</i></span>
+      <span class="agent-txt"><b>SAP Business One</b><small>ERP integration &amp; consulting</small></span>
+    </a>
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-sf">SF</i></span>
+      <span class="agent-txt"><b>Salesforce</b><small>CRM &amp; order-to-cash sync</small></span>
+    </a>
+
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-ns">N</i></span>
+      <span class="agent-txt"><b>NetSuite</b><small>ERP, ecommerce &amp; EDI sync</small></span>
+    </a>
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-shop">S</i></span>
+      <span class="agent-txt"><b>Shopify</b><small>Ecommerce ↔ back office</small></span>
+    </a>
+
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-qb">qb</i></span>
+      <span class="agent-txt"><b>QuickBooks</b><small>Accounting &amp; invoice sync</small></span>
+    </a>
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-woo">Woo</i></span>
+      <span class="agent-txt"><b>WooCommerce</b><small>WordPress store integration</small></span>
+    </a>
+
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-zoho"><s></s><s></s><s></s><s></s></i></span>
+      <span class="agent-txt"><b>Zoho</b><small>Zoho One suite integration</small></span>
+    </a>
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-zuper">Zu</i></span>
+      <span class="agent-txt"><b>Zuper</b><small>Field service management sync</small></span>
+    </a>
+
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-attio">At</i></span>
+      <span class="agent-txt"><b>Attio</b><small>CRM &amp; record sync</small></span>
+    </a>
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-twenty">20</i></span>
+      <span class="agent-txt"><b>Twenty</b><small>Open-source CRM sync</small></span>
+    </a>
+  </div>
+</li>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">Services <svg class="chev"
+                viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop drop--mega">
+              <div class="mega-top">
+                <a class="mega-all" href="services.html">View all services <svg class="ico" width="16" height="16"
+                    aria-hidden="true">
+                    <use href="#i-arrow" />
+                  </svg></a>
+              </div>
+
+              <div class="mega-col">
+                <h4><a href="performance-marketing.html">Performance Marketing</a></h4>
+                <a href="meta-ads.html">Google Ads Management</a>
+                <a href="facebook-ads.html">Facebook Ads</a>
+                <a href="remarketing.html">Remarketing</a>
+              </div>
+
+              <div class="mega-col">
+                <h4><a href="web-development.html">Web Development Services</a></h4>
+                <a href="custom-website-design.html">Custom Website Design</a>
+                <a href="wordpress-development.html">WordPress Web Development</a>
+                <a href="shopify-development.html">Shopify Web Development</a>
+                <a href="webflow-development.html">Webflow Web Development</a>
+                <a href="framer-development.html">Framer Web Development</a>
+                <a href="mageneto-development.html">Magento Web Development</a>
+                <a href="website-maintenance.html">Website Maintenance</a>
+                <a href="website-redesign.html">Website Redesign</a>
+              </div>
+
+              <div class="mega-col">
+                <h4><a href="social-media-marketing.html">Social Media Marketing</a></h4>
+                <a href="content-marketing.html">Content Marketing</a>
+              </div>
+
+              <div class="mega-col">
+                <h4><a href="search-engine-optimization.html">Search Engine Optimization</a></h4>
+                <a href="local-seo.html">Local SEO</a>
+                <a href="seo-audits.html">SEO Audits</a>
+                <a href="technical-seo.html">Technical SEO</a>
+                <a href="enterprise-seo.html">Enterprise SEO</a>
+              </div>
+            </div>
+          </li>
+          <li><button class="top" type="button" aria-expanded="false">Hire Talent <svg class="chev" viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop"><a href="#">Developers</a><a href="#">Automation Engineers</a><a href="#">Dedicated
+                Teams</a></div>
+          </li>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="#">Success Stories</a></li>
+          <li><a href="#">Insights</a></li>
+        </ul>
+        <a class="hdr-cta hdr-cta-m" href="contact-us.html">Get a Free Automation Review</a>
+      </nav>
+      <a class="hdr-cta" href="contact-us.html">Get a Free Automation Review</a>
+    </div>
+  </header>
+
+
+  <main id="content">
+
+    <!-- ================= 1 · HERO (animated product video) ================= -->
+    <section class="hero-wrap" aria-labelledby="rs-title">
+      <div class="hero rs-hero">
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="hero-glow" aria-hidden="true"></div>
+        <div class="ring ring--1" aria-hidden="true"><i></i></div>
+        <div class="ring ring--2" aria-hidden="true"><i></i></div>
+        <div class="ring ring--3" aria-hidden="true"><i></i></div>
+
+        <div class="container rs-hero-inner">
+          <div class="rs-copy">
+            <span class="pill">Research &amp; Data Analyst Agents</span>
+            <h1 class="h-display" id="rs-title">
+              <span class="w"><span style="--i:0">Research</span></span>
+              <span class="w"><span style="--i:1">that</span></span>
+              <span class="w"><span style="--i:2">takes</span></span>
+              <span class="w"><span style="--i:3">days,</span></span>
+              <span class="w"><span style="--i:4">done</span></span>
+              <span class="u"><span class="w"><span style="--i:5">in</span></span> <span class="w"><span
+                    style="--i:6">minutes</span></span><svg viewBox="0 0 300 20" preserveAspectRatio="none"
+                  aria-hidden="true">
+                  <path d="M3 14 C 70 4, 160 2, 297 9" pathLength="1" />
+                </svg></span>
+            </h1>
+            <p class="lead">AI agents that search, read and analyse your sources, from the open web to your own
+              spreadsheets, then deliver plain-language reports with every figure traced back to where it came from.
+            </p>
+            <div class="rs-actions">
+              <a class="btn btn--primary btn--lg btn--pulse" href="contact-us.html">Get a Free Automation Review <svg
+                  class="ico"><use href="#i-arrow" /></svg></a>
+              <a class="btn btn--ghost btn--lg" href="#rs-how">See how it works</a>
+            </div>
+            <ul class="rs-checks">
+              <li><svg class="ico"><use href="#i-check" /></svg>Every claim has a source</li>
+              <li><svg class="ico"><use href="#i-check" /></svg>Works with your own data</li>
+              <li><svg class="ico"><use href="#i-check" /></svg>Plain-language reports</li>
+            </ul>
+          </div>
+
+          <div class="rs-stage" id="rs-stage">
+            <div class="rs-video" id="rs-video">
+              <div class="rs-vbar">
+                <span class="rs-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span class="rs-vtitle"><b class="rs-rec" aria-hidden="true"></b><span id="rs-scene-name">Ask a question</span></span>
+                <span class="rs-time" id="rs-time" aria-hidden="true">0:00</span>
+              </div>
+
+              <div class="rs-vbody" aria-hidden="true">
+                <!-- scene 1: ask -->
+                <div class="rs-scene is-active" data-name="Ask a question">
+                  <div class="rs-chat">
+                    <p class="rs-m me rs-in" style="--n:0">Why did sales drop in the Northeast last quarter?</p>
+                    <p class="rs-m bot rs-in" style="--n:1">Checking your sales data and the market news now&hellip;</p>
+                    <div class="rs-order rs-in" style="--n:2">
+                      <div class="rs-order-top"><b>Northeast sales &middot; Q3</b><span>-14%</span></div>
+                      <div class="rs-track"><i></i><i></i><i></i><u></u></div>
+                      <small>3 sources read &middot; 2 datasets joined</small>
+                    </div>
+                    <p class="rs-m bot rs-in" style="--n:3">Two things stand out: a paused ad campaign in week 3 and a competitor price cut.</p>
+                    <p class="rs-m me rs-in" style="--n:4">Send me the full report</p>
+                    <p class="rs-m bot rs-in" style="--n:5">On its way, with charts and sources included.</p>
+                  </div>
+                </div>
+
+                <!-- scene 2: gather -->
+                <div class="rs-scene" data-name="Gathering sources">
+                  <div class="rs-mail rs-in" style="--n:0">
+                    <span class="rs-av">Q</span>
+                    <div><b>Task &middot; Competitor pricing review</b><small>Requested by Maya, Strategy</small></div>
+                    <em>Running</em>
+                  </div>
+                  <ul class="rs-pipe">
+                    <li class="rs-in" style="--n:1"><span class="ck" style="--n:1"><svg class="ico"><use href="#i-check" /></svg></span>Searched the web and news<small>48 results</small></li>
+                    <li class="rs-in" style="--n:2"><span class="ck" style="--n:2"><svg class="ico"><use href="#i-check" /></svg></span>Read reports and filings<small>212 pages</small></li>
+                    <li class="rs-in" style="--n:3"><span class="ck" style="--n:3"><svg class="ico"><use href="#i-check" /></svg></span>Pulled sales data from the warehouse<small>4 tables</small></li>
+                    <li class="rs-in" style="--n:4"><span class="ck" style="--n:4"><svg class="ico"><use href="#i-check" /></svg></span>Cross-checked the key figures<small>3 conflicts found</small></li>
+                  </ul>
+                  <div class="rs-done rs-in" style="--n:5"><svg class="ico"><use href="#i-bolt" /></svg>Findings ready in 3 minutes, not 3 days</div>
+                </div>
+
+                <!-- scene 3: report -->
+                <div class="rs-scene" data-name="Report ready">
+                  <div class="rs-ticket rs-in" style="--n:0">
+                    <div class="rs-ticket-top"><b>Q3 Northeast review</b><span class="hot">Ready</span></div>
+                    <div class="rs-tags"><span>6 charts</span><span>14 sources</span><span>Confidence: high</span></div>
+                  </div>
+                  <div class="rs-sum rs-in" style="--n:1">
+                    <b>Key finding</b>
+                    <p>Revenue fell 14% after a top campaign was paused in week 3. Competitor B cut prices by 9% the same week.</p>
+                  </div>
+                  <div class="rs-route rs-in" style="--n:2">
+                    <span class="rs-av rs-av--red">MS</span>
+                    <div><b>Delivered to Maya in Slack</b><small>PDF and live dashboard attached</small></div>
+                  </div>
+                  <div class="rs-done rs-done--soft rs-in" style="--n:3"><svg class="ico"><use href="#i-eye" /></svg>Every number links back to its source</div>
+                </div>
+              </div>
+
+              <div class="rs-vtl" role="group" aria-label="Demo scenes">
+                <button class="rs-seg is-on" type="button" aria-label="Show ask a question scene"><span>Ask a question</span><i></i></button>
+                <button class="rs-seg" type="button" aria-label="Show gathering sources scene"><span>Gather sources</span><i></i></button>
+                <button class="rs-seg" type="button" aria-label="Show report ready scene"><span>Report ready</span><i></i></button>
+              </div>
+            </div>
+
+            <div class="rs-float rs-float--1" aria-hidden="true">
+              <svg class="ico"><use href="#i-clock" /></svg><span><b>3 min</b><small>to first findings</small></span>
+            </div>
+            <div class="rs-float rs-float--2" aria-hidden="true">
+              <svg class="ico"><use href="#i-check" /></svg><span><b>100%</b><small>claims cited</small></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="stats" aria-label="Research agent highlights">
+          <div class="stat">
+            <span class="stat-ico"><svg class="ico"><use href="#i-bolt" /></svg></span>
+            <div><strong data-count="5" data-pre="<" data-suf=" min">&lt;5 min</strong><span>to first findings</span></div>
+          </div>
+          <div class="stat">
+            <span class="stat-ico"><svg class="ico"><use href="#i-search" /></svg></span>
+            <div><strong data-count="50" data-suf="+">50+</strong><span>sources per question</span></div>
+          </div>
+          <div class="stat">
+            <span class="stat-ico"><svg class="ico"><use href="#i-check" /></svg></span>
+            <div><strong data-count="100" data-suf="%">100%</strong><span>of claims cited</span></div>
+          </div>
+          <div class="stat">
+            <span class="stat-ico"><svg class="ico"><use href="#i-clock" /></svg></span>
+            <div><strong>24/7</strong><span>monitoring for changes</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 2 · ASK AND SYNTHESISE ================= -->
+    <section class="section rs-ask" id="rs-ask" aria-labelledby="ask-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Ask anything</span>
+          <h2 class="h-section" id="ask-title">Ask in plain language. Get an answer with sources.</h2>
+          <p class="lead">No query languages and no tab-juggling. Describe what you need to know and the agent does the digging.</p>
+        </div>
+
+        <div class="rs-qa" id="rs-qa">
+          <div class="rs-qbar"><svg class="ico"><use href="#i-search" /></svg><span class="rs-qtext" id="rs-q"></span><i class="rs-caret" aria-hidden="true"></i></div>
+          <div class="rs-qbody">
+            <div class="rs-srcs" id="rs-srcs" aria-hidden="true"></div>
+            <div class="rs-anscol">
+              <p class="rs-ans" id="rs-ans" aria-live="polite"></p>
+              <div class="rs-foot"><svg class="ico"><use href="#i-check" /></svg>4 sources read and cross-checked</div>
+            </div>
+          </div>
+          <div class="rs-qpick" role="group" aria-label="Example questions">
+            <button class="rs-qp is-on" type="button" aria-pressed="true">Pricing</button>
+            <button class="rs-qp" type="button" aria-pressed="false">Growth</button>
+            <button class="rs-qp" type="button" aria-pressed="false">Research</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 3 · SOURCE RADAR ================= -->
+    <section class="section rs-radar-sec" id="rs-sources" aria-labelledby="src-title">
+      <div class="engine-dots" aria-hidden="true"></div>
+      <div class="container rs-radar-grid" data-reveal>
+        <div class="rs-radar-copy">
+          <span class="pill pill--dark">Source coverage</span>
+          <h2 class="h-section" id="src-title">Reads what you&rsquo;d never have time to read.</h2>
+          <p class="lead">The agent sweeps public sources and your private ones in a single pass, then keeps watching for anything new.</p>
+          <ul class="rs-legend" id="rs-legend">
+            <li class="is-on" data-t="web"><span><svg class="ico"><use href="#i-globe" /></svg></span><div><b>Web and news</b><small>Sites, press, social posts, forums</small></div></li>
+            <li data-t="doc"><span><svg class="ico"><use href="#i-file" /></svg></span><div><b>Reports and filings</b><small>PDFs, annual reports, whitepapers</small></div></li>
+            <li data-t="lit"><span><svg class="ico"><use href="#i-book" /></svg></span><div><b>Journals and preprints</b><small>Studies and academic papers</small></div></li>
+            <li data-t="own"><span><svg class="ico"><use href="#i-db" /></svg></span><div><b>Your own data</b><small>Sheets, warehouses, CRM and docs</small></div></li>
+          </ul>
+        </div>
+
+        <div class="rs-radar" id="rs-radar" role="img" aria-label="Radar sweeping across web, document, journal and private data sources">
+          <i class="rs-ring rs-ring--1"></i><i class="rs-ring rs-ring--2"></i><i class="rs-ring rs-ring--3"></i>
+          <div class="rs-sweep"></div>
+          <div class="rs-core"><svg class="ico"><use href="#i-search" /></svg></div>
+          <span class="rs-dot" data-a="15" data-r="70" data-t="web"></span>
+          <span class="rs-dot" data-a="48" data-r="40" data-t="own"></span>
+          <span class="rs-dot" data-a="70" data-r="84" data-t="doc"></span>
+          <span class="rs-dot" data-a="98" data-r="56" data-t="lit"></span>
+          <span class="rs-dot" data-a="125" data-r="76" data-t="web"></span>
+          <span class="rs-dot" data-a="150" data-r="36" data-t="doc"></span>
+          <span class="rs-dot" data-a="172" data-r="88" data-t="own"></span>
+          <span class="rs-dot" data-a="200" data-r="60" data-t="lit"></span>
+          <span class="rs-dot" data-a="225" data-r="82" data-t="web"></span>
+          <span class="rs-dot" data-a="248" data-r="42" data-t="doc"></span>
+          <span class="rs-dot" data-a="270" data-r="74" data-t="lit"></span>
+          <span class="rs-dot" data-a="295" data-r="52" data-t="own"></span>
+          <span class="rs-dot" data-a="318" data-r="86" data-t="web"></span>
+          <span class="rs-dot" data-a="340" data-r="60" data-t="doc"></span>
+          <span class="rs-dot" data-a="356" data-r="32" data-t="lit"></span>
+          <span class="rs-dot" data-a="205" data-r="26" data-t="own"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 4 · DATA TO INSIGHT ================= -->
+    <section class="section rs-morph" id="rs-insight" aria-labelledby="mor-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">From data to insight</span>
+          <h2 class="h-section" id="mor-title">From raw numbers to the &ldquo;so what&rdquo;.</h2>
+          <p class="lead">The agent cleans the data, picks the right chart and tells you what changed, and why.</p>
+        </div>
+
+        <div class="rs-mo" id="rs-mo">
+          <article class="rs-mc rs-mc--data is-hot">
+            <h3><span>1</span>Raw data</h3>
+            <div class="rs-tablewrap">
+              <i class="rs-scan" aria-hidden="true"></i>
+              <table class="rs-table">
+                <thead><tr><th>Week</th><th>Leads</th><th>Spend</th></tr></thead>
+                <tbody>
+                  <tr><td>W1</td><td>412</td><td>$5.1k</td></tr>
+                  <tr><td>W2</td><td>436</td><td>$5.2k</td></tr>
+                  <tr><td>W3</td><td>421</td><td>$5.2k</td></tr>
+                  <tr><td>W4</td><td>455</td><td>$5.3k</td></tr>
+                  <tr class="dip"><td>W5</td><td>385</td><td>$3.1k</td></tr>
+                  <tr><td>W6</td><td>448</td><td>$5.4k</td></tr>
+                  <tr><td>W7</td><td>470</td><td>$5.5k</td></tr>
+                  <tr><td>W8</td><td>492</td><td>$5.6k</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <div class="rs-mo-arrow" aria-hidden="true"><svg class="ico"><use href="#i-arrow" /></svg></div>
+
+          <article class="rs-mc rs-mc--chart">
+            <h3><span>2</span>Chart</h3>
+            <svg class="rs-chart" viewBox="0 0 360 206" role="img" aria-label="Weekly leads, with a dip in week 5">
+              <path class="rs-grid" d="M10 60H350M10 120H350M10 180H350" />
+              <g class="rs-bars">
+                <rect style="--k:0" x="24" y="80" width="26" height="100" rx="5" />
+                <rect style="--k:1" x="66" y="66.7" width="26" height="113.3" rx="5" />
+                <rect style="--k:2" x="108" y="75" width="26" height="105" rx="5" />
+                <rect style="--k:3" x="150" y="56.1" width="26" height="123.9" rx="5" />
+                <rect style="--k:4" class="dip" x="192" y="95" width="26" height="85" rx="5" />
+                <rect style="--k:5" x="234" y="60" width="26" height="120" rx="5" />
+                <rect style="--k:6" x="276" y="47.8" width="26" height="132.2" rx="5" />
+                <rect style="--k:7" x="318" y="35.6" width="26" height="144.4" rx="5" />
+              </g>
+              <path class="rs-line" pathLength="1" d="M37 80 L79 66.7 L121 75 L163 56.1 L205 95 L247 60 L289 47.8 L331 35.6" />
+              <g class="rs-pts">
+                <circle cx="37" cy="80" r="4.5" /><circle cx="79" cy="66.7" r="4.5" /><circle cx="121" cy="75" r="4.5" /><circle cx="163" cy="56.1" r="4.5" /><circle class="dip" cx="205" cy="95" r="4.5" /><circle cx="247" cy="60" r="4.5" /><circle cx="289" cy="47.8" r="4.5" /><circle cx="331" cy="35.6" r="4.5" />
+              </g>
+              <g class="rs-call">
+                <circle cx="205" cy="95" r="11" fill="none" />
+                <path d="M205 72V84" />
+                <rect x="181" y="50" width="48" height="22" rx="11" />
+                <text x="205" y="65" text-anchor="middle">-14%</text>
+              </g>
+              <g class="rs-xl"><text x="37" y="200">W1</text><text x="79" y="200">W2</text><text x="121" y="200">W3</text><text x="163" y="200">W4</text><text x="205" y="200">W5</text><text x="247" y="200">W6</text><text x="289" y="200">W7</text><text x="331" y="200">W8</text></g>
+            </svg>
+          </article>
+
+          <div class="rs-mo-arrow" aria-hidden="true"><svg class="ico"><use href="#i-arrow" /></svg></div>
+
+          <article class="rs-mc rs-mc--ins">
+            <h3><span>3</span>Insight</h3>
+            <p class="rs-ins-t">Leads dipped <mark>14% in week 5</mark>, right after the top campaign was <mark>paused</mark>.</p>
+            <p class="rs-ins-t rs-ins-t2">Relaunching it brought the trend back by week 7.</p>
+            <ul class="rs-ins-list">
+              <li><b>-14%</b><span>vs weekly average</span></li>
+              <li><b>1</b><span>cause found</span></li>
+              <li><b>Wk 7</b><span>recovered</span></li>
+            </ul>
+            <span class="rs-next"><svg class="ico"><use href="#i-arrow" /></svg>Next: relaunch with fresh creative</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 5 · TRUST / VERIFICATION SCAN ================= -->
+    <section class="section rs-ver" id="rs-trust" aria-labelledby="ver-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Trust, built in</span>
+          <h2 class="h-section" id="ver-title">Every claim traced to a source.</h2>
+          <p class="lead">The agent checks its own work, shows where each fact came from and flags anything the sources disagree on.</p>
+        </div>
+
+        <div class="rs-doc">
+          <div class="rs-doc-top"><span>Market sizing brief</span><span class="rs-doc-st"><i></i>Draft &middot; verifying</span></div>
+          <div class="rs-rows">
+            <span class="rs-beam" aria-hidden="true"></span>
+            <div class="rs-row" style="--d:1s;--d2:1.3s">
+              <p class="rs-cl"><span>The US dental software market reached $4.8B last year.</span></p>
+              <div class="rs-tag"><b>Industry report, p.42</b><small>Matches 3 of 3 sources</small><i style="--w:96%"></i></div>
+            </div>
+            <div class="rs-row" style="--d:2.8s;--d2:3.1s">
+              <p class="rs-cl"><span>Cloud-based tools now make up 62% of new purchases.</span></p>
+              <div class="rs-tag"><b>Vendor survey, 2026</b><small>Matches 2 of 2 sources</small><i style="--w:88%"></i></div>
+            </div>
+            <div class="rs-row rs-row--flag" style="--d:4.6s;--d2:4.9s;--c:var(--red)">
+              <p class="rs-cl"><span>Average spend per practice is about $9,400 a year.</span></p>
+              <div class="rs-tag"><b>Sources disagree</b><small>Range $7,100 to $11,800. Flagged for review.</small><i style="--w:48%"></i></div>
+            </div>
+            <div class="rs-row" style="--d:6.3s;--d2:6.6s">
+              <p class="rs-cl"><span>Growth is expected at 9% a year through 2030.</span></p>
+              <div class="rs-tag"><b>Analyst forecast</b><small>Matches 2 of 3 sources</small><i style="--w:72%"></i></div>
+            </div>
+          </div>
+        </div>
+
+        <ul class="rs-trust">
+          <li><span><svg class="ico"><use href="#i-shield" /></svg></span><div><b>Cross-checked</b><p>Key figures are compared across several sources before they reach you.</p></div></li>
+          <li><span><svg class="ico"><use href="#i-eye" /></svg></span><div><b>Conflicts flagged</b><p>When sources disagree, you see the range instead of a hidden guess.</p></div></li>
+          <li><span><svg class="ico"><use href="#i-users" /></svg></span><div><b>You review first</b><p>Sensitive reports wait for a person to approve them before sending.</p></div></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ================= 6 · HOW IT WORKS (stacking cards) ================= -->
+    <section class="section rs-how" id="rs-how" aria-labelledby="how-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="pill">How it works</span>
+          <h2 class="h-section" id="how-title">From question to report in four steps.</h2>
+        </div>
+
+        <div class="rs-stack" id="rs-stack">
+          <article class="rs-sc" style="--i:0">
+            <div class="rs-sc-copy">
+              <span class="rs-sc-n">01</span>
+              <h3>Frame the question</h3>
+              <p>We agree on what you need to know, the time period, the markets and what a good answer looks like.</p>
+            </div>
+            <div class="rs-sc-vis">
+              <div class="rs-v1">
+                <span class="rs-v-lbl">Research brief</span>
+                <span class="rs-v-line"></span><span class="rs-v-line rs-v-line--s"></span>
+                <div class="rs-v-chips"><i style="--k:0">Pricing</i><i style="--k:1">Last 12 months</i><i style="--k:2">US + EU</i><i style="--k:3">Weekly update</i></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="rs-sc" style="--i:1">
+            <div class="rs-sc-copy">
+              <span class="rs-sc-n">02</span>
+              <h3>Connect and gather</h3>
+              <p>We link your data sources, add the public ones that matter and let the agent collect everything in one place.</p>
+            </div>
+            <div class="rs-sc-vis">
+              <div class="rs-v2">
+                <span class="rs-hub"><svg class="ico"><use href="#i-search" /></svg></span>
+                <span class="rs-sat" style="left:6%;top:14%;--k:0">Web</span>
+                <span class="rs-sat" style="right:4%;top:8%;--k:1">Filings</span>
+                <span class="rs-sat" style="left:0;bottom:22%;--k:2">Your CRM</span>
+                <span class="rs-sat" style="right:2%;bottom:14%;--k:3">Sheets</span>
+                <span class="rs-sat" style="left:34%;bottom:0;--k:4">Journals</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="rs-sc" style="--i:2">
+            <div class="rs-sc-copy">
+              <span class="rs-sc-n">03</span>
+              <h3>Analyse and cross-check</h3>
+              <p>The agent compares sources, spots gaps and conflicts, and rates how confident it is in each finding.</p>
+            </div>
+            <div class="rs-sc-vis">
+              <div class="rs-v3">
+                <div><b>Source A</b><i style="--w:82%;--k:0"></i></div>
+                <div><b>Source B</b><i style="--w:79%;--k:1"></i></div>
+                <div><b>Source C</b><i class="bad" style="--w:44%;--k:2"></i></div>
+                <p class="rs-v3-flag"><svg class="ico"><use href="#i-eye" /></svg>Source C differs. Flagged for review.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="rs-sc" style="--i:3">
+            <div class="rs-sc-copy">
+              <span class="rs-sc-n">04</span>
+              <h3>Deliver and keep watching</h3>
+              <p>Reports land where you work. The agent keeps monitoring and tells you the moment something important changes.</p>
+            </div>
+            <div class="rs-sc-vis">
+              <div class="rs-v4">
+                <div class="rs-note" style="--k:0"><span><svg class="ico"><use href="#i-file" /></svg></span><div><b>Weekly market digest</b><small>Sent to Slack and email</small></div></div>
+                <div class="rs-note" style="--k:1"><span class="red"><svg class="ico"><use href="#i-bell" /></svg></span><div><b>Competitor B cut prices 9%</b><small>Alert &middot; just now</small></div></div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 7 · WHAT YOU GET BACK ================= -->
+    <section class="section rs-out" id="rs-outputs" aria-labelledby="out-title">
+      <div class="container rs-out-grid">
+        <div class="rs-out-copy" data-reveal>
+          <span class="pill">What you get back</span>
+          <h2 class="h-section" id="out-title">Reports your team will actually read.</h2>
+          <p class="lead">Short, structured and written in plain language, with the numbers and sources one click away.</p>
+          <p class="rs-out-lbl">Delivered where you already work</p>
+          <ul class="rs-dest">
+            <li>Slack</li><li>Email</li><li>Google Docs</li><li>Notion</li><li>Dashboards</li>
+          </ul>
+        </div>
+
+        <div class="rs-ocols" aria-label="Examples of report types">
+          <div class="rs-ocol"><div class="rs-otrack">
+            <div class="rs-oc"><span><svg class="ico"><use href="#i-file" /></svg></span><b>Executive briefs</b><p>One page with the key findings first.</p></div>
+            <div class="rs-oc"><span><svg class="ico"><use href="#i-target" /></svg></span><b>Competitor teardowns</b><p>Pricing, features and positioning side by side.</p></div>
+            <div class="rs-oc"><span><svg class="ico"><use href="#i-globe" /></svg></span><b>Market sizing</b><p>Bottom-up estimates with every source listed.</p></div>
+          </div></div>
+          <div class="rs-ocol rs-ocol--b"><div class="rs-otrack">
+            <div class="rs-oc"><span><svg class="ico"><use href="#i-bell" /></svg></span><b>Weekly digests</b><p>What changed in your market this week.</p></div>
+            <div class="rs-oc"><span><svg class="ico"><use href="#i-chart" /></svg></span><b>Live dashboards</b><p>Charts that refresh on a schedule.</p></div>
+            <div class="rs-oc"><span><svg class="ico"><use href="#i-chat" /></svg></span><b>Customer insight</b><p>Themes from reviews, surveys and tickets.</p></div>
+          </div></div>
+          <div class="rs-ocol rs-ocol--c"><div class="rs-otrack">
+            <div class="rs-oc"><span><svg class="ico"><use href="#i-book" /></svg></span><b>Literature reviews</b><p>What the research says, summarised.</p></div>
+            <div class="rs-oc"><span><svg class="ico"><use href="#i-shield" /></svg></span><b>Due-diligence notes</b><p>Risks and red flags on a company or deal.</p></div>
+            <div class="rs-oc"><span><svg class="ico"><use href="#i-db" /></svg></span><b>Data-quality audits</b><p>Gaps, duplicates and errors in your data.</p></div>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 8 · FAQ ================= -->
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="container faq-grid" data-reveal>
+        <div class="faq-head">
+          <span class="pill">Common questions</span>
+          <h2 class="h-section" id="faq-title">Research agent FAQs</h2>
+        </div>
+        <div class="faq-list" id="faq-list">
+          <div class="faq-item open">
+            <h3><button class="faq-q" type="button" aria-expanded="true">How is this different from asking a general chatbot? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>A general chatbot answers from memory. A research agent goes and gets the information: it searches current sources, reads your own files and databases, cross-checks the numbers and cites where each fact came from.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Can it analyse our private data? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. It connects to spreadsheets, databases, your CRM and document folders with read-only access to the sources you choose. Your data is not mixed with other customers&rsquo; data and access can be removed at any time.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">How do we know the answers are correct? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Every claim links to its source, key figures are compared across several sources, and conflicts are flagged instead of hidden. For important reports, a person on your team can review before anything is sent.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">What kinds of questions work best? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Questions that need many sources or lots of reading: competitor and pricing reviews, market sizing, customer feedback themes, performance analysis and recurring reports. If your team does it by hand every week, it is a good candidate.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">How long does setup take? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>A first research agent is usually running within a few weeks, depending on how many data sources need connecting. We start with one question your team asks often and expand from there.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+    <section class="cta" id="contact" aria-labelledby="cta-title">
+      <div class="cta-grid">
+        <div class="cta-bar" aria-hidden="true"></div>
+        <div class="cta-box">
+          <div class="ripples" aria-hidden="true"><span></span><span></span><span></span></div>
+          <h2 id="cta-title">Get answers while the question still matters.</h2>
+          <p>Tell us what your team keeps researching by hand and we&rsquo;ll show how an agent could do it.</p>
+          <a class="btn btn--primary btn--lg btn-sweep" href="contact-us.html"><span style="position:relative">Get a Free Automation Review</span></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="footer-panel">
+      <div class="footer-flag" aria-hidden="true"></div>
+      <div class="footer-main">
+        <div class="footer-brand">
+          <img src="images/codevelop.webp" alt="Codevelop logo" class="brand-logo" width="160" height="40">
+          <p>At Codevelop, we help businesses turn strategy into scalable results through thoughtful design,
+            performance-driven marketing, and modern technology.</p>
+          <div class="socials">
+            <a href="https://www.facebook.com/Codevelop.usa/" aria-label="Facebook" target="_blank" rel="noopener"><svg class="ico"><use href="#i-fb" /></svg></a>
+            <a href="https://www.instagram.com/codevelop_us/" aria-label="Instagram" target="_blank" rel="noopener"><svg class="ico"><use href="#i-ig" /></svg></a>
+            <a href="https://www.linkedin.com/company/codevelop-us" aria-label="LinkedIn" target="_blank" rel="noopener"><svg class="ico"><use href="#i-in" /></svg></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Services</h3>
+          <ul>
+            <li><a href="performance-marketing.html">Performance Marketing</a></li>
+            <li><a href="#">SEO Services</a></li>
+            <li><a href="#">Social Media Marketing</a></li>
+            <li><a href="web-development.html">Web Development</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Link</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Case Studies</a></li>
+            <li><a href="#">Blogs</a></li>
+            <li><a href="https://codevelopus.com/">Free SEO Audit</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Contact Us</h3>
+          <ul class="contact">
+            <li><svg class="ico"><use href="#i-pin" /></svg><span>555 SE Martin Luther King JR Blvd, Portland, OR 97214</span></li>
+            <li><svg class="ico"><use href="#i-phone" /></svg><a href="tel:+19714809833">+1 971-480-9833</a></li>
+            <li><svg class="ico"><use href="#i-mail" /></svg><a href="mailto:info@codevelop.us">info@codevelop.us</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="newsletter">
+        <div class="newsletter-box">
+          <h3>Signup our newsletter to get update information, news, insight or promotions.</h3>
+          <form class="news-form" action="#" method="post">
+            <label class="sr-only" for="news-email">Email</label>
+            <input id="news-email" type="email" name="email" placeholder="Email" required autocomplete="email">
+            <button class="btn btn--primary" type="submit">Sign up</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <span>Copyright © 2026 Codevelop US, All Rights Reserved.</span>
+      <a href="#">Privacy policy</a>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script src="js/research-agents.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Finance &amp; Accounting Agents | Codevelop</title>
+  <meta name="description"
+    content="Codevelop builds AI finance and accounting agents that process invoices, reconcile bank transactions, speed up month-end close and flag unusual spend, with a full audit trail and your approval rules.">
+  <link rel="canonical" href="https://codevelopus.com/finance-accounting-agents.html">
+  <meta name="theme-color" content="#0a3161">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Codevelopus">
+  <meta property="og:title" content="AI Finance &amp; Accounting Agents | Codevelop">
+  <meta property="og:description"
+    content="AI agents that handle invoices, reconciliation and reporting inside your accounting software, with an audit trail and your approval rules.">
+  <meta property="og:url" content="https://codevelopus.com/finance-accounting-agents.html">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="https://codevelopus.com/wp-content/uploads/2026/01/cropped-codevelop-favicon-270x270.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/finance-accounting-agents.css">
+</head>
+
+<body>
+
+  <!-- Icon sprite -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.4l-5.9 3.3 1.2-6.6L2.5 9.5l6.6-.9L12 2.5z" /></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" /></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></symbol>
+      <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z" /></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" /><path d="M20 20l-4-4" /></symbol>
+      <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="5" /><circle cx="12" cy="12" r="1.5" /></symbol>
+      <symbol id="i-funnel" viewBox="0 0 24 24"><path d="M3 4h18l-7 8v6l-4 2v-8L3 4z" /></symbol>
+      <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" /></symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5z" /></symbol>
+      <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M18 6l-2.5 2.5M8.5 15.5L6 18" /></symbol>
+      <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z" /><path d="M19 17l.8 2.2L22 20l-2.2.8L19 23l-.8-2.2L16 20l2.2-.8L19 17z" /></symbol>
+      <symbol id="i-fb" viewBox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v7h4v-7h3l1-4h-4V8z" /></symbol>
+      <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="0.8" /></symbol>
+      <symbol id="i-in" viewBox="0 0 24 24"><rect x="3" y="9" width="4" height="12" /><circle cx="5" cy="5" r="2" /><path d="M10 9h4v2a4 4 0 0 1 6 3v7h-4v-6a2 2 0 0 0-4 0v6h-4V9z" /></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" /></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3 7l9 6 9-6" /></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11z" /><circle cx="12" cy="10" r="2.5" /></symbol>
+      <symbol id="i-code" viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16" /></symbol>
+      <symbol id="i-flow" viewBox="0 0 24 24"><rect x="3" y="3" width="6" height="6" rx="1" /><rect x="15" y="15" width="6" height="6" rx="1" /><path d="M9 6h4a2 2 0 0 1 2 2v7" /></symbol>
+      <symbol id="i-megaphone" viewBox="0 0 24 24"><path d="M3 10v4h4l8 5V5L7 10H3z" /><path d="M18.5 9a4 4 0 0 1 0 6" /></symbol>
+      <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2V5z" /><path d="M4 19a2 2 0 0 1 2-2h13" /></symbol>
+      <symbol id="i-coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M14.5 9.5c-.5-1-1.5-1.5-2.5-1.5-1.4 0-2.5.8-2.5 2s1 1.7 2.5 2 2.5.8 2.5 2-1.1 2-2.5 2c-1 0-2-.5-2.5-1.5M12 6.5V8m0 8v1.5" /></symbol>
+      <symbol id="i-desk" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2" /><path d="M8 20h8M12 16v4" /></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5" /><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6" /><path d="M16 4.7a3.5 3.5 0 0 1 0 6.6M18 14.3c2 .7 3.5 2.6 3.5 5.7" /></symbol>
+      <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3c3.2 3.2 3.2 14.8 0 18M12 3c-3.2 3.2-3.2 14.8 0 18" /></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z" /><path d="M9 12l2 2 4-4" /></symbol>
+      <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14-4L4 9M4 4v5h5M4 13a8 8 0 0 0 14 4l2-2M20 20v-5h-5" /></symbol>
+      <symbol id="i-tag" viewBox="0 0 24 24"><path d="M3 12V4h8l10 10-8 8L3 12z" /><circle cx="7.5" cy="7.5" r="1.2" /></symbol>
+      <symbol id="i-inbox" viewBox="0 0 24 24"><path d="M3 13l3-8h12l3 8v6H3v-6z" /><path d="M3 13h5l1 3h6l1-3h5" /></symbol>
+      <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4l2-2z" /><path d="M10 21h4" /></symbol>
+      <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z" /><circle cx="12" cy="12" r="3" /></symbol>
+      <symbol id="i-db" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3" /><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3" /></symbol>
+      <symbol id="i-file" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6V3z" /><path d="M14 3v4h4M9 12h6M9 16h6" /></symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2" /><path d="M8 11V8a4 4 0 0 1 8 0v3" /></symbol>
+      <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" /></symbol>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header" id="top">
+    <div class="bar">
+      <a class="logo" href="index.html" aria-label="Codevelop home"><img src="images/codevelop.webp"
+          alt="Codevelop logo" class="brand-logo" width="160" height="40"></a>
+      <button class="burger" type="button" aria-label="Open menu"
+        aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav aria-label="Main">
+        <ul>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">AI Agents <svg class="chev"
+                viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop drop--agents">
+              <div class="agents-top">
+                <span class="agents-label">AI Agents</span>
+                <a class="agents-all" href="#">View all agents</a>
+              </div>
+
+              <a class="agent" href="customer-support-agents.html">
+                <span class="agent-ico"><svg class="ico"><use href="#i-chat" /></svg></span>
+                <span class="agent-txt"><b>Customer Support Agents</b><small>24/7 answers across chat &amp; inbox</small></span>
+              </a>
+              <a class="agent" href="sales-lead-generation-agents.html">
+                <span class="agent-ico"><svg class="ico"><use href="#i-funnel" /></svg></span>
+                <span class="agent-txt"><b>Sales &amp; Lead-Generation Agents</b><small>Capture, qualify &amp; follow up with leads</small></span>
+              </a>
+              <a class="agent" href="software-development-agents.html">
+                <span class="agent-ico"><svg class="ico"><use href="#i-code" /></svg></span>
+                <span class="agent-txt"><b>Software Development Agents</b><small>Code, review &amp; ship faster</small></span>
+              </a>
+              <a class="agent" href="workflow-automation-agents.html">
+                <span class="agent-ico"><svg class="ico"><use href="#i-flow" /></svg></span>
+                <span class="agent-txt"><b>Workflow Automation Agents</b><small>Connect tools &amp; automate routine tasks</small></span>
+              </a>
+              <a class="agent" href="#">
+                <span class="agent-ico"><svg class="ico"><use href="#i-megaphone" /></svg></span>
+                <span class="agent-txt"><b>Marketing Agents</b><small>Campaigns, content &amp; channel management</small></span>
+              </a>
+              <a class="agent" href="research-data-analyst-agents.html">
+                <span class="agent-ico"><svg class="ico"><use href="#i-chart" /></svg></span>
+                <span class="agent-txt"><b>Research &amp; Data Analyst Agents</b><small>Insights &amp; plain-language reports</small></span>
+              </a>
+              <a class="agent" href="internal-knowledge-agents.html">
+                <span class="agent-ico"><svg class="ico"><use href="#i-book" /></svg></span>
+                <span class="agent-txt"><b>Internal Knowledge Agents</b><small>Instant answers from your company data</small></span>
+              </a>
+              <a class="agent" href="finance-accounting-agents.html">
+                <span class="agent-ico"><svg class="ico"><use href="#i-coin" /></svg></span>
+                <span class="agent-txt"><b>Finance &amp; Accounting Agents</b><small>Invoices, reconciliation &amp; reporting</small></span>
+              </a>
+              <a class="agent" href="#">
+                <span class="agent-ico"><svg class="ico"><use href="#i-desk" /></svg></span>
+                <span class="agent-txt"><b>IT Service Desk Agents</b><small>Resolve tickets &amp; access requests</small></span>
+              </a>
+              <a class="agent" href="#">
+                <span class="agent-ico"><svg class="ico"><use href="#i-users" /></svg></span>
+                <span class="agent-txt"><b>HR &amp; Recruitment Agents</b><small>Screen, schedule &amp; onboard people</small></span>
+              </a>
+            </div>
+          </li>
+          <li><button class="top" type="button" aria-expanded="false">Connectors <svg class="chev" viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop"><a href="#">Business Central</a><a href="#">NetSuite</a><a href="#">Odoo</a><a href="#">Zoho</a></div>
+          </li>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">Services <svg class="chev"
+                viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop drop--mega">
+              <div class="mega-top">
+                <a class="mega-all" href="services.html">View all services <svg class="ico" width="16" height="16"
+                    aria-hidden="true"><use href="#i-arrow" /></svg></a>
+              </div>
+              <div class="mega-col">
+                <h4><a href="performance-marketing.html">Performance Marketing</a></h4>
+                <a href="meta-ads.html">Google Ads Management</a>
+                <a href="facebook-ads.html">Facebook Ads</a>
+                <a href="remarketing.html">Remarketing</a>
+              </div>
+              <div class="mega-col">
+                <h4><a href="web-development.html">Web Development Services</a></h4>
+                <a href="custom-website-design.html">Custom Website Design</a>
+                <a href="wordpress-development.html">WordPress Web Development</a>
+                <a href="shopify-development.html">Shopify Web Development</a>
+                <a href="webflow-development.html">Webflow Web Development</a>
+                <a href="framer-development.html">Framer Web Development</a>
+                <a href="mageneto-development.html">Magento Web Development</a>
+                <a href="website-maintenance.html">Website Maintenance</a>
+                <a href="website-redesign.html">Website Redesign</a>
+              </div>
+              <div class="mega-col">
+                <h4><a href="social-media-marketing.html">Social Media Marketing</a></h4>
+                <a href="content-marketing.html">Content Marketing</a>
+              </div>
+              <div class="mega-col">
+                <h4><a href="search-engine-optimization.html">Search Engine Optimization</a></h4>
+                <a href="local-seo.html">Local SEO</a>
+                <a href="seo-audits.html">SEO Audits</a>
+                <a href="technical-seo.html">Technical SEO</a>
+                <a href="enterprise-seo.html">Enterprise SEO</a>
+              </div>
+            </div>
+          </li>
+          <li><button class="top" type="button" aria-expanded="false">Hire Talent <svg class="chev" viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop"><a href="#">Developers</a><a href="#">Automation Engineers</a><a href="#">Dedicated Teams</a></div>
+          </li>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="#">Success Stories</a></li>
+          <li><a href="#">Insights</a></li>
+        </ul>
+        <a class="hdr-cta hdr-cta-m" href="contact-us.html">Get a Free Automation Review</a>
+      </nav>
+      <a class="hdr-cta" href="contact-us.html">Get a Free Automation Review</a>
+    </div>
+  </header>
+
+  <main id="content">
+
+    <!-- ================= 1 · HERO (animated product video) ================= -->
+    <section class="hero-wrap" aria-labelledby="fa-title">
+      <div class="hero fa-hero">
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="hero-glow" aria-hidden="true"></div>
+        <div class="ring ring--1" aria-hidden="true"><i></i></div>
+        <div class="ring ring--2" aria-hidden="true"><i></i></div>
+        <div class="ring ring--3" aria-hidden="true"><i></i></div>
+
+        <div class="container fa-hero-inner">
+          <div class="fa-copy">
+            <span class="pill">Finance &amp; Accounting Agents</span>
+            <h1 class="h-display" id="fa-title">
+              <span class="w"><span style="--i:0">Your</span></span>
+              <span class="w"><span style="--i:1">books,</span></span>
+              <span class="w"><span style="--i:2">reconciled</span></span>
+              <span class="w"><span style="--i:3">and</span></span>
+              <span class="w"><span style="--i:4">reported</span></span>
+              <span class="u"><span class="w"><span style="--i:5">in</span></span> <span class="w"><span
+                    style="--i:6">minutes</span></span><svg viewBox="0 0 300 20" preserveAspectRatio="none"
+                  aria-hidden="true">
+                  <path d="M3 14 C 70 4, 160 2, 297 9" pathLength="1" />
+                </svg></span>
+            </h1>
+            <p class="lead">AI agents that read invoices, match bank transactions, chase approvals and prepare your
+              reports, working inside your accounting software with a full audit trail and your own sign-off rules.
+            </p>
+            <div class="fa-actions">
+              <a class="btn btn--primary btn--lg btn--pulse" href="contact-us.html">Get a Free Automation Review <svg
+                  class="ico"><use href="#i-arrow" /></svg></a>
+              <a class="btn btn--ghost btn--lg" href="#fa-how">See how it works</a>
+            </div>
+            <ul class="fa-checks">
+              <li><svg class="ico"><use href="#i-check" /></svg>Full audit trail</li>
+              <li><svg class="ico"><use href="#i-check" /></svg>Your approval rules</li>
+              <li><svg class="ico"><use href="#i-check" /></svg>Works with your accounting software</li>
+            </ul>
+          </div>
+
+          <div class="fa-stage" id="fa-stage">
+            <div class="fa-video" id="fa-video">
+              <div class="fa-vbar">
+                <span class="fa-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span class="fa-vtitle"><b class="fa-rec" aria-hidden="true"></b><span id="fa-scene-name">Invoice captured</span></span>
+                <span class="fa-time" id="fa-time" aria-hidden="true">0:00</span>
+              </div>
+
+              <div class="fa-vbody" aria-hidden="true">
+                <!-- scene 1: invoice captured -->
+                <div class="fa-scene is-active" data-name="Invoice captured">
+                  <div class="fa-mail fa-in" style="--n:0">
+                    <span class="fa-av">NW</span>
+                    <div><b>Invoice &middot; INV-2041</b><small>Northwind Supplies &middot; $4,820.00</small></div>
+                    <em>Reading</em>
+                  </div>
+                  <ul class="fa-pipe">
+                    <li class="fa-in" style="--n:1"><span class="ck" style="--n:1"><svg class="ico"><use href="#i-check" /></svg></span>Read vendor, dates and line items<small>14 fields</small></li>
+                    <li class="fa-in" style="--n:2"><span class="ck" style="--n:2"><svg class="ico"><use href="#i-check" /></svg></span>Matched purchase order PO-1187<small>Exact match</small></li>
+                    <li class="fa-in" style="--n:3"><span class="ck" style="--n:3"><svg class="ico"><use href="#i-check" /></svg></span>Checked vendor and duplicates<small>All clear</small></li>
+                    <li class="fa-in" style="--n:4"><span class="ck" style="--n:4"><svg class="ico"><use href="#i-check" /></svg></span>Coded to Office Supplies, 6410<small>Ledger</small></li>
+                  </ul>
+                  <div class="fa-done fa-in" style="--n:5"><svg class="ico"><use href="#i-bolt" /></svg>Ready for approval in 8 seconds</div>
+                </div>
+
+                <!-- scene 2: ask in chat -->
+                <div class="fa-scene" data-name="Ask in Slack">
+                  <div class="fa-chat">
+                    <p class="fa-m me fa-in" style="--n:0">Which invoices are overdue by 30+ days?</p>
+                    <p class="fa-m bot fa-in" style="--n:1">Checking accounts payable&hellip;</p>
+                    <div class="fa-order fa-in" style="--n:2">
+                      <div class="fa-order-top"><b>Overdue payables &middot; Accounts Payable</b><span>Live</span></div>
+                      <div class="fa-track"><i></i><i></i><i></i><u></u></div>
+                      <small>5 invoices &middot; $18,340 &middot; Synced 2 min ago</small>
+                    </div>
+                    <p class="fa-m bot fa-in" style="--n:3">5 invoices are over 30 days, worth $18,340. Want me to remind the approvers?</p>
+                    <p class="fa-m me fa-in" style="--n:4">Yes, send them</p>
+                    <p class="fa-m bot fa-in" style="--n:5">Reminders sent. I&rsquo;ll update you tomorrow.</p>
+                  </div>
+                </div>
+
+                <!-- scene 3: variance found -->
+                <div class="fa-scene" data-name="Variance found">
+                  <div class="fa-ticket fa-in" style="--n:0">
+                    <div class="fa-ticket-top"><b>Month-end variance</b><span class="hot">Needs review</span></div>
+                    <div class="fa-tags"><span>Travel +32%</span><span>vs last month</span><span>October close</span></div>
+                  </div>
+                  <div class="fa-sum fa-in" style="--n:1">
+                    <b>Agent summary</b>
+                    <p>Travel is up $6,200, mostly from three conference bookings. I drafted an accrual entry for review.</p>
+                  </div>
+                  <div class="fa-route fa-in" style="--n:2">
+                    <span class="fa-av fa-av--red">RK</span>
+                    <div><b>Entry sent to Ravi, Controller</b><small>Posts to the ledger once approved</small></div>
+                  </div>
+                  <div class="fa-done fa-done--soft fa-in" style="--n:3"><svg class="ico"><use href="#i-shield" /></svg>Every entry has an audit trail</div>
+                </div>
+              </div>
+
+              <div class="fa-vtl" role="group" aria-label="Demo scenes">
+                <button class="fa-seg is-on" type="button" aria-label="Show invoice captured scene"><span>Invoice in</span><i></i></button>
+                <button class="fa-seg" type="button" aria-label="Show ask in Slack scene"><span>Ask in Slack</span><i></i></button>
+                <button class="fa-seg" type="button" aria-label="Show variance found scene"><span>Close report</span><i></i></button>
+              </div>
+            </div>
+
+            <div class="fa-float fa-float--1" aria-hidden="true">
+              <svg class="ico"><use href="#i-clock" /></svg><span><b>8 sec</b><small>per invoice processed</small></span>
+            </div>
+            <div class="fa-float fa-float--2" aria-hidden="true">
+              <svg class="ico"><use href="#i-db" /></svg><span><b>20+</b><small>finance tools connected</small></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="stats" aria-label="Finance and accounting agent highlights">
+          <div class="stat">
+            <span class="stat-ico"><svg class="ico-style"><use href="#i-bolt" /></svg></span>
+            <div><strong data-count="8" data-suf=" sec">8 sec</strong><span>to process an invoice</span></div>
+          </div>
+          <div class="stat">
+            <span class="stat-ico"><svg class="ico-style"><use href="#i-refresh" /></svg></span>
+            <div><strong data-count="90" data-suf="%">90%</strong><span>transactions auto-matched</span></div>
+          </div>
+          <div class="stat">
+            <span class="stat-ico"><svg class="ico-style"><use href="#i-clock" /></svg></span>
+            <div><strong data-count="3" data-suf=" days">3 days</strong><span>to a month-end close</span></div>
+          </div>
+          <div class="stat">
+            <span class="stat-ico"><svg class="ico-style"><use href="#i-shield" /></svg></span>
+            <div><strong data-count="100" data-suf="%">100%</strong><span>actions audit-logged</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 2 · INVOICE LANE (a document travels through stages) ================= -->
+    <section class="section fa-flow" id="fa-flow" aria-labelledby="flow-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Accounts payable</span>
+          <h2 class="h-section" id="flow-title">From inbox to ledger without a single keystroke.</h2>
+          <p class="lead">Every invoice follows the same safe route. The agent does the typing, matching and chasing, and your team only steps in when a rule says a person should.</p>
+        </div>
+
+        <div class="fa-lane" id="fa-lane">
+          <span class="fa-chip" aria-hidden="true"><svg class="ico"><use href="#i-file" /></svg><b id="fa-chip-t">Posted &middot; INV-2041</b></span>
+          <div class="fa-rail" aria-hidden="true"><i class="fa-rail-fill" id="fa-rfill"></i></div>
+          <ol class="fa-stops" id="fa-stops">
+            <li class="fa-stop is-done">
+              <span class="fa-sico"><svg class="ico"><use href="#i-inbox" /></svg></span>
+              <h3>Capture</h3>
+              <p>Reads invoices from email, uploads and supplier portals.</p>
+              <em class="fa-res">14 fields read</em>
+            </li>
+            <li class="fa-stop is-done">
+              <span class="fa-sico"><svg class="ico"><use href="#i-search" /></svg></span>
+              <h3>Match</h3>
+              <p>Checks the PO, receipt and vendor, and catches duplicates.</p>
+              <em class="fa-res">Matched to PO-1187</em>
+            </li>
+            <li class="fa-stop is-done">
+              <span class="fa-sico"><svg class="ico"><use href="#i-users" /></svg></span>
+              <h3>Approve</h3>
+              <p>Routes to the right approver in Slack, Teams or email.</p>
+              <em class="fa-res">Approved by Dana</em>
+            </li>
+            <li class="fa-stop is-done">
+              <span class="fa-sico"><svg class="ico"><use href="#i-book" /></svg></span>
+              <h3>Post and pay</h3>
+              <p>Codes the entry, posts it and schedules the payment.</p>
+              <em class="fa-res">Posted to ledger</em>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 3 · RECONCILIATION (lines draw between two lists) ================= -->
+    <section class="section fa-rec" id="fa-rec" aria-labelledby="rec-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Reconciliation</span>
+          <h2 class="h-section" id="rec-title">Bank and books, matched line by line.</h2>
+          <p class="lead">The agent pairs every bank transaction with the right ledger entry and flags only what does not add up, so your team reviews exceptions instead of thousands of rows.</p>
+        </div>
+
+        <div class="fa-recbox" id="fa-recbox" role="img" aria-label="Bank transactions being matched to ledger entries, with one mismatch flagged for review">
+          <div class="fa-panel">
+            <h3><svg class="ico"><use href="#i-db" /></svg>Bank statement</h3>
+            <div class="fa-row is-ok" data-to="2"><span>Stripe payout</span><b>$12,480.00</b></div>
+            <div class="fa-row is-ok" data-to="0"><span>AWS</span><b>$1,942.10</b></div>
+            <div class="fa-row is-ok" data-to="3"><span>Payroll run</span><b>$38,200.00</b></div>
+            <div class="fa-row is-ok" data-to="1"><span>Office rent</span><b>$4,500.00</b></div>
+            <div class="fa-row is-flag" data-to="4"><span>Slack</span><b>$212.40</b></div>
+          </div>
+          <div class="fa-mid" id="fa-mid" aria-hidden="true">
+            <svg id="fa-links" xmlns="http://www.w3.org/2000/svg"></svg>
+          </div>
+          <div class="fa-panel">
+            <h3><svg class="ico"><use href="#i-book" /></svg>Ledger</h3>
+            <div class="fa-row is-ok"><span>Cloud hosting</span><b>$1,942.10</b></div>
+            <div class="fa-row is-ok"><span>Rent, Q4</span><b>$4,500.00</b></div>
+            <div class="fa-row is-ok"><span>Sales receipts</span><b>$12,480.00</b></div>
+            <div class="fa-row is-ok"><span>Salaries</span><b>$38,200.00</b></div>
+            <div class="fa-row is-flag"><span>Slack subscription</span><b>$106.20</b></div>
+          </div>
+        </div>
+
+        <div class="fa-recfoot">
+          <span class="fa-count" id="fa-count"><svg class="ico"><use href="#i-check" /></svg><b id="fa-count-n">4</b> of 5 matched</span>
+          <span class="fa-flagnote"><svg class="ico"><use href="#i-bell" /></svg>1 flagged: charged twice? Sent to review</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 4 · MONTH-END CLOSE (dark, progress ring) ================= -->
+    <section class="section fa-close" id="fa-close" aria-labelledby="close-title">
+      <div class="engine-dots" aria-hidden="true"></div>
+      <div class="container fa-close-grid" data-reveal>
+        <div class="fa-close-copy">
+          <span class="pill pill--dark">Month-end close</span>
+          <h2 class="h-section" id="close-title">Close the month in days, not weeks.</h2>
+          <p class="lead">The agent runs your close checklist in the background, drafts the accruals, explains the variances and hands your controller a finished pack to sign off.</p>
+          <ul class="fa-list fa-list--light">
+            <li><svg class="ico"><use href="#i-check" /></svg>Drafts journal entries for your review</li>
+            <li><svg class="ico"><use href="#i-chart" /></svg>Explains variances in plain language</li>
+            <li><svg class="ico"><use href="#i-shield" /></svg>Keeps a locked trail for auditors</li>
+          </ul>
+          <a class="btn btn--primary btn--lg" href="contact-us.html">Talk to our team <svg class="ico"><use href="#i-arrow" /></svg></a>
+        </div>
+
+        <div class="fa-ckcard" id="fa-ckcard">
+          <div class="fa-ckhead">
+            <div class="fa-ring" aria-hidden="true">
+              <svg viewBox="0 0 140 140"><circle class="bg" cx="70" cy="70" r="60" /><circle class="fg" id="fa-ringfg" cx="70" cy="70" r="60" /></svg>
+              <b id="fa-ringnum">100%</b>
+            </div>
+            <div class="fa-ckhead-t"><b>October close</b><small id="fa-cksub">6 of 6 tasks complete</small></div>
+          </div>
+          <ul class="fa-tasks" id="fa-tasks">
+            <li class="is-done"><i><svg class="ico"><use href="#i-check" /></svg></i>Bank accounts reconciled</li>
+            <li class="is-done"><i><svg class="ico"><use href="#i-check" /></svg></i>Accruals drafted</li>
+            <li class="is-done"><i><svg class="ico"><use href="#i-check" /></svg></i>Variances explained</li>
+            <li class="is-done"><i><svg class="ico"><use href="#i-check" /></svg></i>Intercompany balances checked</li>
+            <li class="is-done"><i><svg class="ico"><use href="#i-check" /></svg></i>Reports packaged</li>
+            <li class="is-done"><i><svg class="ico"><use href="#i-check" /></svg></i>Controller sign-off</li>
+          </ul>
+          <div class="fa-cmp" id="fa-cmp">
+            <div><span>Manual close</span><div class="fa-cbar"><i class="a" style="--w:100%"></i></div><b>10 days</b></div>
+            <div><span>With an agent</span><div class="fa-cbar"><i class="b" style="--w:30%"></i></div><b>3 days</b></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 5 · ANOMALY CHART (line draws, spike pings) ================= -->
+    <section class="section fa-anom" id="fa-anom" aria-labelledby="anom-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Spend watch</span>
+          <h2 class="h-section" id="anom-title">Catches odd spending before it gets paid.</h2>
+          <p class="lead">The agent learns what normal looks like for each vendor and category, then flags duplicates, spikes and changed bank details while there is still time to stop them.</p>
+        </div>
+
+        <div class="fa-anbox" id="fa-anbox">
+          <div class="fa-chartcard">
+            <div class="fa-chtop"><span><svg class="ico"><use href="#i-chart" /></svg>Weekly spend</span><small>Last 8 weeks</small></div>
+            <div class="fa-chwrap">
+              <svg viewBox="0 0 640 280" role="img" aria-label="Line chart of weekly spend with one large spike in week 6">
+                <g class="fa-grid"><path d="M40 40H610M40 100H610M40 160H610M40 220H610" /></g>
+                <path class="fa-area" d="M40 190L120 176L200 184L280 150L360 160L440 62L520 140L600 132L600 240L40 240Z" />
+                <path class="fa-line" pathLength="1" d="M40 190L120 176L200 184L280 150L360 160L440 62L520 140L600 132" />
+                <g class="fa-xl"><text x="40" y="262">W1</text><text x="120" y="262">W2</text><text x="200" y="262">W3</text><text x="280" y="262">W4</text><text x="360" y="262">W5</text><text x="440" y="262">W6</text><text x="520" y="262">W7</text><text x="600" y="262">W8</text></g>
+                <g class="fa-spike">
+                  <circle class="fa-ping" cx="440" cy="62" r="9" />
+                  <circle class="fa-ping fa-ping--2" cx="440" cy="62" r="9" />
+                  <circle class="fa-dot" cx="440" cy="62" r="7" />
+                </g>
+              </svg>
+              <div class="fa-tip"><b>Software +184%</b><small>Possible duplicate subscription. Held for review.</small></div>
+            </div>
+          </div>
+
+          <ul class="fa-alerts">
+            <li style="--n:0"><span class="fa-aico"><svg class="ico"><use href="#i-refresh" /></svg></span><div><b>Duplicate invoice found</b><small>Same vendor, same amount, 2 days apart</small></div></li>
+            <li style="--n:1"><span class="fa-aico"><svg class="ico"><use href="#i-lock" /></svg></span><div><b>Vendor bank details changed</b><small>Verify with the supplier before paying</small></div></li>
+            <li style="--n:2"><span class="fa-aico"><svg class="ico"><use href="#i-bell" /></svg></span><div><b>Spend above normal range</b><small>Software is 3x its usual weekly level</small></div></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 6 · SAVINGS CALCULATOR (interactive sliders) ================= -->
+    <section class="section fa-roi" id="fa-roi" aria-labelledby="roi-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Time saved</span>
+          <h2 class="h-section" id="roi-title">See how many hours your team gets back.</h2>
+          <p class="lead">Move the sliders to match your workload and get a rough idea of the manual work an agent could take over each month.</p>
+        </div>
+
+        <div class="fa-calc" id="fa-calc">
+          <div class="fa-ctrls">
+            <label class="fa-ctrl" for="fa-inv">
+              <span>Invoices per month <b id="fa-inv-v">800</b></span>
+              <input id="fa-inv" type="range" min="100" max="5000" step="50" value="800">
+            </label>
+            <label class="fa-ctrl" for="fa-min">
+              <span>Minutes spent on each invoice <b id="fa-min-v">8 min</b></span>
+              <input id="fa-min" type="range" min="2" max="20" step="1" value="8">
+            </label>
+            <p class="fa-fine">Illustrative estimate that assumes about 80% of routine invoice handling is automated. Your real results depend on your invoices and processes.</p>
+          </div>
+
+          <div class="fa-out">
+            <div class="fa-big"><b id="fa-hrs">0</b><span>hours saved every month</span></div>
+            <div class="fa-fte"><svg class="ico"><use href="#i-users" /></svg><span>About <b id="fa-fte">0</b> full-time roles of work</span></div>
+            <div class="fa-bars">
+              <div><span>Today</span><div class="fa-bt"><i id="fa-bman"></i></div><b id="fa-hman">0 h</b></div>
+              <div><span>With agent</span><div class="fa-bt"><i class="g" id="fa-bagent"></i></div><b id="fa-hagent">0 h</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 7 · TOOLS (two marquees moving opposite ways) ================= -->
+    <!-- <section class="section fa-tools" id="fa-tools" aria-labelledby="tools-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Connected tools</span>
+          <h2 class="h-section" id="tools-title">Works inside the tools your finance team already uses.</h2>
+          <p class="lead">No new system to learn. The agent connects to your accounting software, banks, payment tools and chat apps, and we can build a connection to anything with an API.</p>
+        </div>
+      </div>
+      <div class="fa-marqs" id="fa-marqs">
+        <div class="fa-marq"><div class="fa-mtrack">
+          <span class="fa-tool"><svg class="ico"><use href="#i-book" /></svg>QuickBooks</span>
+          <span class="fa-tool"><svg class="ico"><use href="#i-book" /></svg>Xero</span>
+          <span class="fa-tool"><svg class="ico"><use href="#i-db" /></svg>NetSuite</span>
+          <span class="fa-tool"><svg class="ico"><use href="#i-db" /></svg>SAP Business One</span>
+          <span class="fa-tool"><svg class="ico"><use href="#i-book" /></svg>Zoho Books</span>
+          <span class="fa-tool"><svg class="ico"><use href="#i-db" /></svg>Business Central</span>
+          <span class="fa-tool"><svg class="ico"><use href="#i-db" /></svg>Odoo</span>
+          <span class="fa-tool"><svg class="ico"><use href="#i-book" /></svg>Sage</span>
+        </div></div>
+        <div class="fa-marq fa-marq--rev"><div class="fa-mtrack">
+          <span class="fa-tool"><svg class="ico"><use href="#i-coin" /></svg>Stripe</span>
+          <span class="fa-tool"><svg class="ico"><use href="#i-coin" /></svg>PayPal</span>
+          <span class="fa-tool"><svg class="ico"><use href="#i-file" /></svg>Expensify</span>
+          <span class="fa-tool"><svg class="ico"><use href="#i-file" /></svg>Bill.com</span>
+          <span class="fa-tool"><svg class="ico"><use href="#i-chat" /></svg>Slack</span>
+          <span class="fa-tool"><svg class="ico"><use href="#i-chat" /></svg>Microsoft Teams</span>
+          <span class="fa-tool"><svg class="ico"><use href="#i-chart" /></svg>Google Sheets</span>
+          <span class="fa-tool"><svg class="ico"><use href="#i-chart" /></svg>Excel</span>
+          <span class="fa-tool"><svg class="ico"><use href="#i-mail" /></svg>Gmail and Outlook</span>
+        </div></div>
+      </div>
+    </section> -->
+
+    <!-- ================= 8 · HOW IT WORKS (scroll-linked timeline) ================= -->
+    <section class="section fa-how" id="fa-how" aria-labelledby="how-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">How it works</span>
+          <h2 class="h-section" id="how-title">Safely live in your finance stack in four steps.</h2>
+        </div>
+
+        <ol class="fa-tl" id="fa-tl">
+          <span class="fa-tl-fill" id="fa-tlfill" aria-hidden="true"></span>
+          <li class="fa-tls is-lit">
+            <span class="fa-tln">1</span>
+            <div class="fa-tlc">
+              <h3>Connect accounting and banking</h3>
+              <p>Link your accounting software, bank feeds, inbox and chat with the permissions you choose. Start read-only if you prefer.</p>
+            </div>
+          </li>
+          <li class="fa-tls is-lit">
+            <span class="fa-tln">2</span>
+            <div class="fa-tlc">
+              <h3>Teach it your rules</h3>
+              <p>We load your chart of accounts, coding habits, approval limits and vendor rules, so the agent works the way your team does.</p>
+            </div>
+          </li>
+          <li class="fa-tls is-lit">
+            <span class="fa-tln">3</span>
+            <div class="fa-tlc">
+              <h3>Run it beside your team</h3>
+              <p>For a few weeks the agent suggests while your team decides. We compare results and tune accuracy before anything posts on its own.</p>
+            </div>
+          </li>
+          <li class="fa-tls fa-tls--end is-lit">
+            <span class="fa-tln"><svg class="ico"><use href="#i-check" /></svg></span>
+            <div class="fa-tlc">
+              <h3>Go live with approvals and logs</h3>
+              <p>Routine work runs automatically, anything unusual waits for a person, and every action is logged for your auditors.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ================= FAQ ================= -->
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="container faq-grid" data-reveal>
+        <div class="faq-head">
+          <span class="pill">Common questions</span>
+          <h2 class="h-section" id="faq-title">Finance &amp; accounting agent FAQs</h2>
+        </div>
+        <div class="faq-list" id="faq-list">
+          <div class="faq-item open">
+            <h3><button class="faq-q" type="button" aria-expanded="true">Can it post entries or pay bills without approval? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Only if you allow it. You set limits by amount, vendor and account. Anything above a limit, or anything unusual, waits for a named approver. Many teams start with the agent drafting only, then widen its permissions over time.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Which accounting systems does it work with? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Common platforms such as QuickBooks, Xero, NetSuite, SAP Business One, Zoho Books, Business Central, Odoo and Sage, plus banks and payment tools with an API. If you use something custom, we can build the connection.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">How do I know the numbers are right? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Every entry shows the source document, the rule that was applied and the person who approved it. During the shadow period we compare the agent&rsquo;s work with your team&rsquo;s and tune it until results meet your accuracy bar.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Is our financial data secure? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Access follows the roles you already have, and the agent only sees the accounts you connect. Actions are logged and your data is not used to train models for other customers. We confirm exact data handling and retention settings with you before launch.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Does this replace our accountants? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>No. It takes over repetitive entry, matching and chasing so your accountants can spend time on analysis, planning and judgement calls. A person still owns every decision that carries real risk.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+    <section class="cta" id="contact" aria-labelledby="cta-title">
+      <div class="cta-grid">
+        <div class="cta-bar" aria-hidden="true"></div>
+        <div class="cta-box">
+          <div class="ripples" aria-hidden="true"><span></span><span></span><span></span></div>
+          <h2 id="cta-title">Close the books without the chaos.</h2>
+          <p>Tell us which finance tasks eat your week and we&rsquo;ll show how an agent could take them on.</p>
+          <a class="btn btn--primary btn--lg btn-sweep" href="contact-us.html"><span style="position:relative">Get a Free Automation Review</span></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="footer-panel">
+      <div class="footer-flag" aria-hidden="true"></div>
+      <div class="footer-main">
+        <div class="footer-brand">
+          <img src="images/codevelop.webp" alt="Codevelop logo" class="brand-logo" width="160" height="40">
+          <p>At Codevelop, we help businesses turn strategy into scalable results through thoughtful design,
+            performance-driven marketing, and modern technology.</p>
+          <div class="socials">
+            <a href="https://www.facebook.com/Codevelop.usa/" aria-label="Facebook" target="_blank" rel="noopener"><svg class="ico"><use href="#i-fb" /></svg></a>
+            <a href="https://www.instagram.com/codevelop_us/" aria-label="Instagram" target="_blank" rel="noopener"><svg class="ico"><use href="#i-ig" /></svg></a>
+            <a href="https://www.linkedin.com/company/codevelop-us" aria-label="LinkedIn" target="_blank" rel="noopener"><svg class="ico"><use href="#i-in" /></svg></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Services</h3>
+          <ul>
+            <li><a href="performance-marketing.html">Performance Marketing</a></li>
+            <li><a href="#">SEO Services</a></li>
+            <li><a href="#">Social Media Marketing</a></li>
+            <li><a href="web-development.html">Web Development</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Link</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Case Studies</a></li>
+            <li><a href="#">Blogs</a></li>
+            <li><a href="https://codevelopus.com/">Free SEO Audit</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Contact Us</h3>
+          <ul class="contact">
+            <li><svg class="ico"><use href="#i-pin" /></svg><span>555 SE Martin Luther King JR Blvd, Portland, OR 97214</span></li>
+            <li><svg class="ico"><use href="#i-phone" /></svg><a href="tel:+19714809833">+1 971-480-9833</a></li>
+            <li><svg class="ico"><use href="#i-mail" /></svg><a href="mailto:info@codevelop.us">info@codevelop.us</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="newsletter">
+        <div class="newsletter-box">
+          <h3>Signup our newsletter to get update information, news, insight or promotions.</h3>
+          <form class="news-form" action="#" method="post">
+            <label class="sr-only" for="news-email">Email</label>
+            <input id="news-email" type="email" name="email" placeholder="Email" required autocomplete="email">
+            <button class="btn btn--primary" type="submit">Sign up</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <span>Copyright © 2026 Codevelop US, All Rights Reserved.</span>
+      <a href="#">Privacy policy</a>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script src="js/finance-accounting-agents.js"></script>
+</body>
+
+</html>

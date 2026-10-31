@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI HR &amp; Recruitment Agents | Codevelop</title>
+  <meta name="description"
+    content="Codevelop builds AI HR and recruitment agents that screen CVs, book interviews, answer candidate questions and run onboarding, so your HR team spends its time on people, not paperwork.">
+  <link rel="canonical" href="https://codevelopus.com/hr-recruitment-agents.html">
+  <meta name="theme-color" content="#0a3161">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Codevelopus">
+  <meta property="og:title" content="AI HR &amp; Recruitment Agents | Codevelop">
+  <meta property="og:description"
+    content="AI agents that screen, schedule, communicate and onboard, with people making every decision.">
+  <meta property="og:url" content="https://codevelopus.com/hr-recruitment-agents.html">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="https://codevelopus.com/wp-content/uploads/2026/01/cropped-codevelop-favicon-270x270.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/hr-recruitment-agents.css">
+</head>
+
+<body>
+
+  <!-- Icon sprite -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.4l-5.9 3.3 1.2-6.6L2.5 9.5l6.6-.9L12 2.5z" /></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" /></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></symbol>
+      <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z" /></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" /><path d="M20 20l-4-4" /></symbol>
+      <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="5" /><circle cx="12" cy="12" r="1.5" /></symbol>
+      <symbol id="i-funnel" viewBox="0 0 24 24"><path d="M3 4h18l-7 8v6l-4 2v-8L3 4z" /></symbol>
+      <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" /></symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5z" /></symbol>
+      <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M18 6l-2.5 2.5M8.5 15.5L6 18" /></symbol>
+      <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z" /><path d="M19 17l.8 2.2L22 20l-2.2.8L19 23l-.8-2.2L16 20l2.2-.8L19 17z" /></symbol>
+      <symbol id="i-fb" viewBox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v7h4v-7h3l1-4h-4V8z" /></symbol>
+      <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="0.8" /></symbol>
+      <symbol id="i-in" viewBox="0 0 24 24"><rect x="3" y="9" width="4" height="12" /><circle cx="5" cy="5" r="2" /><path d="M10 9h4v2a4 4 0 0 1 6 3v7h-4v-6a2 2 0 0 0-4 0v6h-4V9z" /></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" /></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3 7l9 6 9-6" /></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11z" /><circle cx="12" cy="10" r="2.5" /></symbol>
+      <symbol id="i-code" viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16" /></symbol>
+      <symbol id="i-flow" viewBox="0 0 24 24"><rect x="3" y="3" width="6" height="6" rx="1" /><rect x="15" y="15" width="6" height="6" rx="1" /><path d="M9 6h4a2 2 0 0 1 2 2v7" /></symbol>
+      <symbol id="i-megaphone" viewBox="0 0 24 24"><path d="M3 10v4h4l8 5V5L7 10H3z" /><path d="M18.5 9a4 4 0 0 1 0 6" /></symbol>
+      <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2V5z" /><path d="M4 19a2 2 0 0 1 2-2h13" /></symbol>
+      <symbol id="i-coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M14.5 9.5c-.5-1-1.5-1.5-2.5-1.5-1.4 0-2.5.8-2.5 2s1 1.7 2.5 2 2.5.8 2.5 2-1.1 2-2.5 2c-1 0-2-.5-2.5-1.5M12 6.5V8m0 8v1.5" /></symbol>
+      <symbol id="i-desk" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2" /><path d="M8 20h8M12 16v4" /></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5" /><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6" /><path d="M16 4.7a3.5 3.5 0 0 1 0 6.6M18 14.3c2 .7 3.5 2.6 3.5 5.7" /></symbol>
+      <!-- new for this page -->
+      <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3c3.2 3.2 3.2 14.8 0 18M12 3c-3.2 3.2-3.2 14.8 0 18" /></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z" /><path d="M9 12l2 2 4-4" /></symbol>
+      <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14-4L4 9M4 4v5h5M4 13a8 8 0 0 0 14 4l2-2M20 20v-5h-5" /></symbol>
+      <symbol id="i-tag" viewBox="0 0 24 24"><path d="M3 12V4h8l10 10-8 8L3 12z" /><circle cx="7.5" cy="7.5" r="1.2" /></symbol>
+      <symbol id="i-inbox" viewBox="0 0 24 24"><path d="M3 13l3-8h12l3 8v6H3v-6z" /><path d="M3 13h5l1 3h6l1-3h5" /></symbol>
+      <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v3" /></symbol>
+      <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4l2-2z" /><path d="M10 21h4" /></symbol>
+      <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z" /><circle cx="12" cy="12" r="3" /></symbol>
+      <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-8-5-8-11a4.5 4.5 0 0 1 8-2.5A4.5 4.5 0 0 1 20 9c0 6-8 11-8 11z" /></symbol>
+      <symbol id="i-db" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3" /><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3" /></symbol>
+      <symbol id="i-file" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6V3z" /><path d="M14 3v4h4M9 12h6M9 16h6" /></symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2" /><path d="M8 11V8a4 4 0 0 1 8 0v3" /></symbol>
+      <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M3 10h18M8 3v4M16 3v4" /></symbol>
+      <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4M5 4h12l-2 4 2 4H5" /></symbol>
+      <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" /><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7" /></symbol>
+      <symbol id="i-drag" viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5" /></symbol>
+      <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" /></symbol>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header" id="top">
+    <div class="bar">
+      <a class="logo" href="index.html" aria-label="Codevelop home"><img src="images/codevelop.webp"
+          alt="Codevelop logo" class="brand-logo" width="160" height="40"></a>
+      <button class="burger" type="button" aria-label="Open menu"
+        aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav aria-label="Main">
+        <ul>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">AI Agents <svg class="chev"
+                viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop drop--agents">
+              <div class="agents-top">
+                <span class="agents-label">AI Agents</span>
+                <a class="agents-all" href="#">View all agents</a>
+              </div>
+
+              <a class="agent" href="customer-support-agents.html">
+                <span class="agent-ico"><svg class="ico"><use href="#i-chat" /></svg></span>
+                <span class="agent-txt"><b>Customer Support Agents</b><small>24/7 answers across chat &amp; inbox</small></span>
+              </a>
+              <a class="agent" href="sales-lead-generation-agents.html">
+                <span class="agent-ico"><svg class="ico"><use href="#i-funnel" /></svg></span>
+                <span class="agent-txt"><b>Sales &amp; Lead-Generation Agents</b><small>Capture, qualify &amp; follow up with leads</small></span>
+              </a>
+              <a class="agent" href="software-development-agents.html">
+                <span class="agent-ico"><svg class="ico"><use href="#i-code" /></svg></span>
+                <span class="agent-txt"><b>Software Development Agents</b><small>Code, review &amp; ship faster</small></span>
+              </a>
+              <a class="agent" href="workflow-automation-agents.html">
+                <span class="agent-ico"><svg class="ico"><use href="#i-flow" /></svg></span>
+                <span class="agent-txt"><b>Workflow Automation Agents</b><small>Connect tools &amp; automate routine tasks</small></span>
+              </a>
+              <a class="agent" href="#">
+                <span class="agent-ico"><svg class="ico"><use href="#i-megaphone" /></svg></span>
+                <span class="agent-txt"><b>Marketing Agents</b><small>Campaigns, content &amp; channel management</small></span>
+              </a>
+              <a class="agent" href="research-data-analyst-agents.html">
+                <span class="agent-ico"><svg class="ico"><use href="#i-chart" /></svg></span>
+                <span class="agent-txt"><b>Research &amp; Data Analyst Agents</b><small>Insights &amp; plain-language reports</small></span>
+              </a>
+              <a class="agent" href="internal-knowledge-agents.html">
+                <span class="agent-ico"><svg class="ico"><use href="#i-book" /></svg></span>
+                <span class="agent-txt"><b>Internal Knowledge Agents</b><small>Instant answers from your company data</small></span>
+              </a>
+              <a class="agent" href="#">
+                <span class="agent-ico"><svg class="ico"><use href="#i-coin" /></svg></span>
+                <span class="agent-txt"><b>Finance &amp; Accounting Agents</b><small>Invoices, reconciliation &amp; reporting</small></span>
+              </a>
+              <a class="agent" href="#">
+                <span class="agent-ico"><svg class="ico"><use href="#i-desk" /></svg></span>
+                <span class="agent-txt"><b>IT Service Desk Agents</b><small>Resolve tickets &amp; access requests</small></span>
+              </a>
+              <a class="agent" href="hr-recruitment-agents.html">
+                <span class="agent-ico"><svg class="ico"><use href="#i-users" /></svg></span>
+                <span class="agent-txt"><b>HR &amp; Recruitment Agents</b><small>Screen, schedule &amp; onboard people</small></span>
+              </a>
+            </div>
+          </li>
+          <li><button class="top" type="button" aria-expanded="false">Connectors <svg class="chev" viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop"><a href="#">Business Central</a><a href="#">NetSuite</a><a href="#">Odoo</a><a href="#">Zoho</a></div>
+          </li>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">Services <svg class="chev"
+                viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop drop--mega">
+              <div class="mega-top">
+                <a class="mega-all" href="services.html">View all services <svg class="ico" width="16" height="16"
+                    aria-hidden="true"><use href="#i-arrow" /></svg></a>
+              </div>
+              <div class="mega-col">
+                <h4><a href="performance-marketing.html">Performance Marketing</a></h4>
+                <a href="meta-ads.html">Google Ads Management</a>
+                <a href="facebook-ads.html">Facebook Ads</a>
+                <a href="remarketing.html">Remarketing</a>
+              </div>
+              <div class="mega-col">
+                <h4><a href="web-development.html">Web Development Services</a></h4>
+                <a href="custom-website-design.html">Custom Website Design</a>
+                <a href="wordpress-development.html">WordPress Web Development</a>
+                <a href="shopify-development.html">Shopify Web Development</a>
+                <a href="webflow-development.html">Webflow Web Development</a>
+                <a href="framer-development.html">Framer Web Development</a>
+                <a href="mageneto-development.html">Magento Web Development</a>
+                <a href="website-maintenance.html">Website Maintenance</a>
+                <a href="website-redesign.html">Website Redesign</a>
+              </div>
+              <div class="mega-col">
+                <h4><a href="social-media-marketing.html">Social Media Marketing</a></h4>
+                <a href="content-marketing.html">Content Marketing</a>
+              </div>
+              <div class="mega-col">
+                <h4><a href="search-engine-optimization.html">Search Engine Optimization</a></h4>
+                <a href="local-seo.html">Local SEO</a>
+                <a href="seo-audits.html">SEO Audits</a>
+                <a href="technical-seo.html">Technical SEO</a>
+                <a href="enterprise-seo.html">Enterprise SEO</a>
+              </div>
+            </div>
+          </li>
+          <li><button class="top" type="button" aria-expanded="false">Hire Talent <svg class="chev" viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop"><a href="#">Developers</a><a href="#">Automation Engineers</a><a href="#">Dedicated Teams</a></div>
+          </li>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="#">Success Stories</a></li>
+          <li><a href="#">Insights</a></li>
+        </ul>
+        <a class="hdr-cta hdr-cta-m" href="contact-us.html">Get a Free Automation Review</a>
+      </nav>
+      <a class="hdr-cta" href="contact-us.html">Get a Free Automation Review</a>
+    </div>
+  </header>
+
+  <main id="content">
+
+    <!-- ================= 1 · HERO (animated product video) ================= -->
+    <section class="hero-wrap" aria-labelledby="hr-title">
+      <div class="hero hr-hero">
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="hero-glow" aria-hidden="true"></div>
+        <div class="ring ring--1" aria-hidden="true"><i></i></div>
+        <div class="ring ring--2" aria-hidden="true"><i></i></div>
+        <div class="ring ring--3" aria-hidden="true"><i></i></div>
+
+        <div class="container hr-hero-inner">
+          <div class="hr-copy">
+            <span class="pill">HR &amp; Recruitment Agents</span>
+            <h1 class="h-display" id="hr-title">
+              <span class="w"><span style="--i:0">Hire</span></span>
+              <span class="w"><span style="--i:1">great</span></span>
+              <span class="w"><span style="--i:2">people,</span></span>
+              <span class="u"><span class="w"><span style="--i:3">without</span></span> <span class="w"><span
+                    style="--i:4">the</span></span> <span class="w"><span style="--i:5">admin</span></span><svg viewBox="0 0 300 20" preserveAspectRatio="none"
+                  aria-hidden="true">
+                  <path d="M3 14 C 70 4, 160 2, 297 9" pathLength="1" />
+                </svg></span>
+            </h1>
+            <p class="lead">AI agents that screen CVs, book interviews, answer candidate questions and run onboarding,
+              so your HR team spends its time on people, not paperwork.
+            </p>
+            <div class="hr-actions">
+              <a class="btn btn--primary btn--lg btn--pulse" href="contact-us.html">Get a Free Automation Review <svg
+                  class="ico"><use href="#i-arrow" /></svg></a>
+              <a class="btn btn--ghost btn--lg" href="#hr-how">See how it works</a>
+            </div>
+            <ul class="hr-checks">
+              <li><svg class="ico"><use href="#i-check" /></svg>Fair, consistent screening</li>
+              <li><svg class="ico"><use href="#i-check" /></svg>Works with your ATS and HRIS</li>
+              <li><svg class="ico"><use href="#i-check" /></svg>People make every decision</li>
+            </ul>
+          </div>
+
+          <div class="hr-stage" id="hr-stage">
+            <div class="hr-video" id="hr-video">
+              <div class="hr-vbar">
+                <span class="hr-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span class="hr-vtitle"><b class="hr-rec" aria-hidden="true"></b><span id="hr-scene-name">Screen candidates</span></span>
+                <span class="hr-time" id="hr-time" aria-hidden="true">0:00</span>
+              </div>
+
+              <div class="hr-vbody" aria-hidden="true">
+                <!-- scene 1: screen -->
+                <div class="hr-scene is-active" data-name="Screen candidates">
+                  <div class="hr-chat">
+                    <p class="hr-m me hr-in" style="--n:0">Screen the 120 applicants for Senior Designer.</p>
+                    <p class="hr-m bot hr-in" style="--n:1">Reading every CV against the job description&hellip;</p>
+                    <div class="hr-order hr-in" style="--n:2">
+                      <div class="hr-order-top"><b>Senior Designer &middot; 120 applicants</b><span>Top 12</span></div>
+                      <div class="hr-track"><i></i><i></i><i></i><u></u></div>
+                      <small>Skills, experience and portfolio checked</small>
+                    </div>
+                    <p class="hr-m bot hr-in" style="--n:3">12 shortlisted, 3 strong matches. Want interviews booked?</p>
+                    <p class="hr-m me hr-in" style="--n:4">Yes, book the top 3</p>
+                    <p class="hr-m bot hr-in" style="--n:5">Invites sent. Arjun already picked Thu 11:00.</p>
+                  </div>
+                </div>
+
+                <!-- scene 2: schedule -->
+                <div class="hr-scene" data-name="Schedule interviews">
+                  <div class="hr-mail hr-in" style="--n:0">
+                    <span class="hr-av">AK</span>
+                    <div><b>Candidate &middot; Arjun K.</b><small>Applied for Senior Designer</small></div>
+                    <em>Match 88%</em>
+                  </div>
+                  <ul class="hr-pipe">
+                    <li class="hr-in" style="--n:1"><span class="ck" style="--n:1"><svg class="ico"><use href="#i-check" /></svg></span>Checked the panel&rsquo;s calendars<small>4 people</small></li>
+                    <li class="hr-in" style="--n:2"><span class="ck" style="--n:2"><svg class="ico"><use href="#i-check" /></svg></span>Found a time that works for all<small>Thu 11:00</small></li>
+                    <li class="hr-in" style="--n:3"><span class="ck" style="--n:3"><svg class="ico"><use href="#i-check" /></svg></span>Sent the invite and video link<small>Arjun K.</small></li>
+                    <li class="hr-in" style="--n:4"><span class="ck" style="--n:4"><svg class="ico"><use href="#i-check" /></svg></span>Shared prep notes with the panel<small>CV summary</small></li>
+                  </ul>
+                  <div class="hr-done hr-in" style="--n:5"><svg class="ico"><use href="#i-bolt" /></svg>Booked in 40 seconds, no emails back and forth</div>
+                </div>
+
+                <!-- scene 3: onboarding -->
+                <div class="hr-scene" data-name="New hire day 1">
+                  <div class="hr-ticket hr-in" style="--n:0">
+                    <div class="hr-ticket-top"><b>Welcome, Sam T. &middot; Day 1</b><span class="hot">On track</span></div>
+                    <div class="hr-tags"><span>Laptop ready</span><span>Accounts created</span><span>Buddy assigned</span></div>
+                  </div>
+                  <div class="hr-sum hr-in" style="--n:1">
+                    <b>Agent summary</b>
+                    <p>Sent the welcome pack, booked orientation and added Sam to the team channel. One document is still missing.</p>
+                  </div>
+                  <div class="hr-route hr-in" style="--n:2">
+                    <span class="hr-av hr-av--red">ST</span>
+                    <div><b>Reminder sent to Sam</b><small>Work-permit upload due Friday</small></div>
+                  </div>
+                  <div class="hr-done hr-done--soft hr-in" style="--n:3"><svg class="ico"><use href="#i-users" /></svg>A smooth first day, without chasing</div>
+                </div>
+              </div>
+
+              <div class="hr-vtl" role="group" aria-label="Demo scenes">
+                <button class="hr-seg is-on" type="button" aria-label="Show screen candidates scene"><span>Screen</span><i></i></button>
+                <button class="hr-seg" type="button" aria-label="Show schedule interviews scene"><span>Schedule</span><i></i></button>
+                <button class="hr-seg" type="button" aria-label="Show new hire scene"><span>Onboard</span><i></i></button>
+              </div>
+            </div>
+
+            <div class="hr-float hr-float--1" aria-hidden="true">
+              <svg class="ico"><use href="#i-clock" /></svg><span><b>40 sec</b><small>to book an interview</small></span>
+            </div>
+            <div class="hr-float hr-float--2" aria-hidden="true">
+              <svg class="ico"><use href="#i-users" /></svg><span><b>120 CVs</b><small>screened in minutes</small></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="stats" aria-label="HR and recruitment agent highlights">
+          <div class="stat">
+            <span class="stat-ico"><svg class="ico-style"><use href="#i-bolt" /></svg></span>
+            <div><strong data-count="1" data-pre="<" data-suf=" min">&lt;1 min</strong><span>first reply to candidates</span></div>
+          </div>
+          <div class="stat">
+            <span class="stat-ico"><svg class="ico-style"><use href="#i-file" /></svg></span>
+            <div><strong data-count="75" data-suf="%">75%</strong><span>less time on screening</span></div>
+          </div>
+          <div class="stat">
+            <span class="stat-ico"><svg class="ico-style"><use href="#i-clock" /></svg></span>
+            <div><strong>24/7</strong><span>candidate and staff support</span></div>
+          </div>
+          <div class="stat">
+            <span class="stat-ico"><svg class="ico-style"><use href="#i-shield" /></svg></span>
+            <div><strong data-count="100" data-suf="%">100%</strong><span>same criteria for every CV</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 2 · CV X-RAY (marker highlights) ================= -->
+    <section class="section hr-xray" id="hr-screen" aria-labelledby="xray-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">CV screening</span>
+          <h2 class="h-section" id="xray-title">Read every CV like your best recruiter would.</h2>
+          <p class="lead">The agent checks each application against the job, highlights the evidence and explains the score. Your team reviews a shortlist, not a pile.</p>
+        </div>
+
+        <div class="hr-xr" id="hr-xr">
+          <article class="hr-cv" aria-label="Example CV with the matching evidence highlighted">
+            <div class="hr-cv-top"><span class="hr-av">AK</span><div><b>Arjun K.</b><small>Product Designer &middot; Mumbai</small></div><em>CV</em></div>
+            <p>Led the <mark>design system</mark> at a fintech startup, used by 12 product teams.</p>
+            <p>Built prototypes in <mark>Figma</mark> and ran weekly user tests.</p>
+            <p>Managed <mark>a team of 4 designers</mark> across two time zones.</p>
+            <p><mark>6 years</mark> of experience shipping web and mobile products.</p>
+            <p>Portfolio: <mark>arjunk.design</mark> with three case studies.</p>
+          </article>
+
+          <div class="hr-xr-arrow" aria-hidden="true"><svg class="ico"><use href="#i-arrow" /></svg></div>
+
+          <aside class="hr-req" aria-label="Role requirements and match score">
+            <h3>Role requirements <small>Senior Designer</small></h3>
+            <ul class="hr-rqs">
+              <li class="hr-rq"><span class="st"><svg class="ico"><use href="#i-check" /></svg></span><b>Design systems</b><em>Found</em></li>
+              <li class="hr-rq"><span class="st"><svg class="ico"><use href="#i-check" /></svg></span><b>Figma</b><em>Found</em></li>
+              <li class="hr-rq"><span class="st"><svg class="ico"><use href="#i-check" /></svg></span><b>Leads a team</b><em>Found</em></li>
+              <li class="hr-rq"><span class="st"><svg class="ico"><use href="#i-check" /></svg></span><b>5+ years</b><em>Found</em></li>
+              <li class="hr-rq"><span class="st"><svg class="ico"><use href="#i-check" /></svg></span><b>Portfolio</b><em>Found</em></li>
+              <li class="hr-rq warn"><span class="st"><svg class="ico"><use href="#i-x" /></svg></span><b>Motion design</b><em>Not found</em></li>
+            </ul>
+            <div class="hr-meter"><span>Match score</span><div class="hr-meter-bar"><i id="hr-mfill"></i></div><b id="hr-mnum">88%</b></div>
+            <p class="hr-req-note">Matches 5 of 6 requirements. The CV does not mention motion design. A recruiter makes the final call.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 3 · SCHEDULING PUZZLE ================= -->
+    <section class="section hr-sched" id="hr-schedule" aria-labelledby="sch-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Interview scheduling</span>
+          <h2 class="h-section" id="sch-title">Interviews booked without the email ping-pong.</h2>
+          <p class="lead">The agent reads everyone&rsquo;s calendar, finds the one slot that works for all, and sends the invite, the video link and the prep notes.</p>
+        </div>
+
+        <div class="hr-sch" id="hr-sch" role="img" aria-label="Four calendars scanned to find the only time that works for everyone: Thursday 11:00">
+          <div class="hr-sch-head"><span><svg class="ico"><use href="#i-calendar" /></svg>Thursday</span><b id="hr-sch-st">Interview booked for 11:00</b></div>
+          <div class="hr-sch-cols">
+            <span></span>
+            <span class="hr-who"><i>AK</i>Candidate</span>
+            <span class="hr-who"><i>DM</i>Hiring manager</span>
+            <span class="hr-who"><i>LP</i>Designer</span>
+            <span class="hr-who"><i>NR</i>HR partner</span>
+          </div>
+          <div class="hr-sch-body">
+            <span class="hr-tm">9:00</span>
+            <span class="hr-ce busy" style="--n:0">Busy</span>
+            <span class="hr-ce busy" style="--n:1">Busy</span>
+            <span class="hr-ce free"></span>
+            <span class="hr-ce busy" style="--n:2">Busy</span>
+            <span class="hr-tm">10:00</span>
+            <span class="hr-ce free"></span>
+            <span class="hr-ce busy" style="--n:3">Busy</span>
+            <span class="hr-ce busy" style="--n:4">Busy</span>
+            <span class="hr-ce free"></span>
+            <span class="hr-tm">11:00</span>
+            <span class="hr-ce free m"></span>
+            <span class="hr-ce free m"></span>
+            <span class="hr-ce free m"></span>
+            <span class="hr-ce free m"></span>
+            <span class="hr-tm">12:00</span>
+            <span class="hr-ce free"></span>
+            <span class="hr-ce free"></span>
+            <span class="hr-ce busy" style="--n:5">Busy</span>
+            <span class="hr-ce busy" style="--n:6">Busy</span>
+            <span class="hr-tm">13:00</span>
+            <span class="hr-ce busy" style="--n:7">Busy</span>
+            <span class="hr-ce free"></span>
+            <span class="hr-ce busy" style="--n:8">Busy</span>
+            <span class="hr-ce free"></span>
+            <span class="hr-tm">14:00</span>
+            <span class="hr-ce free"></span>
+            <span class="hr-ce busy" style="--n:9">Busy</span>
+            <span class="hr-ce free"></span>
+            <span class="hr-ce free"></span>
+            <i class="hr-sweep" aria-hidden="true"></i>
+            <div class="hr-book"><svg class="ico"><use href="#i-check" /></svg>Interview &middot; 11:00 to 12:00</div>
+          </div>
+          <ul class="hr-sch-foot">
+            <li><svg class="ico"><use href="#i-mail" /></svg>Invite and video link sent</li>
+            <li><svg class="ico"><use href="#i-file" /></svg>Prep notes shared</li>
+            <li><svg class="ico"><use href="#i-bell" /></svg>Reminder set for 24 hours before</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 4 · CANDIDATE EXPERIENCE (phone) ================= -->
+    <section class="section hr-phone-sec" id="hr-candidate" aria-labelledby="cand-title">
+      <div class="container hr-phone-grid" data-reveal>
+        <div class="hr-phone-copy">
+          <span class="pill">Candidate experience</span>
+          <h2 class="h-section" id="cand-title">Candidates get answers, not silence.</h2>
+          <p class="lead">Most candidates never hear back. The agent keeps everyone informed at every step, in your tone of voice, and answers their questions straight away.</p>
+          <ul class="hr-list">
+            <li><svg class="ico"><use href="#i-check" /></svg>Instant confirmation when they apply</li>
+            <li><svg class="ico"><use href="#i-check" /></svg>Status updates at every stage</li>
+            <li><svg class="ico"><use href="#i-check" /></svg>Answers about the role, pay process and benefits</li>
+            <li><svg class="ico"><use href="#i-check" /></svg>Polite, personal feedback instead of a silent rejection</li>
+          </ul>
+        </div>
+
+        <div class="hr-phone" id="hr-phone">
+          <div class="hr-ph-frame" id="hr-ph-frame">
+            <i class="hr-notch" aria-hidden="true"></i>
+            <div class="hr-ph-time"><b>9:41</b><small>Today</small></div>
+            <div class="hr-nts" id="hr-nts" role="img" aria-label="Example notifications a candidate receives during the hiring process">
+              <article class="hr-nt" style="--s:3"><span class="hr-nt-ic"><svg class="ico"><use href="#i-check" /></svg></span><div><b>Application received</b><p>Thanks Arjun, we have your application for Senior Designer. Expect an update within 3 days.</p></div><time>now</time></article>
+              <article class="hr-nt" style="--s:2"><span class="hr-nt-ic"><svg class="ico"><use href="#i-calendar" /></svg></span><div><b>You&rsquo;re through to the next step</b><p>Pick a time for a 30-minute call with Daniel.</p></div><time>2d</time></article>
+              <article class="hr-nt" style="--s:1"><span class="hr-nt-ic"><svg class="ico"><use href="#i-bell" /></svg></span><div><b>Reminder: interview tomorrow</b><p>Thursday 11:00. Here is your video link and the panel.</p></div><time>1d</time></article>
+              <article class="hr-nt" style="--s:0"><span class="hr-nt-ic"><svg class="ico"><use href="#i-users" /></svg></span><div><b>Good news</b><p>Your offer letter is ready to review and sign.</p></div><time>3h</time></article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 5 · FAIR SCREENING (before / after slider, dark) ================= -->
+    <section class="section hr-fair" id="hr-fair" aria-labelledby="fair-title">
+      <div class="engine-dots" aria-hidden="true"></div>
+      <div class="container hr-fair-grid" data-reveal>
+        <div class="hr-fair-copy">
+          <span class="pill pill--dark">Fair by design</span>
+          <h2 class="h-section" id="fair-title">Screen on skills, not on names.</h2>
+          <p class="lead">The agent can hide details that should not influence a first review and scores every candidate against the same criteria. Drag the slider to see the difference.</p>
+          <ul class="hr-list hr-list--light">
+            <li><svg class="ico"><use href="#i-eye" /></svg>Hides names, photos and ages while scoring</li>
+            <li><svg class="ico"><use href="#i-target" /></svg>Same criteria for every single candidate</li>
+            <li><svg class="ico"><use href="#i-file" /></svg>Every score comes with a written reason</li>
+          </ul>
+          <a class="btn btn--primary btn--lg" href="contact-us.html">Talk to our team <svg class="ico"><use href="#i-arrow" /></svg></a>
+        </div>
+
+        <div class="hr-cmp" id="hr-cmp" aria-label="Comparison of a standard CV and an anonymised view">
+          <div class="hr-layer hr-layer--a">
+            <span class="hr-lbl">Standard CV</span>
+            <div class="hr-id"><span class="hr-photo">AK</span><div><b>Arjun Kapoor</b><small>Product Designer</small></div></div>
+            <dl class="hr-dl">
+              <div><dt>Age</dt><dd>34</dd></div>
+              <div><dt>Location</dt><dd>Mumbai, India</dd></div>
+              <div><dt>School</dt><dd>Elite Institute</dd></div>
+              <div><dt>Career gap</dt><dd>2020 to 2021</dd></div>
+            </dl>
+            <div class="hr-skills">
+              <div><span>Design systems</span><i style="--w:92%"></i></div>
+              <div><span>Figma</span><i style="--w:95%"></i></div>
+              <div><span>Leadership</span><i style="--w:78%"></i></div>
+            </div>
+          </div>
+
+          <div class="hr-layer hr-layer--b" aria-hidden="true">
+            <span class="hr-lbl hr-lbl--r">Anonymised view</span>
+            <div class="hr-id"><span class="hr-photo hr-photo--anon"><svg class="ico"><use href="#i-user" /></svg></span><div><b>Candidate #482</b><small>Product Designer</small></div></div>
+            <dl class="hr-dl">
+              <div><dt>Age</dt><dd><i class="hr-hide"></i></dd></div>
+              <div><dt>Location</dt><dd><i class="hr-hide"></i></dd></div>
+              <div><dt>School</dt><dd><i class="hr-hide"></i></dd></div>
+              <div><dt>Career gap</dt><dd><i class="hr-hide"></i></dd></div>
+            </dl>
+            <div class="hr-skills">
+              <div><span>Design systems</span><i style="--w:92%"></i></div>
+              <div><span>Figma</span><i style="--w:95%"></i></div>
+              <div><span>Leadership</span><i style="--w:78%"></i></div>
+            </div>
+          </div>
+
+          <div class="hr-cmp-h" id="hr-cmp-h" role="slider" tabindex="0" aria-label="Drag to compare" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><span class="hr-knob"><svg class="ico"><use href="#i-drag" /></svg></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 6 · FASTER HIRING (race) ================= -->
+    <section class="section hr-race" id="hr-speed" aria-labelledby="race-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Faster hiring</span>
+          <h2 class="h-section" id="race-title">Hire in weeks, not months.</h2>
+          <p class="lead">Most of the time between a job post and a start date is waiting: for screening, for replies and for diaries to line up. Agents remove the waiting.</p>
+        </div>
+
+        <div class="hr-lanes" id="hr-lanes" role="img" aria-label="Example comparison: 42 days to hire with a typical process and 18 days with an agent">
+          <div class="hr-day"><span>Day</span><b id="hr-daynum">42</b></div>
+
+          <div class="hr-lane hr-lane--a">
+            <div class="hr-lane-h"><b>Typical process</b><small>Manual screening and scheduling</small><em id="hr-ta">42 days</em></div>
+            <div class="hr-track"><i class="hr-fill"></i>
+              <span class="hr-stop" data-x="0"></span><span class="hr-stop" data-x="25"></span><span class="hr-stop" data-x="50"></span><span class="hr-stop" data-x="75"></span><span class="hr-stop" data-x="100"></span>
+              <span class="hr-run"><svg class="ico"><use href="#i-user" /></svg></span>
+            </div>
+          </div>
+
+          <div class="hr-lane hr-lane--b">
+            <div class="hr-lane-h"><b>With an HR agent</b><small>Screening, scheduling and updates automated</small><em id="hr-tb">18 days</em></div>
+            <div class="hr-track"><i class="hr-fill"></i>
+              <span class="hr-stop" data-x="0"></span><span class="hr-stop" data-x="25"></span><span class="hr-stop" data-x="50"></span><span class="hr-stop" data-x="75"></span><span class="hr-stop" data-x="100"></span>
+              <span class="hr-run"><svg class="ico"><use href="#i-bolt" /></svg></span>
+            </div>
+          </div>
+
+          <ul class="hr-ms" aria-hidden="true"><li>Post the job</li><li>Screen CVs</li><li>Interviews</li><li>Offer</li><li>Start date</li></ul>
+          <p class="hr-saved" id="hr-saved"><svg class="ico"><use href="#i-flag" /></svg>24 days faster</p>
+          <p class="hr-lanes-note">Illustrative example. Real timelines depend on the role, your market and your process.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 7 · ONBOARDING (30-day heat map) ================= -->
+    <section class="section hr-onb" id="hr-onboarding" aria-labelledby="onb-title">
+      <div class="container hr-onb-grid" data-reveal>
+        <div class="hr-onb-copy">
+          <span class="pill">Onboarding</span>
+          <h2 class="h-section" id="onb-title">A first month that runs itself.</h2>
+          <p class="lead">From the signed offer to day 30, the agent creates accounts, orders equipment, books training and chases paperwork, so new hires feel looked after and HR stays free.</p>
+          <ul class="hr-key">
+            <li><i style="--c:var(--navy)"></i>Accounts and access</li>
+            <li><i style="--c:var(--blue)"></i>Equipment</li>
+            <li><i style="--c:var(--red)"></i>Training</li>
+            <li><i style="--c:#ff8da6"></i>Introductions</li>
+            <li><i style="--c:#2fb47c"></i>Paperwork</li>
+          </ul>
+        </div>
+
+        <div class="hr-hm" id="hr-hm">
+          <div class="hr-hm-top"><span>Sam T. &middot; first 30 days</span><b id="hr-hnum">0 of 0 tasks</b></div>
+          <div class="hr-cells" id="hr-cells" role="img" aria-label="Thirty days of onboarding tasks completed one after another">
+            <i class="hr-cell" data-c="0" data-l="3"><span>1</span></i>
+            <i class="hr-cell" data-c="0" data-l="2"><span>2</span></i>
+            <i class="hr-cell" data-c="1" data-l="2"><span>3</span></i>
+            <i class="hr-cell" data-c="0" data-l="1"><span>4</span></i>
+            <i class="hr-cell" data-c="2" data-l="2"><span>5</span></i>
+            <i class="hr-cell" data-c="3" data-l="1"><span>6</span></i>
+            <i class="hr-cell" data-c="0" data-l="1"><span>7</span></i>
+            <i class="hr-cell" data-c="1" data-l="2"><span>8</span></i>
+            <i class="hr-cell" data-c="2" data-l="3"><span>9</span></i>
+            <i class="hr-cell" data-c="2" data-l="2"><span>10</span></i>
+            <i class="hr-cell" data-c="3" data-l="1"><span>11</span></i>
+            <i class="hr-cell" data-c="4" data-l="2"><span>12</span></i>
+            <i class="hr-cell" data-c="2" data-l="2"><span>13</span></i>
+            <i class="hr-cell" data-c="3" data-l="1"><span>14</span></i>
+            <i class="hr-cell" data-c="2" data-l="3"><span>15</span></i>
+            <i class="hr-cell" data-c="4" data-l="2"><span>16</span></i>
+            <i class="hr-cell" data-c="2" data-l="2"><span>17</span></i>
+            <i class="hr-cell" data-c="3" data-l="1"><span>18</span></i>
+            <i class="hr-cell" data-c="2" data-l="2"><span>19</span></i>
+            <i class="hr-cell" data-c="4" data-l="1"><span>20</span></i>
+            <i class="hr-cell" data-c="3" data-l="2"><span>21</span></i>
+            <i class="hr-cell" data-c="2" data-l="3"><span>22</span></i>
+            <i class="hr-cell" data-c="3" data-l="1"><span>23</span></i>
+            <i class="hr-cell" data-c="4" data-l="2"><span>24</span></i>
+            <i class="hr-cell" data-c="3" data-l="1"><span>25</span></i>
+            <i class="hr-cell" data-c="3" data-l="2"><span>26</span></i>
+            <i class="hr-cell" data-c="2" data-l="2"><span>27</span></i>
+            <i class="hr-cell" data-c="3" data-l="1"><span>28</span></i>
+            <i class="hr-cell" data-c="4" data-l="2"><span>29</span></i>
+            <i class="hr-cell" data-c="3" data-l="3"><span>30</span></i>
+          </div>
+          <div class="hr-hm-end"><span class="hr-badge"><svg class="ico"><use href="#i-check" /></svg>Fully onboarded</span><div class="hr-conf" id="hr-conf" aria-hidden="true"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 8 · HOW IT WORKS (metro line) ================= -->
+    <section class="section hr-how" id="hr-how" aria-labelledby="how-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">How it works</span>
+          <h2 class="h-section" id="how-title">From first call to live agent, stop by stop.</h2>
+        </div>
+
+        <div class="hr-metro" id="hr-metro">
+          <svg class="hr-mline" viewBox="0 0 1000 200" aria-hidden="true">
+            <path class="hr-m-base" id="hr-mpath" d="M30 120 C 180 10, 320 210, 500 110 S 820 10, 970 100" />
+            <path class="hr-m-prog" id="hr-mprog" d="M30 120 C 180 10, 320 210, 500 110 S 820 10, 970 100" />
+            <g id="hr-mstops"></g>
+            <circle class="hr-train" id="hr-train" r="12" cx="30" cy="120" />
+          </svg>
+
+          <ol class="hr-msteps" id="hr-msteps">
+            <li class="hr-ms-i is-on"><span>1</span><h3>Define roles and policies</h3><p>We capture your job profiles, hiring criteria, HR policies and tone of voice.</p></li>
+            <li class="hr-ms-i"><span>2</span><h3>Connect your HR tools</h3><p>Link your ATS, HRIS, calendars, email and chat with the access you choose.</p></li>
+            <li class="hr-ms-i"><span>3</span><h3>Pilot in approval mode</h3><p>The agent drafts and recommends while your team approves each step.</p></li>
+            <li class="hr-ms-i"><span>4</span><h3>Go live and improve</h3><p>Switch on automation for what is proven, with weekly reports on speed and quality.</p></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FAQ ================= -->
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="container faq-grid" data-reveal>
+        <div class="faq-head">
+          <span class="pill">Common questions</span>
+          <h2 class="h-section" id="faq-title">HR and recruitment agent FAQs</h2>
+        </div>
+        <div class="faq-list" id="faq-list">
+          <div class="faq-item open">
+            <h3><button class="faq-q" type="button" aria-expanded="true">Does the AI make the hiring decision? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>No. The agent screens, scores with a written reason, schedules and communicates. Your team reviews the shortlist and makes every hiring decision.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">How do you keep screening fair? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>The agent scores every candidate against the same criteria, can hide details such as names, photos and ages during the first review, and explains each score. We also test results with your team. Rules differ by country, so we configure it to match your local requirements.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Which HR tools can it connect to? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Applicant tracking systems such as Greenhouse, Lever and Workable, HR systems such as BambooHR, Workday and Zoho People, plus Google Calendar, Outlook, email, Slack and Teams. If you use something else, we can connect through its API.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Can employees ask it HR questions too? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. It can answer questions about leave, payslips, benefits and policies from your own documents, and pass sensitive or personal cases straight to a member of the HR team.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">How is candidate data protected? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Access is limited to the people and systems you approve, data is encrypted, and you set retention and deletion rules. We confirm the exact settings with you before launch.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+    <section class="cta" id="contact" aria-labelledby="cta-title">
+      <div class="cta-grid">
+        <div class="cta-bar" aria-hidden="true"></div>
+        <div class="cta-box">
+          <div class="ripples" aria-hidden="true"><span></span><span></span><span></span></div>
+          <h2 id="cta-title">Give your HR team their time back.</h2>
+          <p>Tell us where HR spends its week and we&rsquo;ll show how an agent could take it on.</p>
+          <a class="btn btn--primary btn--lg btn-sweep" href="contact-us.html"><span style="position:relative">Get a Free Automation Review</span></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="footer-panel">
+      <div class="footer-flag" aria-hidden="true"></div>
+      <div class="footer-main">
+        <div class="footer-brand">
+          <img src="images/codevelop.webp" alt="Codevelop logo" class="brand-logo" width="160" height="40">
+          <p>At Codevelop, we help businesses turn strategy into scalable results through thoughtful design,
+            performance-driven marketing, and modern technology.</p>
+          <div class="socials">
+            <a href="https://www.facebook.com/Codevelop.usa/" aria-label="Facebook" target="_blank" rel="noopener"><svg class="ico"><use href="#i-fb" /></svg></a>
+            <a href="https://www.instagram.com/codevelop_us/" aria-label="Instagram" target="_blank" rel="noopener"><svg class="ico"><use href="#i-ig" /></svg></a>
+            <a href="https://www.linkedin.com/company/codevelop-us" aria-label="LinkedIn" target="_blank" rel="noopener"><svg class="ico"><use href="#i-in" /></svg></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Services</h3>
+          <ul>
+            <li><a href="performance-marketing.html">Performance Marketing</a></li>
+            <li><a href="#">SEO Services</a></li>
+            <li><a href="#">Social Media Marketing</a></li>
+            <li><a href="web-development.html">Web Development</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Link</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Case Studies</a></li>
+            <li><a href="#">Blogs</a></li>
+            <li><a href="https://codevelopus.com/">Free SEO Audit</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Contact Us</h3>
+          <ul class="contact">
+            <li><svg class="ico"><use href="#i-pin" /></svg><span>555 SE Martin Luther King JR Blvd, Portland, OR 97214</span></li>
+            <li><svg class="ico"><use href="#i-phone" /></svg><a href="tel:+19714809833">+1 971-480-9833</a></li>
+            <li><svg class="ico"><use href="#i-mail" /></svg><a href="mailto:info@codevelop.us">info@codevelop.us</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="newsletter">
+        <div class="newsletter-box">
+          <h3>Signup our newsletter to get update information, news, insight or promotions.</h3>
+          <form class="news-form" action="#" method="post">
+            <label class="sr-only" for="news-email">Email</label>
+            <input id="news-email" type="email" name="email" placeholder="Email" required autocomplete="email">
+            <button class="btn btn--primary" type="submit">Sign up</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <span>Copyright © 2026 Codevelop US, All Rights Reserved.</span>
+      <a href="#">Privacy policy</a>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script src="js/hr-recruitment-agents.js"></script>
+</body>
+
+</html>

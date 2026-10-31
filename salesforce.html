@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Salesforce Integration Services | Codevelop</title>
+  <meta name="description"
+    content="Codevelop connects Salesforce to NetSuite, SAP Business One, QuickBooks, Shopify, Marketo and Slack with fixed-scope builds and a named engineer after go-live.">
+  <link rel="canonical" href="https://codevelopus.com/salesforce">
+  <meta name="theme-color" content="#0a3161">
+  <link rel="icon" href="https://codevelopus.com/wp-content/uploads/2026/01/cropped-codevelop-favicon-270x270.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/connector.css">
+</head>
+
+<body>
+
+ <body>
+
+  <!-- Icon sprite -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-star" viewBox="0 0 24 24">
+        <path d="M12 2.5l2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.4l-5.9 3.3 1.2-6.6L2.5 9.5l6.6-.9L12 2.5z" />
+      </symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24">
+        <path d="M5 12h14M13 6l6 6-6 6" />
+      </symbol>
+      <symbol id="i-check" viewBox="0 0 24 24">
+        <path d="M5 12.5l4.5 4.5L19 7.5" />
+      </symbol>
+      <symbol id="i-chev" viewBox="0 0 24 24">
+        <path d="M6 9l6 6 6-6" />
+      </symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24">
+        <path d="M12 5v14M5 12h14" />
+      </symbol>
+      <symbol id="i-layers" viewBox="0 0 24 24">
+        <path d="M12 3l9 5-9 5-9-5 9-5z" />
+        <path d="M3 13l9 5 9-5" />
+      </symbol>
+      <symbol id="i-grid" viewBox="0 0 24 24">
+        <rect x="3" y="3" width="7" height="7" rx="1.5" />
+        <rect x="14" y="3" width="7" height="7" rx="1.5" />
+        <rect x="3" y="14" width="7" height="7" rx="1.5" />
+        <rect x="14" y="14" width="7" height="7" rx="1.5" />
+      </symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 7v5l3 2" />
+      </symbol>
+      <symbol id="i-code" viewBox="0 0 24 24">
+        <path d="M8 8l-5 4 5 4M16 8l5 4-5 4M14 5l-4 14" />
+      </symbol>
+      <symbol id="i-pen" viewBox="0 0 24 24">
+        <path d="M4 20l4-1 11-11-3-3L5 16l-1 4z" />
+        <path d="M14 6l3 3" />
+      </symbol>
+      <symbol id="i-bolt" viewBox="0 0 24 24">
+        <path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z" />
+      </symbol>
+      <symbol id="i-cms" viewBox="0 0 24 24">
+        <rect x="3" y="4" width="18" height="16" rx="2" />
+        <path d="M3 9h18M8 9v11" />
+      </symbol>
+      <symbol id="i-search" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="7" />
+        <path d="M20 20l-4-4" />
+      </symbol>
+      <symbol id="i-target" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" />
+        <circle cx="12" cy="12" r="5" />
+        <circle cx="12" cy="12" r="1.5" />
+      </symbol>
+      <symbol id="i-funnel" viewBox="0 0 24 24">
+        <path d="M3 4h18l-7 8v6l-4 2v-8L3 4z" />
+      </symbol>
+      <symbol id="i-doc" viewBox="0 0 24 24">
+        <path d="M6 3h9l4 4v14H6V3z" />
+        <path d="M14 3v5h5M9 13h7M9 17h7" />
+      </symbol>
+      <symbol id="i-chart" viewBox="0 0 24 24">
+        <path d="M4 20V10M10 20V4M16 20v-7M22 20H2" />
+      </symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24">
+        <path d="M4 5h16v11H9l-5 4V5z" />
+      </symbol>
+      <symbol id="i-spark" viewBox="0 0 24 24">
+        <path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M18 6l-2.5 2.5M8.5 15.5L6 18" />
+      </symbol>
+      <symbol id="i-eye" viewBox="0 0 24 24">
+        <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z" />
+        <circle cx="12" cy="12" r="3" />
+      </symbol>
+      <symbol id="i-flag" viewBox="0 0 24 24">
+        <path d="M5 21V4M5 4h12l-2 4 2 4H5" />
+      </symbol>
+      <symbol id="i-tooth" viewBox="0 0 24 24">
+        <path
+          d="M7 3C4.5 3 3 5 3 7.5c0 2 1 3 1.5 5S5 21 6.5 21 8 17 9 16s2-1 3-1 2 0 3 1 1 5 2.5 5 1.5-4 2-8.5c.5-2 1.5-3 1.5-5C21 5 19.5 3 17 3c-2 0-3 1-5 1S9 3 7 3z" />
+      </symbol>
+      <symbol id="i-home" viewBox="0 0 24 24">
+        <path d="M3 11l9-7 9 7" />
+        <path d="M5 10v10h14V10" />
+        <path d="M10 20v-5h4v5" />
+      </symbol>
+      <symbol id="i-scale" viewBox="0 0 24 24">
+        <path d="M12 3v18M5 21h14M6 6h12M6 6l-3 7a3 3 0 0 0 6 0L6 6zM18 6l-3 7a3 3 0 0 0 6 0l-3-7z" />
+      </symbol>
+      <symbol id="i-sparkle" viewBox="0 0 24 24">
+        <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z" />
+        <path d="M19 17l.8 2.2L22 20l-2.2.8L19 23l-.8-2.2L16 20l2.2-.8L19 17z" />
+      </symbol>
+      <symbol id="i-fb" viewBox="0 0 24 24">
+        <path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v7h4v-7h3l1-4h-4V8z" />
+      </symbol>
+      <symbol id="i-ig" viewBox="0 0 24 24">
+        <rect x="3" y="3" width="18" height="18" rx="5" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="17.5" cy="6.5" r="0.8" />
+      </symbol>
+      <symbol id="i-in" viewBox="0 0 24 24">
+        <rect x="3" y="9" width="4" height="12" />
+        <circle cx="5" cy="5" r="2" />
+        <path d="M10 9h4v2a4 4 0 0 1 6 3v7h-4v-6a2 2 0 0 0-4 0v6h-4V9z" />
+      </symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24">
+        <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" />
+      </symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24">
+        <rect x="3" y="5" width="18" height="14" rx="2" />
+        <path d="M3 7l9 6 9-6" />
+      </symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24">
+        <path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11z" />
+        <circle cx="12" cy="10" r="2.5" />
+      </symbol>
+      <symbol id="i-pointer" viewBox="0 0 24 24">
+        <path d="M5 3l14 7-6 2-2 6L5 3z" fill="currentColor" />
+      </symbol>
+      <symbol id="i-drag" viewBox="0 0 24 24">
+        <path d="M8 7l-5 5 5 5M16 7l5 5-5 5" />
+      </symbol>
+      <symbol id="i-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16" />
+      </symbol>
+      <symbol id="i-flow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+        stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="6" height="6" rx="1" />
+        <rect x="15" y="15" width="6" height="6" rx="1" />
+        <path d="M9 6h4a2 2 0 0 1 2 2v7" />
+      </symbol>
+      <symbol id="i-megaphone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 10v4h4l8 5V5L7 10H3z" />
+        <path d="M18.5 9a4 4 0 0 1 0 6" />
+      </symbol>
+      <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2V5z" />
+        <path d="M4 19a2 2 0 0 1 2-2h13" />
+      </symbol>
+      <symbol id="i-coin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+        stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="9" />
+        <path
+          d="M14.5 9.5c-.5-1-1.5-1.5-2.5-1.5-1.4 0-2.5.8-2.5 2s1 1.7 2.5 2 2.5.8 2.5 2-1.1 2-2.5 2c-1 0-2-.5-2.5-1.5M12 6.5V8m0 8v1.5" />
+      </symbol>
+      <symbol id="i-desk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+        stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="4" width="18" height="12" rx="2" />
+        <path d="M8 20h8M12 16v4" />
+      </symbol>
+      <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+        stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="9" cy="8" r="3.5" />
+        <path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6" />
+        <path d="M16 4.7a3.5 3.5 0 0 1 0 6.6M18 14.3c2 .7 3.5 2.6 3.5 5.7" />
+      </symbol>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header" id="top">
+    <div class="bar">
+      <a class="logo" href="index.html" aria-label="Codevelop home"><img src="images/codevelop.webp"
+          alt="Codevelop logo" class="brand-logo" width="160" height="40"></a>
+      <button class="burger" type="button" aria-label="Open menu"
+        aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav aria-label="Main">
+        <ul>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">AI Agents <svg class="chev"
+                viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop drop--agents">
+              <div class="agents-top">
+                <span class="agents-label">AI Agents</span>
+                <a class="agents-all" href="#">View all agents</a>
+              </div>
+
+              <a class="agent" href="customer-support-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-chat" />
+                  </svg></span>
+                <span class="agent-txt"><b>Customer Support Agents</b><small>24/7 answers across chat &amp;
+                    inbox</small></span>
+              </a>
+              <a class="agent" href="sales-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-funnel" />
+                  </svg></span>
+                <span class="agent-txt"><b>Sales &amp; Lead-Generation Agents</b><small>Capture, qualify &amp; follow up
+                    with leads</small></span>
+              </a>
+
+              <a class="agent" href="software-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-code" />
+                  </svg></span>
+                <span class="agent-txt"><b>Software Development Agents</b><small>Code, review &amp; ship
+                    faster</small></span>
+              </a>
+              <a class="agent" href="workflow-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-flow" />
+                  </svg></span>
+                <span class="agent-txt"><b>Workflow Automation Agents</b><small>Connect tools &amp; automate routine
+                    tasks</small></span>
+              </a>
+
+              <a class="agent" href="marketing-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-megaphone" />
+                  </svg></span>
+                <span class="agent-txt"><b>Marketing Agents</b><small>Campaigns, content &amp; channel
+                    management</small></span>
+              </a>
+              <a class="agent" href="research-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-chart" />
+                  </svg></span>
+                <span class="agent-txt"><b>Research &amp; Data Analyst Agents</b><small>Insights &amp; plain-language
+                    reports</small></span>
+              </a>
+
+              <a class="agent" href="internal-knowledge-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-book" />
+                  </svg></span>
+                <span class="agent-txt"><b>Internal Knowledge Agents</b><small>Instant answers from your company
+                    data</small></span>
+              </a>
+              <a class="agent" href="finance-accounting-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-coin" />
+                  </svg></span>
+                <span class="agent-txt"><b>Finance &amp; Accounting Agents</b><small>Invoices, reconciliation &amp;
+                    reporting</small></span>
+              </a>
+
+              <a class="agent" href="it-service-desk-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-desk" />
+                  </svg></span>
+                <span class="agent-txt"><b>IT Service Desk Agents</b><small>Resolve tickets &amp; access
+                    requests</small></span>
+              </a>
+              <a class="agent" href="hr-recruitment-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-users" />
+                  </svg></span>
+                <span class="agent-txt"><b>HR &amp; Recruitment Agents</b><small>Screen, schedule &amp; onboard
+                    people</small></span>
+              </a>
+            </div>
+          </li>
+<li class="has-mega"><button class="top" type="button" aria-expanded="false">Connectors <svg class="chev"
+                viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop drop--agents drop--connectors">
+              <div class="agents-top">
+                <span class="agents-label">Connectors</span>
+                <a class="agents-all" href="#">View all connectors</a>
+              </div>
+
+              <a class="agent" href="sap-business-one.html">
+                <span class="agent-ico"><img src="images/sap.png" alt="SAP Business One" loading="lazy"></span>
+                <span class="agent-txt"><b>SAP Business One</b><small>ERP integration &amp; consulting</small></span>
+              </a>
+              <a class="agent" href="salesforce.html">
+                <span class="agent-ico"><img src="images/salesforce.png" alt="Salesforce" loading="lazy"></span>
+                <span class="agent-txt"><b>Salesforce</b><small>CRM &amp; order-to-cash sync</small></span>
+              </a>
+
+              <a class="agent" href="netsuite.html">
+                <span class="agent-ico"><img src="images/netsuite.png" alt="NetSuite" loading="lazy"></span>
+                <span class="agent-txt"><b>NetSuite</b><small>ERP, ecommerce &amp; EDI sync</small></span>
+              </a>
+              <a class="agent" href="shopify.html">
+                <span class="agent-ico"><img src="images/shopify.png" alt="Shopify" loading="lazy"></span>
+                <span class="agent-txt"><b>Shopify</b><small>Ecommerce ↔ back office</small></span>
+              </a>
+
+              <a class="agent" href="quickbooks.html">
+                <span class="agent-ico"><img src="images/quickbooks.png" alt="QuickBooks" loading="lazy"></span>
+                <span class="agent-txt"><b>QuickBooks</b><small>Accounting &amp; invoice sync</small></span>
+              </a>
+              <a class="agent" href="woocommerce.html">
+                <span class="agent-ico"><img src="images/woocommerce.png" alt="WooCommerce" loading="lazy"></span>
+                <span class="agent-txt"><b>WooCommerce</b><small>WordPress store integration</small></span>
+              </a>
+
+              <a class="agent" href="zoho.html">
+                <span class="agent-ico"><img src="images/zoho.png" alt="Zoho" loading="lazy"></span>
+                <span class="agent-txt"><b>Zoho</b><small>Zoho One suite integration</small></span>
+              </a>
+              <a class="agent" href="zuper.html">
+                <span class="agent-ico"><img src="images/zuper.png" alt="Zuper" loading="lazy"></span>
+                <span class="agent-txt"><b>Zuper</b><small>Field service management sync</small></span>
+              </a>
+
+              <a class="agent" href="attio.html">
+                <span class="agent-ico"><img src="images/attio.png" alt="Attio" loading="lazy"></span>
+                <span class="agent-txt"><b>Attio</b><small>CRM &amp; record sync</small></span>
+              </a>
+              <a class="agent" href="twenty.html">
+                <span class="agent-ico"><img src="images/twenty.png" alt="Twenty" loading="lazy"></span>
+                <span class="agent-txt"><b>Twenty</b><small>Open-source CRM sync</small></span>
+              </a>
+            </div>
+          </li>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">Services <svg class="chev"
+                viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop drop--mega">
+              <div class="mega-top">
+                <a class="mega-all" href="services.html">View all services <svg class="ico" width="16" height="16"
+                    aria-hidden="true">
+                    <use href="#i-arrow" />
+                  </svg></a>
+              </div>
+
+              <div class="mega-col">
+                <h4><a href="performance-marketing.html">Performance Marketing</a></h4>
+                <a href="meta-ads.html">Google Ads Management</a>
+                <a href="facebook-ads.html">Facebook Ads</a>
+                <a href="remarketing.html">Remarketing</a>
+              </div>
+
+              <div class="mega-col">
+                <h4><a href="web-development.html">Web Development Services</a></h4>
+                <a href="custom-website-design.html">Custom Website Design</a>
+                <a href="wordpress-development.html">WordPress Web Development</a>
+                <a href="shopify-development.html">Shopify Web Development</a>
+                <a href="webflow-development.html">Webflow Web Development</a>
+                <a href="framer-development.html">Framer Web Development</a>
+                <a href="mageneto-development.html">Magento Web Development</a>
+                <a href="website-maintenance.html">Website Maintenance</a>
+                <a href="website-redesign.html">Website Redesign</a>
+              </div>
+
+              <div class="mega-col">
+                <h4><a href="social-media-marketing.html">Social Media Marketing</a></h4>
+                <a href="content-marketing.html">Content Marketing</a>
+              </div>
+
+              <div class="mega-col">
+                <h4><a href="search-engine-optimization.html">Search Engine Optimization</a></h4>
+                <a href="local-seo.html">Local SEO</a>
+                <a href="seo-audits.html">SEO Audits</a>
+                <a href="technical-seo.html">Technical SEO</a>
+                <a href="enterprise-seo.html">Enterprise SEO</a>
+              </div>
+            </div>
+          </li>
+          <li><button class="top" type="button" aria-expanded="false">Hire Talent <svg class="chev" viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop"><a href="#">Developers</a><a href="#">Automation Engineers</a><a href="#">Dedicated
+                Teams</a></div>
+          </li>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="#">Success Stories</a></li>
+          <li><a href="#">Insights</a></li>
+        </ul>
+        <a class="hdr-cta hdr-cta-m" href="contact-us.html">Get a Free Automation Review</a>
+      </nav>
+      <a class="hdr-cta" href="contact-us.html">Get a Free Automation Review</a>
+    </div>
+  </header>
+  <main id="content">
+
+    <!-- HERO -->
+    <section class="hero-wrap" aria-labelledby="hero-title">
+      <div class="hero hero--page">
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="hero-glow" aria-hidden="true"></div>
+        <div class="ring ring--1" aria-hidden="true"><i></i></div>
+        <div class="ring ring--2" aria-hidden="true"><i></i></div>
+        <div class="container hero-inner">
+          <div class="hero-copy">
+            <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a> / Salesforce</nav>
+            <h1 class="h-display" id="hero-title">Salesforce, wired into the systems that fulfil, invoice and collect.</h1>
+            <p class="lead">We connect Salesforce to your ERP, accounting, storefront and marketing tools, so a won deal turns into an order, an invoice and a payment without anyone retyping it. We're independent: we don't resell MuleSoft or any single connector, so we choose what suits your edition and your process.</p>
+            <div class="hero-stack" aria-hidden="true">
+              <span class="hs"><img src="images/netsuite.png" alt=""></span><i class="sep"></i>
+              <span class="hs"><img src="images/quickbooks.png" alt=""></span><i class="sep"></i>
+              <span class="hs hs--sap"><img src="images/salesforce.png" alt=""></span><i class="sep"></i>
+              <span class="hs"><img src="images/shopify.png" alt=""></span><i class="sep"></i>
+              <span class="hs"><img src="images/slack.png" alt=""></span>
+            </div>
+            <div class="hero-actions">
+              <a class="btn btn--primary btn--lg btn--pulse" href="contact-us.html">Book a scoping call</a>
+              <a class="btn btn--ghost btn--lg" href="#budget">See typical budgets</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BASICS -->
+    <section class="section" id="basics" aria-labelledby="basics-title">
+      <div class="container basics" data-reveal>
+        <div class="basics-copy">
+          <span class="pill">The basics</span>
+          <h2 class="h-section" id="basics-title">What Salesforce integration actually means</h2>
+          <p class="lead">It means Salesforce and your other software trade records on their own: accounts, contacts, opportunities, orders and invoices. A closed-won deal becomes a NetSuite sales order, a QuickBooks payment shows up on the account, and a Shopify buyer lands in your CRM at checkout.</p>
+          <p>Most Salesforce teams also run an ERP, an accounting tool, a store and a marketing platform, and each one holds a slice of the customer. Connect them and sales sees fulfilment and payment status, finance sees the pipeline, and the weekly hours of re-keying and copy-paste errors disappear.</p>
+        </div>
+        <div class="ba">
+          <div class="no"><h3>Without integration</h3><ul><li>Won deals retyped as orders</li><li>Reps can't see payment status</li><li>One customer keyed into four tools</li><li>Pipeline numbers finance doesn't trust</li></ul></div>
+          <div class="yes"><h3>With integration</h3><ul><li>Closed-won creates the sales order</li><li>Shipping and payment status on the account</li><li>One customer record everywhere</li><li>One set of numbers for sales and finance</li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEAL TO CASH -->
+    <section class="section web" id="deal-to-cash" aria-labelledby="d2c-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Closed-won to cash</span>
+          <h2 class="h-section" id="d2c-title">One deal, five handoffs, zero re-keying</h2>
+        </div>
+        <ol class="tl">
+          <li><h3>Deal closes</h3><p>The rep marks the opportunity won in Salesforce.</p></li>
+          <li><h3>Order created</h3><p>The ERP receives the account, products and terms.</p></li>
+          <li><h3>Invoice issued</h3><p>Accounting raises the invoice from the same order.</p></li>
+          <li><h3>Payment lands</h3><p>The payment is matched to the right invoice.</p></li>
+          <li><h3>Account updated</h3><p>Status flows back, so the rep sees it without asking.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- WHAT PLUGS IN -->
+    <section class="section" id="compatibility" aria-labelledby="compat-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Compatibility</span>
+          <h2 class="h-section" id="compat-title">What can plug into Salesforce?</h2>
+          <p class="lead">Anything with an API. These six groups cover most of our projects, usually with orders and invoices moving both ways.</p>
+        </div>
+        <div class="cat-grid" data-stagger>
+          <div class="cat"><h3>ERP</h3><ul class="pair-chips"><li>NetSuite</li><li>SAP Business One</li></ul><p>Accounts, orders, invoices, stock and fulfilment status.</p></div>
+          <div class="cat"><h3>Accounting</h3><ul class="pair-chips"><li>QuickBooks</li><li>Xero</li></ul><p>Customers, invoices, payments and balances.</p></div>
+          <div class="cat"><h3>Ecommerce</h3><ul class="pair-chips"><li>Shopify</li><li>WooCommerce</li><li>Magento</li></ul><p>Customers, orders, products, fulfilment and returns.</p></div>
+          <div class="cat"><h3>Marketing automation</h3><ul class="pair-chips"><li>Marketo</li><li>HubSpot</li><li>Pardot</li></ul><p>Leads, campaigns, scoring and attribution.</p></div>
+          <div class="cat"><h3>Order-to-cash</h3><ul class="pair-chips"><li>ERP</li><li>Billing</li><li>Payments</li></ul><p>Quote-to-order, invoicing, payment status and revenue reports.</p></div>
+          <div class="cat"><h3>Data &amp; analytics</h3><ul class="pair-chips"><li>Snowflake</li><li>BigQuery</li><li>Power BI</li></ul><p>Bulk extracts, warehouse sync, dashboards and AI automation.</p></div>
+        </div>
+        <p class="note">Not listed? If it has an API, Salesforce can talk to it. We scope against your process and your Salesforce edition, not a connector catalogue.</p>
+      </div>
+    </section>
+
+    <!-- POPULAR PAIRINGS -->
+    <section class="section web" id="pairings" aria-labelledby="pair-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Popular pairings</span>
+          <h2 class="h-section" id="pair-title">Six tools most often paired with Salesforce</h2>
+          <p class="lead">Pick a pairing to see what moves, in which direction, and how long a typical build takes.</p>
+        </div>
+        <div class="pair-grid" data-stagger>
+          <a class="pair" href="salesforce-netsuite.html">
+            <div class="pair-top"><span class="pair-tile"><img src="images/salesforce.png" alt="Salesforce"></span><span class="pair-wire"></span><span class="pair-tile"><img src="images/netsuite.png" alt="NetSuite"></span></div>
+            <h3>Salesforce and NetSuite</h3>
+            <p>Won opportunities become NetSuite sales orders, and order and fulfilment status flows back to the account.</p>
+            <ul class="pair-chips"><li>Accounts</li><li>Opportunities</li><li>Order status</li></ul>
+            <div class="pair-meta"><span>Two-way sync</span><b>4–8 weeks</b></div>
+          </a>
+          <a class="pair" href="salesforce-sap.html">
+            <div class="pair-top"><span class="pair-tile"><img src="images/salesforce.png" alt="Salesforce"></span><span class="pair-wire"></span><span class="pair-tile"><img src="images/sap.png" alt="SAP Business One"></span></div>
+            <h3>Salesforce and SAP B1</h3>
+            <p>Business partners, stock levels and sales orders stay aligned between the CRM and the ERP.</p>
+            <ul class="pair-chips"><li>Business partners</li><li>Stock</li><li>Sales orders</li></ul>
+            <div class="pair-meta"><span>Two-way sync</span><b>3–6 weeks</b></div>
+          </a>
+          <a class="pair" href="salesforce-quickbooks.html">
+            <div class="pair-top"><span class="pair-tile"><img src="images/salesforce.png" alt="Salesforce"></span><span class="pair-wire"></span><span class="pair-tile"><img src="images/quickbooks.png" alt="QuickBooks"></span></div>
+            <h3>Salesforce and QuickBooks</h3>
+            <p>Won deals turn into invoices, and payment status returns to the Salesforce account.</p>
+            <ul class="pair-chips"><li>Invoices</li><li>Payments</li><li>Balances</li></ul>
+            <div class="pair-meta"><span>Deals out, payments in</span><b>2–4 weeks</b></div>
+          </a>
+          <a class="pair" href="salesforce-shopify.html">
+            <div class="pair-top"><span class="pair-tile"><img src="images/salesforce.png" alt="Salesforce"></span><span class="pair-wire"></span><span class="pair-tile"><img src="images/shopify.png" alt="Shopify"></span></div>
+            <h3>Salesforce and Shopify</h3>
+            <p>Shoppers become contacts at checkout, and sales and service see every order and its fulfilment status.</p>
+            <ul class="pair-chips"><li>Customers</li><li>Orders</li><li>Fulfilment</li></ul>
+            <div class="pair-meta"><span>Orders in, status out</span><b>2–4 weeks</b></div>
+          </a>
+          <a class="pair" href="salesforce-marketo.html">
+            <div class="pair-top"><span class="pair-tile"><img src="images/salesforce.png" alt="Salesforce"></span><span class="pair-wire"></span><span class="pair-tile"><img src="images/marketo.png" alt="Marketo"></span></div>
+            <h3>Salesforce and Marketo</h3>
+            <p>Leads, scores and campaign touches sync both ways, so marketing can see which campaigns closed revenue.</p>
+            <ul class="pair-chips"><li>Leads</li><li>Scoring</li><li>Attribution</li></ul>
+            <div class="pair-meta"><span>Two-way sync</span><b>3–5 weeks</b></div>
+          </a>
+          <a class="pair" href="salesforce-slack.html">
+            <div class="pair-top"><span class="pair-tile"><img src="images/salesforce.png" alt="Salesforce"></span><span class="pair-wire"></span><span class="pair-tile"><img src="images/slack.png" alt="Slack"></span></div>
+            <h3>Salesforce and Slack</h3>
+            <p>Deal alerts, approvals and quick record updates happen in the channel where the team already works.</p>
+            <ul class="pair-chips"><li>Deal alerts</li><li>Approvals</li><li>Record updates</li></ul>
+            <div class="pair-meta"><span>Events and actions</span><b>1–2 weeks</b></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROUTES -->
+    <section class="section" id="routes" aria-labelledby="route-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Choosing a route</span>
+          <h2 class="h-section" id="route-title">Five ways to connect Salesforce, and when each one fits</h2>
+          <p class="lead">Salesforce has one of the widest API sets around, and iPaaS platforms like MuleSoft wrap them in ready-made connectors. Your edition, data volume, API limits and process all shape the choice.</p>
+        </div>
+        <div class="rt-grid" data-stagger>
+          <div class="feature"><h3>REST API<small>JSON, record by record</small></h3><p><b>Best when</b> you need real-time sync or single-record updates.</p><p><b>Trade-off</b> daily call limits depend on your edition.</p></div>
+          <div class="feature"><h3>Bulk API 2.0<small>Asynchronous batches</small></h3><p><b>Best when</b> you migrate data or sync millions of records overnight.</p><p><b>Trade-off</b> jobs are queued, so it isn't real-time.</p></div>
+          <div class="feature"><h3>Platform Events<small>Streaming, event-driven</small></h3><p><b>Best when</b> downstream systems must react the moment a record changes.</p><p><b>Trade-off</b> event allocations apply, and something must subscribe.</p></div>
+          <div class="feature"><h3>MuleSoft or iPaaS<small>Celigo, Boomi, Workato</small></h3><p><b>Best when</b> your flow is standard and you want it live fast.</p><p><b>Trade-off</b> licence cost never ends, and MuleSoft is priced for enterprises.</p></div>
+          <div class="feature"><h3>Custom middleware<small>Make, n8n or code</small></h3><p><b>Best when</b> several systems or unusual rules are involved.</p><p><b>Trade-off</b> you need a partner to look after it.</p></div>
+        </div>
+        <p class="note">For many standard flows a ready-made connector wins, even MuleSoft or Celigo. We'll say so, and only build custom when your process needs it.</p>
+      </div>
+    </section>
+
+    <!-- BUDGET -->
+    <section class="section web" id="budget" aria-labelledby="budget-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Typical budgets</span>
+          <h2 class="h-section" id="budget-title">What a Salesforce integration usually costs</h2>
+          <p class="lead">Template connectors cost less up front and add a monthly fee. Custom API builds cost more up front with no platform fee.</p>
+        </div>
+        <div class="rt-grid" data-stagger>
+          <div class="feature"><h3>Template connector<small>Celigo or Workato</small></h3><p><b>$3k – $9k</b> to implement, plus a monthly platform subscription.</p></div>
+          <div class="feature"><h3>Orchestrated flows<small>Make or n8n</small></h3><p><b>$5k – $15k</b> to implement, plus a light platform and support plan.</p></div>
+          <div class="feature"><h3>Custom API build<small>REST, Bulk or Platform Events</small></h3><p><b>$10k+</b> to implement, with a support plan and no platform fee.</p></div>
+        </div>
+        <div class="factors"><span>How many objects you sync</span><span>One-way or two-way</span><span>Dedupe and transformation logic</span><span>Salesforce API limits</span></div>
+        <p class="note">High-volume syncs may need Bulk API 2.0 instead of per-record calls. You get a fixed quote after a scoping call, before any build starts.</p>
+      </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section class="section" id="timeline" aria-labelledby="time-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Timeline</span>
+          <h2 class="h-section" id="time-title">How long does it take?</h2>
+          <p class="lead">The biggest delay is rarely development. It's duplicate and untidy records in Salesforce, so we review your data first.</p>
+        </div>
+        <div class="lanes">
+          <div class="lane"><h3>Template connectors<small>Standard objects on a ready-made flow</small></h3><div class="lane-bar" style="--w:35%">2–4 weeks</div></div>
+          <div class="lane"><h3>Custom builds<small>REST, Bulk API or Platform Events</small></h3><div class="lane-bar" style="--w:100%">6–12 weeks</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="section web" id="process" aria-labelledby="proc-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">How we work</span>
+          <h2 class="h-section" id="proc-title">From first call to monitored go-live</h2>
+          <p class="lead">Five stages, every time. You sign off a fixed scope and a field mapping before we build anything.</p>
+        </div>
+        <ol class="tl">
+          <li><h3>Discover</h3><p>We list your systems, objects, volumes and API limits.</p></li>
+          <li><h3>Map</h3><p>Every field, direction and error rule goes on one sheet.</p></li>
+          <li><h3>Build</h3><p>We build in a Salesforce sandbox first, never in production.</p></li>
+          <li><h3>Test</h3><p>Real scenarios, including failures, retries and duplicates.</p></li>
+          <li><h3>Support</h3><p>Alerts, logs and a named engineer after launch.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- VENDOR VS CONSULTANT -->
+    <section class="section" id="compare" aria-labelledby="vs-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Why a consultant</span>
+          <h2 class="h-section" id="vs-title">Independent team or platform vendor?</h2>
+          <p class="lead">A platform vendor sells its own platform. We start from your requirement and pick the tool afterwards, which matters most when your process doesn't match a template.</p>
+        </div>
+        <div class="vs-wrap"><div class="vs">
+          <div></div><div>Platform vendor</div><div>Codevelop</div>
+          <div>Recommends</div><div>Their own product</div><div>Whatever fits, theirs included</div>
+          <div>Unusual requirements</div><div>Add-ons or workarounds</div><div>Custom logic is our core work</div>
+          <div>Pricing</div><div>Ongoing licence</div><div>Fixed project fee, optional retainer</div>
+          <div>When it breaks</div><div>A ticket queue</div><div>The engineer who built it</div>
+          <div>Several systems</div><div>One connector per pair</div><div>One planned architecture</div>
+        </div></div>
+      </div>
+    </section>
+
+    <!-- WHY CODEVELOP -->
+    <section class="section web ai" id="why-us" aria-labelledby="why-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill pill--dark">Why Codevelop</span>
+          <h2 class="h-section" id="why-title">Built to keep syncing after go-live</h2>
+          <p class="lead">An integration only pays off while it keeps running. Here is what you get beyond the first sync.</p>
+        </div>
+        <div class="rt-grid" data-stagger>
+          <div class="feature"><h3>Vendor-neutral</h3><p>We don't resell MuleSoft or any single connector, so we have no reason to push one. We recommend what fits.</p></div>
+          <div class="feature"><h3>Fixed scope and price</h3><p>You approve a signed mapping sheet and a fixed quote first. No open hourly meter, no mid-project surprises.</p></div>
+          <div class="feature"><h3>A named engineer</h3><p>The person who built your integration answers when something changes. No ticket lottery.</p></div>
+          <div class="feature"><h3>Both sides of the sync</h3><p>We work on websites, storefronts and CRMs daily, so we know the app on the other end, not just Salesforce.</p></div>
+          <div class="feature"><h3>Rescue and take-over</h3><p>We fix abandoned builds and broken connectors, including ones that keep hitting Salesforce API limits.</p></div>
+          <div class="feature"><h3>AI on your CRM data</h3><p>We build agents that answer questions about your pipeline, update opportunities and route new leads.</p></div>
+          <div class="feature"><h3>Monitored after launch</h3><p>Logging, alerts and retries ship with every build, so a failed sync reaches us before it reaches you.</p></div>
+          <div class="feature"><h3>US-based team</h3><p>We work with businesses across the United States from Portland, Oregon, in your time zone.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="container faq-grid" data-reveal>
+        <div class="faq-head">
+          <span class="pill">Common questions</span>
+          <h2 class="h-section" id="faq-title">Salesforce integration FAQ</h2>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item open">
+            <h3><button class="faq-q" type="button" aria-expanded="true">Does Salesforce have an API? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. It offers the REST API, SOAP API, Bulk API 2.0, the Streaming API with Platform Events, and Apex for server-side logic. Most modern integrations use REST and Bulk.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">What's the difference between REST, SOAP and Bulk? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>REST handles real-time, record-level work. SOAP is the older contract-based interface some enterprise tools still use. Bulk API 2.0 loads or extracts very large data sets in asynchronous batches.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Can you sync Salesforce with NetSuite, SAP or QuickBooks? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. Linking Salesforce to an ERP or accounting system, including Xero, is one of our most common projects. It keeps accounts, orders, invoices and payment status aligned.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Can it run in real time? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. Platform Events let Salesforce announce changes the moment they happen. Large data loads still run better as scheduled Bulk API jobs.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Do you use MuleSoft? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>When it fits, yes, but we don't require it. For many projects a lighter iPaaS or custom middleware is faster and far cheaper than a MuleSoft licence.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Can you connect Salesforce to ecommerce? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. Shopify, WooCommerce, Magento and BigCommerce all work, syncing customers, orders and fulfilment status so sales and service see the whole picture.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">How much does it cost? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>It depends on the approach, the number of objects and whether data flows one way or both. See the budget section above, then book a scoping call for a fixed quote.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Can you fix a broken integration? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. We audit failed connectors, abandoned builds and syncs that hit API limits, then repair or replace them, whichever costs you less.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta" id="contact" aria-labelledby="cta-title">
+      <div class="cta-grid">
+        <div class="cta-bar" aria-hidden="true"></div>
+        <div class="cta-box">
+          <div class="ripples" aria-hidden="true"><span></span><span></span><span></span></div>
+          <h2 id="cta-title">Ready to connect Salesforce to the rest of your stack?</h2>
+          <p>Every week your systems stay apart, your team re-keys accounts and orders again. Tell us what you run and you'll get a scoped plan and a fixed price before we build.</p>
+          <a class="btn btn--primary btn--lg btn-sweep" href="contact-us.html"><span style="position:relative">Book a scoping call</span></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+<!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="footer-panel">
+      <div class="footer-flag" aria-hidden="true"></div>
+      <div class="footer-main">
+        <div class="footer-brand">
+          <img src="images/codevelop.webp" alt="Codevelop logo" class="brand-logo" width="160" height="40">
+          <p>At Codevelop, we help businesses turn strategy into scalable results through thoughtful design,
+            performance-driven marketing, and modern technology.</p>
+          <div class="socials">
+            <a href="https://www.facebook.com/Codevelop.usa/" aria-label="Facebook" target="_blank" rel="noopener"><svg
+                class="ico">
+                <use href="#i-fb" />
+              </svg></a>
+            <a href="https://www.instagram.com/codevelop_us/" aria-label="Instagram" target="_blank" rel="noopener"><svg
+                class="ico">
+                <use href="#i-ig" />
+              </svg></a>
+            <a href="https://www.linkedin.com/company/codevelop-us" aria-label="LinkedIn" target="_blank"
+              rel="noopener"><svg class="ico">
+                <use href="#i-in" />
+              </svg></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Services</h3>
+          <ul>
+            <li><a href="performance-marketing.html">Performance Marketing</a></li>
+            <li><a href="#">SEO Services</a></li>
+            <li><a href="#">Social Media Marketing</a></li>
+            <li><a href="web-development.html">Web Development</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Link</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Case Studies</a></li>
+            <li><a href="#">Blogs</a></li>
+            <li><a href="https://codevelopus.com/">Free SEO Audit</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Contact Us</h3>
+          <ul class="contact">
+            <li><svg class="ico">
+                <use href="#i-pin" />
+              </svg><span>555 SE Martin Luther King JR Blvd, Portland, OR 97214</span></li>
+            <li><svg class="ico">
+                <use href="#i-phone" />
+              </svg><a href="tel:+19714809833">+1 971-480-9833</a></li>
+            <li><svg class="ico">
+                <use href="#i-mail" />
+              </svg><a href="mailto:info@codevelop.us">info@codevelop.us</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="newsletter">
+        <div class="newsletter-box">
+          <h3>Signup our newsletter to get update information, news, insight or promotions.</h3>
+          <!-- Connect this form to your email provider (set action / method). -->
+          <form class="news-form" action="#" method="post">
+            <label class="sr-only" for="news-email">Email</label>
+            <input id="news-email" type="email" name="email" placeholder="Email" required autocomplete="email">
+            <button class="btn btn--primary" type="submit">Sign up</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <span>Copyright © 2026 Codevelop US, All Rights Reserved.</span>
+      <a href="#">Privacy policy</a>
+    </div>
+  </footer>
+
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>

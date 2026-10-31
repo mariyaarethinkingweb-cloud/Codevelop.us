@@ -193,6 +193,43 @@
       <symbol id="i-quote" viewBox="0 0 24 24">
         <path d="M5 17v-5a5 5 0 0 1 5-5M13 17v-5a5 5 0 0 1 5-5M5 12h5v5H5zM13 12h5v5h-5z" />
       </symbol>
+      <symbol id="i-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16" />
+      </symbol>
+      <symbol id="i-flow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+        stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="6" height="6" rx="1" />
+        <rect x="15" y="15" width="6" height="6" rx="1" />
+        <path d="M9 6h4a2 2 0 0 1 2 2v7" />
+      </symbol>
+      <symbol id="i-megaphone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 10v4h4l8 5V5L7 10H3z" />
+        <path d="M18.5 9a4 4 0 0 1 0 6" />
+      </symbol>
+      <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2V5z" />
+        <path d="M4 19a2 2 0 0 1 2-2h13" />
+      </symbol>
+      <symbol id="i-coin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+        stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="9" />
+        <path
+          d="M14.5 9.5c-.5-1-1.5-1.5-2.5-1.5-1.4 0-2.5.8-2.5 2s1 1.7 2.5 2 2.5.8 2.5 2-1.1 2-2.5 2c-1 0-2-.5-2.5-1.5M12 6.5V8m0 8v1.5" />
+      </symbol>
+      <symbol id="i-desk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+        stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="4" width="18" height="12" rx="2" />
+        <path d="M8 20h8M12 16v4" />
+      </symbol>
+      <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+        stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="9" cy="8" r="3.5" />
+        <path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6" />
+        <path d="M16 4.7a3.5 3.5 0 0 1 0 6.6M18 14.3c2 .7 3.5 2.6 3.5 5.7" />
+      </symbol>
     </defs>
   </svg>
 
@@ -207,25 +244,154 @@
         aria-expanded="false"><span></span><span></span><span></span></button>
       <nav aria-label="Main">
         <ul>
-          <li><button class="top" type="button" aria-expanded="false">AI Agents <svg class="chev" viewBox="0 0 10 10">
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">AI Agents <svg class="chev"
+                viewBox="0 0 10 10">
                 <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
               </svg></button>
-            <div class="drop"><a href="#">Sales &amp; Lead Agents</a><a href="#">Support Agents</a><a href="#">Finance
-                Agents</a><a href="#">Email &amp; Document Agents</a></div>
+            <div class="drop drop--agents">
+              <div class="agents-top">
+                <span class="agents-label">AI Agents</span>
+                <a class="agents-all" href="#">View all agents</a>
+              </div>
+
+              <a class="agent" href="#">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-chat" />
+                  </svg></span>
+                <span class="agent-txt"><b>Customer Support Agents</b><small>24/7 answers across chat &amp;
+                    inbox</small></span>
+              </a>
+              <a class="agent" href="#">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-funnel" />
+                  </svg></span>
+                <span class="agent-txt"><b>Sales &amp; Lead-Generation Agents</b><small>Capture, qualify &amp; follow up
+                    with leads</small></span>
+              </a>
+
+              <a class="agent" href="#">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-code" />
+                  </svg></span>
+                <span class="agent-txt"><b>Software Development Agents</b><small>Code, review &amp; ship
+                    faster</small></span>
+              </a>
+              <a class="agent" href="#">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-flow" />
+                  </svg></span>
+                <span class="agent-txt"><b>Workflow Automation Agents</b><small>Connect tools &amp; automate routine
+                    tasks</small></span>
+              </a>
+
+              <a class="agent" href="#">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-megaphone" />
+                  </svg></span>
+                <span class="agent-txt"><b>Marketing Agents</b><small>Campaigns, content &amp; channel
+                    management</small></span>
+              </a>
+              <a class="agent" href="#">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-chart" />
+                  </svg></span>
+                <span class="agent-txt"><b>Research &amp; Data Analyst Agents</b><small>Insights &amp; plain-language
+                    reports</small></span>
+              </a>
+
+              <a class="agent" href="#">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-book" />
+                  </svg></span>
+                <span class="agent-txt"><b>Internal Knowledge Agents</b><small>Instant answers from your company
+                    data</small></span>
+              </a>
+              <a class="agent" href="#">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-coin" />
+                  </svg></span>
+                <span class="agent-txt"><b>Finance &amp; Accounting Agents</b><small>Invoices, reconciliation &amp;
+                    reporting</small></span>
+              </a>
+
+              <a class="agent" href="#">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-desk" />
+                  </svg></span>
+                <span class="agent-txt"><b>IT Service Desk Agents</b><small>Resolve tickets &amp; access
+                    requests</small></span>
+              </a>
+              <a class="agent" href="#">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-users" />
+                  </svg></span>
+                <span class="agent-txt"><b>HR &amp; Recruitment Agents</b><small>Screen, schedule &amp; onboard
+                    people</small></span>
+              </a>
+            </div>
           </li>
-          <li><button class="top" type="button" aria-expanded="false">Connectors <svg class="chev" viewBox="0 0 10 10">
-                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
-              </svg></button>
-            <div class="drop"><a href="#">Business Central</a><a href="#">NetSuite</a><a href="#">Odoo</a><a
-                href="#">Zoho</a></div>
-          </li>
+     <li class="has-mega"><button class="top" type="button" aria-expanded="false">Connectors <svg class="chev" viewBox="0 0 10 10">
+    <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+  </svg></button>
+  <div class="drop drop--agents drop--connectors">
+    <div class="agents-top">
+      <span class="agents-label">Connectors</span>
+      <a class="agents-all" href="#">View all connectors</a>
+    </div>
+
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-sap">SAP</i></span>
+      <span class="agent-txt"><b>SAP Business One</b><small>ERP integration &amp; consulting</small></span>
+    </a>
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-sf">SF</i></span>
+      <span class="agent-txt"><b>Salesforce</b><small>CRM &amp; order-to-cash sync</small></span>
+    </a>
+
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-ns">N</i></span>
+      <span class="agent-txt"><b>NetSuite</b><small>ERP, ecommerce &amp; EDI sync</small></span>
+    </a>
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-shop">S</i></span>
+      <span class="agent-txt"><b>Shopify</b><small>Ecommerce ↔ back office</small></span>
+    </a>
+
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-qb">qb</i></span>
+      <span class="agent-txt"><b>QuickBooks</b><small>Accounting &amp; invoice sync</small></span>
+    </a>
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-woo">Woo</i></span>
+      <span class="agent-txt"><b>WooCommerce</b><small>WordPress store integration</small></span>
+    </a>
+
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-zoho"><s></s><s></s><s></s><s></s></i></span>
+      <span class="agent-txt"><b>Zoho</b><small>Zoho One suite integration</small></span>
+    </a>
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-zuper">Zu</i></span>
+      <span class="agent-txt"><b>Zuper</b><small>Field service management sync</small></span>
+    </a>
+
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-attio">At</i></span>
+      <span class="agent-txt"><b>Attio</b><small>CRM &amp; record sync</small></span>
+    </a>
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-twenty">20</i></span>
+      <span class="agent-txt"><b>Twenty</b><small>Open-source CRM sync</small></span>
+    </a>
+  </div>
+</li>
           <li class="has-mega"><button class="top" type="button" aria-expanded="false">Services <svg class="chev"
                 viewBox="0 0 10 10">
                 <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
               </svg></button>
             <div class="drop drop--mega">
               <div class="mega-top">
-                <a class="mega-all" href="#">View all services <svg class="ico" width="16" height="16"
+                <a class="mega-all" href="services.html">View all services <svg class="ico" width="16" height="16"
                     aria-hidden="true">
                     <use href="#i-arrow" />
                   </svg></a>
@@ -235,32 +401,32 @@
                 <h4><a href="performance-marketing.html">Performance Marketing</a></h4>
                 <a href="meta-ads.html">Google Ads Management</a>
                 <a href="facebook-ads.html">Facebook Ads</a>
-                <a href="#">Remarketing</a>
+                <a href="remarketing.html">Remarketing</a>
               </div>
 
               <div class="mega-col">
                 <h4><a href="web-development.html">Web Development Services</a></h4>
-                <a href="#">Custom Website Design</a>
+                <a href="custom-website-design.html">Custom Website Design</a>
                 <a href="wordpress-development.html">WordPress Web Development</a>
                 <a href="shopify-development.html">Shopify Web Development</a>
                 <a href="webflow-development.html">Webflow Web Development</a>
                 <a href="framer-development.html">Framer Web Development</a>
                 <a href="mageneto-development.html">Magento Web Development</a>
-                <a href="#">Website Maintenance</a>
-                <a href="#">Website Redesign</a>
+                <a href="website-maintenance.html">Website Maintenance</a>
+                <a href="website-redesign.html">Website Redesign</a>
               </div>
 
               <div class="mega-col">
-                <h4><a href="#">Social Media Marketing</a></h4>
-                <a href="#">Content Marketing</a>
+                <h4><a href="social-media-marketing.html">Social Media Marketing</a></h4>
+                <a href="content-marketing.html">Content Marketing</a>
               </div>
 
               <div class="mega-col">
-                <h4><a href="#">Search Engine Optimization</a></h4>
-                <a href="#">Local SEO</a>
-                <a href="#">SEO Audits</a>
-                <a href="#">Technical SEO</a>
-                <a href="#">Enterprise SEO</a>
+                <h4><a href="search-engine-optimization.html">Search Engine Optimization</a></h4>
+                <a href="local-seo.html">Local SEO</a>
+                <a href="seo-audits.html">SEO Audits</a>
+                <a href="technical-seo.html">Technical SEO</a>
+                <a href="enterprise-seo.html">Enterprise SEO</a>
               </div>
             </div>
           </li>
@@ -270,21 +436,15 @@
             <div class="drop"><a href="#">Developers</a><a href="#">Automation Engineers</a><a href="#">Dedicated
                 Teams</a></div>
           </li>
-          <li><button class="top" type="button" aria-expanded="false">About <svg class="chev" viewBox="0 0 10 10">
-                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
-              </svg></button>
-            <div class="drop"><a href="about-us.html">Our Story</a><a href="#">Offices</a><a href="#">Careers</a><a
-                href="#">Contact</a></div>
-          </li>
+          <li><a href="about-us.html">About Us</a></li>
           <li><a href="#">Success Stories</a></li>
           <li><a href="#">Insights</a></li>
         </ul>
-        <a class="hdr-cta hdr-cta-m" href="#">Get a Free Automation Review</a>
+        <a class="hdr-cta hdr-cta-m" href="contact-us.html">Get a Free Automation Review</a>
       </nav>
-      <a class="hdr-cta" href="#">Get a Free Automation Review</a>
+      <a class="hdr-cta" href="contact-us.html">Get a Free Automation Review</a>
     </div>
   </header>
-
   <main id="content">
     <!-- ================= HERO ================= -->
     <section class="fa-hero" id="hero" aria-labelledby="fa-title">
@@ -664,7 +824,7 @@
       </div>
     </section>
 
-  <!-- ================= TESTIMONIALS ================= -->
+    <!-- ================= TESTIMONIALS ================= -->
     <section class="section fa-sec" id="voices" aria-labelledby="voices-title">
       <div class="container" data-reveal>
         <div class="fa-voices">

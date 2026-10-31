@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shopify + SAP Business One Integration | Codevelop</title>
+  <meta name="description"
+    content="Connect Shopify to SAP Business One so items, warehouse stock, orders and deliveries sync without re-keying. Fixed-price builds from Codevelop, with a named engineer after launch.">
+  <link rel="canonical" href="https://codevelopus.com/shopify-sap-business-one-integration">
+  <meta name="theme-color" content="#0a3161">
+  <link rel="icon" href="https://codevelopus.com/wp-content/uploads/2026/01/cropped-codevelop-favicon-270x270.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/connector.css">
+  <link rel="stylesheet" href="css/connector-extra.css">
+</head>
+
+<body>
+
+  <!-- Icon sprite -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></symbol>
+      <symbol id="i-funnel" viewBox="0 0 24 24"><path d="M3 4h18l-7 8v6l-4 2v-8L3 4z" /></symbol>
+      <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" /></symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5z" /></symbol>
+      <symbol id="i-fb" viewBox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v7h4v-7h3l1-4h-4V8z" /></symbol>
+      <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="0.8" /></symbol>
+      <symbol id="i-in" viewBox="0 0 24 24"><rect x="3" y="9" width="4" height="12" /><circle cx="5" cy="5" r="2" /><path d="M10 9h4v2a4 4 0 0 1 6 3v7h-4v-6a2 2 0 0 0-4 0v6h-4V9z" /></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" /></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3 7l9 6 9-6" /></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11z" /><circle cx="12" cy="10" r="2.5" /></symbol>
+      <symbol id="i-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16" /></symbol>
+      <symbol id="i-flow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="6" height="6" rx="1" /><rect x="15" y="15" width="6" height="6" rx="1" /><path d="M9 6h4a2 2 0 0 1 2 2v7" /></symbol>
+      <symbol id="i-megaphone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10v4h4l8 5V5L7 10H3z" /><path d="M18.5 9a4 4 0 0 1 0 6" /></symbol>
+      <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2V5z" /><path d="M4 19a2 2 0 0 1 2-2h13" /></symbol>
+      <symbol id="i-coin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9" /><path d="M14.5 9.5c-.5-1-1.5-1.5-2.5-1.5-1.4 0-2.5.8-2.5 2s1 1.7 2.5 2 2.5.8 2.5 2-1.1 2-2.5 2c-1 0-2-.5-2.5-1.5M12 6.5V8m0 8v1.5" /></symbol>
+      <symbol id="i-desk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2" /><path d="M8 20h8M12 16v4" /></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5" /><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6" /><path d="M16 4.7a3.5 3.5 0 0 1 0 6.6M18 14.3c2 .7 3.5 2.6 3.5 5.7" /></symbol>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header" id="top">
+    <div class="bar">
+      <a class="logo" href="index.html" aria-label="Codevelop home"><img src="images/codevelop.webp" alt="Codevelop logo" class="brand-logo" width="160" height="40"></a>
+      <button class="burger" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav aria-label="Main">
+        <ul>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">AI Agents <svg class="chev" viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" /></svg></button>
+            <div class="drop drop--agents">
+              <div class="agents-top"><span class="agents-label">AI Agents</span><a class="agents-all" href="#">View all agents</a></div>
+              <a class="agent" href="customer-support-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-chat" /></svg></span><span class="agent-txt"><b>Customer Support Agents</b><small>24/7 answers across chat &amp; inbox</small></span></a>
+              <a class="agent" href="sales-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-funnel" /></svg></span><span class="agent-txt"><b>Sales &amp; Lead-Generation Agents</b><small>Capture, qualify &amp; follow up with leads</small></span></a>
+              <a class="agent" href="software-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-code" /></svg></span><span class="agent-txt"><b>Software Development Agents</b><small>Code, review &amp; ship faster</small></span></a>
+              <a class="agent" href="workflow-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-flow" /></svg></span><span class="agent-txt"><b>Workflow Automation Agents</b><small>Connect tools &amp; automate routine tasks</small></span></a>
+              <a class="agent" href="marketing-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-megaphone" /></svg></span><span class="agent-txt"><b>Marketing Agents</b><small>Campaigns, content &amp; channel management</small></span></a>
+              <a class="agent" href="research-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-chart" /></svg></span><span class="agent-txt"><b>Research &amp; Data Analyst Agents</b><small>Insights &amp; plain-language reports</small></span></a>
+              <a class="agent" href="internal-knowledge-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-book" /></svg></span><span class="agent-txt"><b>Internal Knowledge Agents</b><small>Instant answers from your company data</small></span></a>
+              <a class="agent" href="finance-accounting-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-coin" /></svg></span><span class="agent-txt"><b>Finance &amp; Accounting Agents</b><small>Invoices, reconciliation &amp; reporting</small></span></a>
+              <a class="agent" href="it-service-desk-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-desk" /></svg></span><span class="agent-txt"><b>IT Service Desk Agents</b><small>Resolve tickets &amp; access requests</small></span></a>
+              <a class="agent" href="hr-recruitment-agents.html"><span class="agent-ico"><svg class="ico"><use href="#i-users" /></svg></span><span class="agent-txt"><b>HR &amp; Recruitment Agents</b><small>Screen, schedule &amp; onboard people</small></span></a>
+            </div>
+          </li>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">Connectors <svg class="chev" viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" /></svg></button>
+            <div class="drop drop--agents drop--connectors">
+              <div class="agents-top"><span class="agents-label">Connectors</span><a class="agents-all" href="#">View all connectors</a></div>
+              <a class="agent" href="sap-business-one.html"><span class="agent-ico"><img src="images/sap.png" alt="SAP Business One" loading="lazy"></span><span class="agent-txt"><b>SAP Business One</b><small>ERP integration &amp; consulting</small></span></a>
+              <a class="agent" href="salesforce.html"><span class="agent-ico"><img src="images/salesforce.png" alt="Salesforce" loading="lazy"></span><span class="agent-txt"><b>Salesforce</b><small>CRM &amp; order-to-cash sync</small></span></a>
+              <a class="agent" href="netsuite.html"><span class="agent-ico"><img src="images/netsuite.png" alt="NetSuite" loading="lazy"></span><span class="agent-txt"><b>NetSuite</b><small>ERP, ecommerce &amp; EDI sync</small></span></a>
+              <a class="agent" href="shopify.html"><span class="agent-ico"><img src="images/shopify.png" alt="Shopify" loading="lazy"></span><span class="agent-txt"><b>Shopify</b><small>Ecommerce ↔ back office</small></span></a>
+              <a class="agent" href="quickbooks.html"><span class="agent-ico"><img src="images/quickbooks.png" alt="QuickBooks" loading="lazy"></span><span class="agent-txt"><b>QuickBooks</b><small>Accounting &amp; invoice sync</small></span></a>
+              <a class="agent" href="woocommerce.html"><span class="agent-ico"><img src="images/woocommerce.png" alt="WooCommerce" loading="lazy"></span><span class="agent-txt"><b>WooCommerce</b><small>WordPress store integration</small></span></a>
+              <a class="agent" href="zoho.html"><span class="agent-ico"><img src="images/zoho.png" alt="Zoho" loading="lazy"></span><span class="agent-txt"><b>Zoho</b><small>Zoho One suite integration</small></span></a>
+              <a class="agent" href="zuper.html"><span class="agent-ico"><img src="images/zuper.png" alt="Zuper" loading="lazy"></span><span class="agent-txt"><b>Zuper</b><small>Field service management sync</small></span></a>
+              <a class="agent" href="attio.html"><span class="agent-ico"><img src="images/attio.png" alt="Attio" loading="lazy"></span><span class="agent-txt"><b>Attio</b><small>CRM &amp; record sync</small></span></a>
+              <a class="agent" href="twenty.html"><span class="agent-ico"><img src="images/twenty.png" alt="Twenty" loading="lazy"></span><span class="agent-txt"><b>Twenty</b><small>Open-source CRM sync</small></span></a>
+            </div>
+          </li>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">Services <svg class="chev" viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" /></svg></button>
+            <div class="drop drop--mega">
+              <div class="mega-top"><a class="mega-all" href="services.html">View all services <svg class="ico" width="16" height="16" aria-hidden="true"><use href="#i-arrow" /></svg></a></div>
+              <div class="mega-col">
+                <h4><a href="performance-marketing.html">Performance Marketing</a></h4>
+                <a href="meta-ads.html">Google Ads Management</a>
+                <a href="facebook-ads.html">Facebook Ads</a>
+                <a href="remarketing.html">Remarketing</a>
+              </div>
+              <div class="mega-col">
+                <h4><a href="web-development.html">Web Development Services</a></h4>
+                <a href="custom-website-design.html">Custom Website Design</a>
+                <a href="wordpress-development.html">WordPress Web Development</a>
+                <a href="shopify-development.html">Shopify Web Development</a>
+                <a href="webflow-development.html">Webflow Web Development</a>
+                <a href="framer-development.html">Framer Web Development</a>
+                <a href="mageneto-development.html">Magento Web Development</a>
+                <a href="website-maintenance.html">Website Maintenance</a>
+                <a href="website-redesign.html">Website Redesign</a>
+              </div>
+              <div class="mega-col">
+                <h4><a href="social-media-marketing.html">Social Media Marketing</a></h4>
+                <a href="content-marketing.html">Content Marketing</a>
+              </div>
+              <div class="mega-col">
+                <h4><a href="search-engine-optimization.html">Search Engine Optimization</a></h4>
+                <a href="local-seo.html">Local SEO</a>
+                <a href="seo-audits.html">SEO Audits</a>
+                <a href="technical-seo.html">Technical SEO</a>
+                <a href="enterprise-seo.html">Enterprise SEO</a>
+              </div>
+            </div>
+          </li>
+          <li><button class="top" type="button" aria-expanded="false">Hire Talent <svg class="chev" viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" /></svg></button>
+            <div class="drop"><a href="#">Developers</a><a href="#">Automation Engineers</a><a href="#">Dedicated Teams</a></div>
+          </li>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="#">Success Stories</a></li>
+          <li><a href="#">Insights</a></li>
+        </ul>
+        <a class="hdr-cta hdr-cta-m" href="contact-us.html">Get a Free Automation Review</a>
+      </nav>
+      <a class="hdr-cta" href="contact-us.html">Get a Free Automation Review</a>
+    </div>
+  </header>
+
+  <main id="content">
+
+    <!-- HERO -->
+    <section class="hero-wrap" aria-labelledby="hero-title">
+      <div class="hero hero--page">
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="hero-glow" aria-hidden="true"></div>
+        <div class="ring ring--1" aria-hidden="true"><i></i></div>
+        <div class="ring ring--2" aria-hidden="true"><i></i></div>
+        <div class="container hero-inner">
+          <div class="hero-copy">
+            <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a>  / <a href="shopify.html">Shopify</a> / SAP Business One</nav>
+            <h1 class="h-display" id="hero-title">Shopify checkouts that land straight in SAP Business One.</h1>
+            <p class="lead">We connect your Shopify store to B1 so every web order becomes a sales order, warehouse stock stays honest on the storefront, and deliveries return to the buyer as tracking updates. Nobody re-keys a thing. We are independent, so we choose between the Service Layer, B1i and an iPaaS template based on how your warehouses and price lists are actually set up.</p>
+            <div class="hero-stack" aria-hidden="true">
+              <span class="hs hs--sap"><img src="images/shopify.png" alt=""></span><i class="sep"></i>
+              <span class="hs hs--sap"><img src="images/sap.png" alt=""></span>
+            </div>
+            <div class="hero-actions">
+              <a class="btn btn--primary btn--lg btn--pulse" href="contact-us.html">Book a scoping call</a>
+              <a class="btn btn--ghost btn--lg" href="#budget">See budget and timing</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE BASICS -->
+    <section class="section" id="basics" aria-labelledby="basics-title">
+      <div class="container basics" data-reveal>
+        <div class="basics-copy">
+          <span class="pill">The basics</span>
+          <h2 class="h-section" id="basics-title">What a Shopify and SAP B1 link really means</h2>
+          <p class="lead">It is an automatic exchange of items, stock, orders, customers and deliveries between your Shopify store and your B1 database. B1 exposes that data through the Service Layer (a REST API) and through B1i, its integration framework, and a good build uses one of them to turn a Shopify checkout into a B1 sales order the moment it happens.</p>
+          <p>B1 tends to be the ERP of mid-sized manufacturers, distributors and multi-warehouse retailers who need proper stock, batch or serial control that a lighter accounting tool can't give them. Shopify is the shop window on top. Without a link, a person on your team creates sales orders by hand and edits web stock manually, which stops working the moment order volume climbs.</p>
+        </div>
+        <div class="ba">
+          <div class="no"><h3>Systems apart</h3><ul><li>Web orders typed into B1</li><li>Web stock edited by hand</li><li>Buyers chased for tracking details</li><li>Payouts matched to invoices manually</li></ul></div>
+          <div class="yes"><h3>Systems linked</h3><ul><li>Checkout creates the sales order</li><li>Warehouse stock shown on the storefront</li><li>Deliveries trigger shipping emails</li><li>Invoices reconcile to Shopify payouts</li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT SYNCS -->
+    <section class="section web" id="mapping" aria-labelledby="map-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Entity mapping</span>
+          <h2 class="h-section" id="map-title">What travels between Shopify and SAP B1</h2>
+          <p class="lead">Six B1 objects cover the typical project. Direction follows whichever system owns the data, and B1 is almost always the source of truth for stock and pricing.</p>
+        </div>
+        <div class="map-wrap">
+          <table class="map">
+            <thead>
+              <tr><th scope="col">In SAP B1</th><th scope="col">In Shopify</th><th scope="col">Direction</th><th scope="col">What moves</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Items (OITM)</th><td>Products and variants</td><td><span class="dir">B1 → Shopify</span></td><td>Item master, pricing and attributes published to the catalog</td></tr>
+              <tr><th scope="row">Warehouse stock (OITW)</th><td>Inventory levels by location</td><td><span class="dir">B1 → Shopify</span></td><td>Available quantity per warehouse, so you don't oversell</td></tr>
+              <tr><th scope="row">Sales orders (ORDR)</th><td>Orders</td><td><span class="dir">Shopify → B1</span></td><td>Line items, tax and shipping from each checkout</td></tr>
+              <tr><th scope="row">Business partners (OCRD)</th><td>Customers</td><td><span class="dir">Shopify → B1</span></td><td>Buyers created or matched as B1 customer records</td></tr>
+              <tr><th scope="row">Deliveries (ODLN)</th><td>Fulfilments and tracking</td><td><span class="dir">B1 → Shopify</span></td><td>Delivery documents and tracking numbers that trigger shipping emails</td></tr>
+              <tr><th scope="row">A/R invoices (OINV)</th><td>Payouts and payments</td><td><span class="dir dir--two">Reconciled</span></td><td>Invoices raised in B1 matched against Shopify payouts</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">If your price lists, tax codes or bin locations are unusual, the mapping bends to suit them. Nothing is forced into a template.</p>
+      </div>
+    </section>
+
+    <!-- LIFECYCLE -->
+    <section class="section" id="workflow" aria-labelledby="flow-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">After go-live</span>
+          <h2 class="h-section" id="flow-title">One web order, from basket to delivered</h2>
+          <p class="lead">With the link running, a normal order moves through your systems like this, and your team only steps in for the exceptions.</p>
+        </div>
+        <ol class="tl">
+          <li><h3>Checkout completed</h3><p>A customer pays on Shopify, and a B1 sales order is created with its lines, tax and shipping.</p></li>
+          <li><h3>Customer matched</h3><p>The buyer is matched to an existing business partner or created as a new one, with no duplicates.</p></li>
+          <li><h3>Stock reserved</h3><p>The right warehouse is committed in B1, and the new available quantity is pushed to the storefront.</p></li>
+          <li><h3>Delivery posted</h3><p>Your warehouse ships, and the B1 delivery and tracking number go back to Shopify, which emails the buyer.</p></li>
+          <li><h3>Invoice reconciled</h3><p>The A/R invoice is matched to the Shopify payout so finance closes without a spreadsheet.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ROUTES -->
+    <section class="section web" id="routes" aria-labelledby="route-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Choosing a route</span>
+          <h2 class="h-section" id="route-title">Four ways to connect Shopify to SAP Business One</h2>
+          <p class="lead">B1 has two native integration surfaces, the Service Layer REST API and B1i, plus iPaaS connectors built on top of them. The right pick depends on your B1 version, whether you host on premise or in the cloud, and how complex your warehouses are.</p>
+        </div>
+        <div class="map-wrap">
+          <table class="map">
+            <thead>
+              <tr><th scope="col">Route</th><th scope="col">What it is</th><th scope="col">Suits</th><th scope="col">Keep in mind</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Service Layer</th><td>B1's modern REST interface to items, sales orders and partners.</td><td>Custom builds that need full control of B1 objects</td><td>Needs real B1 development knowledge to do well</td></tr>
+              <tr><th scope="row">B1i</th><td>SAP's built-in integration framework and message broker.</td><td>On-premise shops that want a supported, native path</td><td>Heavy on configuration, with a steeper learning curve</td></tr>
+              <tr><th scope="row">iPaaS connector</th><td>Prebuilt Shopify to B1 templates on platforms like Alumio or Celigo.</td><td>Standard order and stock sync that must launch fast</td><td>A recurring subscription, and templates only flex so far</td></tr>
+              <tr><th scope="row">Custom middleware</th><td>An orchestration layer calling the Service Layer and Shopify APIs directly.</td><td>Multi-warehouse, batch or serial tracking, bespoke pricing</td><td>Needs a partner who knows both B1 and Shopify</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">A straight answer: if you run one warehouse with standard pricing, an iPaaS template will go live faster and cost less than a custom Service Layer build. We will recommend it even though it means less work for us.</p>
+      </div>
+    </section>
+
+    <!-- CONSULTANT VS VENDOR -->
+    <section class="section" id="compare" aria-labelledby="compare-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Why a consultant</span>
+          <h2 class="h-section" id="compare-title">A consultant or a connector vendor?</h2>
+          <p class="lead">A vendor can only offer its own template on top of the Service Layer. We begin with your real warehouse and pricing setup, then pick the surface that fits.</p>
+        </div>
+        <div class="map-wrap">
+          <table class="map">
+            <thead>
+              <tr><th scope="col">&nbsp;</th><th scope="col">Connector vendor</th><th scope="col">Codevelop</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">What gets recommended</th><td>Their own product</td><td>Whatever fits, theirs included</td></tr>
+              <tr><th scope="row">Multi-warehouse stock</th><td>Often a paid add-on, or unsupported</td><td>Treated as core scope</td></tr>
+              <tr><th scope="row">Pricing</th><td>Subscription, per connection</td><td>Fixed project price, optional retainer</td></tr>
+              <tr><th scope="row">When it breaks</th><td>A support ticket queue</td><td>The engineer who built it</td></tr>
+              <tr><th scope="row">B1 customisation</th><td>Limited to template fields</td><td>Full Service Layer or B1i access when needed</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- BUDGET + TIMELINE -->
+    <section class="section web" id="budget" aria-labelledby="budget-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Budget and timing</span>
+          <h2 class="h-section" id="budget-title">What a Shopify and SAP B1 build costs, and how long it takes</h2>
+          <p class="lead">Expect roughly $5,000 to $28,000. Templates sit at the low end plus a monthly fee, and custom Service Layer builds with multi-warehouse or batch logic sit at the top.</p>
+        </div>
+        <div class="rt-grid" data-stagger>
+          <div class="feature"><h3>iPaaS connector<small>Alumio, Celigo and similar</small></h3><p><b>$5k – $11k</b> to implement, plus roughly $300 – $900 a month for the platform.</p></div>
+          <div class="feature"><h3>B1i-based build<small>Native integration framework</small></h3><p><b>$6k – $15k</b> to implement, with a support retainer and no external platform fee.</p></div>
+          <div class="feature"><h3>Custom middleware<small>Service Layer and Shopify APIs</small></h3><p><b>$9k – $28k+</b> to implement, with a support retainer and no platform fee.</p></div>
+        </div>
+        <div class="factors"><span>Number of warehouses</span><span>Batch or serial tracking</span><span>Custom price lists</span></div>
+        <div class="lanes" style="margin-top:36px">
+          <div class="lane"><h3>iPaaS connector<small>Single warehouse, standard pricing</small></h3><div class="lane-bar" style="--w:35%">3–6 weeks</div></div>
+          <div class="lane"><h3>B1i-based build<small>Native framework</small></h3><div class="lane-bar" style="--w:60%">5–9 weeks</div></div>
+          <div class="lane"><h3>Custom middleware<small>Multi-warehouse, batch or serial</small></h3><div class="lane-bar" style="--w:100%">8–14 weeks</div></div>
+        </div>
+        <p class="note">The biggest schedule risk is mismatched items and units of measure between the B1 item master and the Shopify catalog, so item reconciliation is always our first job. Every quote is fixed after we have reviewed your actual B1 configuration.</p>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="section" id="process" aria-labelledby="process-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill">Our process</span>
+          <h2 class="h-section" id="process-title">Five stages, and a mapping sheet you sign first</h2>
+          <p class="lead">You get a fixed-price scope and approve the mapping sheet before we build anything.</p>
+        </div>
+        <ol class="tl">
+          <li><h3>Discover</h3><p>We review your B1 setup, entities, volumes and the result you are after.</p></li>
+          <li><h3>Map</h3><p>Every field, direction, transformation and error rule is written down first.</p></li>
+          <li><h3>Build</h3><p>We build in a sandbox, against a B1 test company and a Shopify development store.</p></li>
+          <li><h3>Test</h3><p>Real order scenarios run end to end, including failures, retries and duplicates.</p></li>
+          <li><h3>Support</h3><p>After go-live we monitor with logging and alerts, and you have a named contact.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- WHY CODEVELOP -->
+    <section class="section web ai" id="why-us" aria-labelledby="why-title">
+      <div class="container" data-reveal>
+        <div class="section-head">
+          <span class="pill pill--dark">Why Codevelop</span>
+          <h2 class="h-section" id="why-title">People who know both the store and the ERP</h2>
+          <p class="lead">An integration only pays off if it keeps running after launch. These are the reasons Shopify merchants on B1 give us the link between their store and their ERP.</p>
+        </div>
+        <div class="rt-grid" data-stagger>
+          <div class="feature"><h3>Vendor-neutral</h3><p>We don't sell a B1 connector, so we have nothing to push. You get the route that fits your warehouses and pricing.</p></div>
+          <div class="feature"><h3>Fixed price up front</h3><p>You approve a signed mapping sheet and a fixed quote before a single Service Layer call is configured.</p></div>
+          <div class="feature"><h3>A named engineer</h3><p>The person who built your link is the one who answers when SAP ships a patch or Shopify retires an API version.</p></div>
+          <div class="feature"><h3>B1 know-how</h3><p>The Service Layer, B1i and the item and warehouse model are familiar ground. See our <a href="sap-business-one.html">SAP Business One practice</a> for the ERP side.</p></div>
+          <div class="feature"><h3>Storefront experience</h3><p>We build and maintain web stores, so the Shopify side of the sync is not guesswork.</p></div>
+          <div class="feature"><h3>Rescue and take-over</h3><p>Abandoned B1i setups, misconfigured templates, duplicate sales orders and syncs broken by a patch: we audit them, then fix or replace.</p></div>
+          <div class="feature"><h3>AI on your orders</h3><p>We build AI agents that act on B1 and Shopify data, from plain-language reporting to automated order routing.</p></div>
+          <div class="feature"><h3>Monitored after launch</h3><p>Logging, alerts and retries ship with every flow, so a failed sync reaches us before it becomes a stock-out.</p></div>
+        </div>
+        <p class="note">Also selling on marketplaces? See our <a href="sap-business-one-amazon-integration.html" style="color:#fff;text-decoration:underline">SAP Business One and Amazon integration</a>, or the general <a href="shopify.html" style="color:#fff;text-decoration:underline">Shopify connector</a> page.</p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="container faq-grid" data-reveal>
+        <div class="faq-head">
+          <span class="pill">Common questions</span>
+          <h2 class="h-section" id="faq-title">Shopify and SAP B1 FAQ</h2>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item open">
+            <h3><button class="faq-q" type="button" aria-expanded="true">Does SAP Business One have an API we can use with Shopify? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. B1 provides the Service Layer, a REST API for items, sales orders and business partners, and B1i, its native integration and message-broker framework. Either can be connected to Shopify.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Can you manage stock across several warehouses? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. Multi-warehouse and multi-bin stock is among the commonest reasons merchants outgrow a template and move to a custom Service Layer build, and it is central to what we do.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Does SAP Business One Cloud change the approach? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Not much. The Service Layer and B1i exist on premise and in the cloud, so the same patterns apply. Hosting mostly changes the network and authentication setup.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Can batch or serial-numbered items be synced? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. Shopify has no native idea of batches, so this needs custom mapping logic rather than a stock template. We deliver it as part of a custom Service Layer build.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Can you repair an integration that is already broken? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. A large part of our work is rescue: abandoned B1i configurations, misconfigured template mappings, duplicate sales orders and syncs that broke after an SAP patch or a Shopify API change.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">How is pricing set? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>We give a fixed price after a scoping call, based on your warehouse structure, pricing complexity and the number of entities. The budget section above shows typical ranges.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Can you connect B1 to more than Shopify? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. We often extend a Shopify and B1 link to include a 3PL, a CRM such as <a href="salesforce.html">Salesforce</a> or a marketplace like <a href="sap-business-one-amazon-integration.html">Amazon</a>, all within one orchestrated design.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta" id="contact" aria-labelledby="cta-title">
+      <div class="cta-grid">
+        <div class="cta-bar" aria-hidden="true"></div>
+        <div class="cta-box">
+          <div class="ripples" aria-hidden="true"><span></span><span></span><span></span></div>
+          <h2 id="cta-title">Let your store and your ERP share one set of numbers</h2>
+          <p>Each week they stay apart, your team retypes sales orders and reconciles warehouse stock by hand. A scoped Shopify and SAP B1 integration removes that work, and you will know the exact cost before we start.</p>
+          <a class="btn btn--primary btn--lg btn-sweep" href="contact-us.html"><span style="position:relative">Book a scoping call</span></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="footer-panel">
+      <div class="footer-flag" aria-hidden="true"></div>
+      <div class="footer-main">
+        <div class="footer-brand">
+          <img src="images/codevelop.webp" alt="Codevelop logo" class="brand-logo" width="160" height="40">
+          <p>At Codevelop, we help businesses turn strategy into scalable results through thoughtful design, performance-driven marketing, and modern technology.</p>
+          <div class="socials">
+            <a href="https://www.facebook.com/Codevelop.usa/" aria-label="Facebook" target="_blank" rel="noopener"><svg class="ico"><use href="#i-fb" /></svg></a>
+            <a href="https://www.instagram.com/codevelop_us/" aria-label="Instagram" target="_blank" rel="noopener"><svg class="ico"><use href="#i-ig" /></svg></a>
+            <a href="https://www.linkedin.com/company/codevelop-us" aria-label="LinkedIn" target="_blank" rel="noopener"><svg class="ico"><use href="#i-in" /></svg></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Services</h3>
+          <ul>
+            <li><a href="performance-marketing.html">Performance Marketing</a></li>
+            <li><a href="#">SEO Services</a></li>
+            <li><a href="#">Social Media Marketing</a></li>
+            <li><a href="web-development.html">Web Development</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Link</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Case Studies</a></li>
+            <li><a href="#">Blogs</a></li>
+            <li><a href="https://codevelopus.com/">Free SEO Audit</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Contact Us</h3>
+          <ul class="contact">
+            <li><svg class="ico"><use href="#i-pin" /></svg><span>555 SE Martin Luther King JR Blvd, Portland, OR 97214</span></li>
+            <li><svg class="ico"><use href="#i-phone" /></svg><a href="tel:+19714809833">+1 971-480-9833</a></li>
+            <li><svg class="ico"><use href="#i-mail" /></svg><a href="mailto:info@codevelop.us">info@codevelop.us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="newsletter">
+        <div class="newsletter-box">
+          <h3>Signup our newsletter to get update information, news, insight or promotions.</h3>
+          <!-- Connect this form to your email provider (set action / method). -->
+          <form class="news-form" action="#" method="post">
+            <label class="sr-only" for="news-email">Email</label>
+            <input id="news-email" type="email" name="email" placeholder="Email" required autocomplete="email">
+            <button class="btn btn--primary" type="submit">Sign up</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <span>Copyright © 2026 Codevelop US, All Rights Reserved.</span>
+      <a href="#">Privacy policy</a>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Software Development Agents | Codevelop</title>
+  <meta name="description"
+    content="Codevelop builds AI software development agents that write code, add tests, review pull requests and prepare releases, with your engineers approving every change.">
+  <link rel="canonical" href="https://codevelopus.com/software-development-agents.html">
+  <meta name="theme-color" content="#0a3161">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Codevelopus">
+  <meta property="og:title" content="AI Software Development Agents | Codevelop">
+  <meta property="og:description"
+    content="AI agents that write, test and review code, then hand your engineers a pull request that is ready to approve.">
+  <meta property="og:url" content="https://codevelopus.com/software-development-agents.html">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="https://codevelopus.com/wp-content/uploads/2026/01/cropped-codevelop-favicon-270x270.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/software-agents.css">
+</head>
+
+<body>
+
+  <!-- Icon sprite -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" /></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></symbol>
+      <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z" /></symbol>
+      <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="5" /><circle cx="12" cy="12" r="1.5" /></symbol>
+      <symbol id="i-funnel" viewBox="0 0 24 24"><path d="M3 4h18l-7 8v6l-4 2v-8L3 4z" /></symbol>
+      <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" /></symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5z" /></symbol>
+      <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z" /><path d="M19 17l.8 2.2L22 20l-2.2.8L19 23l-.8-2.2L16 20l2.2-.8L19 17z" /></symbol>
+      <symbol id="i-fb" viewBox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v7h4v-7h3l1-4h-4V8z" /></symbol>
+      <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="0.8" /></symbol>
+      <symbol id="i-in" viewBox="0 0 24 24"><rect x="3" y="9" width="4" height="12" /><circle cx="5" cy="5" r="2" /><path d="M10 9h4v2a4 4 0 0 1 6 3v7h-4v-6a2 2 0 0 0-4 0v6h-4V9z" /></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" /></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3 7l9 6 9-6" /></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11z" /><circle cx="12" cy="10" r="2.5" /></symbol>
+      <symbol id="i-code" viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16" /></symbol>
+      <symbol id="i-flow" viewBox="0 0 24 24"><rect x="3" y="3" width="6" height="6" rx="1" /><rect x="15" y="15" width="6" height="6" rx="1" /><path d="M9 6h4a2 2 0 0 1 2 2v7" /></symbol>
+      <symbol id="i-megaphone" viewBox="0 0 24 24"><path d="M3 10v4h4l8 5V5L7 10H3z" /><path d="M18.5 9a4 4 0 0 1 0 6" /></symbol>
+      <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2V5z" /><path d="M4 19a2 2 0 0 1 2-2h13" /></symbol>
+      <symbol id="i-coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M14.5 9.5c-.5-1-1.5-1.5-2.5-1.5-1.4 0-2.5.8-2.5 2s1 1.7 2.5 2 2.5.8 2.5 2-1.1 2-2.5 2c-1 0-2-.5-2.5-1.5M12 6.5V8m0 8v1.5" /></symbol>
+      <symbol id="i-desk" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2" /><path d="M8 20h8M12 16v4" /></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5" /><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6" /><path d="M16 4.7a3.5 3.5 0 0 1 0 6.6M18 14.3c2 .7 3.5 2.6 3.5 5.7" /></symbol>
+      <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3c3.2 3.2 3.2 14.8 0 18M12 3c-3.2 3.2-3.2 14.8 0 18" /></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z" /><path d="M9 12l2 2 4-4" /></symbol>
+      <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z" /><circle cx="12" cy="12" r="3" /></symbol>
+      <!-- new for this page -->
+      <symbol id="i-git" viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.5" /><circle cx="6" cy="18" r="2.5" /><circle cx="18" cy="8" r="2.5" /><path d="M6 8.5v7M18 10.5c0 4-6 3-12 5.5" /></symbol>
+      <symbol id="i-bug" viewBox="0 0 24 24"><rect x="8" y="8" width="8" height="12" rx="4" /><path d="M9 8a3 3 0 0 1 6 0M4 12h4M16 12h4M5 19l3-2M19 19l-3-2M5 6l3 2M19 6l-3 2" /></symbol>
+      <symbol id="i-flask" viewBox="0 0 24 24"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3" /></symbol>
+      <symbol id="i-rocket" viewBox="0 0 24 24"><path d="M5 19c0-3 1-5 3-6l3 3c-1 2-3 3-6 3z" /><path d="M11 16l7-7a5 5 0 0 0 3-6 5 5 0 0 0-6 3l-7 7" /></symbol>
+      <symbol id="i-terminal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2" /><path d="M7 9l3 3-3 3M13 15h4" /></symbol>
+      <symbol id="i-file" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6V3z" /><path d="M14 3v4h4M9 12h6M9 16h6" /></symbol>
+      <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5z" /><path d="M3 13l9 5 9-5" /></symbol>
+      <symbol id="i-db" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3" /><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3" /></symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2" /><path d="M8 11V8a4 4 0 0 1 8 0v3" /></symbol>
+      <symbol id="i-arrows" viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5" /></symbol>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header" id="top">
+    <div class="bar">
+      <a class="logo" href="index.html" aria-label="Codevelop home"><img src="images/codevelop.webp"
+          alt="Codevelop logo" class="brand-logo" width="160" height="40"></a>
+      <button class="burger" type="button" aria-label="Open menu"
+        aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav aria-label="Main">
+        <ul>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">AI Agents <svg class="chev"
+                viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop drop--agents">
+              <div class="agents-top">
+                <span class="agents-label">AI Agents</span>
+                <a class="agents-all" href="#">View all agents</a>
+              </div>
+
+              <a class="agent" href="customer-support-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-chat" />
+                  </svg></span>
+                <span class="agent-txt"><b>Customer Support Agents</b><small>24/7 answers across chat &amp;
+                    inbox</small></span>
+              </a>
+              <a class="agent" href="sales-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-funnel" />
+                  </svg></span>
+                <span class="agent-txt"><b>Sales &amp; Lead-Generation Agents</b><small>Capture, qualify &amp; follow up
+                    with leads</small></span>
+              </a>
+
+              <a class="agent" href="software-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-code" />
+                  </svg></span>
+                <span class="agent-txt"><b>Software Development Agents</b><small>Code, review &amp; ship
+                    faster</small></span>
+              </a>
+              <a class="agent" href="workflow-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-flow" />
+                  </svg></span>
+                <span class="agent-txt"><b>Workflow Automation Agents</b><small>Connect tools &amp; automate routine
+                    tasks</small></span>
+              </a>
+
+              <a class="agent" href="marketing-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-megaphone" />
+                  </svg></span>
+                <span class="agent-txt"><b>Marketing Agents</b><small>Campaigns, content &amp; channel
+                    management</small></span>
+              </a>
+              <a class="agent" href="research-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-chart" />
+                  </svg></span>
+                <span class="agent-txt"><b>Research &amp; Data Analyst Agents</b><small>Insights &amp; plain-language
+                    reports</small></span>
+              </a>
+
+              <a class="agent" href="internal-knowledge-agents.html">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-book" />
+                  </svg></span>
+                <span class="agent-txt"><b>Internal Knowledge Agents</b><small>Instant answers from your company
+                    data</small></span>
+              </a>
+              <a class="agent" href="#">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-coin" />
+                  </svg></span>
+                <span class="agent-txt"><b>Finance &amp; Accounting Agents</b><small>Invoices, reconciliation &amp;
+                    reporting</small></span>
+              </a>
+
+              <a class="agent" href="#">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-desk" />
+                  </svg></span>
+                <span class="agent-txt"><b>IT Service Desk Agents</b><small>Resolve tickets &amp; access
+                    requests</small></span>
+              </a>
+              <a class="agent" href="#">
+                <span class="agent-ico"><svg class="ico">
+                    <use href="#i-users" />
+                  </svg></span>
+                <span class="agent-txt"><b>HR &amp; Recruitment Agents</b><small>Screen, schedule &amp; onboard
+                    people</small></span>
+              </a>
+            </div>
+          </li>
+     <li class="has-mega"><button class="top" type="button" aria-expanded="false">Connectors <svg class="chev" viewBox="0 0 10 10">
+    <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+  </svg></button>
+  <div class="drop drop--agents drop--connectors">
+    <div class="agents-top">
+      <span class="agents-label">Connectors</span>
+      <a class="agents-all" href="#">View all connectors</a>
+    </div>
+
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-sap">SAP</i></span>
+      <span class="agent-txt"><b>SAP Business One</b><small>ERP integration &amp; consulting</small></span>
+    </a>
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-sf">SF</i></span>
+      <span class="agent-txt"><b>Salesforce</b><small>CRM &amp; order-to-cash sync</small></span>
+    </a>
+
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-ns">N</i></span>
+      <span class="agent-txt"><b>NetSuite</b><small>ERP, ecommerce &amp; EDI sync</small></span>
+    </a>
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-shop">S</i></span>
+      <span class="agent-txt"><b>Shopify</b><small>Ecommerce ↔ back office</small></span>
+    </a>
+
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-qb">qb</i></span>
+      <span class="agent-txt"><b>QuickBooks</b><small>Accounting &amp; invoice sync</small></span>
+    </a>
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-woo">Woo</i></span>
+      <span class="agent-txt"><b>WooCommerce</b><small>WordPress store integration</small></span>
+    </a>
+
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-zoho"><s></s><s></s><s></s><s></s></i></span>
+      <span class="agent-txt"><b>Zoho</b><small>Zoho One suite integration</small></span>
+    </a>
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-zuper">Zu</i></span>
+      <span class="agent-txt"><b>Zuper</b><small>Field service management sync</small></span>
+    </a>
+
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-attio">At</i></span>
+      <span class="agent-txt"><b>Attio</b><small>CRM &amp; record sync</small></span>
+    </a>
+    <a class="agent" href="#">
+      <span class="agent-ico"><i class="cn cn-twenty">20</i></span>
+      <span class="agent-txt"><b>Twenty</b><small>Open-source CRM sync</small></span>
+    </a>
+  </div>
+</li>
+          <li class="has-mega"><button class="top" type="button" aria-expanded="false">Services <svg class="chev"
+                viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop drop--mega">
+              <div class="mega-top">
+                <a class="mega-all" href="services.html">View all services <svg class="ico" width="16" height="16"
+                    aria-hidden="true">
+                    <use href="#i-arrow" />
+                  </svg></a>
+              </div>
+
+              <div class="mega-col">
+                <h4><a href="performance-marketing.html">Performance Marketing</a></h4>
+                <a href="meta-ads.html">Google Ads Management</a>
+                <a href="facebook-ads.html">Facebook Ads</a>
+                <a href="remarketing.html">Remarketing</a>
+              </div>
+
+              <div class="mega-col">
+                <h4><a href="web-development.html">Web Development Services</a></h4>
+                <a href="custom-website-design.html">Custom Website Design</a>
+                <a href="wordpress-development.html">WordPress Web Development</a>
+                <a href="shopify-development.html">Shopify Web Development</a>
+                <a href="webflow-development.html">Webflow Web Development</a>
+                <a href="framer-development.html">Framer Web Development</a>
+                <a href="mageneto-development.html">Magento Web Development</a>
+                <a href="website-maintenance.html">Website Maintenance</a>
+                <a href="website-redesign.html">Website Redesign</a>
+              </div>
+
+              <div class="mega-col">
+                <h4><a href="social-media-marketing.html">Social Media Marketing</a></h4>
+                <a href="content-marketing.html">Content Marketing</a>
+              </div>
+
+              <div class="mega-col">
+                <h4><a href="search-engine-optimization.html">Search Engine Optimization</a></h4>
+                <a href="local-seo.html">Local SEO</a>
+                <a href="seo-audits.html">SEO Audits</a>
+                <a href="technical-seo.html">Technical SEO</a>
+                <a href="enterprise-seo.html">Enterprise SEO</a>
+              </div>
+            </div>
+          </li>
+          <li><button class="top" type="button" aria-expanded="false">Hire Talent <svg class="chev" viewBox="0 0 10 10">
+                <path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+              </svg></button>
+            <div class="drop"><a href="#">Developers</a><a href="#">Automation Engineers</a><a href="#">Dedicated
+                Teams</a></div>
+          </li>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="#">Success Stories</a></li>
+          <li><a href="#">Insights</a></li>
+        </ul>
+        <a class="hdr-cta hdr-cta-m" href="contact-us.html">Get a Free Automation Review</a>
+      </nav>
+      <a class="hdr-cta" href="contact-us.html">Get a Free Automation Review</a>
+    </div>
+  </header>
+
+
+  <main id="content">
+
+    <!-- ================= 1 · HERO (animated product video) ================= -->
+    <section class="hero-wrap" aria-labelledby="sd-title">
+      <div class="hero sd-hero">
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="hero-glow" aria-hidden="true"></div>
+        <div class="ring ring--1" aria-hidden="true"><i></i></div>
+        <div class="ring ring--2" aria-hidden="true"><i></i></div>
+        <div class="ring ring--3" aria-hidden="true"><i></i></div>
+
+        <div class="container sd-hero-inner">
+          <div class="sd-copy">
+            <span class="pill">Software Development Agents</span>
+            <h1 class="h-display" id="sd-title">
+              <span class="w"><span style="--i:0">Ship</span></span>
+              <span class="w"><span style="--i:1">software</span></span>
+              <span class="w"><span style="--i:2">faster</span></span>
+              <span class="w"><span style="--i:3">with</span></span>
+              <span class="u"><span class="w"><span style="--i:4">AI</span></span> <span class="w"><span
+                    style="--i:5">engineers</span></span><svg viewBox="0 0 300 20" preserveAspectRatio="none"
+                  aria-hidden="true">
+                  <path d="M3 14 C 70 4, 160 2, 297 9" pathLength="1" />
+                </svg></span>
+            </h1>
+            <p class="lead">AI agents that read your codebase, write and test code, review every pull request and
+              prepare releases, so your engineers spend their time on design decisions instead of routine work.
+            </p>
+            <div class="sd-actions">
+              <a class="btn btn--primary btn--lg btn--pulse" href="contact-us.html">Get a Free Automation Review <svg
+                  class="ico"><use href="#i-arrow" /></svg></a>
+              <a class="btn btn--ghost btn--lg" href="#sd-how">See how it works</a>
+            </div>
+            <ul class="sd-checks">
+              <li><svg class="ico"><use href="#i-check" /></svg>Works inside your repos</li>
+              <li><svg class="ico"><use href="#i-check" /></svg>Every change is a pull request</li>
+              <li><svg class="ico"><use href="#i-check" /></svg>Your team approves every merge</li>
+            </ul>
+          </div>
+
+          <div class="sd-stage" id="sd-stage">
+            <div class="sd-video" id="sd-video">
+              <div class="sd-vbar">
+                <span class="sd-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span class="sd-vtitle"><b class="sd-rec" aria-hidden="true"></b><span id="sd-scene-name">Ticket to code</span></span>
+                <span class="sd-time" id="sd-time" aria-hidden="true">0:00</span>
+              </div>
+
+              <div class="sd-vbody" aria-hidden="true">
+                <!-- scene 1: ticket to code -->
+                <div class="sd-scene is-active" data-name="Ticket to code">
+                  <div class="sd-chat">
+                    <p class="sd-m me sd-in" style="--n:0">Add Stripe checkout to the booking flow. Ticket #482.</p>
+                    <p class="sd-m bot sd-in" style="--n:1">On it. I&rsquo;ll branch from main and read the booking module first.</p>
+                    <div class="sd-order sd-in" style="--n:2">
+                      <div class="sd-order-top"><b>PR #482 &middot; feat/stripe-checkout</b><span>Draft</span></div>
+                      <div class="sd-track"><i></i><i></i><i></i><u></u></div>
+                      <small>Code written &middot; 14 tests added &middot; Docs updated</small>
+                    </div>
+                    <p class="sd-m bot sd-in" style="--n:3">Checkout and webhook handler are done. Want me to run the checks?</p>
+                    <p class="sd-m me sd-in" style="--n:4">Yes, run them</p>
+                    <p class="sd-m bot sd-in" style="--n:5">All green. The pull request is ready for review.</p>
+                  </div>
+                </div>
+
+                <!-- scene 2: code review -->
+                <div class="sd-scene" data-name="Code review">
+                  <div class="sd-mail sd-in" style="--n:0">
+                    <span class="sd-av">PR</span>
+                    <div><b>Pull request #482 &middot; Stripe checkout</b><small>+248 &minus;31 &middot; 6 files changed</small></div>
+                    <em>Review</em>
+                  </div>
+                  <ul class="sd-pipe">
+                    <li class="sd-in" style="--n:1"><span class="ck" style="--n:1"><svg class="ico"><use href="#i-check" /></svg></span>Static analysis passed<small>0 issues</small></li>
+                    <li class="sd-in" style="--n:2"><span class="ck" style="--n:2"><svg class="ico"><use href="#i-check" /></svg></span>Unit tests passed<small>14 / 14</small></li>
+                    <li class="sd-in" style="--n:3"><span class="ck" style="--n:3"><svg class="ico"><use href="#i-check" /></svg></span>Security scan clean<small>0 vulnerabilities</small></li>
+                    <li class="sd-in" style="--n:4"><span class="ck" style="--n:4"><svg class="ico"><use href="#i-check" /></svg></span>2 edge cases found and fixed<small>1 commit</small></li>
+                  </ul>
+                  <div class="sd-done sd-in" style="--n:5"><svg class="ico"><use href="#i-bolt" /></svg>First review finished in 38 seconds</div>
+                </div>
+
+                <!-- scene 3: ship it -->
+                <div class="sd-scene" data-name="Release">
+                  <div class="sd-ticket sd-in" style="--n:0">
+                    <div class="sd-ticket-top"><b>Release v2.4.1 &middot; Staging</b><span class="hot">Live</span></div>
+                    <div class="sd-tags"><span>Build passed</span><span>Deployed to staging</span><span>Smoke tests ok</span></div>
+                  </div>
+                  <div class="sd-sum sd-in" style="--n:1">
+                    <b>Agent summary</b>
+                    <p>Merged after Priya approved. Changelog written, ticket #482 closed and the release notes are ready to send.</p>
+                  </div>
+                  <div class="sd-route sd-in" style="--n:2">
+                    <span class="sd-av sd-av--red">PS</span>
+                    <div><b>Ready for production approval</b><small>Rollback plan attached to the release</small></div>
+                  </div>
+                  <div class="sd-done sd-done--soft sd-in" style="--n:3"><svg class="ico"><use href="#i-users" /></svg>Your engineers approve, they don&rsquo;t retype</div>
+                </div>
+              </div>
+
+              <div class="sd-vtl" role="group" aria-label="Demo scenes">
+                <button class="sd-seg is-on" type="button" aria-label="Show ticket to code scene"><span>Ticket to code</span><i></i></button>
+                <button class="sd-seg" type="button" aria-label="Show code review scene"><span>Code review</span><i></i></button>
+                <button class="sd-seg" type="button" aria-label="Show release scene"><span>Release</span><i></i></button>
+              </div>
+            </div>
+
+            <div class="sd-float sd-float--1" aria-hidden="true">
+              <svg class="ico"><use href="#i-clock" /></svg><span><b>&lt;5 min</b><small>to first pull request</small></span>
+            </div>
+            <div class="sd-float sd-float--2" aria-hidden="true">
+              <svg class="ico"><use href="#i-rocket" /></svg><span><b>2x</b><small>faster releases</small></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="stats" aria-label="Software agent highlights">
+          <div class="stat">
+            <span class="stat-ico"><svg class="ico-style"><use href="#i-bolt" /></svg></span>
+            <div><strong data-count="5" data-pre="<" data-suf=" min">&lt;5 min</strong><span>to a first pull request</span></div>
+          </div>
+          <div class="stat">
+            <span class="stat-ico"><svg class="ico-style"><use href="#i-rocket" /></svg></span>
+            <div><strong data-count="2" data-suf="x">2x</strong><span>faster release cycles</span></div>
+          </div>
+          <div class="stat">
+            <span class="stat-ico"><svg class="ico-style"><use href="#i-clock" /></svg></span>
+            <div><strong>24/7</strong><span>coding capacity</span></div>
+          </div>
+          <div class="stat">
+            <span class="stat-ico"><svg class="ico-style"><use href="#i-shield" /></svg></span>
+            <div><strong data-count="100" data-suf="%">100%</strong><span>of merges human-approved</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 2 · WHAT IT DOES (live code studio) ================= -->
+    <section class="section sd-do" id="sd-do" aria-labelledby="do-title">
+      <div class="container">
+        <div class="section-head sd-rv">
+          <span class="pill">What it does</span>
+          <h2 class="h-section" id="do-title">The routine work of a dev team, done in your repo.</h2>
+          <p class="lead">Pick a task and watch the agent work. It writes real diffs on a branch, never straight to production.</p>
+        </div>
+
+        <div class="sd-studio sd-rv" id="sd-studio" style="--rd:1">
+          <div class="sd-tabs" role="tablist" aria-label="Agent tasks">
+            <button class="sd-tab is-on" type="button" role="tab" aria-selected="true">
+              <span class="sd-tab-ico"><svg class="ico"><use href="#i-code" /></svg></span>
+              <span class="sd-tab-txt"><b>Build features</b><small>From ticket to working code</small></span>
+            </button>
+            <button class="sd-tab" type="button" role="tab" aria-selected="false">
+              <span class="sd-tab-ico"><svg class="ico"><use href="#i-eye" /></svg></span>
+              <span class="sd-tab-txt"><b>Review pull requests</b><small>Catch bugs before a human does</small></span>
+            </button>
+            <button class="sd-tab" type="button" role="tab" aria-selected="false">
+              <span class="sd-tab-ico"><svg class="ico"><use href="#i-flask" /></svg></span>
+              <span class="sd-tab-txt"><b>Write tests</b><small>Raise coverage on every change</small></span>
+            </button>
+            <button class="sd-tab" type="button" role="tab" aria-selected="false">
+              <span class="sd-tab-ico"><svg class="ico"><use href="#i-bug" /></svg></span>
+              <span class="sd-tab-txt"><b>Fix bugs</b><small>Trace, patch and add a regression test</small></span>
+            </button>
+            <button class="sd-tab" type="button" role="tab" aria-selected="false">
+              <span class="sd-tab-ico"><svg class="ico"><use href="#i-file" /></svg></span>
+              <span class="sd-tab-txt"><b>Write documentation</b><small>Docs that match the code</small></span>
+            </button>
+            <button class="sd-tab" type="button" role="tab" aria-selected="false">
+              <span class="sd-tab-ico"><svg class="ico"><use href="#i-rocket" /></svg></span>
+              <span class="sd-tab-txt"><b>Prepare releases</b><small>Pipelines, changelogs, staging</small></span>
+            </button>
+          </div>
+
+          <div class="sd-editor" aria-live="off">
+            <div class="sd-ed-bar">
+              <span class="sd-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="sd-file"><svg class="ico"><use href="#i-git" /></svg><span id="sd-file">booking/checkout.ts</span></span>
+              <span class="sd-branch">feat/stripe-checkout</span>
+            </div>
+            <div class="sd-code" id="sd-code" aria-label="Example code written by the agent"></div>
+            <div class="sd-ed-foot">
+              <span class="sd-status"><i class="sd-live"></i><span id="sd-status">Agent working&hellip;</span></span>
+              <span class="sd-pbar"><i id="sd-pbar"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 3 · STACKS (cursor-tilt tiles) ================= -->
+    <section class="section sd-stacks" id="sd-stacks" aria-labelledby="stk-title">
+      <div class="container">
+        <div class="section-head sd-rv">
+          <span class="pill">Your stack</span>
+          <h2 class="h-section" id="stk-title">Fluent in the languages your team already writes.</h2>
+          <p class="lead">The agent follows your coding standards, folder layout and naming, so its code looks like your team wrote it.</p>
+        </div>
+
+        <div class="sd-tiles sd-rv" id="sd-tiles" style="--rd:1">
+          <article class="sd-tile">
+            <span class="sd-tile-ico"><svg class="ico"><use href="#i-globe" /></svg></span>
+            <h3>Web &amp; WordPress</h3>
+            <p>Custom themes, plugins, WooCommerce and storefront features.</p>
+            <ul class="sd-tags"><li>PHP</li><li>WordPress</li><li>Laravel</li><li>Shopify Liquid</li></ul>
+          </article>
+          <article class="sd-tile">
+            <span class="sd-tile-ico"><svg class="ico"><use href="#i-desk" /></svg></span>
+            <h3>Frontend apps</h3>
+            <p>Accessible, responsive interfaces with typed components.</p>
+            <ul class="sd-tags"><li>React</li><li>Next.js</li><li>Vue</li><li>TypeScript</li></ul>
+          </article>
+          <article class="sd-tile">
+            <span class="sd-tile-ico"><svg class="ico"><use href="#i-terminal" /></svg></span>
+            <h3>Backend &amp; APIs</h3>
+            <p>Services, integrations and webhooks with tests alongside.</p>
+            <ul class="sd-tags"><li>Node.js</li><li>Python</li><li>Django</li><li>GraphQL</li></ul>
+          </article>
+          <article class="sd-tile">
+            <span class="sd-tile-ico"><svg class="ico"><use href="#i-layers" /></svg></span>
+            <h3>Enterprise</h3>
+            <p>Large codebases with strict layers and long-lived modules.</p>
+            <ul class="sd-tags"><li>Java</li><li>Spring</li><li>.NET</li><li>C#</li></ul>
+          </article>
+          <article class="sd-tile">
+            <span class="sd-tile-ico"><svg class="ico"><use href="#i-phone" /></svg></span>
+            <h3>Mobile</h3>
+            <p>Screens, state and API calls for iOS and Android apps.</p>
+            <ul class="sd-tags"><li>Swift</li><li>Kotlin</li><li>React Native</li><li>Flutter</li></ul>
+          </article>
+          <article class="sd-tile">
+            <span class="sd-tile-ico"><svg class="ico"><use href="#i-db" /></svg></span>
+            <h3>Data &amp; cloud</h3>
+            <p>Queries, migrations, containers and infrastructure scripts.</p>
+            <ul class="sd-tags"><li>SQL</li><li>Postgres</li><li>AWS</li><li>Docker</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 4 · HOW IT WORKS (expanding panels) ================= -->
+    <section class="section sd-how" id="sd-how" aria-labelledby="how-title">
+      <div class="container">
+        <div class="section-head sd-rv">
+          <span class="pill">How it works</span>
+          <h2 class="h-section" id="how-title">From first call to merged code in four steps.</h2>
+        </div>
+
+        <div class="sd-acc sd-rv" id="sd-acc" style="--rd:1">
+          <article class="sd-pan is-on">
+            <button class="sd-pan-btn" type="button" aria-expanded="true"><span class="sd-pan-n">1</span><span class="sd-pan-t">Connect your repos</span></button>
+            <div class="sd-pan-body"><div class="sd-pan-in">
+              <div class="sd-pan-h"><span class="sd-pan-n">1</span><h3>Connect your repos</h3></div>
+              <p>We give the agent scoped access to the repositories, issue tracker and CI you choose. Nothing else.</p>
+              <ul class="sd-pan-list">
+                <li><svg class="ico"><use href="#i-check" /></svg>Read access to code and tickets</li>
+                <li><svg class="ico"><use href="#i-check" /></svg>Write access to branches only</li>
+                <li><svg class="ico"><use href="#i-check" /></svg>No production credentials</li>
+              </ul>
+            </div></div>
+          </article>
+          <article class="sd-pan">
+            <button class="sd-pan-btn" type="button" aria-expanded="false"><span class="sd-pan-n">2</span><span class="sd-pan-t">Set your rules</span></button>
+            <div class="sd-pan-body"><div class="sd-pan-in">
+              <div class="sd-pan-h"><span class="sd-pan-n">2</span><h3>Set your rules</h3></div>
+              <p>You decide the coding standards, branch naming, test requirements and who has to approve what.</p>
+              <ul class="sd-pan-list">
+                <li><svg class="ico"><use href="#i-check" /></svg>Style guide and lint rules loaded</li>
+                <li><svg class="ico"><use href="#i-check" /></svg>Required checks before review</li>
+                <li><svg class="ico"><use href="#i-check" /></svg>Named reviewers per area</li>
+              </ul>
+            </div></div>
+          </article>
+          <article class="sd-pan">
+            <button class="sd-pan-btn" type="button" aria-expanded="false"><span class="sd-pan-n">3</span><span class="sd-pan-t">Pilot on real tickets</span></button>
+            <div class="sd-pan-body"><div class="sd-pan-in">
+              <div class="sd-pan-h"><span class="sd-pan-n">3</span><h3>Pilot on real tickets</h3></div>
+              <p>We start with small, well-defined tickets, so your team can judge the output on work they know.</p>
+              <ul class="sd-pan-list">
+                <li><svg class="ico"><use href="#i-check" /></svg>Bug fixes and small features first</li>
+                <li><svg class="ico"><use href="#i-check" /></svg>Every pull request reviewed by a person</li>
+                <li><svg class="ico"><use href="#i-check" /></svg>Feedback tunes the agent each week</li>
+              </ul>
+            </div></div>
+          </article>
+          <article class="sd-pan">
+            <button class="sd-pan-btn" type="button" aria-expanded="false"><span class="sd-pan-n">4</span><span class="sd-pan-t">Scale and measure</span></button>
+            <div class="sd-pan-body"><div class="sd-pan-in">
+              <div class="sd-pan-h"><span class="sd-pan-n">4</span><h3>Scale and measure</h3></div>
+              <p>Once the pilot earns trust, we widen the scope and report on the numbers that matter to engineering.</p>
+              <ul class="sd-pan-list">
+                <li><svg class="ico"><use href="#i-check" /></svg>Cycle time and review time</li>
+                <li><svg class="ico"><use href="#i-check" /></svg>Test coverage and escaped bugs</li>
+                <li><svg class="ico"><use href="#i-check" /></svg>Weekly report to your lead</li>
+              </ul>
+            </div></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 5 · HUMAN IN THE LOOP (live pull request) ================= -->
+    <section class="section sd-hand" id="sd-handoff" aria-labelledby="hand-title">
+      <div class="engine-dots" aria-hidden="true"></div>
+      <div class="container sd-hand-grid">
+        <div class="sd-hand-copy sd-rv">
+          <span class="pill pill--dark">Human in the loop</span>
+          <h2 class="h-section" id="hand-title">The agent proposes. Your engineers decide.</h2>
+          <p class="lead">Every change arrives as a normal pull request with checks, comments and a clear history. Nothing is merged or deployed without a person saying yes.</p>
+          <ul class="sd-list sd-list--light">
+            <li><svg class="ico"><use href="#i-lock" /></svg>Branch-only access, never direct to main</li>
+            <li><svg class="ico"><use href="#i-eye" /></svg>Full trail of diffs, test runs and decisions</li>
+            <li><svg class="ico"><use href="#i-users" /></svg>Your reviewers can edit or reject any change</li>
+          </ul>
+          <a class="btn btn--primary btn--lg" href="contact-us.html">Talk to our team <svg class="ico"><use href="#i-arrow" /></svg></a>
+        </div>
+
+        <div class="sd-pr sd-rv" id="sd-pr" style="--rd:2" aria-label="Example pull request: checks run, a reviewer approves, the change is merged">
+          <div class="sd-pr-head">
+            <span class="sd-pr-title"><svg class="ico"><use href="#i-git" /></svg>feat/stripe-checkout <em>into main</em></span>
+            <span class="sd-pr-badge"><b class="sd-bd-a">Open</b><b class="sd-bd-b">Merged</b></span>
+          </div>
+
+          <div class="sd-diff">
+            <div class="sd-dl sd-dl--del" style="--n:0"><i>&minus;</i><code>if (total &gt; 0) charge(total);</code></div>
+            <div class="sd-dl sd-dl--add" style="--n:1"><i>+</i><code>if (total &lt;= 0) throw new Error("Empty cart");</code></div>
+            <div class="sd-dl sd-dl--add" style="--n:2"><i>+</i><code>await charge(total);</code></div>
+          </div>
+
+          <div class="sd-note">
+            <span class="sd-av">AI</span>
+            <p><b>Review agent</b> Added a guard for empty carts and a missing <code>await</code>. Fix pushed in one commit.</p>
+          </div>
+
+          <ul class="sd-checks2">
+            <li style="--d:2s"><span class="sd-cs"><i class="sd-spin"></i><i class="sd-ok"><svg class="ico"><use href="#i-check" /></svg></i></span>Lint and static analysis</li>
+            <li style="--d:2.7s"><span class="sd-cs"><i class="sd-spin"></i><i class="sd-ok"><svg class="ico"><use href="#i-check" /></svg></i></span>Unit tests <small>14 / 14</small></li>
+            <li style="--d:3.4s"><span class="sd-cs"><i class="sd-spin"></i><i class="sd-ok"><svg class="ico"><use href="#i-check" /></svg></i></span>Security scan</li>
+            <li style="--d:4.1s"><span class="sd-cs"><i class="sd-spin"></i><i class="sd-ok"><svg class="ico"><use href="#i-check" /></svg></i></span>Build for staging</li>
+          </ul>
+
+          <div class="sd-appr">
+            <span class="sd-av sd-av--red">PS</span>
+            <div><b>Priya S. approved</b><small>Senior engineer &middot; code owner</small></div>
+          </div>
+
+          <button class="sd-merge" type="button" tabindex="-1" aria-hidden="true"><span class="sd-mg-a">Merge pull request</span><span class="sd-mg-b"><svg class="ico"><use href="#i-check" /></svg>Merged to main</span></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 6 · INTEGRATIONS (marquee) ================= -->
+    <!-- <section class="section sd-int" id="sd-integrations" aria-labelledby="int-title">
+      <div class="container">
+        <div class="section-head sd-rv">
+          <span class="pill">Integrations</span>
+          <h2 class="h-section" id="int-title">Plugs into the tools your engineers use daily.</h2>
+          <p class="lead">No new workflow to learn. The agent works through your Git host, tracker, chat and CI.</p>
+        </div>
+      </div>
+
+      <div class="sd-mq-wrap sd-rv" style="--rd:1">
+        <div class="sd-mq" aria-label="Supported tools, first row">
+          <div class="sd-mq-track">
+            <span class="sd-tool"><b>G</b><span>GitHub<small>Repos &amp; PRs</small></span></span>
+            <span class="sd-tool"><b>G</b><span>GitLab<small>Repos &amp; CI</small></span></span>
+            <span class="sd-tool"><b>B</b><span>Bitbucket<small>Repos</small></span></span>
+            <span class="sd-tool"><b>J</b><span>Jira<small>Tickets</small></span></span>
+            <span class="sd-tool"><b>L</b><span>Linear<small>Issues</small></span></span>
+            <span class="sd-tool"><b>S</b><span>Slack<small>Updates</small></span></span>
+            <span class="sd-tool"><b>V</b><span>VS Code<small>Editor</small></span></span>
+            <span class="sd-tool"><b>F</b><span>Figma<small>Design specs</small></span></span>
+          </div>
+        </div>
+        <div class="sd-mq sd-mq--rev" aria-label="Supported tools, second row">
+          <div class="sd-mq-track">
+            <span class="sd-tool"><b>D</b><span>Docker<small>Containers</small></span></span>
+            <span class="sd-tool"><b>A</b><span>AWS<small>Cloud</small></span></span>
+            <span class="sd-tool"><b>V</b><span>Vercel<small>Deploys</small></span></span>
+            <span class="sd-tool"><b>J</b><span>Jenkins<small>CI</small></span></span>
+            <span class="sd-tool"><b>S</b><span>Sentry<small>Errors</small></span></span>
+            <span class="sd-tool"><b>D</b><span>Datadog<small>Monitoring</small></span></span>
+            <span class="sd-tool"><b>N</b><span>Notion<small>Docs</small></span></span>
+            <span class="sd-tool"><b>P</b><span>Postman<small>API tests</small></span></span>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+    <!-- ================= 7 · BEFORE / AFTER (drag to compare) ================= -->
+    <section class="section sd-cmp" id="sd-results" aria-labelledby="cmp-title">
+      <div class="container">
+        <div class="section-head sd-rv">
+          <span class="pill">What changes</span>
+          <h2 class="h-section" id="cmp-title">Less waiting, more shipping.</h2>
+          <p class="lead">Drag the handle to compare a typical team before and after adding an agent.</p>
+        </div>
+
+        <div class="sd-cmp-box sd-rv" id="sd-cmp" style="--rd:1;--x:50%">
+          <div class="sd-layer sd-layer--old">
+            <div class="sd-layer-head"><h3>Without an agent</h3><span>Manual</span></div>
+            <ul>
+              <li><span>Time to first draft</span><b>2 days</b></li>
+              <li><span>Wait for first review</span><b>1 day</b></li>
+              <li><span>Test coverage</span><b>41%</b></li>
+              <li><span>Release rhythm</span><b>Every 2 weeks</b></li>
+              <li><span>Documentation</span><b>Out of date</b></li>
+            </ul>
+          </div>
+          <div class="sd-layer sd-layer--new" aria-hidden="true">
+            <div class="sd-layer-head"><h3>With a Codevelop agent</h3><span>Assisted</span></div>
+            <ul>
+              <li><span>Time to first draft</span><b>5 minutes</b></li>
+              <li><span>Wait for first review</span><b>Under 1 min</b></li>
+              <li><span>Test coverage</span><b>82%</b></li>
+              <li><span>Release rhythm</span><b>Several a week</b></li>
+              <li><span>Documentation</span><b>Updated per PR</b></li>
+            </ul>
+          </div>
+          <div class="sd-handle" aria-hidden="true"><span><svg class="ico"><use href="#i-arrows" /></svg></span></div>
+          <input class="sd-range" id="sd-range" type="range" min="0" max="100" value="50" aria-label="Drag to compare without and with an agent">
+        </div>
+        <p class="sd-cmp-note">Illustrative figures. Your results depend on your codebase, tickets and review process.</p>
+      </div>
+    </section>
+
+    <!-- ================= 8 · FAQ ================= -->
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="container faq-grid" data-reveal>
+        <div class="faq-head">
+          <span class="pill">Common questions</span>
+          <h2 class="h-section" id="faq-title">Software agent FAQs</h2>
+        </div>
+        <div class="faq-list" id="faq-list">
+          <div class="faq-item open">
+            <h3><button class="faq-q" type="button" aria-expanded="true">Will it replace my developers? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>No. The agent takes on routine work such as boilerplate, tests, first-pass reviews and documentation. Your engineers still make the design decisions and approve every merge.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Is our code safe? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>The agent only gets scoped access to the repositories you choose, and it works on branches, never on production. Your code stays yours, and we can review access and data handling with your security team before launch.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Which languages and tools does it support? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>It works with common stacks such as PHP and WordPress, JavaScript and TypeScript, Python, Java and .NET, and connects to GitHub, GitLab, Bitbucket, Jira and similar tools. If you use something unusual, tell us and we will check the fit.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">Can it work on our existing codebase? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>Yes. It reads your repository, tests and style guide first, then follows your conventions. We usually start with small tickets so your team can judge the quality before the scope grows.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button class="faq-q" type="button" aria-expanded="false">How do we measure the results? <svg class="ico"><use href="#i-plus" /></svg></button></h3>
+            <div class="faq-a"><div><p>We track cycle time, review time, pull request throughput, test coverage and bugs that reach production, and send you a weekly report. Gains depend on your codebase and process, so we set a baseline during the pilot.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+    <section class="cta" id="contact" aria-labelledby="cta-title">
+      <div class="cta-grid">
+        <div class="cta-bar" aria-hidden="true"></div>
+        <div class="cta-box">
+          <div class="ripples" aria-hidden="true"><span></span><span></span><span></span></div>
+          <h2 id="cta-title">Give your engineers their time back.</h2>
+          <p>Tell us how your team builds and ships today and we&rsquo;ll show where an agent can take on the routine work.</p>
+          <a class="btn btn--primary btn--lg btn-sweep" href="contact-us.html"><span style="position:relative">Get a Free Automation Review</span></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="footer-panel">
+      <div class="footer-flag" aria-hidden="true"></div>
+      <div class="footer-main">
+        <div class="footer-brand">
+          <img src="images/codevelop.webp" alt="Codevelop logo" class="brand-logo" width="160" height="40">
+          <p>At Codevelop, we help businesses turn strategy into scalable results through thoughtful design,
+            performance-driven marketing, and modern technology.</p>
+          <div class="socials">
+            <a href="https://www.facebook.com/Codevelop.usa/" aria-label="Facebook" target="_blank" rel="noopener"><svg class="ico"><use href="#i-fb" /></svg></a>
+            <a href="https://www.instagram.com/codevelop_us/" aria-label="Instagram" target="_blank" rel="noopener"><svg class="ico"><use href="#i-ig" /></svg></a>
+            <a href="https://www.linkedin.com/company/codevelop-us" aria-label="LinkedIn" target="_blank" rel="noopener"><svg class="ico"><use href="#i-in" /></svg></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Services</h3>
+          <ul>
+            <li><a href="performance-marketing.html">Performance Marketing</a></li>
+            <li><a href="#">SEO Services</a></li>
+            <li><a href="#">Social Media Marketing</a></li>
+            <li><a href="web-development.html">Web Development</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Link</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Case Studies</a></li>
+            <li><a href="#">Blogs</a></li>
+            <li><a href="https://codevelopus.com/">Free SEO Audit</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Contact Us</h3>
+          <ul class="contact">
+            <li><svg class="ico"><use href="#i-pin" /></svg><span>555 SE Martin Luther King JR Blvd, Portland, OR 97214</span></li>
+            <li><svg class="ico"><use href="#i-phone" /></svg><a href="tel:+19714809833">+1 971-480-9833</a></li>
+            <li><svg class="ico"><use href="#i-mail" /></svg><a href="mailto:info@codevelop.us">info@codevelop.us</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="newsletter">
+        <div class="newsletter-box">
+          <h3>Signup our newsletter to get update information, news, insight or promotions.</h3>
+          <form class="news-form" action="#" method="post">
+            <label class="sr-only" for="news-email">Email</label>
+            <input id="news-email" type="email" name="email" placeholder="Email" required autocomplete="email">
+            <button class="btn btn--primary" type="submit">Sign up</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <span>Copyright © 2026 Codevelop US, All Rights Reserved.</span>
+      <a href="#">Privacy policy</a>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script src="js/software-agents.js"></script>
+</body>
+
+</html>
