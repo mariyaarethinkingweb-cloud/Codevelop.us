@@ -1,0 +1,1917 @@
+/* ==========================================================================
+   Workflow Automation Agents page — loads AFTER css/style.css
+   Uses the existing :root tokens only (navy / blue / red / white), no new colours
+   except one status green (#2fb47c) already used on the homepage.
+   Section 1 (hero) matches the Sales / Software pages. Sections 2-8 are new.
+   ========================================================================== */
+
+/* ==========================================================================
+   1 · HERO  (same visual style as the other agent pages)
+   ========================================================================== */
+.wf-hero-inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+  padding-top: clamp(56px, 7vw, 92px);
+}
+
+.wf-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.wf-hero .h-display {
+  font-size: clamp(38px, 4.8vw, 68px);
+}
+
+.wf-copy .lead {
+  max-width: 540px;
+  color: rgba(255, 255, 255, 0.92);
+  animation: fadeUp 0.9s var(--ease) 0.75s both;
+}
+
+.wf-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  animation: fadeUp 0.9s var(--ease) 0.9s both;
+}
+
+.wf-checks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+  animation: fadeUp 0.9s var(--ease) 1.05s both;
+}
+
+.wf-checks li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.wf-checks .ico {
+  color: #ff8da6;
+  stroke-width: 2.6;
+}
+
+.ico-style {
+  width: 3em;
+  height: 3em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+
+/* the animated "video" */
+.wf-stage {
+  position: relative;
+  padding: 14px 0 18px;
+  animation: fadeUp 1s var(--ease) 0.5s both;
+}
+
+.wf-video {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  background: #fff;
+  color: var(--ink);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 40px 80px rgba(2, 12, 36, 0.5);
+}
+
+.wf-vbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  font-size: 13px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+
+.wf-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.wf-dots i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--red);
+}
+
+.wf-dots i:nth-child(2) {
+  background: #fff;
+  border: 1px solid #c9d5e8;
+}
+
+.wf-dots i:nth-child(3) {
+  background: var(--blue);
+}
+
+.wf-vtitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 6px;
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.wf-rec {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--red);
+  animation: blink 1s infinite;
+}
+
+.wf-time {
+  margin-left: auto;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.wf-vbody {
+  position: relative;
+  height: clamp(350px, 33vw, 400px);
+  background: linear-gradient(180deg, #fff, var(--blue-50));
+}
+
+.wf-scene {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 18px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.45s, visibility 0.45s;
+}
+
+.wf-scene.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.is-active .wf-in {
+  animation: fadeUp 0.55s var(--ease) calc(0.3s + var(--n, 0) * 0.85s) both;
+}
+
+/* scene 1 · chat */
+.wf-chat {
+  display: grid;
+  gap: 9px;
+  align-content: start;
+}
+
+.wf-m {
+  margin: 0;
+  max-width: 84%;
+  padding: 10px 14px;
+  border-radius: 16px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.wf-m.me {
+  justify-self: end;
+  background: var(--navy);
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+
+.wf-m.bot {
+  background: #fff;
+  border: 1px solid var(--blue-100);
+  border-bottom-left-radius: 4px;
+}
+
+.wf-order {
+  width: 84%;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid var(--blue-100);
+  box-shadow: var(--shadow-sm);
+}
+
+.wf-order-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.wf-order-top span {
+  flex-shrink: 0;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--navy);
+  background: var(--blue-50);
+}
+
+.wf-track {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin: 12px 4px 8px;
+}
+
+.wf-track::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 3px;
+  margin-top: -1.5px;
+  background: var(--blue-100);
+  border-radius: 3px;
+}
+
+.wf-track i {
+  position: relative;
+  z-index: 1;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--navy);
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px var(--navy);
+}
+
+.wf-track u {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 0;
+  width: 0;
+  height: 3px;
+  margin-top: -1.5px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--navy), var(--red));
+  text-decoration: none;
+}
+
+.is-active .wf-track u {
+  animation: wfGrowW 1.2s var(--ease) 2.3s forwards;
+}
+
+@keyframes wfGrowW {
+  to {
+    width: 78%;
+  }
+}
+
+.wf-order small {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* scene 2 · run */
+.wf-av {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--navy);
+}
+
+.wf-av--red {
+  background: var(--red);
+}
+
+.wf-mail {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid var(--blue-100);
+  box-shadow: var(--shadow-sm);
+}
+
+.wf-mail div {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  font-size: 13.5px;
+}
+
+.wf-mail small {
+  font-size: 12.5px;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.wf-mail em {
+  margin-left: auto;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-style: normal;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--red);
+  background: var(--red-50);
+}
+
+.wf-pipe {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.wf-pipe li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 12px;
+  font-size: 13.5px;
+  background: #fff;
+  border: 1px solid var(--line);
+}
+
+.wf-pipe small {
+  margin-left: auto;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.wf-pipe .ck {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  color: #fff;
+  background: #2fb47c;
+}
+
+.wf-pipe .ck .ico {
+  stroke-width: 3;
+}
+
+.is-active .wf-pipe .ck {
+  animation: wfCsPop 0.4s var(--ease) calc(0.7s + var(--n, 0) * 0.85s) both;
+}
+
+@keyframes wfCsPop {
+  from {
+    transform: scale(0);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+.wf-done {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: auto;
+  padding: 11px 14px;
+  border-radius: 14px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(90deg, var(--navy), var(--blue));
+}
+
+.wf-done .ico {
+  color: #ff8da6;
+}
+
+.wf-done--soft {
+  color: var(--navy);
+  background: var(--red-50);
+  border: 1px solid var(--red-100);
+}
+
+.wf-done--soft .ico {
+  color: var(--red);
+}
+
+/* scene 3 · exceptions */
+.wf-ticket,
+.wf-sum,
+.wf-route {
+  padding: 13px 14px;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid var(--blue-100);
+  box-shadow: var(--shadow-sm);
+}
+
+.wf-ticket-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.wf-ticket-top .hot {
+  flex-shrink: 0;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--red);
+  background: var(--red-50);
+}
+
+.wf-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.wf-tags span {
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  color: var(--navy);
+  background: var(--blue-50);
+}
+
+.wf-sum b {
+  font-size: 12.5px;
+  color: var(--red);
+}
+
+.wf-sum p {
+  margin: 6px 0 0;
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+
+.wf-route {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.wf-route div {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+.wf-route small {
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+/* timeline */
+.wf-vtl {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding: 12px 16px 14px;
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+}
+
+.wf-seg {
+  background: none;
+  border: 0;
+  padding: 0;
+  text-align: left;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.wf-seg span {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.wf-seg i {
+  position: relative;
+  display: block;
+  height: 4px;
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--blue-100);
+}
+
+.wf-seg i::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0;
+  background: linear-gradient(90deg, var(--navy), var(--red));
+}
+
+.wf-seg.is-done i::after {
+  width: 100%;
+}
+
+.wf-seg.is-on span {
+  color: var(--navy);
+}
+
+.wf-seg.is-on i::after {
+  animation: bar 7s linear forwards;
+}
+
+.wf-stage.is-picked .wf-seg.is-on i::after {
+  animation: none;
+  width: 100%;
+}
+
+/* floating stat chips */
+.wf-float {
+  position: absolute;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px 10px 12px;
+  border-radius: 16px;
+  color: var(--navy);
+  background: #fff;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-lg);
+}
+
+.wf-float .ico {
+  width: 32px;
+  height: 32px;
+  padding: 7px;
+  border-radius: 10px;
+  color: #fff;
+  background: var(--red);
+}
+
+.wf-float span {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.wf-float b {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.wf-float small {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.wf-float--1 {
+  top: -4px;
+  right: -14px;
+  animation: gxBob 5s ease-in-out infinite;
+}
+
+.wf-float--2 {
+  bottom: -4px;
+  left: -18px;
+  animation: gxBob 6s ease-in-out -2s infinite;
+}
+
+.wf-float--2 .ico {
+  background: var(--navy);
+}
+
+@media (max-width: 960px) {
+  .wf-hero-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .wf-copy {
+    align-items: center;
+    text-align: center;
+  }
+
+  .wf-actions,
+  .wf-checks {
+    justify-content: center;
+  }
+
+  .wf-stage {
+    max-width: 640px;
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 520px) {
+  .wf-float--1 {
+    right: 6px;
+  }
+
+  .wf-float--2 {
+    left: 6px;
+  }
+
+  .wf-vbody {
+    height: 400px;
+  }
+}
+
+/* ==========================================================================
+   Shared helpers for sections 2-8
+   Base styles are the FINAL state, so reduced-motion users see the finished design.
+   ========================================================================== */
+.wf-list,
+.wf-steps,
+.wf-guards,
+.wf-log ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* scroll reveal: a left-to-right wipe (JS adds .wf-js and .wf-seen) */
+.wf-js .wf-rv {
+  opacity: 0;
+  clip-path: inset(0 100% 0 0 round 24px);
+  transform: translateX(-26px);
+  transition: opacity 0.6s var(--ease), clip-path 0.95s var(--ease), transform 0.95s var(--ease);
+  transition-delay: calc(var(--rd, 0) * 130ms);
+}
+
+.wf-js .wf-rv.wf-seen {
+  opacity: 1;
+  clip-path: inset(-80px -80px -80px -80px round 0px);
+  transform: none;
+}
+
+.wf-list {
+  display: grid;
+  gap: 12px;
+}
+
+.wf-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.wf-list .ico {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  margin-top: 1px;
+  padding: 5px;
+  border-radius: 50%;
+  color: var(--red);
+  background: var(--red-50);
+  stroke-width: 2.6;
+}
+
+.wf-list--light li {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.wf-list--light .ico {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+@keyframes wfPulse {
+  0% { box-shadow: 0 0 0 0 rgba(47, 180, 124, 0.55); }
+  70%, 100% { box-shadow: 0 0 0 9px rgba(47, 180, 124, 0); }
+}
+
+@keyframes wfRise {
+  from { opacity: 0; transform: translateY(12px); }
+}
+
+@keyframes wfPop {
+  from { transform: scale(0); opacity: 0; }
+}
+
+/* ==========================================================================
+   2 · What it does — live workflow canvas
+   ========================================================================== */
+.wf-do {
+  background: #fff;
+}
+
+.wf-lab {
+  display: grid;
+  gap: 18px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.wf-picks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.wf-pick {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--navy);
+  background: #fff;
+  border: 1px solid var(--line);
+  transition: background 0.3s, color 0.3s, border-color 0.3s, transform 0.3s var(--ease);
+}
+
+.wf-pick:hover {
+  transform: translateY(-2px);
+  border-color: rgba(29, 79, 156, 0.45);
+}
+
+.wf-pick.is-on {
+  color: #fff;
+  background: var(--navy);
+  border-color: var(--navy);
+}
+
+.wf-canvas-scroll {
+  overflow-x: auto;
+  border-radius: 28px;
+  border: 1px solid var(--blue-100);
+  box-shadow: var(--shadow-md);
+  background: var(--blue-50);
+}
+
+.wf-canvas {
+  position: relative;
+  min-width: 960px;
+  height: 360px;
+  background-image: radial-gradient(var(--blue-100) 1.4px, transparent 1.4px);
+  background-size: 22px 22px;
+}
+
+.wf-edges {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.wf-edge,
+.wf-edge-go {
+  fill: none;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+}
+
+.wf-edge {
+  stroke: #b9c9e6;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 0.6s var(--ease);
+}
+
+.wf-edge.pre {
+  stroke-dashoffset: 1;
+}
+
+.wf-edge-go {
+  stroke: var(--red);
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 0.7s var(--ease);
+}
+
+.wf-edge-go.is-go {
+  stroke-dashoffset: 0;
+}
+
+.wf-node {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 164px;
+  padding: 10px 12px;
+  border-radius: 16px;
+  background: #fff;
+  border: 1.5px solid var(--blue-100);
+  box-shadow: var(--shadow-sm);
+  transform: translate(-50%, -50%);
+  transition: opacity 0.4s, transform 0.5s var(--ease), border-color 0.3s, box-shadow 0.3s;
+}
+
+.wf-node.pre {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.6);
+}
+
+.wf-n-ico {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  font-size: 17px;
+  color: #fff;
+  background: var(--navy);
+}
+
+.wf-node--trigger .wf-n-ico {
+  background: var(--red);
+}
+
+.wf-node--logic .wf-n-ico {
+  color: var(--navy);
+  background: var(--blue-100);
+}
+
+.wf-n-txt {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.25;
+}
+
+.wf-n-txt b {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.wf-n-txt small {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.wf-n-st {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  color: #fff;
+  background: #2fb47c;
+  transform: scale(0);
+  transition: transform 0.35s var(--ease);
+}
+
+.wf-n-st .ico {
+  stroke-width: 3;
+}
+
+.wf-node.is-run {
+  z-index: 2;
+  border-color: var(--red);
+  box-shadow: 0 0 0 6px var(--red-50), var(--shadow-md);
+  transform: translate(-50%, -50%) scale(1.07);
+}
+
+.wf-node.is-done {
+  border-color: #2fb47c;
+}
+
+.wf-node.is-done .wf-n-st {
+  transform: scale(1);
+}
+
+.wf-node.is-skip {
+  opacity: 0.55;
+  border-style: dashed;
+}
+
+.wf-log {
+  padding: 14px 18px 16px;
+  border-radius: 20px;
+  color: #fff;
+  background: var(--navy-900);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12.5px;
+}
+
+.wf-log-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  font-family: inherit;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.wf-live {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #2fb47c;
+  animation: wfPulse 1.8s infinite;
+}
+
+.wf-log ul {
+  display: grid;
+  gap: 5px;
+  min-height: 128px;
+  align-content: start;
+}
+
+.wf-log li {
+  display: flex;
+  gap: 12px;
+  color: rgba(255, 255, 255, 0.9);
+  animation: wfRise 0.4s var(--ease) both;
+}
+
+.wf-log time {
+  flex-shrink: 0;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.wf-log li b {
+  flex-shrink: 0;
+  color: #7fe3b4;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   3 · Use cases — card deck
+   ========================================================================== */
+.wf-cases {
+  background: var(--surface);
+}
+
+.wf-deck-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(32px, 6vw, 90px);
+  align-items: center;
+}
+
+.wf-deck-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.wf-deck-ctl {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.wf-round {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  color: var(--navy);
+  background: #fff;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  transition: background 0.3s, color 0.3s, transform 0.3s var(--ease);
+}
+
+.wf-round:hover {
+  color: #fff;
+  background: var(--navy);
+  transform: scale(1.06);
+}
+
+.wf-dots2 {
+  display: flex;
+  gap: 6px;
+  margin-left: 8px;
+}
+
+.wf-dots2 i {
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+  background: var(--blue-100);
+  transition: width 0.4s var(--ease), background 0.4s;
+}
+
+.wf-dots2 i.is-on {
+  width: 26px;
+  background: var(--red);
+}
+
+.wf-deck {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  height: 360px;
+  margin: 0 auto;
+}
+
+.wf-card {
+  position: absolute;
+  inset: 0 0 auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 290px;
+  padding: 28px;
+  border-radius: 28px;
+  background: #fff;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-md);
+  transform-origin: 50% 100%;
+  transform: translateY(calc(var(--p, 0) * 22px)) scale(calc(1 - var(--p, 0) * 0.055));
+  z-index: calc(10 - var(--p, 0));
+  transition: transform 0.65s var(--ease), opacity 0.5s, background 0.5s;
+}
+
+.wf-card[data-p="1"] {
+  background: #f6f9ff;
+}
+
+.wf-card[data-p="2"] {
+  background: var(--blue-50);
+}
+
+.wf-card[data-p="3"],
+.wf-card[data-p="4"],
+.wf-card[data-p="5"] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.wf-card.is-out {
+  opacity: 0;
+  transform: translateX(75%) rotate(9deg);
+}
+
+.wf-card-ico {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  font-size: 26px;
+  color: #fff;
+  background: var(--navy);
+}
+
+.wf-card:nth-child(even) .wf-card-ico {
+  background: var(--red);
+}
+
+.wf-card h3 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.wf-card p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.wf-flowrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.wf-chip {
+  flex: 1;
+  padding: 9px 12px;
+  border-radius: 12px;
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.wf-chip--in {
+  color: var(--navy);
+  background: var(--blue-50);
+  border: 1px solid var(--blue-100);
+}
+
+.wf-chip--out {
+  color: var(--red);
+  background: var(--red-50);
+  border: 1px solid var(--red-100);
+}
+
+.wf-arrow {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+  color: #fff;
+  background: var(--navy);
+}
+
+.wf-card[data-p="0"] .wf-arrow {
+  animation: wfNudge 1.4s ease-in-out infinite;
+}
+
+@keyframes wfNudge {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(5px); }
+}
+
+@media (max-width: 900px) {
+  .wf-deck-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .wf-deck {
+    height: 410px;
+  }
+
+  .wf-card {
+    height: 340px;
+    padding: 22px;
+  }
+
+  .wf-flowrow {
+    flex-direction: column;
+  }
+
+  .wf-flowrow .wf-chip {
+    width: 100%;
+  }
+
+  .wf-arrow {
+    transform: rotate(90deg);
+  }
+
+  .wf-card[data-p="0"] .wf-arrow {
+    animation: none;
+  }
+}
+
+/* ==========================================================================
+   4 · How it works — progress dial
+   ========================================================================== */
+.wf-how {
+  background: #fff;
+}
+
+.wf-dial {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 380px);
+  gap: clamp(30px, 6vw, 90px);
+  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.wf-steps {
+  display: grid;
+  gap: 10px;
+}
+
+.wf-step {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  align-items: center;
+  gap: 2px 16px;
+  width: 100%;
+  padding: 16px 18px;
+  text-align: left;
+  border-radius: 20px;
+  background: transparent;
+  border: 1px solid transparent;
+  opacity: 0.55;
+  transition: opacity 0.4s, background 0.4s, border-color 0.4s, box-shadow 0.4s;
+}
+
+.wf-step:hover {
+  opacity: 0.85;
+}
+
+.wf-step.is-on {
+  opacity: 1;
+  background: #fff;
+  border-color: var(--blue-100);
+  box-shadow: var(--shadow-md);
+}
+
+.wf-step-n {
+  grid-row: span 2;
+  align-self: start;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--navy);
+  background: var(--blue-50);
+  border: 2px solid var(--blue-100);
+  transition: background 0.4s, color 0.4s, border-color 0.4s;
+}
+
+.wf-step.is-on .wf-step-n {
+  color: #fff;
+  background: var(--red);
+  border-color: var(--red-100);
+}
+
+.wf-step b {
+  align-self: center;
+  font-size: 19px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.wf-step-d {
+  display: grid;
+  grid-template-rows: 0fr;
+  grid-column: 2;
+  transition: grid-template-rows 0.5s var(--ease);
+}
+
+.wf-step-d > span {
+  overflow: hidden;
+  min-height: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.wf-step.is-on .wf-step-d {
+  grid-template-rows: 1fr;
+}
+
+.wf-ring {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+.wf-ring svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.wf-ring-track {
+  fill: none;
+  stroke: var(--blue-100);
+  stroke-width: 14;
+}
+
+.wf-ring-prog {
+  fill: none;
+  stroke-width: 14;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.9s var(--ease);
+}
+
+.wf-rdot {
+  fill: #fff;
+  stroke: var(--blue-100);
+  stroke-width: 3;
+  transition: fill 0.4s, stroke 0.4s;
+}
+
+.wf-rdot.is-on {
+  fill: var(--red);
+  stroke: #fff;
+}
+
+.wf-ring-c {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.wf-ring-c > div {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.4s, transform 0.5s var(--ease);
+}
+
+.wf-ring-c > div.is-on {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.25s;
+}
+
+.wf-rc-ico {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 4px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 30px;
+  color: #fff;
+  background: radial-gradient(circle at 30% 25%, #12448a, var(--navy) 70%);
+  box-shadow: 0 0 0 8px rgba(29, 79, 156, 0.12);
+}
+
+.wf-ring-c b {
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.wf-ring-c small {
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+@media (max-width: 860px) {
+  .wf-dial {
+    grid-template-columns: 1fr;
+  }
+
+  .wf-ring {
+    order: -1;
+    max-width: 280px;
+  }
+}
+
+/* ==========================================================================
+   5 · You stay in control — autonomy dial (dark)
+   ========================================================================== */
+.wf-hand {
+  overflow: hidden;
+  color: #fff;
+  background: radial-gradient(ellipse 70% 90% at 12% 0%, #12448a 0%, var(--navy) 55%, var(--navy-900) 100%);
+}
+
+.wf-hand .engine-dots {
+  -webkit-mask-image: radial-gradient(ellipse 60% 80% at 100% 100%, #000 10%, transparent 70%);
+  mask-image: radial-gradient(ellipse 60% 80% at 100% 100%, #000 10%, transparent 70%);
+}
+
+.wf-hand .h-section {
+  color: #fff;
+}
+
+.wf-hand .lead {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.wf-hand-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: clamp(32px, 5vw, 80px);
+  align-items: center;
+  padding-top: clamp(20px, 3vw, 40px);
+  padding-bottom: clamp(20px, 3vw, 40px);
+}
+
+.wf-hand-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.wf-auto {
+  display: grid;
+  gap: 16px;
+  padding: 20px;
+  border-radius: 28px;
+  color: var(--ink);
+  background: #fff;
+  box-shadow: 0 30px 60px rgba(2, 12, 36, 0.4);
+}
+
+.wf-seg-ctl {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 5px;
+  border-radius: 16px;
+  background: var(--blue-50);
+  border: 1px solid var(--blue-100);
+}
+
+.wf-seg-thumb {
+  position: absolute;
+  top: 5px;
+  bottom: 5px;
+  left: 5px;
+  width: calc((100% - 10px) / 3);
+  border-radius: 12px;
+  background: var(--navy);
+  box-shadow: 0 8px 18px rgba(10, 49, 97, 0.3);
+  transform: translateX(calc(var(--i, 0) * 100%));
+  transition: transform 0.55s var(--ease);
+}
+
+.wf-seg-ctl button {
+  position: relative;
+  z-index: 1;
+  padding: 11px 6px;
+  border: 0;
+  background: none;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--navy);
+  transition: color 0.35s;
+}
+
+.wf-seg-ctl button.is-on {
+  color: #fff;
+}
+
+.wf-req {
+  position: relative;
+  padding: 16px;
+  overflow: hidden;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+}
+
+.wf-req-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.wf-req-top div {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  font-size: 14px;
+}
+
+.wf-req-top small {
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+.wf-req-top em {
+  margin-left: auto;
+  font-style: normal;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--navy);
+}
+
+.wf-states {
+  position: relative;
+  min-height: 170px;
+  padding-top: 14px;
+}
+
+.wf-st {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.wf-auto[data-s="0"] .wf-st0,
+.wf-auto[data-s="1"] .wf-st1,
+.wf-auto[data-s="2"] .wf-st2 {
+  display: flex;
+  animation: wfRise 0.5s var(--ease) both;
+}
+
+.wf-st-t {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.wf-draft {
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--blue-50);
+  border: 1px solid var(--blue-100);
+}
+
+.wf-btns {
+  display: flex;
+  gap: 8px;
+}
+
+.wf-fake {
+  padding: 8px 18px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.wf-fake--go {
+  color: #fff;
+  background: #2fb47c;
+  animation: wfPulse 1.8s infinite;
+}
+
+.wf-fake--ghost {
+  color: var(--navy);
+  background: #fff;
+  border: 1px solid var(--blue-100);
+}
+
+.wf-foot {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.wf-stamp {
+  align-self: flex-start;
+  padding: 5px 14px;
+  border: 2.5px solid #2fb47c;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #2fb47c;
+  transform: rotate(-6deg);
+}
+
+.wf-auto[data-s="2"] .wf-stamp {
+  animation: wfStamp 0.55s var(--ease) 0.35s both;
+}
+
+@keyframes wfStamp {
+  from { opacity: 0; transform: rotate(-14deg) scale(2.6); }
+  to { opacity: 1; transform: rotate(-6deg) scale(1); }
+}
+
+.wf-guards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.wf-guards li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px 5px 8px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  color: var(--navy);
+  background: var(--blue-50);
+  border: 1px solid var(--blue-100);
+}
+
+.wf-guards .ico {
+  color: var(--red);
+}
+
+@media (max-width: 900px) {
+  .wf-hand-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   6 · Integrations — connection wave
+   ========================================================================== */
+.wf-int {
+  background: var(--surface);
+}
+
+.wf-apps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.wf-app {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: 20px;
+  background: #fff;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  animation: wfLight 7s ease-in-out infinite;
+  animation-delay: calc(var(--k, 0) * 0.3s);
+}
+
+.wf-app b {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--navy);
+}
+
+.wf-app:nth-child(3n) b {
+  background: var(--red);
+}
+
+.wf-app > span {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--ink);
+}
+
+.wf-app small {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.wf-app small i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--line);
+  animation: wfDot 7s ease-in-out infinite;
+  animation-delay: calc(var(--k, 0) * 0.3s);
+}
+
+@keyframes wfLight {
+  0%, 18%, 100% {
+    border-color: var(--line);
+    box-shadow: var(--shadow-sm);
+    transform: none;
+  }
+  6%, 12% {
+    border-color: #2fb47c;
+    box-shadow: 0 0 0 6px rgba(47, 180, 124, 0.16);
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes wfDot {
+  0%, 18%, 100% { background: var(--line); }
+  6%, 12% { background: #2fb47c; }
+}
+
+.wf-apps-note {
+  margin: 22px 0 0;
+  text-align: center;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+@media (max-width: 900px) {
+  .wf-apps {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .wf-apps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .wf-app {
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .wf-app b {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+/* ==========================================================================
+   7 · Results — time-saved calculator
+   ========================================================================== */
+.wf-calc-sec {
+  background: linear-gradient(180deg, var(--blue-50) 0%, #fff 100%);
+}
+
+.wf-calc {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  max-width: 960px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 28px;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-lg);
+}
+
+.wf-calc-in {
+  display: grid;
+  gap: 26px;
+  align-content: center;
+  padding: clamp(24px, 4vw, 44px);
+  background: #fff;
+}
+
+.wf-field {
+  display: grid;
+  gap: 12px;
+}
+
+.wf-field label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.wf-field output {
+  padding: 3px 14px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--red);
+  background: var(--red-50);
+}
+
+.wf-field input[type="range"] {
+  width: 100%;
+  height: 6px;
+  margin: 0;
+  accent-color: var(--red);
+  cursor: pointer;
+}
+
+.wf-calc-note {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.wf-calc-out {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: clamp(24px, 4vw, 44px);
+  color: #fff;
+  background: radial-gradient(ellipse 90% 90% at 100% 0%, #12448a 0%, var(--navy) 60%, var(--navy-900) 100%);
+}
+
+.wf-gauge {
+  position: relative;
+  width: min(100%, 240px);
+}
+
+.wf-gauge svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.wf-g-track {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.18);
+  stroke-width: 14;
+}
+
+.wf-g-prog {
+  fill: none;
+  stroke: #ff8da6;
+  stroke-width: 14;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 8px rgba(255, 141, 166, 0.6));
+  transition: stroke-dashoffset 0.7s var(--ease);
+}
+
+.wf-g-c {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.wf-g-c strong {
+  font-size: clamp(44px, 6vw, 58px);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.wf-g-c span {
+  margin-top: 6px;
+  font-size: 13px;
+  line-height: 1.3;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.wf-days {
+  margin: 0;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.wf-days b {
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
+}
+
+@media (max-width: 760px) {
+  .wf-calc {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- reduced motion: finished states, no movement ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .wf-live,
+  .wf-app,
+  .wf-app small i,
+  .wf-card[data-p="0"] .wf-arrow,
+  .wf-fake--go,
+  .wf-auto .wf-st,
+  .wf-auto .wf-stamp {
+    animation: none !important;
+  }
+
+  .wf-card,
+  .wf-ring-prog,
+  .wf-seg-thumb,
+  .wf-g-prog {
+    transition: none;
+  }
+}

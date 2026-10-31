@@ -1,0 +1,72 @@
+/* Extra styles for the Zuper + SAP B1 page. Load AFTER css/connector.css. Uses only existing theme tokens. */
+
+/* mapping table */
+.map-wrap {
+   overflow-x: auto;
+}
+
+.map {
+   width: 100%;
+   min-width: 720px;
+   border-collapse: separate;
+   border-spacing: 0;
+   border: 1px solid var(--line);
+   border-radius: 22px;
+   overflow: hidden;
+   background: #fff;
+   text-align: left;
+}
+
+.map th,
+.map td {
+   padding: 15px 20px;
+   font-size: 15px;
+   line-height: 1.45;
+   vertical-align: top;
+   border-top: 1px solid var(--line);
+}
+
+.map thead th {
+   border-top: 0;
+   font-weight: 600;
+   color: #fff;
+   background: var(--navy);
+}
+
+.map tbody th {
+   font-weight: 500;
+   color: var(--ink);
+}
+
+.map tbody tr:nth-child(even) {
+   background: var(--surface);
+}
+
+.dir {
+   display: inline-block;
+   padding: 3px 10px;
+   border-radius: 999px;
+   font-size: 12.5px;
+   font-weight: 600;
+   white-space: nowrap;
+   color: var(--navy);
+   background: var(--blue-50);
+   border: 1px solid var(--blue-100);
+}
+
+.dir--two {
+   color: #fff;
+   background: var(--red);
+   border-color: var(--red);
+}
+
+/* hero: two logos side by side */
+.hero-stack .hs--sap {
+   width: 72px;
+   height: 72px;
+}
+
+/* pull "note" text into dark sections cleanly */
+.web.ai .note {
+   color: rgba(255, 255, 255, .88);
+}

@@ -8,9 +8,9 @@ strong {
 }
 
 /* ---------- Shared bits ---------- */
-.fa-sec {
+/* .fa-sec {
   padding: clamp(48px, 6vw, 88px) 0;
-}
+} */
 
 .fa-sec--tint {
   background: var(--surface);

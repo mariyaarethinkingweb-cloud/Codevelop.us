@@ -1,0 +1,143 @@
+/* Codevelop US — Technical SEO page. Loads AFTER css/style.css. Page classes prefixed "te-".
+   Uses :root tokens only (navy, red, ink, muted, line, surface, blue/red 50-100, white); weight 500. */
+b, strong { font-weight: 500; }
+.te-faq-q, .te-tab { font: inherit; color: inherit; cursor: pointer; -webkit-appearance: none; appearance: none; border: 0; background: none; }
+.te-hero .ico, .te-sec .ico, .te-ai-sec .ico { flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.te-center { max-width: 780px; margin-inline: auto; margin-bottom: clamp(28px, 4vw, 48px); text-align: center; align-items: center; }
+.te-sec { position: relative; background: var(--white); }
+.te-sec--tint { background: var(--surface); }
+
+/* ---------- HERO (same layout as SEO page) ---------- */
+.te-hero { position: relative; overflow: hidden; isolation: isolate; color: var(--white); padding: clamp(64px, 4vw, 104px) 0 clamp(130px, 5vw, 180px); background: radial-gradient(ellipse 80% 70% at 50% 30%, #12448a 0%, var(--navy) 50%, var(--navy-900) 100%); }
+.te-aurora { position: absolute; border-radius: 50%; filter: blur(80px); z-index: -2; pointer-events: none; }
+.te-aurora--1 { width: 520px; height: 520px; left: -140px; top: -160px; background: rgb(29, 79, 156); opacity: .55; animation: teFloat 16s ease-in-out infinite; }
+.te-aurora--2 { width: 440px; height: 440px; right: -120px; top: 10%; background: var(--red); opacity: .25; animation: teFloat 20s ease-in-out -6s infinite reverse; }
+.te-aurora--3 { width: 420px; height: 420px; left: 35%; bottom: -220px; background: rgb(29, 79, 156); opacity: .45; animation: teFloat 18s ease-in-out -3s infinite; }
+@keyframes teFloat { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(40px, 30px) scale(1.12); } }
+.te-canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; opacity: .7; pointer-events: none; }
+.te-hero-glow { position: absolute; inset: 0; z-index: -1; pointer-events: none; background: radial-gradient(60% 50% at 50% 0%, rgba(255,255,255,.1), transparent 70%); }
+.te-hero-inner { position: relative; z-index: 2; max-width: 920px; margin-inline: auto; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.te-crumbs { display: inline-flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px; margin-bottom: 28px; padding: 8px 16px; border-radius: 999px; font-size: 14px; font-weight: 500; background: rgba(255,255,255,.1); border: 1px solid rgba(160,190,240,.35); }
+.te-crumbs a { color: rgba(255,255,255,.85); text-decoration: none; }
+.te-crumbs a:hover { color: var(--white); }
+.te-crumbs .ico { width: 14px; height: 14px; transform: rotate(-90deg); opacity: .7; }
+.te-title { display: flex; flex-wrap: wrap; justify-content: center; gap: 0 .3em; margin: 0; font-size: clamp(44px, 8vw, 92px); line-height: 1.05; font-weight: 500; letter-spacing: -.02em; color: var(--white); }
+.te-title .w { display: inline-block; overflow: hidden; padding-bottom: .08em; }
+.te-title .w > span { display: inline-block; transform: translateY(110%); animation: teRise .9s cubic-bezier(.2,.8,.2,1) forwards; animation-delay: calc(var(--i) * .14s + .15s); }
+.te-title .w:last-child > span { background: linear-gradient(90deg, var(--white), var(--blue-100)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+@keyframes teRise { to { transform: none; } }
+.te-rule { display: block; width: 84px; height: 4px; margin: 26px auto 24px; border-radius: 4px; background: var(--red); transform-origin: left; animation: teGrow 1s .7s cubic-bezier(.2,.8,.2,1) both; }
+@keyframes teGrow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.te-mission { max-width: 720px; margin: 0; font-size: clamp(17px, 1.8vw, 20px); line-height: 1.6; color: rgba(255,255,255,.9); animation: teFade .9s .8s both; }
+@keyframes teFade { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.te-hero .hero-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 34px; animation: teFade .9s 1s both; }
+.te-hero .btn--ghost { color: var(--white); border-color: rgba(255,255,255,.5); background: transparent; }
+.te-hero .btn--ghost:hover { color: var(--navy); background: var(--white); border-color: var(--white); }
+.te-facts { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 28px; margin: 40px 0 0; padding: 0; list-style: none; animation: teFade .9s 1.15s both; }
+.te-fact { display: inline-flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 500; color: rgba(255,255,255,.92); }
+.te-fact .ico { width: 20px; height: 20px; color: var(--white); }
+.te-ind { margin-top: 36px; animation: teFade .9s 1.3s both; }
+.te-ind > p { margin: 0 0 14px; font-size: 13px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.7); }
+.te-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.te-chip { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 999px; font-size: 14px; font-weight: 500; background: rgba(255,255,255,.1); border: 1px solid rgba(160,190,240,.35); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); transition: background .3s, transform .3s; }
+.te-chip:hover { background: rgba(255,255,255,.2); transform: translateY(-2px); }
+.te-chip .ico { width: 17px; height: 17px; }
+.te-wave { position: absolute; left: 0; bottom: -1px; z-index: 1; width: 100%; height: 110px; display: block; pointer-events: none; }
+.te-wave-back { fill: rgba(255,255,255,.35); }
+.te-wave-front { fill: var(--white); }
+
+.te-seg button { font: inherit; cursor: pointer; -webkit-appearance: none; appearance: none; border: 0; background: none; }
+
+/* ---------- INTRO + CRAWL VIEW ---------- */
+.te-intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
+.te-intro-copy { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+.te-crawl { padding: clamp(18px, 2.6vw, 28px); border-radius: 28px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow-md); }
+.te-crawl-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; color: var(--navy); font-size: 18px; }
+.te-seg { display: inline-flex; padding: 4px; border-radius: 999px; background: var(--white); border: 1px solid var(--line); }
+.te-seg button { padding: 7px 16px; border-radius: 999px; font-size: 14px; font-weight: 500; color: var(--navy); transition: background .25s, color .25s; }
+.te-seg button[aria-pressed="true"] { background: var(--navy); color: var(--white); }
+.te-seg button:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+.te-urls { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.te-urls li { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px; border-radius: 16px; background: var(--white); border: 1px solid var(--line); }
+.te-urls code { font: inherit; font-size: 15px; font-weight: 500; color: var(--ink); overflow-wrap: anywhere; }
+.te-st { flex-shrink: 0; padding: 4px 12px; border-radius: 999px; font-size: 13px; font-weight: 500; color: var(--white); background: var(--red); transition: background .35s; }
+.te-urls li.ok .te-st { background: var(--navy); }
+.te-crawl-note { margin: 14px 0 0; font-size: 14px; text-align: center; color: var(--muted); }
+
+/* ---------- STAGES ---------- */
+.te-stages { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; margin: 0; padding: 0; list-style: none; }
+.te-stage { position: relative; display: flex; flex-direction: column; gap: 10px; padding: 28px 22px 22px; border: 1px solid var(--line); border-radius: 26px; background: var(--white); transition: border-color .3s, box-shadow .3s; }
+.te-stage:hover { border-color: rgba(29, 79, 156, .4); box-shadow: var(--shadow-md); }
+.te-stage:not(:last-child)::after { content: ""; position: absolute; right: -14px; top: 50px; z-index: 1; width: 10px; height: 10px; border-top: 3px solid var(--red); border-right: 3px solid var(--red); transform: rotate(45deg); }
+.te-s-ico { display: grid; place-items: center; width: 54px; height: 54px; border-radius: 16px; font-size: 26px; background: linear-gradient(160deg, var(--blue-50), var(--blue-100)); color: var(--navy); }
+.te-stage:nth-child(even) .te-s-ico { background: linear-gradient(160deg, var(--red-50), var(--red-100)); color: var(--red); }
+.te-s-ico .ico { width: 1em; height: 1em; }
+.te-stage h3 { margin: 6px 0 0; font-size: 24px; line-height: 1.2; font-weight: 500; color: var(--navy); }
+.te-q { margin: 0; line-height: 1.5; color: var(--muted); }
+.te-stage ul { display: grid; gap: 8px; margin: 6px 0 8px; padding: 14px 0 0; list-style: none; border-top: 1px solid var(--line); }
+.te-stage li { position: relative; padding-left: 18px; font-size: 15px; font-weight: 500; color: var(--ink); }
+.te-stage li::before { content: ""; position: absolute; left: 0; top: .55em; width: 7px; height: 7px; border-radius: 50%; background: var(--red); }
+.te-stage .te-ai { margin: auto 0 0; padding: 10px 12px; border-radius: 14px; font-size: 14px; line-height: 1.5; color: var(--ink); background: var(--blue-50); border-left: 4px solid var(--navy); }
+.te-ai b { display: inline-block; margin-right: 8px; padding: 1px 9px; border-radius: 999px; font-size: 12px; letter-spacing: .05em; text-transform: uppercase; color: var(--white); background: var(--navy); }
+
+/* ---------- AI + PEOPLE (navy) ---------- */
+.te-ai-sec { position: relative; overflow: hidden; color: var(--white); background: radial-gradient(ellipse 80% 70% at 50% 30%, #12448a 0%, var(--navy) 50%, var(--navy-900) 100%); }
+.te-ai-sec .h-section { color: var(--white); }
+.te-ai-sec .lead { color: rgba(255,255,255,.9); }
+.te-trio { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.te-trio article { padding: 28px 26px; border-radius: 24px; background: rgba(255,255,255,.06); border: 1px solid rgba(160,190,240,.35); }
+.te-t-ico { display: grid; place-items: center; width: 52px; height: 52px; margin-bottom: 16px; border-radius: 50%; font-size: 24px; background: var(--white); color: var(--navy); }
+.te-trio article:nth-child(2) .te-t-ico { background: var(--red); color: var(--white); }
+.te-t-ico .ico { width: 1em; height: 1em; }
+.te-trio h3 { margin: 0 0 8px; font-size: 22px; font-weight: 500; color: var(--white); }
+.te-trio p { margin: 0; line-height: 1.6; color: rgba(255,255,255,.9); }
+.te-people { display: flex; align-items: center; gap: 16px; max-width: 820px; margin: 22px auto 0; padding: 18px 24px; border-radius: 20px; background: var(--white); color: var(--ink); }
+.te-people .ico { width: 36px; height: 36px; padding: 8px; border-radius: 50%; background: var(--red); color: var(--white); stroke-width: 2.6; }
+.te-people p { margin: 0; font-weight: 500; line-height: 1.5; }
+
+/* ---------- PROCESS ---------- */
+.te-cycle { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; max-width: 980px; margin: 0 auto; padding: 0; list-style: none; }
+.te-cycle li { display: flex; gap: 18px; align-items: flex-start; padding: 24px; border: 1px solid var(--line); border-radius: 24px; background: var(--white); }
+.te-n { display: grid; place-items: center; flex-shrink: 0; width: 52px; height: 52px; border-radius: 50%; font-size: 22px; font-weight: 500; color: var(--white); background: var(--navy); }
+.te-cycle li:last-child .te-n { background: var(--red); }
+.te-cycle h3 { margin: 2px 0 6px; font-size: 20px; font-weight: 500; color: var(--navy); }
+.te-cycle p { margin: 0; line-height: 1.6; color: var(--muted); }
+.te-repeat { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 22px 0 0; font-weight: 500; color: var(--navy); }
+.te-repeat .ico { width: 30px; height: 30px; padding: 6px; border-radius: 50%; background: var(--red); color: var(--white); }
+.te-cta-strip { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 24px; margin-top: clamp(36px, 5vw, 60px); padding: 24px 30px; border-radius: 24px; background: var(--blue-50); border: 1px solid var(--line); }
+.te-cta-strip p { margin: 0; font-size: clamp(17px, 1.8vw, 20px); color: var(--ink); }
+.te-cta-strip b { color: var(--navy); }
+
+/* ---------- FAQ ---------- */
+.te-faq { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: clamp(32px, 5vw, 72px); align-items: start; }
+.te-faq-head { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; position: sticky; top: calc(var(--header-h) + 24px); }
+.te-faq-list { display: flex; flex-direction: column; gap: 12px; }
+.te-faq-item { border: 1px solid var(--line); border-radius: 18px; background: var(--white); transition: border-color .3s, box-shadow .3s; }
+.te-faq-item.open { border-color: rgba(29, 79, 156, .4); box-shadow: var(--shadow-md); }
+.te-faq-item h3 { margin: 0; font-size: inherit; font-weight: 500; }
+.te-faq-q { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 20px 24px; text-align: left; font-size: clamp(16px, 1.4vw, 18px); line-height: 1.4; font-weight: 500; color: var(--ink); }
+.te-faq-q:focus-visible { outline: 2px solid var(--red); outline-offset: -2px; border-radius: 18px; }
+.te-faq-q .ico { width: 34px; height: 34px; padding: 8px; border-radius: 50%; background: var(--blue-50); color: var(--navy); transition: transform .35s var(--ease), background .3s, color .3s; }
+.te-faq-item.open .te-faq-q .ico { transform: rotate(45deg); background: var(--red); color: var(--white); }
+.te-faq-a { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .4s var(--ease); }
+.te-faq-item.open .te-faq-a { grid-template-rows: 1fr; }
+.te-faq-a > div { overflow: hidden; }
+.te-faq-a p { max-width: 70ch; margin: 0; padding: 0 24px 22px; color: var(--muted); line-height: 1.65; }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 1100px) { .te-stages { grid-template-columns: repeat(2, minmax(0, 1fr)); } .te-stage::after { display: none; } }
+@media (max-width: 959px) {
+  .te-intro, .te-faq { grid-template-columns: 1fr; }
+  .te-faq-head { position: static; }
+  .te-trio, .te-cycle { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .te-stages { grid-template-columns: 1fr; }
+  .te-urls li { flex-wrap: wrap; }
+  .te-people { flex-direction: column; text-align: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .te-title .w > span { transform: none; animation: none; }
+  .te-aurora { animation: none; }
+  .te-rule, .te-mission, .te-hero .hero-actions, .te-facts, .te-ind { animation: none; }
+}

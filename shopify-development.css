@@ -1,48 +1,50 @@
 /* ==========================================================================
-   Codevelop US — Shopify Web Development page (shopify-development.html)
-   Load AFTER css/style.css, css/facebook-ads.css and css/web-development.css.
-   Prefixes: "sp-" (features, services grid, why), "ai-" (AI visual).
-   Fixes: duplicate .fa-av removed, own progress-bar keyframes.
+   Codevelop US —
    ========================================================================== */
-
-/* ---------- AI visual (intro) ---------- */
-.ai-visual{position:relative;width:min(100%,520px);aspect-ratio:1;margin-inline:auto;display:grid;place-items:center;border-radius:40px;background:radial-gradient(circle at 50% 50%,rgba(29,79,156,.14),transparent 62%),linear-gradient(160deg,var(--blue-50),var(--white));border:1px solid var(--blue-100);box-shadow:var(--shadow-md);overflow:hidden;margin-top: 42px;}
-.ai-visual::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(10,49,97,.18) 1px,transparent 1.3px);background-size:22px 22px;-webkit-mask-image:radial-gradient(circle,#000 20%,transparent 75%);mask-image:radial-gradient(circle,#000 20%,transparent 75%)}
-.ai-ring{position:absolute;top:50%;left:50%;border-radius:50%;border:1.5px dashed rgba(10,49,97,.3);transform:translate(-50%,-50%);animation:aiSpin 40s linear infinite}
-.ai-ring--1{width:56%;height:56%}
-.ai-ring--2{width:86%;height:86%;border-color:rgba(179,25,66,.35);animation-direction:reverse;animation-duration:60s}
-.ai-core{position:relative;z-index:2;width:31%;aspect-ratio:1;border-radius:50%;display:grid;place-items:center;align-content:center;text-align:center;color:var(--white);background:radial-gradient(circle at 30% 25%,#1d4f9c,var(--navy) 70%);box-shadow:0 0 0 10px rgba(29,79,156,.12),0 22px 44px rgba(10,49,97,.35);animation:aiPulse 3.2s ease-in-out infinite}
-.ai-core .ico{width:26px;height:26px}
-.ai-core b{font-size:clamp(20px,3vw,28px);font-weight:500;line-height:1}
-.ai-core small{font-size:12px;opacity:.85}
-.ai-node{position:absolute;z-index:3;display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;font-size:14px;white-space:nowrap;color:var(--navy);background:var(--white);border:1px solid var(--blue-100);box-shadow:0 10px 24px rgba(10,49,97,.16);animation:aiFloat 5s ease-in-out infinite}
-.ai-node .ico{width:16px;height:16px;color:var(--red)}
-.ai-node--1{top:9%;left:8%}
-.ai-node--2{top:16%;right:5%;animation-delay:-1.2s}
-.ai-node--3{bottom:14%;left:5%;animation-delay:-2.4s}
-.ai-node--4{bottom:8%;right:9%;animation-delay:-3.6s}
-@keyframes aiSpin{to{transform:translate(-50%,-50%) rotate(360deg)}}
-@keyframes aiPulse{50%{transform:scale(1.05)}}
-@keyframes aiFloat{50%{transform:translateY(-8px)}}
 
 /* ---------- Section heading (centered) ---------- */
 .ai-features .section-head{max-width:760px;margin-inline:auto;text-align:center;align-items:center}
+/* ---------- Intro: storefront mockup ---------- */
+.sp-mock{position:relative;width:min(100%,520px);margin:42px auto 0;padding-bottom:34px}
+.sp-mock-win{border-radius:22px;background:var(--white);border:1px solid var(--blue-100);box-shadow:var(--shadow-lg);overflow:hidden}
+.sp-mock-bar{display:flex;align-items:center;gap:6px;padding:12px 16px;background:var(--blue-50);border-bottom:1px solid var(--blue-100)}
+.sp-mock-bar i{width:10px;height:10px;border-radius:50%;background:#c9d5e8}
+.sp-mock-bar i:first-child{background:var(--red)}
+.sp-mock-bar span{margin-left:10px;flex:1;padding:4px 12px;border-radius:999px;background:var(--white);font-size:12px;color:var(--muted)}
+.sp-mock-body{padding:18px}
+.sp-mock-search{display:flex;align-items:center;gap:10px;padding:11px 14px;border-radius:14px;border:1px solid var(--blue-100);font-size:14px;color:var(--ink)}
+.sp-mock-search .ico{width:16px;height:16px;flex-shrink:0;color:var(--navy)}
+.sp-mock-search b{margin-left:auto;padding:2px 9px;border-radius:999px;background:var(--navy);color:var(--white);font-size:11px;font-weight:500}
+.sp-mock-label{margin:16px 0 10px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.sp-mock-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+/* ---------- Intro: text only, centered ---------- */
+#intro .wd-why{display:block;max-width:820px;margin-inline:auto;text-align:center}
+#intro .wd-why-copy{display:flex;flex-direction:column;align-items:center;gap:16px}
+@keyframes spFloat{50%{transform:translateY(-8px)}}
 
-/* ---------- Key features: interactive explorer ---------- */
-.sp-feat{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(24px,4vw,56px);align-items:stretch;margin-top:clamp(32px,4vw,56px)}
-.sp-tabs{display:flex;flex-direction:column;gap:8px}
-.sp-tab{position:relative;overflow:hidden;width:100%;text-align:left;display:flex;align-items:center;gap:16px;padding:12px 18px 12px 12px;border-radius:18px;border:1px solid transparent;background:transparent;transition:background .3s,border-color .3s,box-shadow .3s}
-.sp-tab:hover{border-color:var(--blue)}
-.sp-tab-ico{flex-shrink:0;width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-size:22px;background:var(--blue-50);color:var(--navy);border:1px solid var(--blue-100);transition:background .3s,color .3s,border-color .3s}
-.sp-tab-ico .ico,.sp-big .ico,.sp-pillar-ico .ico{width:1em;height:1em}
-.sp-tab-t{font-size:clamp(16px,1.4vw,19px);line-height:1.3;color:var(--ink);transition:color .3s}
-.sp-tab-bar{position:absolute;left:0;bottom:0;height:3px;width:0;background:linear-gradient(90deg,var(--navy),var(--red))}
-.sp-tab[aria-selected="true"]{background:var(--white);border-color:rgba(29,79,156,.35);box-shadow:0 14px 32px rgba(10,49,97,.12)}
-.sp-tab[aria-selected="true"] .sp-tab-ico{background:var(--navy);border-color:var(--navy);color:var(--white)}
-.sp-tab[aria-selected="true"] .sp-tab-t{color:var(--navy)}
-.sp-tab[aria-selected="true"] .sp-tab-bar{width:100%}
-.sp-feat.is-auto .sp-tab[aria-selected="true"] .sp-tab-bar{width:0;animation:spBar 5s linear forwards}
-@keyframes spBar{from{width:0}to{width:100%}}
+/* ---------- What is Shopify: standard vs AI switch ---------- */
+.sp-switch{display:inline-flex;gap:4px;margin-top:22px;padding:5px;border-radius:999px;background:var(--white);border:1px solid var(--blue-100)}
+.sp-sw{padding:11px 22px;border-radius:999px;font-size:15px;color:var(--navy);transition:background .3s,color .3s,box-shadow .3s}
+.sp-sw[aria-pressed="true"]{background:var(--navy);color:var(--white);box-shadow:0 8px 18px rgba(10,49,97,.25)}
+.sp-sw[data-mode="ai"][aria-pressed="true"]{background:var(--red);box-shadow:0 8px 18px rgba(179,25,66,.3)}
+.sp-cmp-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:clamp(32px,4vw,48px)}
+.sp-cmp-card{display:flex;flex-direction:column;gap:14px;padding:28px 26px;border-radius:24px;background:var(--white);border:1px solid var(--line);border-top:5px solid var(--navy);transition:border-color .4s,box-shadow .3s,transform .3s var(--ease)}
+.sp-cmp-card:hover{box-shadow:var(--shadow-md);transform:translateY(-4px)}
+.sp-cmp-ico{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;font-size:24px;background:var(--blue-50);color:var(--navy);transition:background .4s,color .4s}
+.sp-cmp-ico .ico{width:1em;height:1em}
+.sp-cmp-card h3{font-size:clamp(19px,1.8vw,22px);line-height:1.25;font-weight:500;color:var(--ink)}
+.sp-cmp-card p{font-size:16px;line-height:1.6;color:var(--ink);animation:spFade .45s var(--ease)}
+.sp-ai{display:none}
+.sp-cmp[data-mode="ai"] .sp-std{display:none}
+.sp-cmp[data-mode="ai"] .sp-ai{display:block}
+.sp-cmp[data-mode="ai"] .sp-cmp-card{border-top-color:var(--red)}
+.sp-cmp[data-mode="ai"] .sp-cmp-ico{background:var(--red-50);color:var(--red)}
+@keyframes spFade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (max-width:959px){ .sp-cmp-grid{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:560px){
+  .sp-cmp-grid{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){ .sp-cmp-card p{animation:none!important} }
 
 .sp-stage{position:relative;overflow:hidden;min-height:440px;border-radius:32px;color:var(--white);background:radial-gradient(ellipse 90% 80% at 80% 0%,#12448a 0%,var(--navy) 55%,var(--navy-900) 100%);box-shadow:var(--shadow-lg)}
 .sp-stage::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(rgba(255,255,255,.2) 1px,transparent 1.3px);background-size:24px 24px;-webkit-mask-image:radial-gradient(ellipse 70% 70% at 100% 0%,#000 10%,transparent 70%);mask-image:radial-gradient(ellipse 70% 70% at 100% 0%,#000 10%,transparent 70%)}

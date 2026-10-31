@@ -1,0 +1,1981 @@
+/* ==========================================================================
+   Internal Knowledge Agents page — loads AFTER css/style.css
+   Uses the existing :root tokens only (navy / blue / red / white), no new colours
+   except one status green (#2fb47c) already used on the homepage.
+   ========================================================================== */
+
+/* ---------- 1 · Hero ---------- */
+.ik-hero-inner {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    gap: clamp(32px, 5vw, 72px);
+    align-items: center;
+    padding-top: clamp(56px, 7vw, 92px);
+}
+
+.ik-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+}
+
+.ik-hero .h-display {
+    font-size: clamp(38px, 4.8vw, 68px);
+}
+
+.ik-copy .lead {
+    max-width: 540px;
+    color: rgba(255, 255, 255, 0.92);
+    animation: fadeUp 0.9s var(--ease) 0.75s both;
+}
+
+.ik-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    animation: fadeUp 0.9s var(--ease) 0.9s both;
+}
+
+.ik-checks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 22px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
+    animation: fadeUp 0.9s var(--ease) 1.05s both;
+}
+
+.ik-checks li {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ik-checks .ico {
+    color: #ff8da6;
+    stroke-width: 2.6;
+}
+
+/* the animated "video" */
+.ik-stage {
+    position: relative;
+    padding: 14px 0 18px;
+    animation: fadeUp 1s var(--ease) 0.5s both;
+}
+
+.ik-video {
+    position: relative;
+    overflow: hidden;
+    border-radius: 24px;
+    background: #fff;
+    color: var(--ink);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 40px 80px rgba(2, 12, 36, 0.5);
+}
+
+.ik-vbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    font-size: 13px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--line);
+}
+
+.ik-dots {
+    display: flex;
+    gap: 6px;
+}
+
+.ik-dots i {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--red);
+}
+
+.ik-dots i:nth-child(2) {
+    background: #fff;
+    border: 1px solid #c9d5e8;
+}
+
+.ik-dots i:nth-child(3) {
+    background: var(--blue);
+}
+
+.ik-vtitle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 6px;
+    font-weight: 600;
+    color: var(--navy);
+}
+
+.ik-rec {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--red);
+    animation: blink 1s infinite;
+}
+
+.ik-time {
+    margin-left: auto;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+}
+
+.ik-vbody {
+    position: relative;
+    height: clamp(350px, 33vw, 400px);
+    background: linear-gradient(180deg, #fff, var(--blue-50));
+}
+
+.ik-scene {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 18px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.45s, visibility 0.45s;
+}
+
+.ik-scene.is-active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* entrance for every animated piece; only runs while its scene/panel is active */
+.is-active .ik-in,
+.is-on .ik-in {
+    animation: fadeUp 0.55s var(--ease) calc(0.3s + var(--n, 0) * 0.85s) both;
+}
+
+/* scene 1 · chat */
+.ik-chat {
+    display: grid;
+    gap: 9px;
+    align-content: start;
+}
+
+.ik-m {
+    margin: 0;
+    max-width: 84%;
+    padding: 10px 14px;
+    border-radius: 16px;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.ik-m.me {
+    justify-self: end;
+    background: var(--navy);
+    color: #fff;
+    border-bottom-right-radius: 4px;
+}
+
+.ik-m.bot {
+    background: #fff;
+    border: 1px solid var(--blue-100);
+    border-bottom-left-radius: 4px;
+}
+
+.ik-order {
+    width: 84%;
+    padding: 12px 14px;
+    border-radius: 14px;
+    background: #fff;
+    border: 1px solid var(--blue-100);
+    box-shadow: var(--shadow-sm);
+}
+
+.ik-order-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+}
+
+.ik-order-top span {
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--navy);
+    background: var(--blue-50);
+}
+
+.ik-track {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    margin: 12px 4px 8px;
+}
+
+.ik-track::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 3px;
+    margin-top: -1.5px;
+    background: var(--blue-100);
+    border-radius: 3px;
+}
+
+.ik-track i {
+    position: relative;
+    z-index: 1;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--navy);
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 1px var(--navy);
+}
+
+.ik-track u {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 0;
+    width: 0;
+    height: 3px;
+    margin-top: -1.5px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--navy), var(--red));
+    text-decoration: none;
+}
+
+.is-active .ik-track u {
+    animation: growW 1.2s var(--ease) 2.3s forwards;
+}
+
+@keyframes growW {
+    to {
+        width: 78%;
+    }
+}
+
+.ik-order small {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+/* scene 2 · email */
+.ik-av {
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    background: var(--navy);
+}
+
+.ik-av--red {
+    background: var(--red);
+}
+
+.ik-av--green {
+    background: #2fb47c;
+}
+
+.ik-av .ico {
+    font-size: 18px;
+}
+
+.ik-mail {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: 14px;
+    background: #fff;
+    border: 1px solid var(--blue-100);
+    box-shadow: var(--shadow-sm);
+}
+
+.ik-mail div {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    font-size: 13.5px;
+}
+
+.ik-mail small {
+    font-size: 12.5px;
+    color: var(--muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ik-mail em {
+    margin-left: auto;
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-style: normal;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--red);
+    background: var(--red-50);
+}
+
+.ik-pipe {
+    display: grid;
+    gap: 8px;
+}
+
+.ik-pipe li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 12px;
+    border-radius: 12px;
+    font-size: 13.5px;
+    background: #fff;
+    border: 1px solid var(--line);
+}
+
+.ik-pipe small {
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.ik-pipe .ck {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 12px;
+    color: #fff;
+    background: #2fb47c;
+}
+
+.ik-pipe .ck .ico {
+    stroke-width: 3;
+}
+
+.is-active .ik-pipe .ck {
+    animation: csPop 0.4s var(--ease) calc(0.7s + var(--n, 0) * 0.85s) both;
+}
+
+@keyframes csPop {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+.ik-done {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: auto;
+    padding: 11px 14px;
+    border-radius: 14px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(90deg, var(--navy), var(--blue));
+}
+
+.ik-done .ico {
+    color: #ff8da6;
+}
+
+.ik-done--soft {
+    color: var(--navy);
+    background: var(--red-50);
+    border: 1px solid var(--red-100);
+}
+
+.ik-done--soft .ico {
+    color: var(--red);
+}
+
+/* scene 3 · handoff */
+.ik-ticket,
+.ik-sum,
+.ik-route {
+    padding: 13px 14px;
+    border-radius: 14px;
+    background: #fff;
+    border: 1px solid var(--blue-100);
+    box-shadow: var(--shadow-sm);
+}
+
+.ik-ticket-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+}
+
+.ik-ticket-top .hot {
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--red);
+    background: var(--red-50);
+}
+
+.ik-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+}
+
+.ik-tags span {
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    color: var(--navy);
+    background: var(--blue-50);
+}
+
+.ik-sum b {
+    font-size: 12.5px;
+    color: var(--red);
+}
+
+.ik-sum p {
+    margin: 6px 0 0;
+    font-size: 13.5px;
+    line-height: 1.5;
+}
+
+.ik-route {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.ik-route div {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+}
+
+.ik-route small {
+    font-size: 12.5px;
+    color: var(--muted);
+}
+
+/* timeline */
+.ik-vtl {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    padding: 12px 16px 14px;
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+}
+
+.ik-seg {
+    background: none;
+    border: 0;
+    padding: 0;
+    text-align: left;
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.ik-seg span {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+.ik-seg i {
+    position: relative;
+    display: block;
+    height: 4px;
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--blue-100);
+}
+
+.ik-seg i::after {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 0;
+    background: linear-gradient(90deg, var(--navy), var(--red));
+}
+
+.ik-seg.is-done i::after {
+    width: 100%;
+}
+
+.ik-seg.is-on span {
+    color: var(--navy);
+}
+
+.ik-seg.is-on i::after {
+    animation: bar 7s linear forwards;
+}
+
+.ik-stage.is-picked .ik-seg.is-on i::after {
+    animation: none;
+    width: 100%;
+}
+
+/* floating stat chips */
+.ik-float {
+    position: absolute;
+    z-index: 3;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px 10px 12px;
+    border-radius: 16px;
+    color: var(--navy);
+    background: #fff;
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-lg);
+}
+
+.ik-float .ico {
+    width: 32px;
+    height: 32px;
+    padding: 7px;
+    border-radius: 10px;
+    color: #fff;
+    background: var(--red);
+}
+
+.ik-float span {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.25;
+}
+
+.ik-float b {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.ik-float small {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.ik-float--1 {
+    top: -4px;
+    right: -14px;
+    animation: gxBob 5s ease-in-out infinite;
+}
+
+.ik-float--2 {
+    bottom: -4px;
+    left: -18px;
+    animation: gxBob 6s ease-in-out -2s infinite;
+}
+
+.ik-float--2 .ico {
+    background: var(--navy);
+}
+
+@media (max-width: 960px) {
+    .ik-hero-inner {
+        grid-template-columns: 1fr;
+    }
+
+    .ik-copy {
+        align-items: center;
+        text-align: center;
+    }
+
+    .ik-actions,
+    .ik-checks {
+        justify-content: center;
+    }
+
+    .ik-stage {
+        max-width: 640px;
+        width: 100%;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 520px) {
+    .ik-float--1 {
+        right: 6px;
+    }
+
+    .ik-float--2 {
+        left: 6px;
+    }
+
+    .ik-vbody {
+        height: 400px;
+    }
+}
+
+/* ---------- shared list ---------- */
+.ik-list {
+    display: grid;
+    gap: 12px;
+}
+
+.ik-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--ink);
+}
+
+.ik-list .ico {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    margin-top: 1px;
+    padding: 5px;
+    border-radius: 50%;
+    color: var(--red);
+    background: var(--red-50);
+    stroke-width: 2.6;
+}
+
+.ik-list--light li {
+    color: rgba(255, 255, 255, 0.92);
+}
+
+.ik-list--light .ico {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.16);
+}
+
+
+.ik-list {
+    display: grid;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.ik-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--ink);
+}
+
+.ik-list .ico {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    margin-top: 1px;
+    padding: 5px;
+    border-radius: 50%;
+    color: var(--red);
+    background: var(--red-50);
+    stroke-width: 2.4;
+}
+
+.ik-list--light li {
+    color: rgba(255, 255, 255, 0.92);
+}
+
+.ik-list--light .ico {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.16);
+}
+
+/* ==========================================================================
+   Sections 2-8 are specific to this page, each with its own animation idea.
+   Base styles are the FINISHED state, so reduced-motion users see the final design.
+   ========================================================================== */
+
+@keyframes ikPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(47, 180, 124, 0.55);
+    }
+
+    70%,
+    100% {
+        box-shadow: 0 0 0 9px rgba(47, 180, 124, 0);
+    }
+}
+
+@keyframes ikPop {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+/* ---------- 2 · Scattered > organised ---------- */
+.ik-sort {
+    background: #fff;
+}
+
+.ik-sortbox {
+    position: relative;
+    height: 350px;
+    max-width: 1000px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 30px;
+    background: linear-gradient(160deg, var(--blue-50), #fff 75%);
+    border: 1px solid var(--blue-100);
+    box-shadow: var(--shadow-lg);
+}
+
+.ik-state {
+    position: absolute;
+    right: 16px;
+    top: 14px;
+    z-index: 3;
+    padding: 5px 14px;
+    border-radius: 999px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--navy);
+    background: #fff;
+    border: 1px solid var(--line);
+}
+
+.ik-state .s0 {
+    display: none;
+}
+
+.ik-sortbox.ik-anim:not(.is-sorted) .ik-state .s0 {
+    display: inline;
+}
+
+.ik-sortbox.ik-anim:not(.is-sorted) .ik-state .s1 {
+    display: none;
+}
+
+.ik-colh {
+    position: absolute;
+    top: 16px;
+    left: calc(var(--g) * 25% + 1.5%);
+    width: 20%;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--red);
+    transition: opacity 0.6s 0.5s;
+}
+
+.ik-colh::after {
+    content: "";
+    display: block;
+    height: 2px;
+    margin-top: 6px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--navy), transparent);
+}
+
+.ik-sortbox.ik-anim:not(.is-sorted) .ik-colh {
+    opacity: 0;
+    transition-delay: 0s;
+}
+
+.ik-doc {
+    position: absolute;
+    left: calc(var(--g) * 25% + 1.5%);
+    top: calc(62px + var(--k) * 84px);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 22%;
+    height: 54px;
+    padding: 0 12px;
+    border-radius: 14px;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--ink);
+    background: #fff;
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-sm);
+    transition: left 1.1s var(--ease) calc(var(--n) * 45ms), top 1.1s var(--ease) calc(var(--n) * 45ms), transform 1.1s var(--ease) calc(var(--n) * 45ms), border-color 0.6s;
+}
+
+.ik-doc i {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 9px;
+    display: grid;
+    place-items: center;
+    font-size: 16px;
+    color: var(--navy);
+    background: var(--blue-50);
+}
+
+.ik-doc[data-g="1"] i,
+.ik-doc[data-g="3"] i {
+    color: var(--red);
+    background: var(--red-50);
+}
+
+.ik-dt {
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.ik-sortbox.ik-anim:not(.is-sorted) .ik-doc {
+    left: var(--sx);
+    top: var(--sy);
+    transform: rotate(var(--sr));
+    border-color: var(--blue-100);
+}
+
+.ik-note {
+    margin: 16px 0 0;
+    text-align: center;
+    font-size: 13.5px;
+    color: var(--muted);
+}
+
+@media (max-width: 760px) {
+    .ik-doc {
+        width: 23%;
+        padding: 0 8px;
+        gap: 6px;
+        font-size: 12px;
+    }
+
+    .ik-doc i {
+        width: 24px;
+        height: 24px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 560px) {
+    .ik-sortbox {
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 52px 16px 18px;
+    }
+
+    .ik-doc,
+    .ik-sortbox.ik-anim:not(.is-sorted) .ik-doc {
+        position: static;
+        width: auto;
+        transform: none;
+        font-size: 13px;
+    }
+
+    .ik-colh {
+        display: none;
+    }
+}
+
+/* ---------- 3 · Command palette ---------- */
+.ik-pal {
+    background: linear-gradient(180deg, var(--blue-50) 0%, #fff 100%);
+}
+
+.ik-palette {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 14px;
+    border-radius: 28px;
+    background: #fff;
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-lg);
+}
+
+.ik-pbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 58px;
+    padding: 0 18px;
+    border-radius: 18px;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--navy);
+    background: var(--surface);
+    border: 1px solid var(--line);
+}
+
+.ik-pbar .ico {
+    font-size: 22px;
+    color: var(--red);
+}
+
+.ik-pq {
+    min-width: 0;
+}
+
+.ik-caret {
+    width: 2px;
+    height: 1.2em;
+    background: var(--red);
+    animation: blink 1s infinite;
+}
+
+.ik-pbar kbd {
+    margin-left: auto;
+    padding: 3px 10px;
+    border-radius: 8px;
+    font: inherit;
+    font-size: 12px;
+    color: var(--muted);
+    background: #fff;
+    border: 1px solid var(--line);
+}
+
+.ik-plist {
+    position: relative;
+    height: 296px;
+    margin: 10px 0;
+    padding: 0;
+    overflow: hidden;
+    list-style: none;
+}
+
+.ik-sel {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 0;
+    height: 58px;
+    border-radius: 14px;
+    background: var(--blue-50);
+    border: 1px solid var(--blue-100);
+    border-left: 4px solid var(--red);
+    transform: translateY(var(--y, 0));
+    transition: transform 0.45s var(--ease);
+}
+
+.ik-pr {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    height: 58px;
+    max-height: 58px;
+    padding: 0 16px;
+    overflow: hidden;
+    transition: max-height 0.4s var(--ease), opacity 0.35s, padding 0.4s;
+}
+
+.ik-pr.is-hide {
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    opacity: 0;
+}
+
+.ik-pi {
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    font-size: 18px;
+    color: var(--navy);
+    background: var(--blue-50);
+}
+
+.ik-pr.is-sel .ik-pi {
+    color: #fff;
+    background: var(--navy);
+}
+
+.ik-pr div {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    line-height: 1.3;
+}
+
+.ik-pr b {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ik-pr small {
+    font-size: 12.5px;
+    color: var(--muted);
+}
+
+.ik-pr mark {
+    padding: 0;
+    color: var(--red);
+    font-weight: 700;
+    background: none;
+}
+
+.ik-pr em {
+    margin-left: auto;
+    padding: 2px 9px;
+    border-radius: 8px;
+    font-style: normal;
+    font-size: 11.5px;
+    color: var(--muted);
+    border: 1px solid var(--line);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.ik-pr.is-sel em {
+    opacity: 1;
+}
+
+.ik-pans {
+    display: grid;
+    gap: 6px;
+    padding: 16px 18px;
+    border-radius: 18px;
+    color: #fff;
+    background: radial-gradient(ellipse 90% 120% at 0% 0%, #12448a 0%, var(--navy) 60%, var(--navy-900) 100%);
+}
+
+.ik-pans-l {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #ff8da6;
+}
+
+.ik-pans p {
+    margin: 0;
+    min-height: 3em;
+    font-size: 16px;
+    line-height: 1.55;
+    color: #fff;
+}
+
+.ik-pans small {
+    font-size: 12.5px;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.ik-pans.is-swap p,
+.ik-pans.is-swap small {
+    animation: fadeUp 0.5s var(--ease) both;
+}
+
+@media (max-width: 560px) {
+    .ik-pbar kbd {
+        display: none;
+    }
+
+    .ik-pr em {
+        display: none;
+    }
+}
+
+/* ---------- 4 · Every team: expanding panels ---------- */
+.ik-teams {
+    background: var(--surface);
+}
+
+.ik-pn-row {
+    display: flex;
+    gap: 12px;
+    height: 400px;
+    max-width: 1080px;
+    margin: 0 auto;
+}
+
+.ik-pn {
+    position: relative;
+    flex: 1 1 0;
+    min-width: 0;
+    overflow: hidden;
+    border-radius: 26px;
+    background: #fff;
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+    transition: flex-grow 0.8s var(--ease), background 0.5s, border-color 0.5s, box-shadow 0.5s;
+}
+
+.ik-pn:hover {
+    border-color: rgba(29, 79, 156, 0.45);
+}
+
+.ik-pn.is-on {
+    flex-grow: 5.2;
+    cursor: default;
+    background: linear-gradient(160deg, var(--blue-50), #fff 70%);
+    border-color: var(--blue-100);
+    box-shadow: var(--shadow-md);
+}
+
+.ik-pn-btn {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 24px 0;
+    border: 0;
+    background: none;
+    color: var(--navy);
+    transition: opacity 0.35s;
+}
+
+.ik-pn-btn .ico {
+    font-size: 26px;
+    color: var(--red);
+}
+
+.ik-pn-btn b {
+    font-size: 15px;
+    font-weight: 600;
+    white-space: nowrap;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+}
+
+.ik-pn.is-on .ik-pn-btn {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.ik-pn-body {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: min(520px, 100%);
+    padding: 30px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.ik-pn.is-on .ik-pn-body {
+    opacity: 1;
+    transition-delay: 0.35s;
+}
+
+.ik-pn-body h3 {
+    font-size: 26px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+}
+
+.ik-pn-body p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.55;
+}
+
+.ik-qs {
+    display: grid;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.ik-qs span {
+    justify-self: start;
+    padding: 10px 16px;
+    border-radius: 16px 16px 16px 4px;
+    font-size: 14px;
+    color: #fff;
+    background: var(--navy);
+}
+
+.ik-qs span:nth-child(2) {
+    justify-self: end;
+    border-radius: 16px 16px 4px 16px;
+    background: var(--red);
+}
+
+.ik-pn.is-on .ik-qs span {
+    animation: ikBubble 0.6s var(--ease) calc(0.5s + var(--n) * 0.35s) both;
+}
+
+@keyframes ikBubble {
+    from {
+        opacity: 0;
+        transform: translateY(16px) scale(0.92);
+    }
+}
+
+@media (max-width: 800px) {
+    .ik-pn-row {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .ik-pn {
+        flex: none;
+        height: 66px;
+        transition: height 0.7s var(--ease), background 0.5s, border-color 0.5s;
+    }
+
+    .ik-pn.is-on {
+        height: 360px;
+    }
+
+    .ik-pn-btn {
+        flex-direction: row;
+        justify-content: flex-start;
+        padding: 0 22px;
+        align-items: center;
+    }
+
+    .ik-pn-btn b {
+        writing-mode: horizontal-tb;
+        transform: none;
+    }
+
+    .ik-pn-body {
+        padding: 22px;
+    }
+}
+
+/* ---------- 5 · Permissions (dark) ---------- */
+.ik-perm {
+    overflow: hidden;
+    color: #fff;
+    background: radial-gradient(ellipse 70% 90% at 12% 0%, #12448a 0%, var(--navy) 55%, var(--navy-900) 100%);
+}
+
+.ik-perm .engine-dots {
+    -webkit-mask-image: radial-gradient(ellipse 60% 80% at 100% 100%, #000 10%, transparent 70%);
+    mask-image: radial-gradient(ellipse 60% 80% at 100% 100%, #000 10%, transparent 70%);
+}
+
+.ik-perm .h-section {
+    color: #fff;
+}
+
+.ik-perm .lead {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.ik-perm-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    gap: clamp(32px, 5vw, 80px);
+    align-items: center;
+    padding-top: clamp(20px, 3vw, 40px);
+    padding-bottom: clamp(20px, 3vw, 40px);
+}
+
+.ik-perm-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.ik-who {
+    display: grid;
+    gap: 14px;
+    padding: 20px;
+    border-radius: 28px;
+    color: var(--ink);
+    background: #fff;
+    box-shadow: 0 30px 60px rgba(2, 12, 36, 0.4);
+}
+
+.ik-roles {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    padding: 5px;
+    border-radius: 16px;
+    background: var(--blue-50);
+    border: 1px solid var(--blue-100);
+}
+
+.ik-roles button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 9px 6px;
+    border: 0;
+    border-radius: 12px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--navy);
+    background: none;
+    transition: background 0.35s, color 0.35s;
+}
+
+.ik-roles button span {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 10px;
+    color: #fff;
+    background: var(--blue);
+}
+
+.ik-roles button.is-on {
+    color: #fff;
+    background: var(--navy);
+}
+
+.ik-roles button.is-on span {
+    background: var(--red);
+}
+
+.ik-wq {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    border-radius: 16px;
+    font-size: 14.5px;
+    font-weight: 500;
+    color: var(--navy);
+    background: var(--surface);
+    border: 1px solid var(--line);
+}
+
+.ik-wq .ico {
+    color: var(--red);
+    font-size: 18px;
+}
+
+.ik-wa {
+    display: none;
+    gap: 10px;
+    min-height: 215px;
+    align-content: start;
+}
+
+.ik-wa.is-on {
+    display: grid;
+}
+
+.ik-ln {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.55;
+}
+
+.ik-red {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    padding: 9px 14px;
+    border-radius: 10px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #fff;
+    background: repeating-linear-gradient(135deg, #1a1f2c 0 8px, #272d3c 8px 16px);
+}
+
+.ik-red .ico {
+    color: #ff8da6;
+}
+
+.ik-srcs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.ik-sc {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px 5px 9px;
+    border-radius: 999px;
+    font-size: 12.5px;
+    font-weight: 500;
+}
+
+.ik-sc.ok {
+    color: var(--navy);
+    background: var(--blue-50);
+    border: 1px solid var(--blue-100);
+}
+
+.ik-sc.no {
+    color: var(--muted);
+    background: var(--line);
+    border: 1px dashed #b9c4d6;
+}
+
+.ik-hid {
+    font-size: 12.5px;
+    color: var(--red);
+}
+
+.ik-hid--ok {
+    color: #1f8f6a;
+}
+
+.ik-wa.is-on .ik-ln {
+    animation: ikClear 0.9s var(--ease) calc(0.15s + var(--n) * 0.45s) both;
+}
+
+.ik-wa.is-on .ik-red {
+    animation: ikRedBar 0.8s var(--ease) calc(0.15s + var(--n) * 0.45s) both;
+}
+
+.ik-wa.is-on .ik-sc {
+    animation: ikPop 0.45s var(--ease) calc(0.2s + var(--n) * 0.25s) both;
+}
+
+.ik-wa.is-on .ik-hid {
+    animation: fadeUp 0.5s var(--ease) 1.8s both;
+}
+
+@keyframes ikClear {
+    from {
+        opacity: 0.1;
+        filter: blur(9px);
+        transform: translateY(6px);
+    }
+}
+
+@keyframes ikRedBar {
+    from {
+        clip-path: inset(0 100% 0 0);
+    }
+
+    to {
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+@media (max-width: 900px) {
+    .ik-perm-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ---------- 6 · Freshness: flip cards ---------- */
+.ik-fresh {
+    background: #fff;
+}
+
+.ik-health {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    max-width: 520px;
+    margin: 0 auto 28px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--navy);
+}
+
+.ik-hbar {
+    flex: 1;
+    height: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--blue-100);
+}
+
+.ik-hbar i {
+    display: block;
+    height: 100%;
+    width: 96%;
+    border-radius: 10px;
+    background: linear-gradient(90deg, var(--red), #e0527a 30%, #2fb47c);
+    transition: width 0.7s var(--ease);
+}
+
+.ik-health b {
+    min-width: 46px;
+    text-align: right;
+    font-size: 18px;
+    font-variant-numeric: tabular-nums;
+}
+
+.ik-flips {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    max-width: 1000px;
+    margin: 0 auto;
+    perspective: 1200px;
+}
+
+.ik-fc {
+    height: 176px;
+}
+
+.ik-fc-in {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.85s var(--ease);
+    transform: rotateY(180deg);
+}
+
+.ik-flips.ik-anim .ik-fc:not(.is-fresh) .ik-fc-in {
+    transform: none;
+}
+
+.ik-f {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 20px;
+    border-radius: 22px;
+    background: #fff;
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-sm);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.ik-f--front {
+    background: linear-gradient(160deg, #fff7f9, #fff 80%);
+    border-color: var(--red-100);
+}
+
+.ik-f--back {
+    transform: rotateY(180deg);
+    background: linear-gradient(160deg, #eaf7f1, #fff 80%);
+    border-color: #cdebdd;
+}
+
+.ik-f-ico {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: var(--red);
+    background: var(--red-50);
+}
+
+.ik-f--back .ik-f-ico {
+    color: #fff;
+    background: #2fb47c;
+}
+
+.ik-f--back .ik-f-ico .ico {
+    stroke-width: 3;
+}
+
+.ik-f b {
+    margin-top: 4px;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--ink);
+}
+
+.ik-f small {
+    font-size: 13px;
+    line-height: 1.4;
+    color: var(--muted);
+}
+
+.ik-f em {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    padding: 3px 12px;
+    border-radius: 999px;
+    font-style: normal;
+    font-size: 11.5px;
+    font-weight: 700;
+}
+
+.ik-f em.old {
+    color: var(--red);
+    background: var(--red-50);
+}
+
+.ik-f em.new {
+    color: #1f8f6a;
+    background: #dff3ea;
+}
+
+@media (max-width: 860px) {
+    .ik-flips {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 520px) {
+    .ik-flips {
+        grid-template-columns: 1fr;
+    }
+
+    .ik-fc {
+        height: 150px;
+    }
+}
+
+/* ---------- 7 · Insights: ranking race ---------- */
+.ik-race {
+    background: linear-gradient(180deg, var(--blue-50) 0%, #fff 100%);
+}
+
+.ik-race-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: clamp(32px, 5vw, 80px);
+    align-items: center;
+}
+
+.ik-race-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.ik-rc {
+    padding: clamp(20px, 3vw, 30px);
+    border-radius: 28px;
+    background: #fff;
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-lg);
+}
+
+.ik-rc-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 18px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--navy);
+}
+
+.ik-rc-top small {
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+}
+
+.ik-live {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-right: 8px;
+    border-radius: 50%;
+    background: #2fb47c;
+    animation: ikPulse 1.8s infinite;
+}
+
+.ik-rc-rows {
+    position: relative;
+}
+
+.ik-rr {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    display: grid;
+    grid-template-columns: 148px 1fr 44px;
+    align-items: center;
+    gap: 12px;
+    height: 40px;
+    transition: transform 0.8s var(--ease);
+}
+
+.ik-rl {
+    overflow: hidden;
+    font-size: 13.5px;
+    color: var(--ink);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.ik-rbar {
+    height: 22px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--blue-50);
+}
+
+.ik-rbar i {
+    display: block;
+    height: 100%;
+    width: var(--w, 50%);
+    border-radius: 8px;
+    background: linear-gradient(90deg, var(--navy), var(--blue));
+    transition: width 0.8s var(--ease), background 0.4s;
+}
+
+.ik-rr.is-top .ik-rbar i {
+    background: linear-gradient(90deg, #8f1234, var(--red));
+}
+
+.ik-rr b {
+    text-align: right;
+    font-size: 14px;
+    color: var(--navy);
+    font-variant-numeric: tabular-nums;
+}
+
+.ik-gap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 16px;
+    padding: 12px 14px;
+    border-radius: 16px;
+    background: var(--red-50);
+    border: 1px solid var(--red-100);
+}
+
+.ik-gap>span {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 11px;
+    display: grid;
+    place-items: center;
+    font-size: 19px;
+    color: #fff;
+    background: var(--red);
+}
+
+.ik-gap div {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    line-height: 1.3;
+}
+
+.ik-gap b {
+    color: var(--ink);
+}
+
+.ik-gap small {
+    font-size: 12.5px;
+    color: var(--muted);
+}
+
+@media (max-width: 900px) {
+    .ik-race-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .ik-rr {
+        grid-template-columns: 112px 1fr 38px;
+    }
+}
+
+/* ---------- 8 · How it works: staircase ---------- */
+.ik-how {
+    background: #fff;
+}
+
+.ik-stair {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    align-items: end;
+    height: 410px;
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+}
+
+.ik-step {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    height: var(--h);
+    padding: 22px 20px;
+    overflow: hidden;
+    border-radius: 24px;
+    background: #fff;
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-md);
+}
+
+.ik-step:nth-child(2) {
+    background: var(--blue-50);
+}
+
+.ik-step:nth-child(3) {
+    background: #dce7f6;
+    border-color: var(--blue-100);
+}
+
+.ik-step--top {
+    color: #fff;
+    background: radial-gradient(ellipse 100% 100% at 0% 0%, #12448a 0%, var(--navy) 60%, var(--navy-900) 100%);
+    border-color: transparent;
+}
+
+.ik-step-n {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    background: var(--navy);
+}
+
+.ik-step:nth-child(2) .ik-step-n,
+.ik-step:nth-child(3) .ik-step-n {
+    background: var(--blue);
+}
+
+.ik-step--top .ik-step-n {
+    background: var(--red);
+}
+
+.ik-step h3 {
+    font-size: 19px;
+    line-height: 1.25;
+    font-weight: 500;
+    color: var(--ink);
+}
+
+.ik-step p {
+    margin: 0;
+    font-size: 14.5px;
+    line-height: 1.55;
+}
+
+.ik-step--top h3 {
+    color: #fff;
+}
+
+.ik-step--top p {
+    color: rgba(255, 255, 255, 0.88);
+}
+
+.ik-flag {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 22px;
+    color: var(--navy);
+    background: #fff;
+}
+
+.ik-flag .ico {
+    stroke-width: 3;
+}
+
+.ik-js .ik-step {
+    height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    opacity: 0;
+    transition: height 1.1s var(--ease) calc(var(--k) * 0.25s), padding 1.1s var(--ease) calc(var(--k) * 0.25s), opacity 0.5s calc(var(--k) * 0.25s);
+}
+
+.ik-js .ik-stair.in .ik-step {
+    height: var(--h);
+    padding-top: 22px;
+    padding-bottom: 22px;
+    opacity: 1;
+}
+
+.ik-js .ik-flag {
+    transform: scale(0);
+}
+
+.ik-js .ik-stair.in .ik-flag {
+    animation: ikPop 0.55s var(--ease) 1.5s both;
+    transform: none;
+}
+
+@media (max-width: 860px) {
+    .ik-stair {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+
+    .ik-step,
+    .ik-js .ik-step,
+    .ik-js .ik-stair.in .ik-step {
+        height: auto;
+        padding-top: 22px;
+        padding-bottom: 22px;
+    }
+
+    .ik-js .ik-step {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s calc(var(--k) * 0.15s), transform 0.6s var(--ease) calc(var(--k) * 0.15s);
+    }
+
+    .ik-js .ik-stair.in .ik-step {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .ik-live,
+    .ik-caret {
+        animation: none !important;
+    }
+}
